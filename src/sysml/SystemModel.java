@@ -40,17 +40,17 @@ import util.Pair;
  * A generic interface for accessing system models as simplified SysML (without UML).
  * REVIEW -- What else might this need to be compatible with other things, like CMIS, OSLC, EMF, etc.  
  */
-public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CE> {
+public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     /**
      * ModelItems are types of things in a model on which Operations can be
      * performed.
      * <p>
-     * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, EVENT_ELEMENT<br>
+     * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, EVENT<br>
      * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, <br>
      */
     public enum ModelItem {
         OBJECT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
-        RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT_ELEMENT, VIEW, VIEWPOINT
+        RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT
     };
     
     /**
@@ -247,7 +247,7 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CE> {
 
     // ModelItem classes
     // OBJECT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
-    // RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT_ELEMENT, VIEW, VIEWPOINT
+    // RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT
     public Class<O> getObjectClass();
     public Class<C> getContextClass();
     public Class<T> getTypeClass();
@@ -258,7 +258,7 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CE> {
     public Class<R> getRelationshipClass();
     public Class<V> getVersionClass();
     public Class<W> getWorkspaceClass();
-    public Class<CE> getConstraintElementClass();
+    public Class<CT> getConstraintClass();
     //public Class<?> getViewClass();
     //public Class<?> getViewpointClass();
 
@@ -493,18 +493,19 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CE> {
 //    public Number getScore();
     
     // Constraint CRUD
-    public CE getDomainConstraint( O object, V version, W workspace );
-    public void addConstraint( CE constraint, V version, W workspace );
-    public void addDomainConstraint( CE constraint, V version, Set<U> valueDomainSet, W workspace );
-    public void addDomainConstraint( CE constraint, V version, Pair<U,U> valueDomainRange, W workspace );
-    public void relaxDomain( CE constraint, V version, Set<U> valueDomainSet, W workspace );
-    public void relaxDomain( CE constraint, V version, Pair<U,U> valueDomainRange, W workspace );
-    public Collection<CE> getConstraintsOfElement( O element, V version, W workspace );
-    public Collection<CE> getConstraintsOfContext( C context );
-    public Collection<CE> getViolatedConstraintsOfElement( O element, V version );
-    public Collection<CE> getViolatedConstraintsOfContext( C context );
+    public CT getDomainConstraint( O object, V version, W workspace );
+    public void addConstraint( CT constraint, V version, W workspace );
+    public void addDomainConstraint( CT constraint, V version, Set<U> valueDomainSet, W workspace );
+    public void addDomainConstraint( CT constraint, V version, Pair<U,U> valueDomainRange, W workspace );
+    public void relaxDomain( CT constraint, V version, Set<U> valueDomainSet, W workspace );
+    public void relaxDomain( CT constraint, V version, Pair<U,U> valueDomainRange, W workspace );
+    public Collection<CT> getConstraintsOfElement( O element, V version, W workspace );
+    public Collection<CT> getConstraintsOfContext( C context );
+    public Collection<CT> getViolatedConstraintsOfElement( O element, V version );
+    public Collection<CT> getViolatedConstraintsOfContext( C context );
     public void setOptimizationFunction( Method method, Object... arguments ); // REVIEW -- should these be elements? should the function be an interface type (add F to ModelItem)?
     public Number getScore();
     //public <B> Number getScore(B objective); // TODO -- add B to class parameters?
+    // TODO -- add other functions? like for delete? update?
     
 }
