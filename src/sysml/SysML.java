@@ -37,10 +37,10 @@ import java.util.Set;
 import util.Pair;
 
 /**
- * A generic interface for talking to models.  Looking to be sufficient for simplified SysML (without UML).
+ * A generic interface for accessing system models as simplified SysML (without UML).
  * REVIEW -- What else might this need to be compatible with other things, like CMIS, OSLC, EMF, etc.  
  */
-public interface ModelInterface<O, C, T, P, N, I, U, R, V, W, CE> {
+public interface SysML<O, C, T, P, N, I, U, R, V, W, CE> {
     /**
      * ModelItems are types of things in a model on which Operations can be
      * performed.
