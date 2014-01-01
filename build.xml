@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sysml" default="makejar" basedir=".">
+  <!-- Customize properties below for your installation. -->
+  <loadproperties srcFile="build.properties"/>
+
+  <property name="junitJarFile" value="${home}/.yoxoslauncher/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
+  <property name="gitDir" value="${home}/git"/>
+  <property name="view_repo" value="${gitDir}/alfresco-view-repo"/>
+  <property name="view_repo_web_lib" value="${view_repo}/target/view-repo-war/WEB-INF/lib"/>
+  <property name="view_repo_lib" value="${view_repo}/lib"/>
+  <!-- Customize properties above for your installation. -->
+
+  <!-- set global properties for this build -->
+  <!-- <property name="md" location="${mdpath}"/> -->
+  <!-- Conditional properties to load based on whether or not this is being called from jenkins build -->
+
+  <target name ="makejar" description="Create a jar for the SysML interface">
+    <tstamp>
+       <format property="current.time" pattern="MM/dd/yyyy hh:mm:ss aa" />
+    </tstamp>
+    <echo message="started ${current.time}" />
+    <jar destfile="sysml.jar">
+      <fileset includes="**/*.class" dir="bin"/>
+      <zipfileset includes="**/*.class" src="${junitJarFile}"/>
+    	<!--
+      <manifest>
+        <attribute name="Main-Class" value="tests/TestEventXmlToJava"/>
+      </manifest>
+    	-->
+    </jar>
+    <antcall target="copyjar"/>
+    <tstamp>
+       <format property="current.time" pattern="MM/dd/yyyy hh:mm:ss aa" />
+    </tstamp>
+    <echo message="finished ${current.time}" />  
+  </target>
+
+  <target name="copyjar">
+    <tstamp>
+       <format property="current.time" pattern="MM/dd/yyyy hh:mm:ss aa" />
+    </tstamp>
+    <echo message="started ${current.time}" />
+    <copy todir="${view_repo_web_lib}" file="sysml.jar"/>
+    <copy todir="${view_repo_lib}" file="sysml.jar"/>
+    <tstamp>
+       <format property="current.time" pattern="MM/dd/yyyy hh:mm:ss aa" />
+    </tstamp>
+    <echo message="finished ${current.time}" />
+  </target>
+
+  <target name="timestamp2">
+    <tstamp>
+      <format property="current.time" pattern="MM/dd/yyyy hh:mm:ss aa" />
+    </tstamp>
+    <echo message="${message} ${current.time}" />      
+  </target>
+
+  <target name="test">
+    <antcall target="timestamp2">
+      <param name="message" value="hello" />
+    </antcall>
+
+    <sleep seconds="5"/>
+
+    <antcall target="timestamp2">
+      <param name="message" value="world" />
+    </antcall>
+  </target>
+
+</project>
