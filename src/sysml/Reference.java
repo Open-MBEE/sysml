@@ -3,6 +3,7 @@
  */
 package sysml;
 
+import java.lang.Object;
 import java.util.Collection;
 import java.util.List;
 

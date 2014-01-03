@@ -3,11 +3,18 @@
  */
 package sysml;
 
+import gov.nasa.jpl.mbee.util.Debug;
+import gov.nasa.jpl.mbee.util.Pair;
+import gov.nasa.jpl.mbee.util.Utils;
+
+import java.lang.Object;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import sysml.AbstractReference.Interpretation.Category;
+import sysml.SystemModel.MethodCall;
 import sysml.SystemModel.ModelItem;
 
 /**
@@ -15,19 +22,20 @@ import sysml.SystemModel.ModelItem;
  * Reference. Subclasses of AbstractReference must minimally redefine
  * makeReference(), getAlternatives(), and getItems().
  */
-public abstract class AbstractReference< RT, SM extends SystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > > implements Reference< RT, SM > {
+public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P, N, I, U, R, V, W, CT >, O, C, T, P, N, I, U, R, V, W, CT > implements Reference< RT, SM > {
 
     // try to use ModelItem enum as interpretation 
     public static class Interpretation {
+        public static enum Category { ModelItem, Related, RelatedSource, RelatedTarget, MULTIPLE, UNKNOWN };
+        Category category = Category.UNKNOWN;
+        SystemModel.ModelItem modelItemInterpretation = null;
+        public Interpretation() {}
         public Interpretation( Category category,
                                ModelItem modelItemInterpretation ) {
             super();
             this.category = category;
             this.modelItemInterpretation = modelItemInterpretation;
         }
-        public static enum Category { ModelItem, Related, RelatedSource, RelatedTarget, MULTIPLE, UNKNOWN };
-        Category category = Category.UNKNOWN;
-        SystemModel.ModelItem modelItemInterpretation = null;
     }
     
     SM model = null;
@@ -39,6 +47,8 @@ public abstract class AbstractReference< RT, SM extends SystemModel< ?, ?, ?, ?,
     
     Interpretation interpretation = new Interpretation();
     
+    List< Reference< ? extends RT, SM > > alternatives = null;
+    protected Collection< RT > items = null;
     
     public AbstractReference() {
     }
@@ -63,25 +73,25 @@ public abstract class AbstractReference< RT, SM extends SystemModel< ?, ?, ?, ?,
     }
 
     @Override
-    public abstract Reference< RT, SM > makeReference();
+    public abstract AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > makeReference();
 //    {
 //        return new AbstractReference< RT, SM >(); 
 //    }
 
     @Override
-    public  Reference< RT, SM > makeReference( SM model ) {
+    public  AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > makeReference( SM model ) {
         //return new AbstractReference< RT >( model );
-        Reference< RT, SM > r = makeReference();
+        AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > r = makeReference();
         r.setModel( model );
         return r;
     }
 
     @Override
-    public Reference< RT, SM > makeReference( SM model,
+    public AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > makeReference( SM model,
                                            Object scope, Class< RT > type, Object specifier,
                                            Object nextSpecifier, boolean isTemplate ) {
         //return new AbstractReference< RT >( model, scope, type, specifier, nextSpecifier, isTemplate );
-        Reference< RT, SM > r = makeReference();
+        AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > r = makeReference();
         r.setModel( model );
         r.setScope( scope );
         r.setType( type );
@@ -91,7 +101,7 @@ public abstract class AbstractReference< RT, SM extends SystemModel< ?, ?, ?, ?,
         return r;
     }
     
-    public Reference< RT, SM > clone() throws CloneNotSupportedException {
+    public AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > clone() throws CloneNotSupportedException {
         //return new AbstractReference< RT >( model, scope, type, specifier, nextSpecifier, type, isTemplate );
         return makeReference( model, scope, type, specifier, nextSpecifier, isTemplate );
     }
@@ -176,22 +186,102 @@ public abstract class AbstractReference< RT, SM extends SystemModel< ?, ?, ?, ?,
     }
 
     @Override
-    public abstract List< Reference< ? extends RT, SM > > getAlternatives() {
-        
+    public List< Reference< ? extends RT, SM > > getAlternatives() {
+        for ( Interpretation.Category c : Interpretation.Category.values() ) {
+            SystemModel.ModelItem mi = null;
+            Collection< RT > items;
+            if ( c == Category.ModelItem ) {
+                for ( SystemModel.ModelItem i : SystemModel.ModelItem.values() ) {
+                    Interpretation interp = new Interpretation( c, i );
+                    Reference<RT, SM> alternative = getReferenceForInterpretation( interp );
+                    if ( alternative != null ) alternatives.add( alternative );
+                }
+            } else {
+                
+            }
+            return alternatives;
+        }
+
+        // TODO
+        return null;
     }
 //  throw new UnsupportedOperationException();
 
+    private AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT >
+            getReferenceForInterpretation( Interpretation interp ) {
+        Collection< RT > items = getItemsForInterpretation( interp );
+        if ( !Utils.isNullOrEmpty( items ) ) {
+            AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > r;
+            try {
+                r = this.clone();
+                r.interpretation = interp;
+                r.setItems( items );
+                return r;
+            } catch ( CloneNotSupportedException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    protected void setItems( Collection< RT > items ) {
+        this.items  = items;
+    }
+
+    protected static void sub( MethodCall methodCall, int indexOfArg, Object obj ) {
+        if ( indexOfArg < 0 ) Debug.error("bad indexOfArg " + indexOfArg );
+        else if ( indexOfArg == 0 ) methodCall.objectOfCall = obj;
+        else if ( indexOfArg > methodCall.arguments.length ) Debug.error( "bad index "
+                                                                          + indexOfArg
+                                                                          + "; only "
+                                                                          + methodCall.arguments.length
+                                                                          + " arguments!" );
+        else methodCall.arguments[indexOfArg-1] = obj;
+    }
+
+    public static < XX > Collection<XX> filter( Collection< XX > objects,
+                                                MethodCall methodCall,
+                                                int indexOfObjectArgument ) {
+        Collection< XX > coll = new ArrayList< XX >( objects );
+        for ( XX o : objects ) {
+            sub( methodCall, indexOfObjectArgument, o );
+            Pair< Boolean, Object > result = methodCall.invoke();
+            if ( result.first && Utils.isTrue( result.second, false ) ) {
+                coll.add( o );
+            }
+        }
+        return coll;
+    }
+    
     public Collection< RT > getItemsForInterpretation( Interpretation i ) {
+        Collection< RT > items = null;
         switch ( i.category ) {
             case UNKNOWN:
                 return Collections.emptyList();
             case Related:
-                Collection< RT > items =
-                    getItemsForInterpretation( new Interpretation( Category.ModelItem, ModelItem.RELATIONSHIP ) );
-                // TODO -- check null model and type
-                getModel().filter( items, getType().getMethod( "isInstance", new Class<?>[] {Object.class} ), 0, null );
-                // TODO
-                break;
+//                    getItemsForInterpretation( new Interpretation( Category.ModelItem, ModelItem.RELATIONSHIP ) );
+//                if ( items == null ) return Collections.emptyList();
+//                for ( RT o : items ) {
+                    Collection< O > related = getModel().getRelated( (O)getScope(), (N)getSpecifier(), null );
+                    items = Utils.asList( related, getType() );
+//                }
+//                SystemModel.MethodCall methodCall =
+//                        new SystemModel.MethodCall( getModel(),
+//                                                    getType().getMethod( "isInstance",
+//                                                                         new Class<?>[] { Object.class } ),
+//                                                                         new Object[]{ null } );
+//                Collection< O > objects;
+//                Collection< Object > otherItems = getModel().map( objects, methodCall, 0000 );
+//                methodCall =
+//                        new SystemModel.MethodCall( getType(),
+//                                                    getType().getMethod( "isInstance",
+//                                                                         new Class<?>[] { Object.class } ),
+//                                                    new Object[]{ null } );
+//                Collection< RT > filterResults = filter( items, methodCall, 0 );
+//                return filterResults;
+                    return items;
+//                break;
             case RelatedSource:
                 // TODO
                 break;
@@ -223,14 +313,13 @@ public abstract class AbstractReference< RT, SM extends SystemModel< ?, ?, ?, ?,
             default:
                 // TODO -- ERROR!
         };
-        if ( i.category == Category.UNKNOWN ) 
-        if ( )
         return Collections.emptyList();
     }
     
     @Override
-    public abstract Collection< RT > getItems() {
-        
+    public Collection< RT > getItems() {
+        // TOOD
+        return null;
     }
 
 }

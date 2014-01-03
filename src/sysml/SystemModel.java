@@ -28,13 +28,18 @@
  ******************************************************************************/
 package sysml;
 
+import gov.nasa.jpl.mbee.util.ClassUtils;
+import gov.nasa.jpl.mbee.util.Pair;
+
 import java.lang.Object;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
-
-import util.Pair;
 
 /**
  * A generic interface for accessing system models as simplified SysML (without UML).
@@ -74,6 +79,54 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
         public Item( Object obj, ModelItem kind ) {
             this.kind = kind;
             this.obj = obj;
+        }
+    }
+    
+    public static class MethodCall {
+        /**
+         * Create a new MethodCall, fully specifying its attributes.
+         * 
+         * @param objectOfCall
+         *            This is the Object whose method is called. If it is null
+         *            and the method is not static, the indexOfObjectArgument
+         *            must be 0 to indicate that the objects will be substituted
+         *            such that the method is called from each of them. If the
+         *            method is static, then objectOfCall is ignored.
+         * @param method
+         *            Java Method either of Class O or with a parameter that is
+         *            or extends O (for the objects).
+         * @param arguments
+         *            arguments to be passed into the call of the method
+         */
+        public MethodCall( java.lang.Object objectOfCall, Method method,
+                           java.lang.Object... arguments ) {
+            this.objectOfCall = objectOfCall;
+            this.method = method;
+            this.arguments = arguments;
+        }
+        /**
+         * This is the Object whose method is called. If it is null and the
+         * method is not static, the indexOfObjectArgument must be 0 to indicate
+         * that the objects will be substituted such that the method is called
+         * from each of them. If the method is static, then objectOfCall is
+         * ignored.
+         */
+        public Object objectOfCall;
+        /**
+         * Java Method either of Class O or with a parameter that is or extends
+         * O (for the objects).
+         */
+        public Method method;
+        /**
+         * arguments to be passed into the call of the method
+         */
+        public Object[] arguments;
+        
+        public Pair< Boolean, Object > invoke() {
+            return invoke( true );
+        }
+        public Pair< Boolean, Object > invoke( boolean suppressErrors ) {
+            return ClassUtils.runMethod( suppressErrors, objectOfCall, method, arguments );
         }
     }
     
@@ -295,25 +348,24 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * FunctionalUtils (TODO).
      * 
      * @param objects
-     * @param method
-     *            Java method with a parameter that is or extends O (object).
-     *            Imagine that this method is a call to op() or a call to a
-     *            custom function that includes calls to various ModelInterface
-     *            methods.
+     *            the objects, on each of which the method is applied
+     * @param methodCall
+     *            Java method call where the method is either of Class O or with
+     *            a parameter that is or extends O (for the objects). This
+     *            method could be a call to op() or a call to a custom function
+     *            that includes calls to various ModelInterface methods.
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            belongs (0 to total number of args - 1)
-     * @param otherArguments
-     *            arguments to be combined with an object in the collection in
-     *            a method call
+     *            is substituted (1 to total number of args) or 0 to indicate
+     *            that the objects are each substituted for
+     *            methodCall.objectOfCall.
      * @return null if the method call returns void; otherwise, a return value
      *         for each object
      * @throws java.lang.reflect.InvocationTargetException
      */
     public Collection< Object > map( Collection< O > objects,
-                                     Method method,
-                                     int indexOfObjectArgument,
-                                     Object... otherArguments )
+                                     MethodCall methodCall,
+                                     int indexOfObjectArgument )
                                              throws java.lang.reflect.InvocationTargetException;
     
     /**
@@ -322,24 +374,24 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * provided in FunctionalUtils (TODO).
      * 
      * @param objects
-     * @param method
-     *            Java method with a parameter that is or extends O (object)
-     *            and a return value that can be interpreted as a Boolean by
-     *            utils.isTrue().
+     *            the objects being filtered
+     * @param methodCall
+     *            Java method call where the method is either of Class O or with
+     *            a parameter that is or extends O (for the objects) and
+     *            returning a value that can be interpreted as a Boolean by
+     *            Utils.isTrue().
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            belongs (0 to total number of args - 1)
-     * @param otherArguments
-     *            arguments to be combined with an object in the collection in
-     *            a method call
+     *            is substituted (1 to total number of args) or 0 to indicate
+     *            that the objects are each substituted for
+     *            methodCall.objectOfCall.
      * @return null if the function returns void; otherwise, a return value for
      *         each object
      * @throws java.lang.reflect.InvocationTargetException
      */
     public Collection< Object > filter( Collection< O > objects,
-                                        Method method,
-                                        int indexOfObjectArgument,
-                                        Object... otherArguments )
+                                        MethodCall methodCall,
+                                        int indexOfObjectArgument )
                                                 throws java.lang.reflect.InvocationTargetException;
 
     /**
@@ -348,24 +400,24 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * in FunctionalUtils (TODO).
      * 
      * @param objects
-     * @param method
-     *            Java method with a parameter that is or extends O (object)
-     *            and a return value that can be interpreted as a Boolean by
-     *            utils.isTrue().
+     *            the objects being tested
+     * @param methodCall
+     *            Java method call where the method is either of Class O or with
+     *            a parameter that is or extends O (for the objects) and
+     *            returning a value that can be interpreted as a Boolean by
+     *            Utils.isTrue().
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            belongs (0 to total number of args - 1)
-     * @param otherArguments
-     *            arguments to be combined with an object in the collection in
-     *            a method call
+     *            is substituted (1 to total number of args) or 0 to indicate
+     *            that the objects are each substituted for
+     *            methodCall.objectOfCall.
      * @return true iff all method calls can clearly be interpreted as true
      *         (consistent with Utils.isTrue())
      * @throws java.lang.reflect.InvocationTargetException
      */
     public boolean forAll( Collection< O > objects,
-                           Method method,
-                           int indexOfObjectArgument,
-                           Object... otherArguments )
+                           MethodCall methodCall,
+                           int indexOfObjectArgument )
                                    throws java.lang.reflect.InvocationTargetException;
 
     /**
@@ -374,29 +426,29 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * provided in FunctionalUtils (TODO).
      * 
      * @param objects
-     * @param method
-     *            Java method with a parameter that is or extends O (object)
-     *            and a return value that can be interpreted as a Boolean by
-     *            utils.isTrue().
+     *            the objects being tested
+     * @param methodCall
+     *            Java method call where the method is either of Class O or with
+     *            a parameter that is or extends O (for the objects) and
+     *            returning a value that can be interpreted as a Boolean by
+     *            Utils.isTrue().
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            belongs (0 to total number of args - 1)
-     * @param otherArguments
-     *            arguments to be combined with an object in the collection in
-     *            a method call
+     *            is substituted (1 to total number of args) or 0 to indicate
+     *            that the objects are each substituted for
+     *            methodCall.objectOfCall.
      * @return true iff any method call return value can clearly be interpreted
      *         as true (consistent with Utils.isTrue())
      * @throws java.lang.reflect.InvocationTargetException
      */
     public boolean thereExists( Collection< O > objects,
-                                Method method,
-                                int indexOfObjectArgument,
-                                Object... otherArguments )
+                                MethodCall methodCall,
+                                int indexOfObjectArgument )
                                         throws java.lang.reflect.InvocationTargetException;
 
     /**
      * Inductively combine the results of applying the method to each of the
-     * objects and the return results for the prior object. Subclasses 
+     * objects and the return results for the prior object. Subclasses
      * implementing fold() may employ utilities for functional Java provided in
      * FunctionalUtils (TODO).
      * <p>
@@ -407,32 +459,35 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * 
      * @param objects
      * @param initialValue
-     *            An initial value to act as the first argument to first
-     *            invocation of the method
-     * @param method
-     *            Java method with two or more parameters, one of which can be
-     *            assigned a value of the same type as the method's return type
-     *            and another which is or extends O (object)
+     *            an initial value to act as the first argument to first
+     *            invocation of the method.
+     * @param methodCall
+     *            Java method call where the method is either of Class O or with
+     *            a parameter that is or extends O (for the objects). Including
+     *            the objectOfCall with the arguments if not static, the method
+     *            must have two or more parameters, one of which can be assigned
+     *            the prior result, which should have the same type as the
+     *            method's return type, and another that is an O or extends O
+     *            (object).
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            belongs (0 to total number of args - 1)
+     *            is substituted (1 to total number of args) or 0 to indicate
+     *            that the objects are each substituted for
+     *            methodCall.objectOfCall.
      * @param indexOfPriorResultArgument
-     *            where in the list of arguments the prior result value
-     *            belongs (0 to total number of args - 1)
-     * @param otherArguments
-     *            arguments to be combined with an object in the collection in
-     *            a method call
-     * @return the result of calling the method on the last object after
-     *         calling the method on each prior object (in order), passing the
-     *         prior return value into the call on each object.
+     *            where in the list of arguments the prior result value is
+     *            substituted (1 to total number of args) or 0 to indicate that
+     *            the objects are each substituted for methodCall.objectOfCall.
+     * @return the result of calling the method on the last object after calling
+     *         the method on each prior object (in order), passing the prior
+     *         return value into the call on each object.
      * @throws java.lang.reflect.InvocationTargetException
      */
     public Object fold( Collection< O > objects,
                         Object initialValue,
-                        Method method,
+                        MethodCall methodCall,
                         int indexOfObjectArgument,
-                        int indexOfPriorResultArgument,
-                        Object... otherArguments )
+                        int indexOfPriorResultArgument )
                                 throws java.lang.reflect.InvocationTargetException;
     
     /**
@@ -442,16 +497,23 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * 
      * @param objects to be sorted
      * @param comparator specifies precedence relation on a pair of return values
-     * @param method
-     *            Java method with a parameter that is or extends O (object)
+     * @param methodCall
+     *            Java method call where the method is either of Class O or with
+     *            a parameter that is or extends O (for the objects). This
+     *            method could be a call to op() or a call to a custom function
+     *            that includes calls to various ModelInterface methods.
+     * @param indexOfObjectArgument
+     *            where in the list of arguments an object from the collection
+     *            is substituted (1 to total number of args) or 0 to indicate
+     *            that the objects are each substituted for
+     *            methodCall.objectOfCall.
      * @return the input objects in a new Collection sorted according to the method and comparator
      * @throws java.lang.reflect.InvocationTargetException
      */
     public Collection< O > sort( Collection< O > objects,
                                  Comparator< ? > comparator,
-                                 Method method,
-                                 int indexOfObjectArgument,
-                                 Object... otherArguments )
+                                 MethodCall methodCall,
+                                 int indexOfObjectArgument )
                                          throws java.lang.reflect.InvocationTargetException;     
 
     // support for problem solving
