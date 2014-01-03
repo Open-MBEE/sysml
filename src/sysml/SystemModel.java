@@ -48,7 +48,7 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, EVENT<br>
      * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, <br>
      */
-    public enum ModelItem {
+    public static enum ModelItem {
         OBJECT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
         RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT
     };
@@ -61,13 +61,13 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * REVIEW -- Consider adding SUM, SUBTRACT, INTERSECT, UNITE, DIFF, ???<br>
      * REVIEW -- Consider adding SATISFY, OPTIMIZE
      */
-    public enum Operation { CREATE, READ, UPDATE, DELETE,
-    		                GET, SET };
+    public static enum Operation { CREATE, READ, UPDATE, DELETE,
+                                   GET, SET };
 
     /**
-     * An Object with a label for the kind of model item it is.
+     * An Object with a label for the kind of model item it is.  
      */
-    public class Item {
+    public static class Item {
         public ModelItem kind;
         public Object obj;
 

@@ -21,6 +21,7 @@
     <echo message="started ${current.time}" />
     <jar destfile="sysml.jar">
       <fileset includes="**/*.class" dir="bin"/>
+      <fileset includes="rebel.xml" dir="."/>
       <zipfileset includes="**/*.class" src="${junitJarFile}"/>
     	<!--
       <manifest>
