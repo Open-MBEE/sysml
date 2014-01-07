@@ -282,6 +282,40 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     public Collection<Object> set( ModelItem item, Collection<C> context, I identifier, N name, V version, U newValue );
     // TODO -- update args and add update() and maybe copy()/clone()
 
+    /**
+     * Set a context that may be used by other SystemModel functions when
+     * otherwise unspecified.
+     * 
+     * @param context
+     */
+    public void setContext( Collection< C > context );
+    /**
+     * @return the context used by this SystemModel when otherwise unspecified
+     */
+    public Collection< C > getContext();
+    /**
+     * Set a workspace context that may be used by other SystemModel functions
+     * when otherwise unspecified.
+     * 
+     * @param workspace
+     */
+    public void setWorkspace( W workspace );
+    /**
+     * @return the workspace used by this SystemModel when otherwise unspecified
+     */
+    public W getWorkspace();
+    /**
+     * Set a version context that may be used by other SystemModel functions
+     * when otherwise unspecified.
+     * 
+     * @param version
+     */
+    public void setVersion( V version );
+    /**
+     * @return the version used by this SystemModel when otherwise unspecified
+     */
+    public V getVersion();    
+    
     // accessors for class/object/element
     public O getObject( C context, I identifier, V version );
     public Collection<O> getRootObjects( V version );
@@ -293,9 +327,28 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     public Collection<P> getProperties( O object, V version );
     public P getProperty( O object, N propertyName, V version );
     public Collection<R> getRelationships( O object, V version );
+    /**
+     * @param object an object that participates in the relationships
+     * @param relationshipName
+     * @param version the version of the relationship or object; null is interpreted as most current.
+     * @return all of the object's relationships with the given name and version
+     */
     public Collection<R> getRelationships( O object, N relationshipName, V version );
     public Collection<O> getRelated( O object, N relationshipName, V version );
 
+    // relationships
+    public boolean isDirected( R relationship, V version );
+    public O getRelatedObjects( R relationship, V version );
+    /**
+     * @param relationship
+     * @param role a role in a relationship might be source, target, first, second, last, numerator, denominator, quotient, sender, receiver, . . .
+     * @param version the version of the relationship
+     * @return the object serving the named role in the relationship
+     */
+    public O getObjectForRole( R relationship, N role, V version );
+    public O getSource( R relationship, V version );
+    public O getTarget( R relationship, V version );
+    
     public V latestVersion( Collection<C> context );
 
     // ModelItem classes
@@ -315,6 +368,21 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     //public Class<?> getViewClass();
     //public Class<?> getViewpointClass();
 
+    public O asObject( Object o );
+    public C asContext( Object o );
+    public T asType( Object o );
+    public P asProperty( Object o );
+    public N asName( Object o );
+    public I asIdentifier( Object o );
+    public U asValue( Object o );
+    public R asRelationship( Object o );
+    public V asVersion( Object o );
+    public W asWorkspace( Object o );
+    public CT asConstraint( Object o );
+    
+
+
+    
     
     // general edit policies
     public boolean idsAreSettable();
@@ -356,9 +424,9 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      *            that includes calls to various ModelInterface methods.
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            is substituted (1 to total number of args) or 0 to indicate
+     *            is substituted (1 to total number of args or 0 to indicate
      *            that the objects are each substituted for
-     *            methodCall.objectOfCall.
+     *            methodCall.objectOfCall).
      * @return null if the method call returns void; otherwise, a return value
      *         for each object
      * @throws java.lang.reflect.InvocationTargetException
@@ -382,9 +450,9 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      *            Utils.isTrue().
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            is substituted (1 to total number of args) or 0 to indicate
+     *            is substituted (1 to total number of args or 0 to indicate
      *            that the objects are each substituted for
-     *            methodCall.objectOfCall.
+     *            methodCall.objectOfCall).
      * @return null if the function returns void; otherwise, a return value for
      *         each object
      * @throws java.lang.reflect.InvocationTargetException
@@ -408,9 +476,9 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      *            Utils.isTrue().
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            is substituted (1 to total number of args) or 0 to indicate
+     *            is substituted (1 to total number of args or 0 to indicate
      *            that the objects are each substituted for
-     *            methodCall.objectOfCall.
+     *            methodCall.objectOfCall).
      * @return true iff all method calls can clearly be interpreted as true
      *         (consistent with Utils.isTrue())
      * @throws java.lang.reflect.InvocationTargetException
@@ -434,9 +502,9 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      *            Utils.isTrue().
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            is substituted (1 to total number of args) or 0 to indicate
+     *            is substituted (1 to total number of args or 0 to indicate
      *            that the objects are each substituted for
-     *            methodCall.objectOfCall.
+     *            methodCall.objectOfCall).
      * @return true iff any method call return value can clearly be interpreted
      *         as true (consistent with Utils.isTrue())
      * @throws java.lang.reflect.InvocationTargetException
@@ -476,8 +544,8 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      *            methodCall.objectOfCall.
      * @param indexOfPriorResultArgument
      *            where in the list of arguments the prior result value is
-     *            substituted (1 to total number of args) or 0 to indicate that
-     *            the objects are each substituted for methodCall.objectOfCall.
+     *            substituted (1 to total number of args or 0 to indicate that
+     *            the objects are each substituted for methodCall.objectOfCall).
      * @return the result of calling the method on the last object after calling
      *         the method on each prior object (in order), passing the prior
      *         return value into the call on each object.
@@ -504,9 +572,9 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      *            that includes calls to various ModelInterface methods.
      * @param indexOfObjectArgument
      *            where in the list of arguments an object from the collection
-     *            is substituted (1 to total number of args) or 0 to indicate
+     *            is substituted (1 to total number of args or 0 to indicate
      *            that the objects are each substituted for
-     *            methodCall.objectOfCall.
+     *            methodCall.objectOfCall).
      * @return the input objects in a new Collection sorted according to the method and comparator
      * @throws java.lang.reflect.InvocationTargetException
      */
