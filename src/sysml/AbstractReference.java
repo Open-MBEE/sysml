@@ -4,7 +4,7 @@
 package sysml;
 
 import gov.nasa.jpl.mbee.util.ClassUtils;
-import gov.nasa.jpl.mbee.util.Debug;
+import gov.nasa.jpl.mbee.util.MethodCall;
 import gov.nasa.jpl.mbee.util.Pair;
 import gov.nasa.jpl.mbee.util.Utils;
 
@@ -16,7 +16,6 @@ import java.util.Collections;
 import java.util.List;
 
 import sysml.AbstractReference.Interpretation.Category;
-import sysml.SystemModel.MethodCall;
 import sysml.SystemModel.ModelItem;
 
 /**
@@ -233,67 +232,6 @@ public class AbstractReference< RT, SM extends SystemModel< O, C, T, P, N, I, U,
         this.items  = items;
     }
 
-    protected static void sub( MethodCall methodCall, int indexOfArg, Object obj ) {
-        if ( indexOfArg < 0 ) Debug.error("bad indexOfArg " + indexOfArg );
-        else if ( indexOfArg == 0 ) methodCall.objectOfCall = obj;
-        else if ( indexOfArg > methodCall.arguments.length ) Debug.error( "bad index "
-                                                                          + indexOfArg
-                                                                          + "; only "
-                                                                          + methodCall.arguments.length
-                                                                          + " arguments!" );
-        else methodCall.arguments[indexOfArg-1] = obj;
-    }
-
-    /**
-     * @param objects
-     * @param methodCall
-     * @param indexOfObjectArgument
-     *            where in the list of arguments an object from the collection
-     *            is substituted (1 to total number of args or 0 to indicate
-     *            that the objects are each substituted for
-     *            methodCall.objectOfCall).
-     * @return the subset of objects for which the method call returns true
-     */
-    public static < XX > Collection<XX> filter( Collection< XX > objects,
-                                                MethodCall methodCall,
-                                                int indexOfObjectArgument ) {
-        Collection< XX > coll = new ArrayList< XX >( objects );
-        for ( XX o : objects ) {
-            sub( methodCall, indexOfObjectArgument, o );
-            Pair< Boolean, Object > result = methodCall.invoke();
-            if ( result != null && result.first && Utils.isTrue( result.second, false ) ) {
-                coll.add( o );
-            }
-        }
-        return coll;
-    }
-    
-    /**
-     * @param objects
-     * @param methodCall
-     * @param indexOfObjectArgument
-     *            where in the list of arguments an object from the collection
-     *            is substituted (1 to total number of args or 0 to indicate
-     *            that the objects are each substituted for
-     *            methodCall.objectOfCall).
-     * @return the results of the methodCall on each of the objects
-     */
-    public static < XX > Collection< XX > map( Collection< ? > objects,
-                                               MethodCall methodCall,
-                                               int indexOfObjectArgument ) {
-        Collection< XX > coll = new ArrayList<XX>();
-        for ( Object o : objects ) {
-            sub( methodCall, indexOfObjectArgument, o );
-            Pair< Boolean, Object > result = methodCall.invoke();
-            if ( result != null && result.first ) {
-                coll.add( (XX)result.second );
-            } else {
-                coll.add( null );
-            }
-        }
-        return coll;
-    }
-    
     /**
      * @return a Collection of contexts as can be derived from the scope. 
      */
@@ -318,11 +256,11 @@ public class AbstractReference< RT, SM extends SystemModel< O, C, T, P, N, I, U,
                 try {
                     method = getModel().getClass().getMethod( "getSource()",
                                                               new Class< ? >[] {} );
-                    SystemModel.MethodCall methodCall =
-                            new SystemModel.MethodCall( getModel(), method,
+                    MethodCall methodCall =
+                            new MethodCall( getModel(), method,
                                                         new Object[]{} );
 
-                    Collection< Object > related = map( rels, methodCall, 0 );
+                    Collection< Object > related = MethodCall.map( rels, methodCall, 0 );
                     theItems = Utils.asList( related, getType() );
                 } catch ( NoSuchMethodException e ) {
                     e.printStackTrace();
@@ -388,11 +326,11 @@ public class AbstractReference< RT, SM extends SystemModel< O, C, T, P, N, I, U,
                         try {
                             method = getModel().getClass().getMethod( "getSource()",
                                                              new Class< ? >[] {} );
-                            SystemModel.MethodCall methodCall =
-                                    new SystemModel.MethodCall( getModel(), method,
+                            MethodCall methodCall =
+                                    new MethodCall( getModel(), method,
                                                                 new Object[]{} );
 
-                            related = map( rels, methodCall, 0 );
+                            related = MethodCall.map( rels, methodCall, 0 );
                             theItems = Utils.asList( related, getType() );
                         } catch ( NoSuchMethodException e ) {
                             e.printStackTrace();

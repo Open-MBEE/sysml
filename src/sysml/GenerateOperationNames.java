@@ -29,22 +29,52 @@
 
 package sysml;
 
+import gov.nasa.jpl.mbee.util.Debug;
+import gov.nasa.jpl.mbee.util.MoreToString;
+
+import java.util.TreeSet;
+
 /**
  * Generate possible method names from {@link SystemModel.Operation} and {@link SystemModel.ModelItem}.
  */
 public class GenerateOperationNames {
-
+    
     /**
      * @param args
      */
     public static void main( String[] args ) {
         //SystemModel.ModelItem itemType;
         //SystemModel.Operation operation;
-        AbstractSystemModel asm = new AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >();
+        //AbstractSystemModel asm = new AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >();
+        TreeSet<String> set = new TreeSet<String>();
         for ( SystemModel.Operation operation : SystemModel.Operation.values() ) {
+            for ( boolean nullItem : new boolean[] { false, true } )
             for ( SystemModel.ModelItem itemType : SystemModel.ModelItem.values() ) {
-                MethodCall mc = AbstractSystemModel
+                for ( boolean nullContext : new boolean[] { false, true } )
+                for ( SystemModel.ModelItem contextType : SystemModel.ModelItem.values() ) {
+                    for ( boolean nullSpec : new boolean[] { false, true } )
+                    for ( SystemModel.ModelItem specifierType : SystemModel.ModelItem.values() ) {
+                        if ( nullItem && nullContext && nullSpec ) {
+                            Debug.breakpoint();
+                        }
+                        String name = 
+                                AbstractSystemModel.getMethodName( operation, 
+                                                                   nullItem ? null : itemType,
+                                                                   nullContext ? null : contextType,
+                                                                   nullSpec ? null : specifierType,
+                                                                   false );
+                        if ( name != null && !set.contains( name ) ) {
+                            set.add( name );
+                        }
+                        if ( nullSpec ) break;
+                    }
+                    if ( nullContext ) break;
+                }
+                if ( nullItem ) break;
             }
         }
-
+        System.out.println( MoreToString.Helper.toString( set, false, false,
+                                                          null, null, "", "\n",
+                                                          "", false ) );
+    }
 }

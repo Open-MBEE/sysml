@@ -28,7 +28,7 @@
  ******************************************************************************/
 package sysml;
 
-import gov.nasa.jpl.mbee.util.ClassUtils;
+import gov.nasa.jpl.mbee.util.MethodCall;
 import gov.nasa.jpl.mbee.util.Pair;
 
 import java.lang.Object;
@@ -82,53 +82,7 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
         }
     }
     
-    public static class MethodCall {
-        /**
-         * Create a new MethodCall, fully specifying its attributes.
-         * 
-         * @param objectOfCall
-         *            This is the Object whose method is called. If it is null
-         *            and the method is not static, the indexOfObjectArgument
-         *            must be 0 to indicate that the objects will be substituted
-         *            such that the method is called from each of them. If the
-         *            method is static, then objectOfCall is ignored.
-         * @param method
-         *            Java Method either of Class O or with a parameter that is
-         *            or extends O (for the objects).
-         * @param arguments
-         *            arguments to be passed into the call of the method
-         */
-        public MethodCall( java.lang.Object objectOfCall, Method method,
-                           java.lang.Object... arguments ) {
-            this.objectOfCall = objectOfCall;
-            this.method = method;
-            this.arguments = arguments;
-        }
-        /**
-         * This is the Object whose method is called. If it is null and the
-         * method is not static, the indexOfObjectArgument must be 0 to indicate
-         * that the objects will be substituted such that the method is called
-         * from each of them. If the method is static, then objectOfCall is
-         * ignored.
-         */
-        public Object objectOfCall;
-        /**
-         * Java Method either of Class O or with a parameter that is or extends
-         * O (for the objects).
-         */
-        public Method method;
-        /**
-         * arguments to be passed into the call of the method
-         */
-        public Object[] arguments;
-        
-        public Pair< Boolean, Object > invoke() {
-            return invoke( true );
-        }
-        public Pair< Boolean, Object > invoke( boolean suppressErrors ) {
-            return ClassUtils.runMethod( suppressErrors, objectOfCall, method, arguments );
-        }
-    }
+    
     
     // general functions
     
@@ -646,9 +600,9 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     public void addDomainConstraint( CT constraint, V version, Pair<U,U> valueDomainRange, W workspace );
     public void relaxDomain( CT constraint, V version, Set<U> valueDomainSet, W workspace );
     public void relaxDomain( CT constraint, V version, Pair<U,U> valueDomainRange, W workspace );
-    public Collection<CT> getConstraintsOfElement( O element, V version, W workspace );
+    public Collection<CT> getConstraintsOfObject( O object, V version, W workspace );
     public Collection<CT> getConstraintsOfContext( C context );
-    public Collection<CT> getViolatedConstraintsOfElement( O element, V version );
+    public Collection<CT> getViolatedConstraintsOfObject( O object, V version );
     public Collection<CT> getViolatedConstraintsOfContext( C context );
     public void setOptimizationFunction( Method method, Object... arguments ); // REVIEW -- should these be elements? should the function be an interface type (add F to ModelItem)?
     public Number getScore();

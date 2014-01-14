@@ -5,6 +5,7 @@ package sysml;
 
 import gov.nasa.jpl.mbee.util.ClassUtils;
 import gov.nasa.jpl.mbee.util.Debug;
+import gov.nasa.jpl.mbee.util.MethodCall;
 import gov.nasa.jpl.mbee.util.Pair;
 import gov.nasa.jpl.mbee.util.Utils;
 
@@ -66,7 +67,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                 for ( SystemModel.ModelItem itemType : itemTypes ) {
                     try {
                         MethodCall mc =
-                                getMethodCall( operation, itemType,
+                                getMethodCall( this, operation, itemType,
                                                context, specifier, newValue, false );
                         Pair< Boolean, Object > p = mc.invoke( true );
                         if ( p.first ) {
@@ -150,7 +151,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @param operation
      * @return a lower case name for the operation using "get" for READ and "set" for UPDATE.
      */
-    public String getOperationName(SystemModel.Operation operation ) {
+    public static String getOperationName(SystemModel.Operation operation ) {
         switch( operation ) {
             case CREATE:
             case DELETE:
@@ -180,9 +181,9 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         return null;
     }
 
-    protected String toCamelCase( String s ) {
+    protected static String toCamelCase( String s ) {
         if ( s == null ) return null;
-        if ( s.isEmpty() || Character.isAlphabetic( s.codePointAt( 0 ) ) )
+        if ( s.isEmpty() || !Character.isAlphabetic( s.codePointAt( 0 ) ) )
             return s;
         char prefix = s.charAt( 0 );
         String suffix = s.substring( 1 ).toLowerCase();
@@ -190,63 +191,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         return prefix + suffix;
     }
 
-//    /**
-//     * @param operation
-//     * @param itemType
-//     * @param contextType
-//     * @param specifierType
-//     * @param complain
-//     * @return the specific Method in this class for performing the operation with the given arguments.   
-//     */
-//    public Method getMethod( SystemModel.Operation operation,
-//                             SystemModel.ModelItem itemType,
-//                             SystemModel.ModelItem contextType,
-//                             SystemModel.ModelItem specifierType,
-//                             boolean complain ) {
-//        if ( operation == null ) {
-//            Debug.error( complain, complain, "Trying to pass in null operation!" );
-//            return null;
-//        }
-//        ArrayList< Class< ? > > argTypeList = new ArrayList< Class< ? > >();
-//        String opName = getOperationName( operation );
-//        String contextTypeName;
-//
-//        String itemTypeName;
-//        if ( itemType == null ) {
-//            itemTypeName = "";
-//        } else {
-//            itemTypeName = toCamelCase( itemType.toString() );
-//            argTypeList.add( getClass( itemType ) );
-//        }
-//        
-//        String specifierTypeName;
-//        if ( specifierType == null ) {
-//            if ( itemTypeName == null ) {
-//                Debug.error( complain, complain, "Either itemType or specifierType may be null, but not both!" );
-//            }
-//            specifierTypeName = "";
-//        } else {
-//            specifierTypeName = toCamelCase( specifierType.toString() );
-//            if ( itemTypeName == null ) {
-//                itemTypeName = specifierTypeName;
-//            }
-//            argTypeList.add( getClass( specifierType ) );
-//        }
-//        
-//        if ( contextType == null ) {
-//            contextTypeName = "";
-//        } else {
-//            contextTypeName = toCamelCase( contextType.toString() );
-//            argTypeList.add( getClass( contextType ) );
-//        }
-//        
-//        String callName = opName + itemTypeName + ( contextType == null ? "" : "From" + contextTypeName );
-//        Class< ? >[] argTypes = new Class<?>[ argTypeList.size() ];
-//        argTypeList.toArray( argTypes );
-//        Method m = ClassUtils.getMethodForArgTypes( this.getClass(), callName , argTypes , complain );
-//        return m;
-//    }
-    
     /**
      * @param operation
      * @param itemType
@@ -255,12 +199,82 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @param complain
      * @return the specific Method in this class for performing the operation with the given arguments.   
      */
-    public MethodCall getMethodCall( SystemModel.Operation operation,
-                                     SystemModel.ModelItem itemType,
-                                     SystemModel.Item context,
-                                     SystemModel.Item specifier,
-                                     U newValue,
-                                     boolean complain ) {
+    public static String getMethodName( SystemModel.Operation operation,
+                                        SystemModel.ModelItem itemType,
+                                        SystemModel.ModelItem contextType,
+                                        SystemModel.ModelItem specifierType,
+                                        boolean complain ) {
+        if ( operation == null ) {
+            Debug.error( complain, complain, "Trying to pass in null operation!" );
+            return null;
+        }
+        String opName = getOperationName( operation );
+        String contextTypeName;
+
+        String itemTypeName;
+        if ( itemType == null ) {
+            itemTypeName = "";
+        } else {
+            itemTypeName = toCamelCase( itemType.toString() );
+        }
+        
+        String specifierTypeName;
+        if ( specifierType == null ) {
+            if ( itemType == null ) {
+                Debug.error( complain, complain, "Either itemType or specifierType may be null, but not both!" );
+                return null;
+            }
+            specifierTypeName = "";
+        } else {
+            specifierTypeName = toCamelCase( specifierType.toString() );
+            if ( itemType == null ) {
+                itemTypeName = specifierTypeName;
+            }
+        }
+        
+        if ( contextType == null ) {
+            contextTypeName = "";
+        } else {
+            contextTypeName = toCamelCase( contextType.toString() );
+        }
+        
+        // construct method call name
+        String by = "";
+        if ( itemType != null && specifierType != null
+             && specifierType != ModelItem.NAME && specifierType != itemType ) {
+            by = "By" + specifierTypeName;
+        }
+        String callName = opName + itemTypeName + ( contextType == null ? "" : "Of" + contextTypeName ) + by;
+        return callName;
+    }
+    
+    private String getMethodNamePrepositionForContext( SystemModel.ModelItem targetType,
+                                                       SystemModel.ModelItem contextType ) {
+        return "Of";
+    }
+
+    private String getMethodNamePrepositionForSpecifier( SystemModel.ModelItem specifierType,
+                                                         SystemModel.ModelItem contextType ) {
+        return "By";
+    }
+    
+    /**
+     * @param systemModel
+     * @param operation
+     * @param itemType
+     * @param context
+     * @param specifier
+     * @param newValue
+     * @param complain
+     * @return the specific Method in this class for performing the operation with the given arguments.
+     */
+    public static <VAL> MethodCall getMethodCall( AbstractSystemModel< ?, ?, ?, ?, ?, ?, VAL, ?, ?, ?, ? > systemModel,
+                                                  SystemModel.Operation operation,
+                                                  SystemModel.ModelItem itemType,
+                                                  SystemModel.Item context,
+                                                  SystemModel.Item specifier,
+                                                  VAL newValue,
+                                                  boolean complain ) {
         
         if ( operation == null ) {
             Debug.error( complain, complain, "Trying to pass in null operation!" );
@@ -282,19 +296,19 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         }
         
         // get name and args for specifier (and for the item as the specifier if itemType == null)
-        SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;  
+        SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
         String specifierTypeName;
         if ( specifierType == null ) {
-            if ( itemTypeName == null ) {
+            if ( itemType == null ) {
                 Debug.error( complain, complain, "Either itemType or specifierType may be null, but not both!" );
             }
             specifierTypeName = "";
         } else {
             specifierTypeName = toCamelCase( specifierType.toString() );
-            if ( itemTypeName == null ) {
+            if ( itemType == null ) {
                 itemTypeName = specifierTypeName;
             }
-            argTypeList.add( getClass( specifierType ) );
+            argTypeList.add( systemModel.getClass( specifierType ) );
             argList.add( specifier.obj );
         }
         
@@ -305,22 +319,26 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             contextTypeName = "";
         } else {
             contextTypeName = toCamelCase( contextType.toString() );
-            argTypeList.add( getClass( contextType ) );
+            argTypeList.add( systemModel.getClass( contextType ) );
             argList.add( context.obj );
         }
         
         if ( newValue != null ) {
             @SuppressWarnings( "unchecked" ) // the newValue parameter's type is U, so this is safe
-            Class< ? extends U > nvClass = (Class< ? extends U >)newValue.getClass();
-            Class< ? > itemClass = getClass( itemType );
+            Class< ? extends VAL > nvClass = (Class< ? extends VAL >)newValue.getClass();
+            Class< ? > itemClass = systemModel.getClass( itemType );
             Collection< Class<?> > classes =  Utils.newList( nvClass, itemClass );
             Class<?> cls = ClassUtils.leastUpperBoundSuperclass( classes );
             argTypeList.add( cls );
         }
         
         // construct method call name
-        String by = ( specifierType == null || specifierType == ModelItem.NAME || specifierType == itemType ) ? "" : "By" + specifierTypeName;
-        String callName = opName + itemTypeName + by + ( contextType == null ? "" : "From" + contextTypeName );
+        String by = "";
+        if ( itemType != null && specifierType != null
+             && specifierType != ModelItem.NAME && specifierType != itemType ) {
+            by = "By" + specifierTypeName;
+        }
+        String callName = opName + itemTypeName + ( contextType == null ? "" : "Of" + contextTypeName ) + by;
 
         // FIXME -- delete debug code!
         boolean wasOn = Debug.isOn();
@@ -333,15 +351,15 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         argTypeList.toArray( argTypes );
         
         // try to lookup the Method from the callName and argTypes using reflection 
-        Method method = ClassUtils.getMethodForArgTypes( this.getClass(), callName , argTypes , complain );
+        Method method = ClassUtils.getMethodForArgTypes( systemModel.getClass(), callName , argTypes , complain );
         if ( method == null ) {
-            method = ClassUtils.getMethodForArgs( this.getClass(), callName, argList );
+            method = ClassUtils.getMethodForArgs( systemModel.getClass(), callName, argList );
         }
         if ( method == null && by.length() > 0 ) {
-            callName = opName + itemTypeName + ( contextType == null ? "" : "From" + contextTypeName );
-            method = ClassUtils.getMethodForArgTypes( this.getClass(), callName , argTypes , complain );
+            callName = opName + itemTypeName + ( contextType == null ? "" : "Of" + contextTypeName );
+            method = ClassUtils.getMethodForArgTypes( systemModel.getClass(), callName , argTypes , complain );
             if ( method == null ) {
-                method = ClassUtils.getMethodForArgs( this.getClass(), callName, argList );
+                method = ClassUtils.getMethodForArgs( systemModel.getClass(), callName, argList );
             }
         }
         // fail and return null if the Method could not be found
@@ -352,7 +370,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         argList.toArray( arguments );
         
         // construct the method call
-        return new MethodCall( this, method, arguments );
+        return new MethodCall( systemModel, method, arguments );
     }
     
     public Collection< Object > get( Collection< SystemModel.ModelItem > itemTypes,
@@ -381,7 +399,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                 for ( SystemModel.ModelItem itemType : itemTypes ) {
                     try {
                         MethodCall mc =
-                                getMethodCall( Operation.GET, itemType,
+                                getMethodCall( this, Operation.GET, itemType,
                                                context, specifier, null, false );
                         Pair< Boolean, Object > p = mc.invoke( true );
                         if ( p.first ) {
@@ -1113,7 +1131,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     @Override
     public Collection< Object >
             map( Collection< O > objects,
-                 SystemModel.MethodCall methodCall,
+                 MethodCall methodCall,
                  int indexOfObjectArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return null;
@@ -1125,7 +1143,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     @Override
     public Collection< Object >
             filter( Collection< O > objects,
-                    SystemModel.MethodCall methodCall,
+                    MethodCall methodCall,
                     int indexOfObjectArgument )
                                                throws InvocationTargetException {
         // TODO Auto-generated method stub
@@ -1138,7 +1156,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     @Override
     public boolean
             forAll( Collection< O > objects,
-                    SystemModel.MethodCall methodCall,
+                    MethodCall methodCall,
                     int indexOfObjectArgument )
                                                throws InvocationTargetException {
         // TODO Auto-generated method stub
@@ -1152,7 +1170,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public
             boolean
             thereExists( Collection< O > objects,
-                         SystemModel.MethodCall methodCall,
+                         MethodCall methodCall,
                          int indexOfObjectArgument )
                                                     throws InvocationTargetException {
         // TODO Auto-generated method stub
@@ -1166,7 +1184,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public
             Object
             fold( Collection< O > objects, Object initialValue,
-                  SystemModel.MethodCall methodCall,
+                  MethodCall methodCall,
                   int indexOfObjectArgument, int indexOfPriorResultArgument )
                                                                              throws InvocationTargetException {
         // TODO Auto-generated method stub
@@ -1179,7 +1197,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     @Override
     public Collection< O >
             sort( Collection< O > objects, Comparator< ? > comparator,
-                  SystemModel.MethodCall methodCall,
+                  MethodCall methodCall,
                   int indexOfObjectArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return null;
@@ -1230,7 +1248,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#getConstraintsOfElement(java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract Collection< CT > getConstraintsOfElement( O element, V version,
+    public abstract Collection< CT > getConstraintsOfObject( O element, V version,
                                                      W workspace );
 
     /* (non-Javadoc)
@@ -1243,7 +1261,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#getViolatedConstraintsOfElement(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract Collection< CT > getViolatedConstraintsOfElement( O element,
+    public abstract Collection< CT > getViolatedConstraintsOfObject( O element,
                                                              V version );
 
     /* (non-Javadoc)
