@@ -55,7 +55,7 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      */
     public static enum ModelItem {
         OBJECT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
-        RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT
+        RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT;
     };
     
     /**
@@ -131,7 +131,7 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     }
     
     // general functions
-
+    
     /**
      * Perform an Operation on something as specified by the input arguments.
      * Null values are interpreted as "unknown," "don't care," or
@@ -353,7 +353,8 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
 
     // ModelItem classes
     // OBJECT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
-    // RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT
+    // RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT    
+    public Class<?> getClass( ModelItem item );
     public Class<O> getObjectClass();
     public Class<C> getContextClass();
     public Class<T> getTypeClass();
@@ -365,11 +366,27 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     public Class<V> getVersionClass();
     public Class<W> getWorkspaceClass();
     public Class<CT> getConstraintClass();
-    //public Class<?> getViewClass();
-    //public Class<?> getViewpointClass();
+    public abstract Class< ? extends O > getViewClass();
+    public abstract Class< ? extends O > getViewpointClass();
 
+    /**
+     * @param o
+     * @return a conversion of the java.lang.Object to a SystemModel object or null
+     */
     public O asObject( Object o );
+
+    /**
+     * @param object
+     * @return a conversion of the java.lang.Object to a SystemModel context or null
+     */
     public C asContext( Object o );
+
+    /**
+     * @param object
+     * @return a Collection of contexts including either the object as a context
+     *         or the contexts in the object as a Collection.
+     */
+    public Collection< C > asContextCollection( Object o );
     public T asType( Object o );
     public P asProperty( Object o );
     public N asName( Object o );
@@ -637,5 +654,5 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     public Number getScore();
     //public <B> Number getScore(B objective); // TODO -- add B to class parameters?
     // TODO -- add other functions? like for delete? update?
-    
+
 }

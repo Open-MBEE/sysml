@@ -24,7 +24,7 @@ import sysml.SystemModel.ModelItem;
  * Reference. Subclasses of AbstractReference must minimally redefine
  * makeReference(), getAlternatives(), and getItems().
  */
-public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P, N, I, U, R, V, W, CT >, O, C, T, P, N, I, U, R, V, W, CT > implements Reference< RT, SM > {
+public class AbstractReference< RT, SM extends SystemModel< O, C, T, P, N, I, U, R, V, W, CT >, O, C, T, P, N, I, U, R, V, W, CT > implements Reference< RT, SM > {
 
     // try to use ModelItem enum as interpretation 
     public static class Interpretation {
@@ -75,13 +75,13 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
     }
 
     @Override
-    public abstract AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > makeReference();
-//    {
-//        return new AbstractReference< RT, SM >(); 
-//    }
+    public AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > makeReference()
+    {
+        return new AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT >(); 
+    }
 
     @Override
-    public  AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > makeReference( SM model ) {
+    public AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > makeReference( SM model ) {
         //return new AbstractReference< RT >( model );
         AbstractReference< RT, SM, O, C, T, P, N, I, U, R, V, W, CT > r = makeReference();
         r.setModel( model );
@@ -195,20 +195,20 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
         for ( Interpretation.Category c : Interpretation.Category.values() ) {
             SystemModel.ModelItem mi = null;
             Collection< RT > items;
+            Interpretation interp = null;
             if ( c == Category.ModelItem ) {
                 for ( SystemModel.ModelItem i : SystemModel.ModelItem.values() ) {
-                    Interpretation interp = new Interpretation( c, i );
+                    interp = new Interpretation( c, i );
                     Reference<RT, SM> alternative = getReferenceForInterpretation( interp );
                     if ( alternative != null ) alternatives.add( alternative );
                 }
             } else {
-                
+                interp = new Interpretation( c, null );
+                Reference<RT, SM> alternative = getReferenceForInterpretation( interp );
+                if ( alternative != null ) alternatives.add( alternative );
             }
-            return alternatives;
         }
-
-        // TODO
-        return null;
+        return alternatives;
     }
 //  throw new UnsupportedOperationException();
 
@@ -223,7 +223,6 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
                 r.setItems( items );
                 return r;
             } catch ( CloneNotSupportedException e ) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -288,66 +287,27 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
             Pair< Boolean, Object > result = methodCall.invoke();
             if ( result != null && result.first ) {
                 coll.add( (XX)result.second );
+            } else {
+                coll.add( null );
             }
         }
         return coll;
     }
     
-    // TODO -- make a SystemModelUtils for this or move to SystemModel
-    public N asName( Object o ) {
-        N name = null;
-        Pair< Boolean, N > resN = ClassUtils.coerce( o, getModel().getNameClass(), true );
-        if ( resN.first ) name = resN.second;
-        return name;
-    }
-    
-    // TODO -- make a SystemModelUtils for this
-    public I asId( Object o ) {
-        I id = null;
-        Pair< Boolean, I > resI = ClassUtils.coerce( o, getModel().getIdentifierClass(), true );
-        if ( resI.first ) id = resI.second;
-        return id;
-    }
-
-    // TODO -- make a SystemModelUtils for this
-    /**
-     * @param o
-     * @return a conversion of the java.lang.Object to a SystemModel object or null
-     */
-    public O asObject( Object o ) {
-        O object = null;
-        Pair< Boolean, O > resI = ClassUtils.coerce( o, getModel().getObjectClass(), true );
-        if ( resI.first ) object = resI.second;
-        return object;
-    }
-    
-    /**
-     * @param object
-     * @return a Collection of contexts including either the object as a context
-     *         or the contexts in the object as a Collection.
-     */
-    public Collection<C> asContext( Object object ) {
-        if ( object == null ) return null;
-        Pair< Boolean, List< C > > result =
-                ClassUtils.coerceList( object, getModel().getContextClass(),
-                                       true );
-        return result.second;
-    }
-
     /**
      * @return a Collection of contexts as can be derived from the scope. 
      */
     public Collection<C> getScopeAsContext() {
         Object scope = getScope();
-        return asContext( scope );
+        return getModel().asContextCollection( scope );
     }
     
     protected Collection< RT > getObjectForRole( N role ) {
         Collection< RT > theItems = null;
-        O scopeObject = asObject( getScope() );
+        O scopeObject = getModel().asObject( getScope() );
         Collection< R > rels =
                 getModel().getRelationships( scopeObject,
-                                             asName( getSpecifier() ),
+                                             getModel().asName( getSpecifier() ),
                                              null );
         //theItems = Utils.asList( rels, getType() );
         if ( Utils.isNullOrEmpty( rels ) ) {
@@ -357,7 +317,7 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
                 Method method;
                 try {
                     method = getModel().getClass().getMethod( "getSource()",
-                                                     new Class< ? >[] {} );
+                                                              new Class< ? >[] {} );
                     SystemModel.MethodCall methodCall =
                             new SystemModel.MethodCall( getModel(), method,
                                                         new Object[]{} );
@@ -365,8 +325,6 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
                     Collection< Object > related = map( rels, methodCall, 0 );
                     theItems = Utils.asList( related, getType() );
                 } catch ( NoSuchMethodException e ) {
-                    e.printStackTrace();
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -390,9 +348,9 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
 //                resO = ClassUtils.coerce( getScope(),
 //                                          getModel().getObjectClass(), true );
 //                scopeObject = resO.first ? resO.second : (O)getScope(); // REVIEW -- potential ClassCastException!
-                scopeObject = asObject( getScope() );
+                scopeObject = getModel().asObject( getScope() );
                 related = getModel().getRelated( scopeObject,
-                                                 asName( getSpecifier() ),
+                                                 getModel().asName( getSpecifier() ),
                                                  null );
                 theItems = Utils.asList( related, getType() ); // REVIEW -- need to use coerce instead?
                 //                }
@@ -416,10 +374,10 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
 //                resO = ClassUtils.coerce( getScope(),
 //                                          getModel().getObjectClass(), true );
 //                scopeObject = resO.first ? resO.second : (O)getScope(); // REVIEW -- potential ClassCastException!
-                scopeObject = asObject( getScope() );
+                scopeObject = getModel().asObject( getScope() );
                 Collection< R > rels =
                         getModel().getRelationships( scopeObject,
-                                                     asName( getSpecifier() ),
+                                                     getModel().asName( getSpecifier() ),
                                                      null );
                 //theItems = Utils.asList( rels, getType() );
                 if ( Utils.isNullOrEmpty( rels ) ) {
@@ -449,7 +407,7 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
                 break;
             case ModelItem:
                 if ( i.modelItemInterpretation == null ) return Collections.emptyList();
-                Collection< RT > items = null;
+                Collection< RT > items = Collections.emptyList();
                 Collection< ModelItem > itemTypes = Utils.newList( i.modelItemInterpretation );
                 Collection< C > context = getScopeAsContext();
                 if ( Utils.isNullOrEmpty( context ) ) {
@@ -457,7 +415,7 @@ public abstract class AbstractReference< RT, SM extends SystemModel< O, C, T, P,
                 }
                 I id = null;
                 Pair< Boolean, I > resI = ClassUtils.coerce( getSpecifier(), getModel().getIdentifierClass(), true );
-                if ( resI.first ) id = resI.second; 
+                if ( resI.first ) id = resI.second;
                 N name = null;
                 Pair< Boolean, N > resN = ClassUtils.coerce( getSpecifier(), getModel().getNameClass(), true );
                 if ( resN.first ) name = resN.second;
