@@ -428,10 +428,10 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      *         each object
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public Collection< Object > filter( Collection< O > objects,
-                                        MethodCall methodCall,
-                                        int indexOfObjectArgument )
-                                                throws java.lang.reflect.InvocationTargetException;
+    public Collection< O > filter( Collection< O > objects,
+                                   MethodCall methodCall,
+                                   int indexOfObjectArgument )
+                                           throws java.lang.reflect.InvocationTargetException;
 
     /**
      * Check whether the method returns true for each object. Subclasses

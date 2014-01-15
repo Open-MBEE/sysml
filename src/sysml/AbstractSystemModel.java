@@ -9,6 +9,7 @@ import gov.nasa.jpl.mbee.util.MethodCall;
 import gov.nasa.jpl.mbee.util.Pair;
 import gov.nasa.jpl.mbee.util.Utils;
 
+import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -16,7 +17,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import sysml.SystemModel.ModelItem;
 
 /**
  * An abstract SystemModel that provides some straightforward implementations of
@@ -26,6 +30,32 @@ import java.util.Set;
  */
 public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                       implements SystemModel< O, C, T, P, N, I, U, R, V, W, CT > {
+
+    static String getGenericSymbol( ModelItem itemType ) {
+        switch ( itemType ) {
+            case CONTEXT:
+            case IDENTIFIER:
+            case NAME:
+            case OBJECT:
+            case PROPERTY:
+            case RELATIONSHIP:
+            case TYPE:
+            case VERSION:
+            case WORKSPACE:
+                return itemType.toString().substring( 0, 1 );
+            case CONSTRAINT:
+                return "CT";
+            case VALUE:
+                return "U";
+            case VIEW:
+                return "O";
+            case VIEWPOINT:
+                return "O";
+            default:
+                Debug.error( "Unexpected ModelItem: " + itemType );
+        }
+        return null;
+    }
 
     /* (non-Javadoc)
      * @see SystemModel#op(SystemModel.Operation, java.util.Collection, java.util.Collection, java.util.Collection, java.lang.Object, java.lang.Boolean)
@@ -116,7 +146,100 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //        return null;
     }
 
+    protected boolean anyAllowed( SystemModel.Operation operation,
+                                  SystemModel.ModelItem itemType,
+                                  Collection< SystemModel.Item > contexts,
+                                  Collection< SystemModel.Item > specifiers,
+                                  SystemModel.ModelItem newValueType,
+                                  Boolean failForMultipleItemMatches ) {
+        if ( Utils.isNullOrEmpty( contexts ) ) {
+            return anyAllowed( operation, itemType, (SystemModel.ModelItem)null, specifiers, newValueType, failForMultipleItemMatches );
+        }
+        for ( SystemModel.Item context : contexts ) {
+            ModelItem contextType = context.kind;
+            if ( anyAllowed( operation, itemType, contextType, specifiers, newValueType, failForMultipleItemMatches ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+    protected boolean anyAllowed( SystemModel.Operation operation,
+                                  SystemModel.ModelItem itemType,
+                                  SystemModel.ModelItem contextType,
+                                  Collection< SystemModel.Item > specifiers,
+                                  SystemModel.ModelItem newValueType,
+                                  Boolean failForMultipleItemMatches ) {
+        if ( Utils.isNullOrEmpty( specifiers ) ) {
+            return anyAllowed( operation, itemType, contextType, (SystemModel.ModelItem)null, newValueType, failForMultipleItemMatches );
+        }
+        for ( SystemModel.Item specifier : specifiers ) {
+            ModelItem specifierType = specifier.kind;
+            if ( isAllowed( operation, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+    protected boolean anyAllowed( SystemModel.Operation operation,
+                                  SystemModel.ModelItem itemType,
+                                  SystemModel.ModelItem contextType,
+                                  SystemModel.ModelItem specifierType,
+                                  SystemModel.ModelItem newValue,
+                                  Boolean failForMultipleItemMatches ) {
+        // TODO
+        return true;
+    }
+    protected boolean anyAllowed( SystemModel.Operation operation,
+                                  Collection< SystemModel.ModelItem > itemTypes,
+                                  Collection< SystemModel.Item > contexts,
+                                  Collection< SystemModel.Item > specifiers,
+                                  SystemModel.Item newValue,
+                                  Boolean failForMultipleItemMatches ) {
+        boolean allowed = false;
+        SystemModel.ModelItem newValueType = newValue == null ? null : newValue.kind;
+        //for ( boolean nullItem : new boolean[] { false, true } )
+        boolean nullItem = Utils.isNullOrEmpty( itemTypes );
 
+        if ( nullItem ) {
+            return anyAllowed( operation, (SystemModel.ModelItem)null, contexts, specifiers, newValueType, failForMultipleItemMatches );
+        }
+        for ( SystemModel.ModelItem itemType : itemTypes ) {
+            if ( anyAllowed( operation, itemType, contexts, specifiers, newValueType, failForMultipleItemMatches ) ) {
+                return true;
+            }
+        }
+        return false;
+//            //for ( boolean nullContext : new boolean[] { false, true } )
+//            for ( SystemModel.ModelItem contextType : SystemModel.ModelItem.values() ) {
+//                //for ( boolean nullSpec : new boolean[] { false, true } )
+//                for ( SystemModel.ModelItem specifierType : SystemModel.ModelItem.values() ) {
+//                    if ( isAllowed( operation, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches ) ) {
+////                    if ( isAllowed( operation, 
+////                                    nullItem ? null : itemType,
+////                                    nullContext ? null : contextType,
+////                                    nullSpec ? null : specifierType,
+////                                    newValueType,
+////                                    false ) ) {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//        for ( SystemModel.Item context : contexts ) {
+//            SystemModel.ModelItem contextType = context == null ? null : context.kind;
+//            for ( SystemModel.Item specifier : specifiers ) {
+//                SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;  
+//                for ( SystemModel.ModelItem itemType : itemTypes ) {
+//                    if ( isAllowed( operation, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches ) ) {
+//                        allowed = false;
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//        return false;
+    }
+    
     /* (non-Javadoc)
      * @see SystemModel#isAllowed(SystemModel.Operation, java.util.Collection, java.util.Collection, java.util.Collection, SystemModel.Item, java.lang.Boolean)
      */
@@ -124,28 +247,125 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public boolean
             isAllowed( SystemModel.Operation operation,
                        Collection< SystemModel.ModelItem > itemTypes,
-                       Collection< SystemModel.Item > context,
-                       Collection< SystemModel.Item > specifier,
+                       Collection< SystemModel.Item > contexts,
+                       Collection< SystemModel.Item > specifiers,
                        SystemModel.Item newValue,
                        Boolean failForMultipleItemMatches ) {
+        if ( anyAllowed( operation, itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches ) ) {
+            return true;
+        }
+//        boolean allowed = false;
+//        SystemModel.ModelItem newValueType = newValue == null ? null : newValue.kind;
+//        for ( SystemModel.Item context : contexts ) {
+//            SystemModel.ModelItem contextType = context == null ? null : context.kind;
+//            for ( SystemModel.Item specifier : specifiers ) {
+//                SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;  
+//                for ( SystemModel.ModelItem itemType : itemTypes ) {
+//                    if ( isAllowed( operation, itemType, contextType, specifierType, newValueType ) ) {
+//                        allowed = true;
+//                        break;
+//                    }
+//                }
+//            }
+//        }
         switch( operation ) {
             case CREATE:
-                return mayCreate(itemTypes, context, specifier, newValue, failForMultipleItemMatches );
+                return mayCreate(itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches );
             case DELETE:
-                return mayDelete(itemTypes, context, specifier, failForMultipleItemMatches );
+                return mayDelete(itemTypes, contexts, specifiers, failForMultipleItemMatches );
             case GET:
-                return mayGet(itemTypes, context, specifier, failForMultipleItemMatches );
             case READ:
-                return mayGet(itemTypes, context, specifier, failForMultipleItemMatches );
+                return mayGet(itemTypes, contexts, specifiers, failForMultipleItemMatches );
             case SET:
-                return maySet(itemTypes, context, specifier, newValue, failForMultipleItemMatches );
             case UPDATE:
-                return maySet(itemTypes, context, specifier, newValue, failForMultipleItemMatches );
+                return maySet(itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches );
             default:
                 Debug.error( "Unexpected SystemModel.Operation: " + operation );
         }
         return false;
     }
+    
+    protected static Set< ModelItem > itemTypeNotEqualContextTypeSet =
+            Utils.newSet( ModelItem.CONTEXT, ModelItem.IDENTIFIER,
+                          ModelItem.NAME, ModelItem.VERSION );
+
+    protected static < KK, VV > Pair< KK, VV > pair( KK k, VV v ) {
+        return new Pair< KK, VV >( k, v );
+    }
+
+    protected static Map< ModelItem, Set< ModelItem > > isA =
+            Utils.newMap( pair( ModelItem.CONSTRAINT,
+                                (Set< ModelItem >)Utils.newSet( ModelItem.OBJECT,
+                                                                ModelItem.PROPERTY,
+                                                                ModelItem.RELATIONSHIP ) ) );
+
+    protected static boolean isA( ModelItem kind1, ModelItem kind2 ) {
+        Set< ModelItem > list = isA.get( kind1 );
+        return ( list != null && list.contains( kind2 ) );
+    }
+
+    protected static Map< ModelItem, Set< ModelItem > > isSometimes =
+            Utils.newMap( pair( ModelItem.CONSTRAINT,
+                                (Set< ModelItem >)Utils.newSet( ModelItem.PROPERTY ) ) );
+
+    protected static boolean isSometimes( ModelItem kind1, ModelItem kind2 ) {
+        Set< ModelItem > list = isSometimes.get( kind1 );
+        return ( list != null && list.contains( kind2 ) );
+    }
+
+    protected static Map< ModelItem, Set< ModelItem > > canHave =
+            Utils.newMap( pair( ModelItem.CONSTRAINT,
+                                (Set< ModelItem >)Utils.newSet( ModelItem.CONSTRAINT,
+                                                                ModelItem.IDENTIFIER,
+                                                                ModelItem.NAME,
+                                                                ModelItem.OBJECT,
+                                                                ModelItem.PROPERTY,
+                                                                ModelItem.RELATIONSHIP ) ) );
+
+    protected static boolean canHave( ModelItem kind1, ModelItem kind2 ) {
+        Set< ModelItem > list = canHave.get( kind1 );
+        return ( list != null && list.contains( kind2 ) );
+    }
+
+    public boolean isAllowed( sysml.SystemModel.Operation operation,
+                               sysml.SystemModel.ModelItem itemType,
+                               sysml.SystemModel.ModelItem contextType,
+                               sysml.SystemModel.ModelItem specifierType,
+                               sysml.SystemModel.ModelItem newValueType,
+                               Boolean failForMultipleItemMatches ) {
+        // operation independent criteria
+        
+        // incompatible itemType and contextType when equal;
+        // ex. getNameOfName() doesn't make sense, so it shouldn't be allowed.
+        if ( itemType == contextType ) {
+            if ( itemTypeNotEqualContextTypeSet.contains( itemType ) ) {
+                return false;
+            }
+        }
+        
+        // incompatible itemType and contextType
+        
+        // TODO -- what other operation independent rules can we assume?
+        if ( itemType == ModelItem.CONTEXT )
+
+        switch( operation ) {
+            case CREATE:
+                return mayCreate( itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+            case DELETE:
+                return mayDelete( itemType, contextType, specifierType, failForMultipleItemMatches );
+            case GET:
+            case READ:
+                return mayGet( itemType, contextType, specifierType, failForMultipleItemMatches );
+            case SET:
+            case UPDATE:
+                return maySet( itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+            default:
+                Debug.error( "Unexpected SystemModel.Operation: " + operation );
+        }
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 
     /**
      * @param operation
@@ -191,6 +411,24 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         return prefix + suffix;
     }
 
+    /**
+     * @param operation
+     * @param itemType
+     * @param contextType
+     * @param specifierType
+     * @param complain
+     * @return the specific Method in this class for performing the operation with the given arguments.   
+     */
+    public static String getMethodName( SystemModel.Operation operation,
+                                        SystemModel.ModelItem itemType,
+                                        SystemModel.Item contextType,
+                                        SystemModel.Item specifierType,
+                                        Object newValue,
+                                        boolean complain ) {
+        MethodCall mc = getMethodCall( null, operation, itemType, contextType, specifierType, newValue, true, complain );
+        Pair< Boolean, Object > result = mc.invoke( complain );
+        return "" + result.second;
+    }
     /**
      * @param operation
      * @param itemType
@@ -248,14 +486,39 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         return callName;
     }
     
-    private String getMethodNamePrepositionForContext( SystemModel.ModelItem targetType,
-                                                       SystemModel.ModelItem contextType ) {
-        return "Of";
+    public static String getMethodNamePrepositionForContext( Operation operation,
+                                                             SystemModel.ModelItem targetType,
+                                                             SystemModel.ModelItem contextType ) {
+        switch ( operation ) {
+            case CREATE:
+            case DELETE:
+            case GET:
+            case READ:
+            case SET:
+            case UPDATE:
+                break;
+            default:
+                Debug.error("Unrecognized Operation: " + operation );
+        }
+        return "In";
+        //return "Of";
     }
 
-    private String getMethodNamePrepositionForSpecifier( SystemModel.ModelItem specifierType,
-                                                         SystemModel.ModelItem contextType ) {
-        return "By";
+    public static String getMethodNamePrepositionForSpecifier( Operation operation,
+                                                                SystemModel.ModelItem specifierType,
+                                                                SystemModel.ModelItem contextType ) {
+        switch ( operation ) {
+            case CREATE:
+            case DELETE:
+            case GET:
+            case READ:
+            case SET:
+            case UPDATE:
+                break;
+            default:
+                Debug.error("Unrecognized Operation: " + operation );
+        }
+        return "With";
     }
     
     /**
@@ -266,7 +529,9 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @param specifier
      * @param newValue
      * @param complain
-     * @return the specific Method in this class for performing the operation with the given arguments.
+     * @return the MethodCall for the method in systemModel that performs the
+     *         given operation for a target with the given itemType of the given
+     *         context item as specified by the given specifier.
      */
     public static <VAL> MethodCall getMethodCall( AbstractSystemModel< ?, ?, ?, ?, ?, ?, VAL, ?, ?, ?, ? > systemModel,
                                                   SystemModel.Operation operation,
@@ -274,6 +539,30 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                                   SystemModel.Item context,
                                                   SystemModel.Item specifier,
                                                   VAL newValue,
+                                                  boolean complain ) {
+        return getMethodCall( systemModel, operation, itemType, context, specifier, newValue, false, complain );
+        
+    }
+    /**
+     * @param systemModel
+     * @param operation
+     * @param itemType
+     * @param context
+     * @param specifier
+     * @param newValue
+     * @param justStringRepresentation if true, return a MethodCall that just returns a string representation of the call whether or not it exists.
+     * @param complain
+     * @return the MethodCall for the method in systemModel that performs the
+     *         given operation for a target with the given itemType of the given
+     *         context item as specified by the given specifier.
+     */
+    public static <VAL> MethodCall getMethodCall( AbstractSystemModel< ?, ?, ?, ?, ?, ?, VAL, ?, ?, ?, ? > systemModel,
+                                                  SystemModel.Operation operation,
+                                                  SystemModel.ModelItem itemType,
+                                                  SystemModel.Item context,
+                                                  SystemModel.Item specifier,
+                                                  VAL newValue,
+                                                  boolean justStringRepresentation,
                                                   boolean complain ) {
         
         if ( operation == null ) {
@@ -283,16 +572,35 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 
         ArrayList< Class< ? > > argTypeList = new ArrayList< Class< ? > >();
         ArrayList< Object > argList = new ArrayList< Object >();
+        ArrayList< String > argTypeStrings = new ArrayList< String >();
+//        ArrayList< Class< ? > > shortArgTypeList1 = new ArrayList< Class< ? > >();
+//        ArrayList< Class< ? > > shortArgTypeList2 = new ArrayList< Class< ? > >();
+//        ArrayList< Object > shortArgList1 = new ArrayList< Object >();
+//        ArrayList< Object > shortArgList2 = new ArrayList< Object >();
 
         String opName = getOperationName( operation );
 
         // get name and args for itemType
+        String returnTypeString = "Object";
         String itemTypeName;
         if ( itemType == null ) {
             itemTypeName = "";
         } else {
             itemTypeName = toCamelCase( itemType.toString() );
             //argTypeList.add( getClass( itemType ) );
+            returnTypeString = getGenericSymbol( itemType );
+        }
+        
+        // get name and args for context
+        SystemModel.ModelItem contextType = context == null ? null : context.kind;  
+        String contextTypeName;
+        if ( contextType == null ) {
+            contextTypeName = "";
+        } else {
+            contextTypeName = toCamelCase( contextType.toString() );
+            if ( systemModel != null ) argTypeList.add( systemModel.getClass( contextType ) );
+            argList.add( context.obj );
+            argTypeStrings.add( getGenericSymbol( contextType ) + " context" );
         }
         
         // get name and args for specifier (and for the item as the specifier if itemType == null)
@@ -308,42 +616,48 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             if ( itemType == null ) {
                 itemTypeName = specifierTypeName;
             }
-            argTypeList.add( systemModel.getClass( specifierType ) );
+            if ( systemModel != null ) argTypeList.add( systemModel.getClass( specifierType ) );
             argList.add( specifier.obj );
+            argTypeStrings.add(getGenericSymbol( specifierType ) + " specifier" );
         }
         
-        // get name and args for context
-        SystemModel.ModelItem contextType = context == null ? null : context.kind;  
-        String contextTypeName;
-        if ( contextType == null ) {
-            contextTypeName = "";
-        } else {
-            contextTypeName = toCamelCase( contextType.toString() );
-            argTypeList.add( systemModel.getClass( contextType ) );
-            argList.add( context.obj );
-        }
-        
-        if ( newValue != null ) {
-            @SuppressWarnings( "unchecked" ) // the newValue parameter's type is U, so this is safe
-            Class< ? extends VAL > nvClass = (Class< ? extends VAL >)newValue.getClass();
-            Class< ? > itemClass = systemModel.getClass( itemType );
-            Collection< Class<?> > classes =  Utils.newList( nvClass, itemClass );
-            Class<?> cls = ClassUtils.leastUpperBoundSuperclass( classes );
-            argTypeList.add( cls );
+        // get args for new value
+        if ( usesNewValue( operation ) ) {
+            argList.add( newValue );
+            argTypeStrings.add( getGenericSymbol( ModelItem.VALUE ) + " newValue" );
+            if ( newValue != null ) {
+                if ( systemModel != null) {
+                    @SuppressWarnings( "unchecked" ) // the newValue parameter's type is U, so this is safe
+                    Class< ? extends VAL > nvClass = (Class< ? extends VAL >)newValue.getClass();
+                    Class< ? > itemClass = systemModel.getClass( itemType );
+                    Collection< Class<?> > classes =  Utils.newList( nvClass, itemClass );
+                    Class<?> cls = ClassUtils.leastUpperBoundSuperclass( classes );
+                    argTypeList.add( cls );
+                }
+            }
         }
         
         // construct method call name
+        String contextPrep = getMethodNamePrepositionForContext( operation, itemType, contextType );
+        String specifierPrep = getMethodNamePrepositionForSpecifier( operation, specifierType, contextType );
         String by = "";
         if ( itemType != null && specifierType != null
              && specifierType != ModelItem.NAME && specifierType != itemType ) {
-            by = "By" + specifierTypeName;
+            by = specifierPrep + specifierTypeName;
         }
-        String callName = opName + itemTypeName + ( contextType == null ? "" : "Of" + contextTypeName ) + by;
+        String callName = opName + itemTypeName + ( contextType == null ? "" : contextPrep + contextTypeName ) + by;
 
+        // if just printing a hypothetical method signature to a string, create a MethodCall that does it
+        Method method = null;
+        if ( justStringRepresentation ) {
+            method = ClassUtils.getMethodForArgTypes( String.class, "concat", String.class );
+            return new MethodCall( returnTypeString + " " + callName, method, Utils.toString( argTypeStrings, false ) );
+        }
+        
         // FIXME -- delete debug code!
         boolean wasOn = Debug.isOn();
         Debug.turnOn();
-        System.out.println( callName );
+        Debug.outln( returnTypeString + " " + callName + Utils.toString( argTypeStrings, false ) );
         if ( !wasOn ) Debug.turnOff();
 
         // put the argument types into an array
@@ -351,15 +665,16 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         argTypeList.toArray( argTypes );
         
         // try to lookup the Method from the callName and argTypes using reflection 
-        Method method = ClassUtils.getMethodForArgTypes( systemModel.getClass(), callName , argTypes , complain );
+        Class<?> sysClass = systemModel == null ? AbstractSystemModel.class : systemModel.getClass(); 
+        method = ClassUtils.getMethodForArgTypes( sysClass, callName , argTypes , complain );
         if ( method == null ) {
-            method = ClassUtils.getMethodForArgs( systemModel.getClass(), callName, argList );
+            method = ClassUtils.getMethodForArgs( sysClass, callName, argList );
         }
         if ( method == null && by.length() > 0 ) {
-            callName = opName + itemTypeName + ( contextType == null ? "" : "Of" + contextTypeName );
-            method = ClassUtils.getMethodForArgTypes( systemModel.getClass(), callName , argTypes , complain );
+            callName = opName + itemTypeName + ( contextType == null ? "" : contextPrep + contextTypeName );
+            method = ClassUtils.getMethodForArgTypes( sysClass, callName , argTypes , complain );
             if ( method == null ) {
-                method = ClassUtils.getMethodForArgs( systemModel.getClass(), callName, argList );
+                method = ClassUtils.getMethodForArgs( sysClass, callName, argList );
             }
         }
         // fail and return null if the Method could not be found
@@ -373,69 +688,18 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         return new MethodCall( systemModel, method, arguments );
     }
     
-    public Collection< Object > get( Collection< SystemModel.ModelItem > itemTypes,
-                                     Collection< SystemModel.Item > contexts,
-                                     Collection< SystemModel.Item > specifiers,
-                                     Boolean failForMultipleItemMatches ) {
-        Collection< Object > results = Utils.newList();
-        Collection< Object > res = null;
-        if ( Utils.isNullOrEmpty( contexts ) ) {
-//            SystemModel.Item[] oneNullArg = new SystemModel.Item[1];
-//            oneNullArg[0] = null;
-            contexts = Utils.newListWithOneNull();
-        }
-        if ( Utils.isNullOrEmpty( itemTypes ) ) {
-            itemTypes = Utils.newListWithOneNull();
-        }
-        if ( Utils.isNullOrEmpty( specifiers ) ) {
-            specifiers = Utils.newListWithOneNull();
-        }
-        boolean someResultsWereNull = false;
-        boolean allResultsWereNull = true;
-        for ( SystemModel.Item context : contexts ) {
-            //SystemModel.ModelItem contextType = context == null ? null : context.kind;  
-            for ( SystemModel.Item specifier : specifiers ) {
-                //SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;  
-                for ( SystemModel.ModelItem itemType : itemTypes ) {
-                    try {
-                        MethodCall mc =
-                                getMethodCall( this, Operation.GET, itemType,
-                                               context, specifier, null, false );
-                        Pair< Boolean, Object > p = mc.invoke( true );
-                        if ( p.first ) {
-                            res = null;
-                            if ( p.second instanceof Collection ) {
-                                res = (Collection< Object >)p.second;
-                            }
-                            if ( res == null ) {
-                                someResultsWereNull = true;
-                                // TODO -- should return null here?
-                                // if the method call invoked properly, but
-                                // returned null, then the itemType, context,
-                                // and specifier are incompatible.
-                                // return null;
-                            } else {
-                                allResultsWereNull = false;
-                                results.addAll( res );
-                            }
-                        }
-                        if ( Utils.isTrue( failForMultipleItemMatches )
-                             && results.size() > 1 ) return null;
-                    } catch (Throwable e ) {
-                        // ignore!
-                    }
-                }
-            }
-        }
-        if ( allResultsWereNull && someResultsWereNull ) return null;
-        return results;
-    }
+//    public Collection< Object > get( Collection< SystemModel.ModelItem > itemTypes,
+//                                     Collection< SystemModel.Item > contexts,
+//                                     Collection< SystemModel.Item > specifiers,
+//                                     Boolean failForMultipleItemMatches ) {
+//        
+//    }
 
 //    private Collection< Object >
 //            getWorkspace( Collection< sysml.SystemModel.Item > context,
 //                          Collection< sysml.SystemModel.Item > specifier,
 //                          Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
+
 //        return null;
 //    }
 //
@@ -444,7 +708,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getViewpoint( Collection< sysml.SystemModel.Item > context,
 //                          Collection< sysml.SystemModel.Item > specifier,
 //                          Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -453,7 +716,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getView( Collection< sysml.SystemModel.Item > context,
 //                     Collection< sysml.SystemModel.Item > specifier,
 //                     Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -462,7 +724,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getVersion( Collection< sysml.SystemModel.Item > context,
 //                        Collection< sysml.SystemModel.Item > specifier,
 //                        Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -471,7 +732,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getValue( Collection< sysml.SystemModel.Item > context,
 //                      Collection< sysml.SystemModel.Item > specifier,
 //                      Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -480,7 +740,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getType( Collection< sysml.SystemModel.Item > context,
 //                     Collection< sysml.SystemModel.Item > specifier,
 //                     Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -489,7 +748,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getRelationship( Collection< sysml.SystemModel.Item > context,
 //                             Collection< sysml.SystemModel.Item > specifier,
 //                             Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -498,7 +756,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getProperty( Collection< sysml.SystemModel.Item > context,
 //                         Collection< sysml.SystemModel.Item > specifier,
 //                         Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -507,7 +764,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getObject( Collection< sysml.SystemModel.Item > context,
 //                       Collection< sysml.SystemModel.Item > specifier,
 //                       Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -516,7 +772,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getName( Collection< sysml.SystemModel.Item > context,
 //                     Collection< sysml.SystemModel.Item > specifier,
 //                     Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -525,7 +780,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getIdentifier( Collection< sysml.SystemModel.Item > context,
 //                           Collection< sysml.SystemModel.Item > specifier,
 //                           Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -534,7 +788,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getContext( Collection< sysml.SystemModel.Item > context,
 //                        Collection< sysml.SystemModel.Item > specifier,
 //                        Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 //
@@ -542,73 +795,141 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //            getConstraints( Collection< SystemModel.Item > context,
 //                            Collection< SystemModel.Item > specifier,
 //                            Boolean failForMultipleItemMatches ) {
-//        // TODO Auto-generated method stub
 //        return null;
 //    }
 
-    public Collection< Object >
-            create( Collection< SystemModel.ModelItem > itemTypes,
-                    Collection< SystemModel.Item > context,
-                    Collection< SystemModel.Item > specifier, U newValue,
-                    Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
-        return null;
+//    public Collection< Object >
+//            create( Collection< SystemModel.ModelItem > itemTypes,
+//                    Collection< SystemModel.Item > context,
+//                    Collection< SystemModel.Item > specifier, U newValue,
+//                    Boolean failForMultipleItemMatches ) {
+//        return null;
+//    }
+//
+//    public Collection< Object >
+//            set( Collection< SystemModel.ModelItem > itemTypes,
+//                 Collection< SystemModel.Item > context,
+//                 Collection< SystemModel.Item > specifier, U newValue,
+//                 Boolean failForMultipleItemMatches ) {
+//        return null;
+//    }
+//
+//    public Collection< Object >
+//            delete( Collection< SystemModel.ModelItem > itemTypes,
+//                    Collection< SystemModel.Item > context,
+//                    Collection< SystemModel.Item > specifier,
+//                    Boolean failForMultipleItemMatches ) {
+//        return null;
+//    }
+
+    
+    public static boolean usesNewValue( SystemModel.Operation operation ) {
+        return Utils.newList( //Operation.CREATE, 
+                             Operation.SET, Operation.UPDATE ).contains( operation );
     }
 
-    public Collection< Object >
-            set( Collection< SystemModel.ModelItem > itemTypes,
-                 Collection< SystemModel.Item > context,
-                 Collection< SystemModel.Item > specifier, U newValue,
-                 Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public Collection< Object >
-            delete( Collection< SystemModel.ModelItem > itemTypes,
-                    Collection< SystemModel.Item > context,
-                    Collection< SystemModel.Item > specifier,
-                    Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public boolean maySet( Collection< sysml.SystemModel.ModelItem > itemTypes,
-                           Collection< sysml.SystemModel.Item > context,
-                           Collection< sysml.SystemModel.Item > specifier,
-                           sysml.SystemModel.Item newValue,
+    public boolean maySet( Collection< SystemModel.ModelItem > itemTypes,
+                           Collection< SystemModel.Item > context,
+                           Collection< SystemModel.Item > specifier,
+                           SystemModel.Item newValue,
                            Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
-        return false;
+        return true;
+    }
+    public boolean maySet( SystemModel.ModelItem itemType,
+                           SystemModel.Item context,
+                           SystemModel.Item specifier,
+                           SystemModel.Item newValue,
+                           Boolean failForMultipleItemMatches ) {
+        SystemModel.ModelItem contextType = context == null ? null : context.kind;
+        SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
+        SystemModel.ModelItem newValueType = newValue == null ? null : newValue.kind;
+        return maySet( itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
     }
 
-    public boolean mayGet( Collection< sysml.SystemModel.ModelItem > itemTypes,
-                           Collection< sysml.SystemModel.Item > context,
-                           Collection< sysml.SystemModel.Item > specifier,
+    public boolean maySet( SystemModel.ModelItem itemType,
+                           SystemModel.ModelItem contextType,
+                           SystemModel.ModelItem specifierType,
+                           SystemModel.ModelItem newValueType,
                            Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
-        return false;
+        return true;
+    }
+
+    public boolean mayGet( Collection< SystemModel.ModelItem > itemTypes,
+                           Collection< SystemModel.Item > context,
+                           Collection< SystemModel.Item > specifier,
+                           Boolean failForMultipleItemMatches ) {
+        // TODO Auto-generated method stub
+        return true;
+    }
+    public boolean mayGet( SystemModel.ModelItem itemType,
+                           SystemModel.Item context,
+                           SystemModel.Item specifier,
+                           Boolean failForMultipleItemMatches ) {
+        SystemModel.ModelItem contextType = context == null ? null : context.kind;
+        SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
+        return mayGet( itemType, contextType, specifierType, failForMultipleItemMatches );
+    }
+    public boolean mayGet( SystemModel.ModelItem itemType,
+                           SystemModel.ModelItem contextType,
+                           SystemModel.ModelItem specifierType,
+                           Boolean failForMultipleItemMatches ) {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    public boolean mayDelete( Collection< SystemModel.ModelItem > itemTypes,
+                              Collection< SystemModel.Item > contexts,
+                              Collection< SystemModel.Item > specifiers,
+                              Boolean failForMultipleItemMatches ) {
+        
+        // TODO Auto-generated method stub
+        return true;
+    }
+    public boolean mayDelete( SystemModel.ModelItem itemType,
+                              SystemModel.Item context,
+                              SystemModel.Item specifier,
+                              Boolean failForMultipleItemMatches ) {
+        SystemModel.ModelItem contextType = context == null ? null : context.kind;
+        SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
+        return mayDelete( itemType, contextType, specifierType, failForMultipleItemMatches );
+    }
+    public boolean mayDelete( SystemModel.ModelItem itemType,
+                              SystemModel.ModelItem contextType,
+                              SystemModel.ModelItem specifierType,
+                              Boolean failForMultipleItemMatches ) {
+        // TODO Auto-generated method stub
+        return true;
     }
 
     public boolean
-            mayDelete( Collection< sysml.SystemModel.ModelItem > itemTypes,
-                       Collection< sysml.SystemModel.Item > context,
-                       Collection< sysml.SystemModel.Item > specifier,
+            mayCreate( Collection< SystemModel.ModelItem > itemTypes,
+                       Collection< SystemModel.Item > context,
+                       Collection< SystemModel.Item > specifier,
+                       SystemModel.Item newValue,
                        Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
-        return false;
+        return true;
     }
-
-    public boolean
-            mayCreate( Collection< sysml.SystemModel.ModelItem > itemTypes,
-                       Collection< sysml.SystemModel.Item > context,
-                       Collection< sysml.SystemModel.Item > specifier,
-                       sysml.SystemModel.Item newValue,
-                       Boolean failForMultipleItemMatches ) {
+    public boolean mayCreate( SystemModel.ModelItem itemType,
+                              SystemModel.Item context,
+                              SystemModel.Item specifier,
+                              SystemModel.Item newValue,
+                              Boolean failForMultipleItemMatches ) {
+        SystemModel.ModelItem contextType = context == null ? null : context.kind;
+        SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
+        SystemModel.ModelItem newValueType = newValue == null ? null : newValue.kind;
+        return mayCreate( itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+    }
+    public boolean mayCreate( SystemModel.ModelItem itemType,
+                              SystemModel.ModelItem contextType,
+                              SystemModel.ModelItem specifierType,
+                              SystemModel.ModelItem newValueType,
+                              Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
-        return false;
+        return true;
     }
-
     /* (non-Javadoc)
      * @see SystemModel#get(java.util.Collection, java.util.Collection, java.lang.Object, java.lang.Object, java.lang.Object)
      */
@@ -624,7 +945,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#create(SystemModel.ModelItem, java.util.Collection, java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public Collection< Object > create( SystemModel.ModelItem item,
+    public Collection< Object > create( SystemModel.ModelItem itemType,
                                         Collection< C > context, I identifier,
                                         N name, V version ) {
         // TODO Auto-generated method stub
@@ -635,7 +956,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#delete(SystemModel.ModelItem, java.util.Collection, java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public Collection< Object > delete( SystemModel.ModelItem item,
+    public Collection< Object > delete( SystemModel.ModelItem itemType,
                                         Collection< C > context, I identifier,
                                         N name, V version ) {
         // TODO Auto-generated method stub
@@ -646,7 +967,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#set(SystemModel.ModelItem, java.util.Collection, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public Collection< Object > set( SystemModel.ModelItem item,
+    public Collection< Object > set( SystemModel.ModelItem itemType,
                                      Collection< C > context, I identifier,
                                      N name, V version, U newValue ) {
         // TODO Auto-generated method stub
@@ -1133,21 +1454,18 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             map( Collection< O > objects,
                  MethodCall methodCall,
                  int indexOfObjectArgument ) throws InvocationTargetException {
-        // TODO Auto-generated method stub
-        return null;
+        return methodCall.map( objects, indexOfObjectArgument );
     }
 
     /* (non-Javadoc)
      * @see SystemModel#filter(java.util.Collection, SystemModel.MethodCall, int)
      */
     @Override
-    public Collection< Object >
+    public Collection< O >
             filter( Collection< O > objects,
                     MethodCall methodCall,
-                    int indexOfObjectArgument )
-                                               throws InvocationTargetException {
-        // TODO Auto-generated method stub
-        return null;
+                    int indexOfObjectArgument ) throws InvocationTargetException {
+        return methodCall.filter( objects, indexOfObjectArgument );
     }
 
     /* (non-Javadoc)
@@ -1157,8 +1475,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public boolean
             forAll( Collection< O > objects,
                     MethodCall methodCall,
-                    int indexOfObjectArgument )
-                                               throws InvocationTargetException {
+                    int indexOfObjectArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return false;
     }
@@ -1167,12 +1484,9 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#thereExists(java.util.Collection, SystemModel.MethodCall, int)
      */
     @Override
-    public
-            boolean
-            thereExists( Collection< O > objects,
-                         MethodCall methodCall,
-                         int indexOfObjectArgument )
-                                                    throws InvocationTargetException {
+    public boolean thereExists( Collection< O > objects,
+                                MethodCall methodCall,
+                                int indexOfObjectArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return false;
     }
@@ -1181,12 +1495,9 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#fold(java.util.Collection, java.lang.Object, SystemModel.MethodCall, int, int)
      */
     @Override
-    public
-            Object
-            fold( Collection< O > objects, Object initialValue,
-                  MethodCall methodCall,
-                  int indexOfObjectArgument, int indexOfPriorResultArgument )
-                                                                             throws InvocationTargetException {
+    public Object fold( Collection< O > objects, Object initialValue,
+                        MethodCall methodCall, int indexOfObjectArgument,
+                        int indexOfPriorResultArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return null;
     }

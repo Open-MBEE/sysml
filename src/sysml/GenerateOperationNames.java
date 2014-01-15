@@ -57,11 +57,13 @@ public class GenerateOperationNames {
                         if ( nullItem && nullContext && nullSpec ) {
                             Debug.breakpoint();
                         }
+                        Object newValue = new Integer(4);
                         String name = 
                                 AbstractSystemModel.getMethodName( operation, 
                                                                    nullItem ? null : itemType,
-                                                                   nullContext ? null : contextType,
-                                                                   nullSpec ? null : specifierType,
+                                                                   nullContext ? null : new SystemModel.Item(null, contextType),
+                                                                   nullSpec ? null : new SystemModel.Item(null, specifierType),
+                                                                   newValue,
                                                                    false );
                         if ( name != null && !set.contains( name ) ) {
                             set.add( name );
