@@ -296,26 +296,49 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         return new Pair< KK, VV >( k, v );
     }
 
+    protected static Set<ModelItem> itemSet(ModelItem...items) {
+        return (Set< ModelItem >)Utils.newSet(items);
+    }
+
+    @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > isA =
             Utils.newMap( pair( ModelItem.CONSTRAINT,
-                                (Set< ModelItem >)Utils.newSet( ModelItem.OBJECT,
-                                                                ModelItem.PROPERTY,
-                                                                ModelItem.RELATIONSHIP ) ) );
+                                itemSet( ModelItem.OBJECT ) ), //, ModelItem.PROPERTY,
+                                         //ModelItem.RELATIONSHIP ) ), // ???
+                          pair( ModelItem.CONTEXT, itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.IDENTIFIER, itemSet() ),
+                          pair( ModelItem.NAME, itemSet() ),
+                          pair( ModelItem.OBJECT, itemSet() ),
+                          pair( ModelItem.PROPERTY, itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.RELATIONSHIP,
+                                itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.TYPE, itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.VALUE, itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.VERSION, itemSet() ),
+                          pair( ModelItem.VIEW, itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.VIEWPOINT, itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.WORKSPACE, itemSet() ) );
 
     public static boolean isA( ModelItem kind1, ModelItem kind2 ) {
         Set< ModelItem > list = isA.get( kind1 );
         return ( list != null && list.contains( kind2 ) );
     }
 
-    protected static Map< ModelItem, Set< ModelItem > > isSometimes =
-            Utils.newMap( pair( ModelItem.CONSTRAINT,
-                                (Set< ModelItem >)Utils.newSet( ModelItem.PROPERTY ) ) );
+//    protected static Map< ModelItem, Set< ModelItem > > isSometimes =
+//            Utils.newMap( pair( ModelItem.CONSTRAINT,
+//                                itemSet( ModelItem.PROPERTY ) ) );
+//
+//    public static boolean isSometimes( ModelItem kind1, ModelItem kind2 ) {
+//        Set< ModelItem > list = isSometimes.get( kind1 );
+//        return ( list != null && list.contains( kind2 ) );
+//    }
 
-    public static boolean isSometimes( ModelItem kind1, ModelItem kind2 ) {
-        Set< ModelItem > list = isSometimes.get( kind1 );
-        return ( list != null && list.contains( kind2 ) );
-    }
-
+    @SuppressWarnings( "unchecked" )
+    protected static Map< ModelItem, Set< ModelItem > > canContain =
+            Utils.newMap( pair( ModelItem.OBJECT, //itemSet( ModelItem.OBJECT ) ),
+                                (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( ModelItem.CONTEXT, ModelItem.RELATIONSHIP, ModelItem.VALUE, ModelItem.TYPE, ModelItem.VERSION, ModelItem.WORKSPACE  ) ) ),
+                          pair( ModelItem.WORKSPACE, itemSet( ModelItem.OBJECT ) ) );
+    @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > canHave =
             Utils.newMap( 
 //                          pair( ModelItem.CONSTRAINT,
@@ -330,7 +353,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //                          pair( ModelItem.IDENTIFIER, Utils.getEmptySetOfType(ModelItem.class) ),                                                                
 //                          pair( ModelItem.NAME, Utils.getEmptySetOfType(ModelItem.class) ),
                           pair( ModelItem.OBJECT,
-                                (Set<ModelItem>)Utils.minus(Utils.newSet( ModelItem.values() ), ModelItem.OBJECT ) )
+                                (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( ModelItem.OBJECT) ) )
 //                          pair( ModelItem.PROPERTY, Utils.getEmptySetOfType(ModelItem.class) ),
 //                          pair( ModelItem.RELATIONSHIP, Utils.getEmptySetOfType(ModelItem.class) )
                                       );
@@ -340,18 +363,46 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         return ( list != null && list.contains( kind2 ) );
     }
 
+    /**
+     * @param item
+     * @return the set of ModelItems that each have item in their isA set
+     */
+    public static Collection< ModelItem > whatIsA( ModelItem item ) {
+        Method method =
+                ClassUtils.getMethodForArgs( AbstractSystemModel.class, "isA",
+                                             item, item );
+        MethodCall methodCall =
+                new MethodCall( null, method,
+                                new Object[] { null, item } );
+        Collection< ModelItem > isItemSet =
+                MethodCall.filter( Arrays.asList( ModelItem.values() ),
+                                   methodCall, 1 );
+        return isItemSet;
+    }
+    
     protected static Map< ModelItem, Set< ModelItem > > canHaveClosure =
             new TreeMap< ModelItem, Set< ModelItem > >( canHave ) {
                 private static final long serialVersionUID = 1L;
                 {
+                    if ( !keySet().isEmpty() ) {
+                        ModelItem item = keySet().iterator().next();
+                        Method method =
+                                ClassUtils.getMethodForArgs( AbstractSystemModel.class, "whatIsA",
+                                                             item );
+                        MethodCall methodCall =
+                                new MethodCall( null, method,
+                                                new Object[] { null } );
+                        methodCall.mapClosure(this, 1, ModelItem.values().length+1);
+                    }
+                    // FIXME -- TODO -- delete the rest of this if the above works!
                     ArrayList< ModelItem > queue =
                             new ArrayList< ModelItem >( keySet() );
-                    Set< ModelItem > seen = new HashSet< ModelItem >();
+//                    Set< ModelItem > seen = new HashSet< ModelItem >();
                     while ( !queue.isEmpty() ) {
                         ModelItem item = queue.get( 0 );
                         queue.remove( 0 );
-                        if ( seen.contains( item ) ) continue;
-                        seen.add( item );
+//                        if ( seen.contains( item ) ) continue;
+//                        seen.add( item );
                         Method method =
                                 ClassUtils.getMethodForArgs( AbstractSystemModel.class, "isA",
                                                              item, item );
@@ -365,16 +416,73 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                         for ( ModelItem isA : isItemSet ) {
                             queue.add( isA );
                             Set< ModelItem > have = get( isA );
+                            int ct = 0;
                             if ( have == null ) {
                                 have = new TreeSet< ModelItem >();
                                 put( isA, have );
+                            } else {
+                                ct = have.size();
                             }
                             have.addAll( itemHas );
+                            if ( have.size() > ct ) {
+                                queue.add( isA );
+                            }
                         }
                     }
                 }
             };
             
+    protected static Map< ModelItem, Set< ModelItem > > canContainClosure =
+            new TreeMap< ModelItem, Set< ModelItem > >( canContain ) {
+                private static final long serialVersionUID = 1L;
+                {
+                    if ( !keySet().isEmpty() ) {
+                        ModelItem item = keySet().iterator().next();
+                        Method method =
+                                ClassUtils.getMethodForArgs( AbstractSystemModel.class, "whatIsA",
+                                                             item );
+                        MethodCall methodCall =
+                                new MethodCall( null, method,
+                                                new Object[] { null } );
+                        methodCall.mapClosure(this, 1, ModelItem.values().length+1);
+                    }
+                    // FIXME -- TODO -- delete the rest of this if the above works!
+                    ArrayList< ModelItem > queue =
+                            new ArrayList< ModelItem >( keySet() );
+                    //Set< ModelItem > seen = new HashSet< ModelItem >();
+                    while ( !queue.isEmpty() ) {
+                        ModelItem item = queue.get( 0 );
+                        queue.remove( 0 );
+                        //if ( seen.contains( item ) ) continue;
+                        //seen.add( item );
+                        Method method =
+                                ClassUtils.getMethodForArgs( AbstractSystemModel.class, "isA",
+                                                             item, item );
+                        MethodCall methodCall =
+                                new MethodCall( null, method,
+                                                new Object[] { null, item } );
+                        Collection< ModelItem > isItemSet =
+                                MethodCall.filter( Arrays.asList( ModelItem.values() ),
+                                                   methodCall, 1 );
+                        Set< ModelItem > itemContains = get( item );
+                        for ( ModelItem isA : isItemSet ) {
+                            Set< ModelItem > contain = get( isA );
+                            int ct = 0;
+                            if ( contain == null ) {
+                                contain = new TreeSet< ModelItem >();
+                                put( isA, contain );
+                            } else {
+                                ct = contain.size();
+                            }
+                            contain.addAll( itemContains );
+                            if ( contain.size() > ct ) {
+                                queue.add( isA );
+                            }
+                        }
+                    }
+                }
+            };
+                    
     public static boolean
             isAllowed( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
                        SystemModel.Operation operation,

@@ -67,7 +67,7 @@ public class GenerateOperationNames {
                                         nullSpec ? null : specifierType, //new SystemModel.Item(null, specifierType),
                                         ModelItem.VALUE, //newValue,
                                         false) ) {
-                            
+                            continue;
                         }
                         String name = 
                                 AbstractSystemModel.getMethodName( operation, 
