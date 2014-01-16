@@ -34,6 +34,8 @@ import gov.nasa.jpl.mbee.util.MoreToString;
 
 import java.util.TreeSet;
 
+import sysml.SystemModel.ModelItem;
+
 /**
  * Generate possible method names from {@link SystemModel.Operation} and {@link SystemModel.ModelItem}.
  */
@@ -43,6 +45,7 @@ public class GenerateOperationNames {
      * @param args
      */
     public static void main( String[] args ) {
+        Debug.turnOn();
         //SystemModel.ModelItem itemType;
         //SystemModel.Operation operation;
         //AbstractSystemModel asm = new AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >();
@@ -58,6 +61,14 @@ public class GenerateOperationNames {
                             Debug.breakpoint();
                         }
                         Object newValue = new Integer(4);
+                        if ( !AbstractSystemModel.isAllowed((AbstractSystemModel)null, operation, 
+                                        nullItem ? null : itemType,
+                                        nullContext ? null : contextType, //new SystemModel.Item(null, contextType),
+                                        nullSpec ? null : specifierType, //new SystemModel.Item(null, specifierType),
+                                        ModelItem.VALUE, //newValue,
+                                        false) ) {
+                            
+                        }
                         String name = 
                                 AbstractSystemModel.getMethodName( operation, 
                                                                    nullItem ? null : itemType,

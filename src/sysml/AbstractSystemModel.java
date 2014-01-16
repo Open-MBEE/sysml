@@ -13,12 +13,17 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import sysml.SystemModel.ModelItem;
 
@@ -146,6 +151,19 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //        return null;
     }
 
+    protected static boolean
+            anyAllowed( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                        SystemModel.Operation operation,
+                        SystemModel.ModelItem itemType,
+                        Collection< SystemModel.Item > contexts,
+                        Collection< SystemModel.Item > specifiers,
+                        SystemModel.ModelItem newValueType,
+                        Boolean failForMultipleItemMatches ) {
+        return model.anyAllowed( operation, itemType, contexts, specifiers,
+                                 newValueType, failForMultipleItemMatches );
+
+    }
+
     protected boolean anyAllowed( SystemModel.Operation operation,
                                   SystemModel.ModelItem itemType,
                                   Collection< SystemModel.Item > contexts,
@@ -153,16 +171,32 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                   SystemModel.ModelItem newValueType,
                                   Boolean failForMultipleItemMatches ) {
         if ( Utils.isNullOrEmpty( contexts ) ) {
-            return anyAllowed( operation, itemType, (SystemModel.ModelItem)null, specifiers, newValueType, failForMultipleItemMatches );
-        }
+            return anyAllowed( operation, itemType,
+                               (SystemModel.ModelItem)null, specifiers,
+                               newValueType, failForMultipleItemMatches );
+        } else
         for ( SystemModel.Item context : contexts ) {
             ModelItem contextType = context.kind;
-            if ( anyAllowed( operation, itemType, contextType, specifiers, newValueType, failForMultipleItemMatches ) ) {
+            if ( anyAllowed( operation, itemType, contextType, specifiers,
+                             newValueType, failForMultipleItemMatches ) ) {
                 return true;
             }
         }
         return false;
     }
+
+    protected static boolean
+            anyAllowed( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                        SystemModel.Operation operation,
+                        SystemModel.ModelItem itemType,
+                        SystemModel.ModelItem contextType,
+                        Collection< SystemModel.Item > specifiers,
+                        SystemModel.ModelItem newValueType,
+                        Boolean failForMultipleItemMatches ) {
+        return model.anyAllowed( operation, itemType, contextType, specifiers,
+                                 newValueType, failForMultipleItemMatches );
+    }
+
     protected boolean anyAllowed( SystemModel.Operation operation,
                                   SystemModel.ModelItem itemType,
                                   SystemModel.ModelItem contextType,
@@ -170,25 +204,32 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                   SystemModel.ModelItem newValueType,
                                   Boolean failForMultipleItemMatches ) {
         if ( Utils.isNullOrEmpty( specifiers ) ) {
-            return anyAllowed( operation, itemType, contextType, (SystemModel.ModelItem)null, newValueType, failForMultipleItemMatches );
-        }
+            return isAllowed( operation, itemType, contextType,
+                               (SystemModel.ModelItem)null, newValueType,
+                               failForMultipleItemMatches );
+        } else
         for ( SystemModel.Item specifier : specifiers ) {
             ModelItem specifierType = specifier.kind;
-            if ( isAllowed( operation, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches ) ) {
+            if ( isAllowed( operation, itemType, contextType, specifierType,
+                            newValueType, failForMultipleItemMatches ) ) {
                 return true;
             }
         }
         return false;
     }
-    protected boolean anyAllowed( SystemModel.Operation operation,
-                                  SystemModel.ModelItem itemType,
-                                  SystemModel.ModelItem contextType,
-                                  SystemModel.ModelItem specifierType,
-                                  SystemModel.ModelItem newValue,
-                                  Boolean failForMultipleItemMatches ) {
-        // TODO
-        return true;
+
+    protected static boolean
+            anyAllowed( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                        SystemModel.Operation operation,
+                        Collection< SystemModel.ModelItem > itemTypes,
+                        Collection< SystemModel.Item > contexts,
+                        Collection< SystemModel.Item > specifiers,
+                        SystemModel.Item newValue,
+                        Boolean failForMultipleItemMatches ) {
+        return model.anyAllowed( operation, itemTypes, contexts, specifiers,
+                                 newValue, failForMultipleItemMatches );
     }
+
     protected boolean anyAllowed( SystemModel.Operation operation,
                                   Collection< SystemModel.ModelItem > itemTypes,
                                   Collection< SystemModel.Item > contexts,
@@ -198,46 +239,18 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         boolean allowed = false;
         SystemModel.ModelItem newValueType = newValue == null ? null : newValue.kind;
         //for ( boolean nullItem : new boolean[] { false, true } )
-        boolean nullItem = Utils.isNullOrEmpty( itemTypes );
 
-        if ( nullItem ) {
-            return anyAllowed( operation, (SystemModel.ModelItem)null, contexts, specifiers, newValueType, failForMultipleItemMatches );
-        }
-        for ( SystemModel.ModelItem itemType : itemTypes ) {
-            if ( anyAllowed( operation, itemType, contexts, specifiers, newValueType, failForMultipleItemMatches ) ) {
+        if ( Utils.isNullOrEmpty( itemTypes ) ) {
+            return anyAllowed( operation, (SystemModel.ModelItem)null,
+                               contexts, specifiers, newValueType,
+                               failForMultipleItemMatches );
+        } else for ( SystemModel.ModelItem itemType : itemTypes ) {
+            if ( anyAllowed( operation, itemType, contexts, specifiers,
+                             newValueType, failForMultipleItemMatches ) ) {
                 return true;
             }
         }
         return false;
-//            //for ( boolean nullContext : new boolean[] { false, true } )
-//            for ( SystemModel.ModelItem contextType : SystemModel.ModelItem.values() ) {
-//                //for ( boolean nullSpec : new boolean[] { false, true } )
-//                for ( SystemModel.ModelItem specifierType : SystemModel.ModelItem.values() ) {
-//                    if ( isAllowed( operation, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches ) ) {
-////                    if ( isAllowed( operation, 
-////                                    nullItem ? null : itemType,
-////                                    nullContext ? null : contextType,
-////                                    nullSpec ? null : specifierType,
-////                                    newValueType,
-////                                    false ) ) {
-//                        return true;
-//                    }
-//                }
-//            }
-//        }
-//        for ( SystemModel.Item context : contexts ) {
-//            SystemModel.ModelItem contextType = context == null ? null : context.kind;
-//            for ( SystemModel.Item specifier : specifiers ) {
-//                SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;  
-//                for ( SystemModel.ModelItem itemType : itemTypes ) {
-//                    if ( isAllowed( operation, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches ) ) {
-//                        allowed = false;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-//        return false;
     }
     
     /* (non-Javadoc)
@@ -251,23 +264,13 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                        Collection< SystemModel.Item > specifiers,
                        SystemModel.Item newValue,
                        Boolean failForMultipleItemMatches ) {
+        // put most general tests here and delegate others to operation-specific functions
+        
+        // we must know what kind of thing is being operated on
+        if ( Utils.isNullOrEmpty( itemTypes ) ) return false;
         if ( anyAllowed( operation, itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches ) ) {
             return true;
         }
-//        boolean allowed = false;
-//        SystemModel.ModelItem newValueType = newValue == null ? null : newValue.kind;
-//        for ( SystemModel.Item context : contexts ) {
-//            SystemModel.ModelItem contextType = context == null ? null : context.kind;
-//            for ( SystemModel.Item specifier : specifiers ) {
-//                SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;  
-//                for ( SystemModel.ModelItem itemType : itemTypes ) {
-//                    if ( isAllowed( operation, itemType, contextType, specifierType, newValueType ) ) {
-//                        allowed = true;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
         switch( operation ) {
             case CREATE:
                 return mayCreate(itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches );
@@ -299,7 +302,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                                                 ModelItem.PROPERTY,
                                                                 ModelItem.RELATIONSHIP ) ) );
 
-    protected static boolean isA( ModelItem kind1, ModelItem kind2 ) {
+    public static boolean isA( ModelItem kind1, ModelItem kind2 ) {
         Set< ModelItem > list = isA.get( kind1 );
         return ( list != null && list.contains( kind2 ) );
     }
@@ -308,34 +311,95 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             Utils.newMap( pair( ModelItem.CONSTRAINT,
                                 (Set< ModelItem >)Utils.newSet( ModelItem.PROPERTY ) ) );
 
-    protected static boolean isSometimes( ModelItem kind1, ModelItem kind2 ) {
+    public static boolean isSometimes( ModelItem kind1, ModelItem kind2 ) {
         Set< ModelItem > list = isSometimes.get( kind1 );
         return ( list != null && list.contains( kind2 ) );
     }
 
     protected static Map< ModelItem, Set< ModelItem > > canHave =
-            Utils.newMap( pair( ModelItem.CONSTRAINT,
-                                (Set< ModelItem >)Utils.newSet( ModelItem.CONSTRAINT,
-                                                                ModelItem.IDENTIFIER,
-                                                                ModelItem.NAME,
-                                                                ModelItem.OBJECT,
-                                                                ModelItem.PROPERTY,
-                                                                ModelItem.RELATIONSHIP ) ) );
+            Utils.newMap( 
+//                          pair( ModelItem.CONSTRAINT,
+//                                Utils.newSet( ModelItem.CONSTRAINT,
+//                                              ModelItem.IDENTIFIER,
+//                                              ModelItem.NAME,
+//                                              ModelItem.OBJECT,
+//                                              ModelItem.PROPERTY,
+//                                              ModelItem.RELATIONSHIP ) ),
+//                          pair( ModelItem.CONTEXT,
+//                                Utils.newSet( ModelItem.values() ) ),
+//                          pair( ModelItem.IDENTIFIER, Utils.getEmptySetOfType(ModelItem.class) ),                                                                
+//                          pair( ModelItem.NAME, Utils.getEmptySetOfType(ModelItem.class) ),
+                          pair( ModelItem.OBJECT,
+                                (Set<ModelItem>)Utils.minus(Utils.newSet( ModelItem.values() ), ModelItem.OBJECT ) )
+//                          pair( ModelItem.PROPERTY, Utils.getEmptySetOfType(ModelItem.class) ),
+//                          pair( ModelItem.RELATIONSHIP, Utils.getEmptySetOfType(ModelItem.class) )
+                                      );
 
-    protected static boolean canHave( ModelItem kind1, ModelItem kind2 ) {
-        Set< ModelItem > list = canHave.get( kind1 );
+    public static boolean canHave( ModelItem kind1, ModelItem kind2 ) {
+        Set< ModelItem > list = canHaveClosure.get( kind1 );
         return ( list != null && list.contains( kind2 ) );
     }
 
-    public boolean isAllowed( sysml.SystemModel.Operation operation,
-                               sysml.SystemModel.ModelItem itemType,
-                               sysml.SystemModel.ModelItem contextType,
-                               sysml.SystemModel.ModelItem specifierType,
-                               sysml.SystemModel.ModelItem newValueType,
-                               Boolean failForMultipleItemMatches ) {
+    protected static Map< ModelItem, Set< ModelItem > > canHaveClosure =
+            new TreeMap< ModelItem, Set< ModelItem > >( canHave ) {
+                private static final long serialVersionUID = 1L;
+                {
+                    ArrayList< ModelItem > queue =
+                            new ArrayList< ModelItem >( keySet() );
+                    Set< ModelItem > seen = new HashSet< ModelItem >();
+                    while ( !queue.isEmpty() ) {
+                        ModelItem item = queue.get( 0 );
+                        queue.remove( 0 );
+                        if ( seen.contains( item ) ) continue;
+                        seen.add( item );
+                        Method method =
+                                ClassUtils.getMethodForArgs( AbstractSystemModel.class, "isA",
+                                                             item, item );
+                        MethodCall methodCall =
+                                new MethodCall( null, method,
+                                                new Object[] { null, item } );
+                        Collection< ModelItem > isItemSet =
+                                MethodCall.filter( Arrays.asList( ModelItem.values() ),
+                                                   methodCall, 1 );
+                        Set< ModelItem > itemHas = get( item );
+                        for ( ModelItem isA : isItemSet ) {
+                            queue.add( isA );
+                            Set< ModelItem > have = get( isA );
+                            if ( have == null ) {
+                                have = new TreeSet< ModelItem >();
+                                put( isA, have );
+                            }
+                            have.addAll( itemHas );
+                        }
+                    }
+                }
+            };
+            
+    public static boolean
+            isAllowed( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                       SystemModel.Operation operation,
+                       SystemModel.ModelItem itemType,
+                       SystemModel.ModelItem contextType,
+                       SystemModel.ModelItem specifierType,
+                       SystemModel.ModelItem newValueType,
+                       Boolean failForMultipleItemMatches ) {
+        return model.isAllowed( operation, itemType, contextType,
+                                specifierType, newValueType,
+                                failForMultipleItemMatches );
+    }
+
+    public boolean isAllowed( SystemModel.Operation operation,
+                              SystemModel.ModelItem itemType,
+                              SystemModel.ModelItem contextType,
+                              SystemModel.ModelItem specifierType,
+                              SystemModel.ModelItem newValueType,
+                              Boolean failForMultipleItemMatches ) {
         // operation independent criteria
         
-        // incompatible itemType and contextType when equal;
+        // we must know what kind of thing is being operated on
+        if ( itemType == null ) return false;
+                
+                // incompatible itemType and contextType when equal;
         // ex. getNameOfName() doesn't make sense, so it shouldn't be allowed.
         if ( itemType == contextType ) {
             if ( itemTypeNotEqualContextTypeSet.contains( itemType ) ) {
@@ -346,7 +410,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         // incompatible itemType and contextType
         
         // TODO -- what other operation independent rules can we assume?
-        if ( itemType == ModelItem.CONTEXT )
+        if ( contextType != null && !canHave( contextType, itemType ) ) return false;
+        if ( specifierType != null && !canHave( itemType, specifierType ) ) return false;
 
         switch( operation ) {
             case CREATE:
@@ -403,7 +468,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 
     protected static String toCamelCase( String s ) {
         if ( s == null ) return null;
-        if ( s.isEmpty() || !Character.isAlphabetic( s.codePointAt( 0 ) ) )
+        if ( s.isEmpty() || !Character.isLetter( s.codePointAt( 0 ) ) )
             return s;
         char prefix = s.charAt( 0 );
         String suffix = s.substring( 1 ).toLowerCase();
@@ -927,7 +992,10 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                               SystemModel.ModelItem specifierType,
                               SystemModel.ModelItem newValueType,
                               Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
+        // specifier is used to specify which item, 
+        //if ( itemType != null && specifierType != null ) return false;
+        // TODO -- what can't be created? version? id? 
+        // TODO -- any more
         return true;
     }
     /* (non-Javadoc)
