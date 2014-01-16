@@ -383,17 +383,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                        SystemModel.ModelItem specifierType,
                        SystemModel.ModelItem newValueType,
                        Boolean failForMultipleItemMatches ) {
-        return model.isAllowed( operation, itemType, contextType,
-                                specifierType, newValueType,
-                                failForMultipleItemMatches );
-    }
-
-    public boolean isAllowed( SystemModel.Operation operation,
-                              SystemModel.ModelItem itemType,
-                              SystemModel.ModelItem contextType,
-                              SystemModel.ModelItem specifierType,
-                              SystemModel.ModelItem newValueType,
-                              Boolean failForMultipleItemMatches ) {
         // operation independent criteria
         
         // we must know what kind of thing is being operated on
@@ -415,20 +404,34 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 
         switch( operation ) {
             case CREATE:
-                return mayCreate( itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+                return mayCreate( null, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
             case DELETE:
-                return mayDelete( itemType, contextType, specifierType, failForMultipleItemMatches );
+                return mayDelete( null, itemType, contextType, specifierType, failForMultipleItemMatches );
             case GET:
             case READ:
-                return mayGet( itemType, contextType, specifierType, failForMultipleItemMatches );
+                return mayGet( null, itemType, contextType, specifierType, failForMultipleItemMatches );
             case SET:
             case UPDATE:
-                return maySet( itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+                return maySet( null, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
             default:
                 Debug.error( "Unexpected SystemModel.Operation: " + operation );
         }
         // TODO Auto-generated method stub
         return false;
+//        return model.isAllowed( operation, itemType, contextType,
+//                                specifierType, newValueType,
+//                                failForMultipleItemMatches );
+    }
+
+    public boolean isAllowed( SystemModel.Operation operation,
+                              SystemModel.ModelItem itemType,
+                              SystemModel.ModelItem contextType,
+                              SystemModel.ModelItem specifierType,
+                              SystemModel.ModelItem newValueType,
+                              Boolean failForMultipleItemMatches ) {
+        return isAllowed( this, operation, itemType, contextType,
+                specifierType, newValueType,
+                failForMultipleItemMatches );
     }
 
 
@@ -898,6 +901,15 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                            Collection< SystemModel.Item > specifier,
                            SystemModel.Item newValue,
                            Boolean failForMultipleItemMatches ) {
+        return maySet( this, itemTypes, context, specifier, newValue,
+                       failForMultipleItemMatches );
+    }
+    public static boolean maySet( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                  Collection< SystemModel.ModelItem > itemTypes,
+                                  Collection< SystemModel.Item > context,
+                                  Collection< SystemModel.Item > specifier,
+                                  SystemModel.Item newValue,
+                                  Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
         return true;
     }
@@ -906,10 +918,20 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                            SystemModel.Item specifier,
                            SystemModel.Item newValue,
                            Boolean failForMultipleItemMatches ) {
+        return maySet( this, itemType, context, specifier, newValue,
+                       failForMultipleItemMatches );
+    }
+    public static boolean maySet( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                  SystemModel.ModelItem itemType,
+                           SystemModel.Item context,
+                           SystemModel.Item specifier,
+                           SystemModel.Item newValue,
+                           Boolean failForMultipleItemMatches ) {
         SystemModel.ModelItem contextType = context == null ? null : context.kind;
         SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
         SystemModel.ModelItem newValueType = newValue == null ? null : newValue.kind;
-        return maySet( itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+        return maySet( model, itemType, contextType, specifierType,
+                       newValueType, failForMultipleItemMatches );
     }
 
     public boolean maySet( SystemModel.ModelItem itemType,
@@ -917,6 +939,15 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                            SystemModel.ModelItem specifierType,
                            SystemModel.ModelItem newValueType,
                            Boolean failForMultipleItemMatches ) {
+        return maySet( this, itemType, contextType, specifierType,
+                       newValueType, failForMultipleItemMatches );
+    }
+    public static boolean maySet( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                  SystemModel.ModelItem itemType,
+                                  SystemModel.ModelItem contextType,
+                                  SystemModel.ModelItem specifierType,
+                                  SystemModel.ModelItem newValueType,
+                                  Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
         return true;
     }
@@ -925,6 +956,15 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                            Collection< SystemModel.Item > context,
                            Collection< SystemModel.Item > specifier,
                            Boolean failForMultipleItemMatches ) {
+        return mayGet( this, itemTypes, context, specifier,
+                       failForMultipleItemMatches );
+        
+    }
+    public static boolean mayGet( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                  Collection< SystemModel.ModelItem > itemTypes,
+                                  Collection< SystemModel.Item > context,
+                                  Collection< SystemModel.Item > specifier,
+                                  Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
         return true;
     }
@@ -932,14 +972,31 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                            SystemModel.Item context,
                            SystemModel.Item specifier,
                            Boolean failForMultipleItemMatches ) {
+        return mayGet( this, itemType, context, specifier,
+                       failForMultipleItemMatches );
+    }
+    public static boolean mayGet( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                  SystemModel.ModelItem itemType,
+                                  SystemModel.Item context,
+                                  SystemModel.Item specifier,
+                                  Boolean failForMultipleItemMatches ) {
         SystemModel.ModelItem contextType = context == null ? null : context.kind;
         SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
-        return mayGet( itemType, contextType, specifierType, failForMultipleItemMatches );
+        return mayGet( model, itemType, contextType, specifierType,
+                       failForMultipleItemMatches );
     }
     public boolean mayGet( SystemModel.ModelItem itemType,
                            SystemModel.ModelItem contextType,
                            SystemModel.ModelItem specifierType,
                            Boolean failForMultipleItemMatches ) {
+        return mayGet( this, itemType, contextType, specifierType,
+                       failForMultipleItemMatches );
+    }
+    public static boolean mayGet( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                  SystemModel.ModelItem itemType,
+                                  SystemModel.ModelItem contextType,
+                                  SystemModel.ModelItem specifierType,
+                                  Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
         return true;
     }
@@ -948,7 +1005,14 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                               Collection< SystemModel.Item > contexts,
                               Collection< SystemModel.Item > specifiers,
                               Boolean failForMultipleItemMatches ) {
-        
+        return mayDelete( this, itemTypes, contexts, specifiers,
+                          failForMultipleItemMatches );
+    }
+    public static boolean mayDelete( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                     Collection< SystemModel.ModelItem > itemTypes,
+                                     Collection< SystemModel.Item > contexts,
+                                     Collection< SystemModel.Item > specifiers,
+                                     Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
         return true;
     }
@@ -956,28 +1020,67 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                               SystemModel.Item context,
                               SystemModel.Item specifier,
                               Boolean failForMultipleItemMatches ) {
-        SystemModel.ModelItem contextType = context == null ? null : context.kind;
-        SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
-        return mayDelete( itemType, contextType, specifierType, failForMultipleItemMatches );
+        return mayDelete( this, itemType, context, specifier, failForMultipleItemMatches );
     }
+
+    public static boolean mayDelete( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                     SystemModel.ModelItem itemType,
+                                     SystemModel.Item context, SystemModel.Item specifier,
+                                     Boolean failForMultipleItemMatches ) {
+        SystemModel.ModelItem contextType =
+                context == null ? null : context.kind;
+        SystemModel.ModelItem specifierType =
+                specifier == null ? null : specifier.kind;
+        return mayDelete( model, itemType, contextType, specifierType,
+                          failForMultipleItemMatches );
+    }
+
     public boolean mayDelete( SystemModel.ModelItem itemType,
                               SystemModel.ModelItem contextType,
                               SystemModel.ModelItem specifierType,
                               Boolean failForMultipleItemMatches ) {
+        return mayDelete( this, itemType, contextType, specifierType,
+                          failForMultipleItemMatches );
+    }
+
+    public static boolean mayDelete( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                     SystemModel.ModelItem itemType,
+                                     SystemModel.ModelItem contextType,
+                                     SystemModel.ModelItem specifierType,
+                                     Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
         return true;
     }
 
-    public boolean
-            mayCreate( Collection< SystemModel.ModelItem > itemTypes,
-                       Collection< SystemModel.Item > context,
-                       Collection< SystemModel.Item > specifier,
-                       SystemModel.Item newValue,
-                       Boolean failForMultipleItemMatches ) {
+    public boolean mayCreate( Collection< SystemModel.ModelItem > itemTypes,
+                              Collection< SystemModel.Item > context,
+                              Collection< SystemModel.Item > specifier,
+                              SystemModel.Item newValue,
+                              Boolean failForMultipleItemMatches ) {
+        return mayCreate( this, itemTypes, context, specifier, newValue,
+                          failForMultipleItemMatches );
+    }
+
+    public static boolean mayCreate( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                                     Collection< SystemModel.ModelItem > itemTypes,
+                                     Collection< SystemModel.Item > context,
+                                     Collection< SystemModel.Item > specifier,
+                                     SystemModel.Item newValue,
+                                     Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
         return true;
     }
+
     public boolean mayCreate( SystemModel.ModelItem itemType,
+                              SystemModel.Item context,
+                              SystemModel.Item specifier,
+                              SystemModel.Item newValue,
+                              Boolean failForMultipleItemMatches ) {
+        return mayCreate( this, itemType, context, specifier, newValue,
+                          failForMultipleItemMatches );
+    }
+    public static boolean mayCreate( AbstractSystemModel<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> model,
+                                     SystemModel.ModelItem itemType,
                               SystemModel.Item context,
                               SystemModel.Item specifier,
                               SystemModel.Item newValue,
@@ -985,13 +1088,25 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         SystemModel.ModelItem contextType = context == null ? null : context.kind;
         SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
         SystemModel.ModelItem newValueType = newValue == null ? null : newValue.kind;
-        return mayCreate( itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+        return mayCreate( model, itemType, contextType, specifierType,
+                          newValueType, failForMultipleItemMatches );
     }
+
     public boolean mayCreate( SystemModel.ModelItem itemType,
                               SystemModel.ModelItem contextType,
                               SystemModel.ModelItem specifierType,
                               SystemModel.ModelItem newValueType,
                               Boolean failForMultipleItemMatches ) {
+        return mayCreate( this, itemType, contextType, specifierType,
+                          newValueType, failForMultipleItemMatches );
+    }
+
+    public static boolean mayCreate( AbstractSystemModel<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> model,
+                                     SystemModel.ModelItem itemType,
+                                     SystemModel.ModelItem contextType,
+                                     SystemModel.ModelItem specifierType,
+                                     SystemModel.ModelItem newValueType,
+                                     boolean failForMultipleItemMatches ) {
         // specifier is used to specify which item, 
         //if ( itemType != null && specifierType != null ) return false;
         // TODO -- what can't be created? version? id? 

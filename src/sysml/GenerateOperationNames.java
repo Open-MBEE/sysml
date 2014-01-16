@@ -45,7 +45,7 @@ public class GenerateOperationNames {
      * @param args
      */
     public static void main( String[] args ) {
-        Debug.turnOn();
+        //Debug.turnOn();
         //SystemModel.ModelItem itemType;
         //SystemModel.Operation operation;
         //AbstractSystemModel asm = new AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >();
