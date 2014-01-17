@@ -54,7 +54,8 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, <br>
      */
     public static enum ModelItem {
-        OBJECT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
+        OBJECT, //CONTEXT,
+        TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
         RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT;
     };
     

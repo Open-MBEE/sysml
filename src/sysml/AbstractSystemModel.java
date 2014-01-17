@@ -38,7 +38,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 
     static String getGenericSymbol( ModelItem itemType ) {
         switch ( itemType ) {
-            case CONTEXT:
+            //case CONTEXT:
             case IDENTIFIER:
             case NAME:
             case OBJECT:
@@ -289,8 +289,13 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     }
     
     protected static Set< ModelItem > itemTypeNotEqualContextTypeSet =
-            Utils.newSet( ModelItem.CONTEXT, ModelItem.IDENTIFIER,
-                          ModelItem.NAME, ModelItem.VERSION );
+            Utils.newSet( //ModelItem.CONTEXT, 
+                          ModelItem.IDENTIFIER,
+                          ModelItem.NAME, 
+                          ModelItem.TYPE,
+                          ModelItem.VALUE,
+                          ModelItem.VERSION,
+                          ModelItem.WORKSPACE );
 
     protected static < KK, VV > Pair< KK, VV > pair( KK k, VV v ) {
         return new Pair< KK, VV >( k, v );
@@ -305,7 +310,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             Utils.newMap( pair( ModelItem.CONSTRAINT,
                                 itemSet( ModelItem.OBJECT ) ), //, ModelItem.PROPERTY,
                                          //ModelItem.RELATIONSHIP ) ), // ???
-                          pair( ModelItem.CONTEXT, itemSet( ModelItem.OBJECT ) ),
+//                          pair( ModelItem.CONTEXT, itemSet( ModelItem.OBJECT ) ),
                           pair( ModelItem.IDENTIFIER, itemSet() ),
                           pair( ModelItem.NAME, itemSet() ),
                           pair( ModelItem.OBJECT, itemSet() ),
@@ -336,7 +341,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > canContain =
             Utils.newMap( pair( ModelItem.OBJECT, //itemSet( ModelItem.OBJECT ) ),
-                                (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( ModelItem.CONTEXT, ModelItem.RELATIONSHIP, ModelItem.VALUE, ModelItem.TYPE, ModelItem.VERSION, ModelItem.WORKSPACE  ) ) ),
+                                (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( //ModelItem.CONTEXT, 
+                                                                                                    ModelItem.RELATIONSHIP, ModelItem.VALUE, ModelItem.TYPE, ModelItem.VERSION, ModelItem.WORKSPACE  ) ) ),
                           pair( ModelItem.WORKSPACE, itemSet( ModelItem.OBJECT ) ) );
     @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > canHave =
@@ -377,6 +383,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         Collection< ModelItem > isItemSet =
                 MethodCall.filter( Arrays.asList( ModelItem.values() ),
                                    methodCall, 1 );
+        System.out.println( "whatIsA(" + item + ") = " + isItemSet );
         return isItemSet;
     }
     
@@ -393,41 +400,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                 new MethodCall( null, method,
                                                 new Object[] { null } );
                         methodCall.mapClosure(this, 1, ModelItem.values().length+1);
-                    }
-                    // FIXME -- TODO -- delete the rest of this if the above works!
-                    ArrayList< ModelItem > queue =
-                            new ArrayList< ModelItem >( keySet() );
-//                    Set< ModelItem > seen = new HashSet< ModelItem >();
-                    while ( !queue.isEmpty() ) {
-                        ModelItem item = queue.get( 0 );
-                        queue.remove( 0 );
-//                        if ( seen.contains( item ) ) continue;
-//                        seen.add( item );
-                        Method method =
-                                ClassUtils.getMethodForArgs( AbstractSystemModel.class, "isA",
-                                                             item, item );
-                        MethodCall methodCall =
-                                new MethodCall( null, method,
-                                                new Object[] { null, item } );
-                        Collection< ModelItem > isItemSet =
-                                MethodCall.filter( Arrays.asList( ModelItem.values() ),
-                                                   methodCall, 1 );
-                        Set< ModelItem > itemHas = get( item );
-                        for ( ModelItem isA : isItemSet ) {
-                            queue.add( isA );
-                            Set< ModelItem > have = get( isA );
-                            int ct = 0;
-                            if ( have == null ) {
-                                have = new TreeSet< ModelItem >();
-                                put( isA, have );
-                            } else {
-                                ct = have.size();
-                            }
-                            have.addAll( itemHas );
-                            if ( have.size() > ct ) {
-                                queue.add( isA );
-                            }
-                        }
+                        Debug.out( "canHaveClosure = " + this );
                     }
                 }
             };
@@ -445,44 +418,16 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                 new MethodCall( null, method,
                                                 new Object[] { null } );
                         methodCall.mapClosure(this, 1, ModelItem.values().length+1);
-                    }
-                    // FIXME -- TODO -- delete the rest of this if the above works!
-                    ArrayList< ModelItem > queue =
-                            new ArrayList< ModelItem >( keySet() );
-                    //Set< ModelItem > seen = new HashSet< ModelItem >();
-                    while ( !queue.isEmpty() ) {
-                        ModelItem item = queue.get( 0 );
-                        queue.remove( 0 );
-                        //if ( seen.contains( item ) ) continue;
-                        //seen.add( item );
-                        Method method =
-                                ClassUtils.getMethodForArgs( AbstractSystemModel.class, "isA",
-                                                             item, item );
-                        MethodCall methodCall =
-                                new MethodCall( null, method,
-                                                new Object[] { null, item } );
-                        Collection< ModelItem > isItemSet =
-                                MethodCall.filter( Arrays.asList( ModelItem.values() ),
-                                                   methodCall, 1 );
-                        Set< ModelItem > itemContains = get( item );
-                        for ( ModelItem isA : isItemSet ) {
-                            Set< ModelItem > contain = get( isA );
-                            int ct = 0;
-                            if ( contain == null ) {
-                                contain = new TreeSet< ModelItem >();
-                                put( isA, contain );
-                            } else {
-                                ct = contain.size();
-                            }
-                            contain.addAll( itemContains );
-                            if ( contain.size() > ct ) {
-                                queue.add( isA );
-                            }
-                        }
+                        Debug.outln( "canContainClosure = " + this );
                     }
                 }
             };
                     
+            public static boolean canContain( ModelItem kind1, ModelItem kind2 ) {
+                Set< ModelItem > list = canContainClosure.get( kind1 );
+                return ( list != null && list.contains( kind2 ) );
+            }
+
     public static boolean
             isAllowed( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
                        SystemModel.Operation operation,
@@ -1215,7 +1160,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                      SystemModel.ModelItem specifierType,
                                      SystemModel.ModelItem newValueType,
                                      boolean failForMultipleItemMatches ) {
-        // specifier is used to specify which item, 
+        if ( contextType != null && itemType != null && !canContain( contextType, itemType ) ) return false;
+        // specifier is used to specify which item, but if the item is created, it doesn't need to be specified; a new value can be used
         //if ( itemType != null && specifierType != null ) return false;
         // TODO -- what can't be created? version? id? 
         // TODO -- any more
@@ -1415,8 +1361,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         switch ( item ) {
             case CONSTRAINT:
                 return getConstraintClass();
-            case CONTEXT:
-                return getContextClass();
+//            case CONTEXT:
+//                return getContextClass();
             case IDENTIFIER:
                 return getIdentifierClass();
             case NAME:
@@ -1451,11 +1397,11 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     @Override
     public abstract Class< O > getObjectClass();
 
-    /* (non-Javadoc)
-     * @see SystemModel#getContextClass()
-     */
-    @Override
-    public abstract Class< C > getContextClass();
+//    /* (non-Javadoc)
+//     * @see SystemModel#getContextClass()
+//     */
+//    @Override
+//    public abstract Class< C > getContextClass();
 
     /* (non-Javadoc)
      * @see SystemModel#getTypeClass()
