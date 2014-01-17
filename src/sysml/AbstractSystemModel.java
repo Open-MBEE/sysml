@@ -383,7 +383,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         Collection< ModelItem > isItemSet =
                 MethodCall.filter( Arrays.asList( ModelItem.values() ),
                                    methodCall, 1 );
-        System.out.println( "whatIsA(" + item + ") = " + isItemSet );
+        Debug.outln( "whatIsA(" + item + ") = " + isItemSet );
         return isItemSet;
     }
     
