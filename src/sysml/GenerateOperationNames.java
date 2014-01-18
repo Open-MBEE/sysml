@@ -90,7 +90,7 @@ public class GenerateOperationNames {
         for ( SystemModel.Operation operation : SystemModel.Operation.values() ) {
             for ( boolean nullItem : new boolean[] { false, true } )
             for ( SystemModel.ModelItem itemType : SystemModel.ModelItem.values() ) {
-                for ( boolean nullContext : new boolean[] { true } )
+                for ( boolean nullContext : new boolean[] { false, true } )
                 for ( SystemModel.ModelItem contextType : SystemModel.ModelItem.values() ) {
                     for ( boolean nullSpec : new boolean[] { false, true } )
                     for ( SystemModel.ModelItem specifierType : SystemModel.ModelItem.values() ) {

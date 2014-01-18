@@ -655,8 +655,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     }
 
     public static String getMethodNamePrepositionForSpecifier( Operation operation,
-                                                                SystemModel.ModelItem specifierType,
-                                                                SystemModel.ModelItem contextType ) {
+                                                               SystemModel.ModelItem specifierType,
+                                                               SystemModel.ModelItem contextType ) {
         switch ( operation ) {
             case CREATE:
             case DELETE:
@@ -671,6 +671,27 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         return "With";
     }
     
+    public static <VAL> String getMethodNamePrepositionForNewValue( Operation operation,
+                                                                    SystemModel.ModelItem specifierType,
+                                                                    SystemModel.ModelItem contextType,
+                                                                    VAL newValue ) {
+       switch ( operation ) {
+           case SET:
+           case UPDATE:
+               return "To";
+           case CREATE:
+               return "As";
+           case DELETE:
+           case GET:
+           case READ:
+               Debug.error( "No new value parameter for " + operation + " operation!" );
+               break;
+           default:
+               Debug.error("Unrecognized Operation: " + operation );
+       }
+       return "";
+   }
+   
     /**
      * @param systemModel
      * @param operation
@@ -743,11 +764,13 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         
         // get name and args for context
         SystemModel.ModelItem contextType = context == null ? null : context.kind;  
-        String contextTypeName;
-        if ( contextType == null ) {
-            contextTypeName = "";
-        } else {
-            contextTypeName = toCamelCase( contextType.toString() );
+        String contextTypeName = "";
+        if ( contextType != null ) {
+            // No need to include context type in call name unless there is no
+            // specifier and no new value
+            if ( specifier == null && newValue == null ) {
+                contextTypeName = toCamelCase( contextType.toString() );
+            }
             if ( systemModel != null ) argTypeList.add( systemModel.getClass( contextType ) );
             argList.add( context.obj );
             argTypeStrings.add( getGenericSymbol( contextType ) + " context" );
@@ -755,14 +778,17 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         
         // get name and args for specifier (and for the item as the specifier if itemType == null)
         SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
-        String specifierTypeName;
+        String specifierTypeName = "";
         if ( specifierType == null ) {
             if ( itemType == null ) {
                 Debug.error( complain, complain, "Either itemType or specifierType may be null, but not both!" );
             }
-            specifierTypeName = "";
         } else {
-            specifierTypeName = toCamelCase( specifierType.toString() );
+            // No need for specifier in call name if there are parameters also
+            // for the context and new value.
+            if ( context == null || newValue == null ) {
+                specifierTypeName = toCamelCase( specifierType.toString() );
+            }
             if ( itemType == null ) {
                 itemTypeName = specifierTypeName;
             }
@@ -776,9 +802,11 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             argList.add( newValue );
             argTypeStrings.add( getGenericSymbol( ModelItem.VALUE ) + " newValue" );
             if ( newValue != null ) {
-                if ( systemModel != null) {
-                    @SuppressWarnings( "unchecked" ) // the newValue parameter's type is U, so this is safe
-                    Class< ? extends VAL > nvClass = (Class< ? extends VAL >)newValue.getClass();
+                @SuppressWarnings( "unchecked" ) // the newValue parameter's type is U, so this is safe
+                Class< ? extends VAL > nvClass = (Class< ? extends VAL >)newValue.getClass();
+                if ( systemModel == null) {
+                    argTypeList.add( nvClass );
+                } else {
                     Class< ? > itemClass = systemModel.getClass( itemType );
                     Collection< Class<?> > classes =  Utils.newList( nvClass, itemClass );
                     Class<?> cls = ClassUtils.leastUpperBoundSuperclass( classes );
@@ -788,14 +816,29 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         }
         
         // construct method call name
-        String contextPrep = getMethodNamePrepositionForContext( operation, itemType, contextType );
-        String specifierPrep = getMethodNamePrepositionForSpecifier( operation, specifierType, contextType );
+        String contextPrep = "";
+        if ( !Utils.isNullOrEmpty( contextTypeName ) ) {
+            contextPrep = getMethodNamePrepositionForContext( operation, itemType, contextType );
+        }
+        String specifierPrep = "";
+        if ( !Utils.isNullOrEmpty( specifierTypeName ) ) {
+            specifierPrep = getMethodNamePrepositionForSpecifier( operation, specifierType, contextType );
+        }
+        String newValuePrep = "";
+        if ( usesNewValue( operation )
+             && ( contextType == null || specifierType == null ) ) {
+            newValuePrep =
+                    getMethodNamePrepositionForNewValue( operation,
+                                                         specifierType,
+                                                         contextType, newValue );
+        }
         String by = "";
         if ( itemType != null && specifierType != null
              && specifierType != ModelItem.NAME && specifierType != itemType ) {
             by = specifierPrep + specifierTypeName;
         }
-        String callName = opName + itemTypeName + ( contextType == null ? "" : contextPrep + contextTypeName ) + by;
+        String callName = opName + itemTypeName + ( contextType == null ? "" : contextPrep + contextTypeName ) + by
+                + newValuePrep;
 
         // if just printing a hypothetical method signature to a string, create a MethodCall that does it
         Method method = null;
@@ -1149,7 +1192,17 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                      Collection< SystemModel.Item > specifier,
                                      SystemModel.Item newValue,
                                      Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
+            for ( SystemModel.ModelItem itemType : itemTypes ) {
+                for ( SystemModel.Item subcontext : context ) {
+                    for ( SystemModel.Item subspecifier : specifier ) {
+                        if ( model.mayCreate( itemType, subcontext, subspecifier,
+                                              newValue, failForMultipleItemMatches ) ) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        // TODO -- Do similar thing for other mayXXX
         return true;
     }
 
