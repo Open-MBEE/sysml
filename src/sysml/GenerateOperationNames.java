@@ -40,12 +40,8 @@ import sysml.SystemModel.ModelItem;
  * Generate possible method names from {@link SystemModel.Operation} and {@link SystemModel.ModelItem}.
  */
 public class GenerateOperationNames {
-    
-    /**
-     * @param args
-     */
-    public static void main( String[] args ) {
-        //Debug.turnOn();
+
+    public static TreeSet<String> allLegalOperations() {
         //SystemModel.ModelItem itemType;
         //SystemModel.Operation operation;
         //AbstractSystemModel asm = new AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >();
@@ -86,7 +82,64 @@ public class GenerateOperationNames {
                 if ( nullItem ) break;
             }
         }
-        System.out.println( MoreToString.Helper.toString( set, false, false,
+        return set;
+    }
+    
+    public static TreeSet<String> minimalNecessaryAPI() {
+        TreeSet<String> set = new TreeSet<String>();
+        for ( SystemModel.Operation operation : SystemModel.Operation.values() ) {
+            for ( boolean nullItem : new boolean[] { false, true } )
+            for ( SystemModel.ModelItem itemType : SystemModel.ModelItem.values() ) {
+                for ( boolean nullContext : new boolean[] { true } )
+                for ( SystemModel.ModelItem contextType : SystemModel.ModelItem.values() ) {
+                    for ( boolean nullSpec : new boolean[] { false, true } )
+                    for ( SystemModel.ModelItem specifierType : SystemModel.ModelItem.values() ) {
+                        if ( nullItem && nullContext && nullSpec ) {
+                            Debug.breakpoint();
+                        }
+                        Object newValue = new Integer(4);
+                        if ( !AbstractSystemModel.isNecessaryInAPI( 
+                                        operation, 
+                                        nullItem ? null : itemType,
+                                        nullContext ? null : contextType, //new SystemModel.Item(null, contextType),
+                                        nullSpec ? null : specifierType, //new SystemModel.Item(null, specifierType),
+                                        ModelItem.VALUE, //newValue,
+                                        false) ) {
+                            continue;
+                        }
+                        String name = 
+                                AbstractSystemModel.getMethodName( operation, 
+                                                                   nullItem ? null : itemType,
+                                                                   nullContext ? null : new SystemModel.Item(null, contextType),
+                                                                   nullSpec ? null : new SystemModel.Item(null, specifierType),
+                                                                   newValue,
+                                                                   false );
+                        if ( name != null && !set.contains( name ) ) {
+                            set.add( name );
+                        }
+                        if ( nullSpec ) break;
+                    }
+                    if ( nullContext ) break;
+                }
+                if ( nullItem ) break;
+            }
+        }
+        return set;
+    }
+    
+    /**
+     * @param args
+     */
+    public static void main( String[] args ) {
+        //Debug.turnOn();
+        TreeSet<String> minSet = minimalNecessaryAPI();
+        System.out.println( "minimal API:\n" + 
+                            MoreToString.Helper.toString( minSet, false, false,
+                                                          null, null, "", "\n",
+                                                          "", false ) );
+        TreeSet<String> allowedSet = allLegalOperations();
+        System.out.println( "legal operations\n" +
+                            MoreToString.Helper.toString( allowedSet, false, false,
                                                           null, null, "", "\n",
                                                           "", false ) );
     }

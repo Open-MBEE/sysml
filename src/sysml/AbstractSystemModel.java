@@ -9,7 +9,6 @@ import gov.nasa.jpl.mbee.util.MethodCall;
 import gov.nasa.jpl.mbee.util.Pair;
 import gov.nasa.jpl.mbee.util.Utils;
 
-import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -17,15 +16,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
-
-import sysml.SystemModel.ModelItem;
 
 /**
  * An abstract SystemModel that provides some straightforward implementations of
@@ -428,6 +422,32 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                 return ( list != null && list.contains( kind2 ) );
             }
 
+    public static boolean isNecessaryInAPI( //AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
+                       SystemModel.Operation operation,
+                       SystemModel.ModelItem itemType,
+                       SystemModel.ModelItem contextType,
+                       SystemModel.ModelItem specifierType,
+                       SystemModel.ModelItem newValueType,
+                       Boolean failForMultipleItemMatches ) {
+        if ( !isAllowed( null, operation, itemType, contextType, specifierType,
+                         newValueType, failForMultipleItemMatches ) ) return false;
+        if ( contextType != null ) return false;
+        switch ( operation ) {
+            case GET:
+            case READ:
+                if ( newValueType != null ) return false;
+                break;
+            case CREATE:
+            case DELETE:
+            case SET:
+            case UPDATE:
+                if ( specifierType != null ) return false;
+                break;
+            default:
+                Debug.error( "Unexpected Operation! " + operation );
+        }
+        return true;
+    }
     public static boolean
             isAllowed( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
                        SystemModel.Operation operation,
@@ -601,9 +621,18 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         String by = "";
         if ( itemType != null && specifierType != null
              && specifierType != ModelItem.NAME && specifierType != itemType ) {
-            by = "By" + specifierTypeName;
+            by = getMethodNamePrepositionForSpecifier( operation,
+                                                       specifierType,
+                                                       contextType )
+                 + specifierTypeName;
         }
-        String callName = opName + itemTypeName + ( contextType == null ? "" : "Of" + contextTypeName ) + by;
+        String of = "";
+        if ( contextType != null ) {
+            of = getMethodNamePrepositionForContext( operation, itemType,
+                                                     contextType ) +
+                 contextTypeName;
+        }
+        String callName = opName + itemTypeName + of + by;
         return callName;
     }
     
@@ -621,8 +650,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             default:
                 Debug.error("Unrecognized Operation: " + operation );
         }
-        return "In";
-        //return "Of";
+        //return "In";
+        return "Of";
     }
 
     public static String getMethodNamePrepositionForSpecifier( Operation operation,
