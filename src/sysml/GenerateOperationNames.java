@@ -86,6 +86,7 @@ public class GenerateOperationNames {
     }
     
     public static TreeSet<String> minimalNecessaryAPI() {
+        Integer four = new Integer(4);
         TreeSet<String> set = new TreeSet<String>();
         for ( SystemModel.Operation operation : SystemModel.Operation.values() ) {
             for ( boolean nullItem : new boolean[] { false, true } )
@@ -94,28 +95,29 @@ public class GenerateOperationNames {
                 for ( SystemModel.ModelItem contextType : SystemModel.ModelItem.values() ) {
                     for ( boolean nullSpec : new boolean[] { false, true } )
                     for ( SystemModel.ModelItem specifierType : SystemModel.ModelItem.values() ) {
-                        if ( nullItem && nullContext && nullSpec ) {
-                            Debug.breakpoint();
-                        }
-                        Object newValue = new Integer(4);
-                        if ( !AbstractSystemModel.isNecessaryInAPI( 
-                                        operation, 
-                                        nullItem ? null : itemType,
-                                        nullContext ? null : contextType, //new SystemModel.Item(null, contextType),
-                                        nullSpec ? null : specifierType, //new SystemModel.Item(null, specifierType),
-                                        ModelItem.VALUE, //newValue,
-                                        false) ) {
-                            continue;
-                        }
-                        String name = 
-                                AbstractSystemModel.getMethodName( operation, 
-                                                                   nullItem ? null : itemType,
-                                                                   nullContext ? null : new SystemModel.Item(null, contextType),
-                                                                   nullSpec ? null : new SystemModel.Item(null, specifierType),
-                                                                   newValue,
-                                                                   false );
-                        if ( name != null && !set.contains( name ) ) {
-                            set.add( name );
+                        for ( boolean nullValue : new boolean[] { false, true } ) {
+                            if ( nullItem && nullContext && nullSpec ) {
+                                Debug.breakpoint();
+                            }
+                            Object newValue = nullValue ? null : four;
+                            if ( !AbstractSystemModel.isNecessaryInAPI( 
+                                            operation, 
+                                            nullItem ? null : itemType,
+                                            nullContext ? null : contextType, //new SystemModel.Item(null, contextType),
+                                            nullSpec ? null : specifierType, //new SystemModel.Item(null, specifierType),
+                                            nullValue ? null : ModelItem.VALUE, //newValue,
+                                            false) ) {
+                                continue;
+                            }
+                            String name = 
+                                    AbstractSystemModel.getMethodName( operation, 
+                                                                       nullItem ? null : itemType,
+                                                                       nullContext ? null : new SystemModel.Item(null, contextType),
+                                                                       nullSpec ? null : new SystemModel.Item(null, specifierType),
+                                                                       newValue, false );
+                            if ( name != null && !set.contains( name ) ) {
+                                set.add( name );
+                            }
                         }
                         if ( nullSpec ) break;
                     }
@@ -138,7 +140,7 @@ public class GenerateOperationNames {
                                                           null, null, "", "\n",
                                                           "", false ) );
         TreeSet<String> allowedSet = allLegalOperations();
-        System.out.println( "legal operations\n" +
+        System.out.println( "\n\n\nlegal operations\n" +
                             MoreToString.Helper.toString( allowedSet, false, false,
                                                           null, null, "", "\n",
                                                           "", false ) );

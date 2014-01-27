@@ -265,17 +265,21 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         if ( anyAllowed( operation, itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches ) ) {
             return true;
         }
-        switch( operation ) {
+        switch ( operation ) {
             case CREATE:
-                return mayCreate(itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches );
+                return mayCreate( itemTypes, contexts, specifiers, newValue,
+                                  failForMultipleItemMatches );
             case DELETE:
-                return mayDelete(itemTypes, contexts, specifiers, failForMultipleItemMatches );
+                return mayDelete( itemTypes, contexts, specifiers,
+                                  failForMultipleItemMatches );
             case GET:
             case READ:
-                return mayGet(itemTypes, contexts, specifiers, failForMultipleItemMatches );
+                return mayGet( itemTypes, contexts, specifiers,
+                               failForMultipleItemMatches );
             case SET:
             case UPDATE:
-                return maySet(itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches );
+                return maySet( itemTypes, contexts, specifiers, newValue,
+                               failForMultipleItemMatches );
             default:
                 Debug.error( "Unexpected SystemModel.Operation: " + operation );
         }
@@ -475,17 +479,21 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         if ( contextType != null && !canHave( contextType, itemType ) ) return false;
         if ( specifierType != null && !canHave( itemType, specifierType ) ) return false;
 
-        switch( operation ) {
+        switch ( operation ) {
             case CREATE:
-                return mayCreate( null, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+                return mayCreate( null, itemType, contextType, specifierType,
+                                  newValueType, failForMultipleItemMatches );
             case DELETE:
-                return mayDelete( null, itemType, contextType, specifierType, failForMultipleItemMatches );
+                return mayDelete( null, itemType, contextType, specifierType,
+                                  failForMultipleItemMatches );
             case GET:
             case READ:
-                return mayGet( null, itemType, contextType, specifierType, failForMultipleItemMatches );
+                return mayGet( null, itemType, contextType, specifierType,
+                               failForMultipleItemMatches );
             case SET:
             case UPDATE:
-                return maySet( null, itemType, contextType, specifierType, newValueType, failForMultipleItemMatches );
+                return maySet( null, itemType, contextType, specifierType,
+                               newValueType, failForMultipleItemMatches );
             default:
                 Debug.error( "Unexpected SystemModel.Operation: " + operation );
         }
@@ -765,20 +773,32 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         // get name and args for context
         SystemModel.ModelItem contextType = context == null ? null : context.kind;  
         String contextTypeName = "";
+        String contextPrep = "";
+        String of = "";
         if ( contextType != null ) {
             // No need to include context type in call name unless there is no
             // specifier and no new value
-            if ( specifier == null && newValue == null ) {
+            if ( specifier == null && ( newValue == null || !usesNewValue( operation ) ) ) {
                 contextTypeName = toCamelCase( contextType.toString() );
+//            }
+//            if ( !Utils.isNullOrEmpty( contextTypeName ) ) {
+                contextPrep = getMethodNamePrepositionForContext( operation, itemType, contextType );
+                of = contextPrep + contextTypeName;
             }
-            if ( systemModel != null ) argTypeList.add( systemModel.getClass( contextType ) );
+            String paramType = Utils.isNullOrEmpty( of ) ? "Object" : getGenericSymbol( contextType );  
+            if ( systemModel != null ) argTypeList.add( paramType.equals( "Object" ) ? Object.class : systemModel.getClass( contextType ) );
             argList.add( context.obj );
-            argTypeStrings.add( getGenericSymbol( contextType ) + " context" );
+            argTypeStrings.add( paramType + " context" );
         }
         
         // get name and args for specifier (and for the item as the specifier if itemType == null)
         SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
         String specifierTypeName = "";
+        String specifierPrep = "";
+        String by = "";
+        if ( itemType != null && specifierType != null
+             && specifierType != ModelItem.NAME && specifierType != itemType ) {
+        }
         if ( specifierType == null ) {
             if ( itemType == null ) {
                 Debug.error( complain, complain, "Either itemType or specifierType may be null, but not both!" );
@@ -786,15 +806,23 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         } else {
             // No need for specifier in call name if there are parameters also
             // for the context and new value.
-            if ( context == null || newValue == null ) {
+            if ( context == null || newValue == null || !usesNewValue( operation ) ) {
                 specifierTypeName = toCamelCase( specifierType.toString() );
             }
             if ( itemType == null ) {
                 itemTypeName = specifierTypeName;
             }
-            if ( systemModel != null ) argTypeList.add( systemModel.getClass( specifierType ) );
+            if ( !Utils.isNullOrEmpty( specifierTypeName ) ) {
+                specifierPrep = getMethodNamePrepositionForSpecifier( operation, specifierType, contextType );
+            }
+            if ( itemType != null && specifierType != null
+                    && specifierType != ModelItem.NAME && specifierType != itemType ) {
+                by = specifierPrep + specifierTypeName;
+            }
+            String paramType = Utils.isNullOrEmpty( by ) ? "Object" : getGenericSymbol( specifierType );
+            if ( systemModel != null ) argTypeList.add( paramType.equals( "Object" ) ? Object.class : systemModel.getClass( specifierType ) );
             argList.add( specifier.obj );
-            argTypeStrings.add(getGenericSymbol( specifierType ) + " specifier" );
+            argTypeStrings.add( paramType + " specifier" );
         }
         
         // get args for new value
@@ -816,14 +844,6 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
         }
         
         // construct method call name
-        String contextPrep = "";
-        if ( !Utils.isNullOrEmpty( contextTypeName ) ) {
-            contextPrep = getMethodNamePrepositionForContext( operation, itemType, contextType );
-        }
-        String specifierPrep = "";
-        if ( !Utils.isNullOrEmpty( specifierTypeName ) ) {
-            specifierPrep = getMethodNamePrepositionForSpecifier( operation, specifierType, contextType );
-        }
         String newValuePrep = "";
         if ( usesNewValue( operation )
              && ( contextType == null || specifierType == null ) ) {
@@ -832,13 +852,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                                          specifierType,
                                                          contextType, newValue );
         }
-        String by = "";
-        if ( itemType != null && specifierType != null
-             && specifierType != ModelItem.NAME && specifierType != itemType ) {
-            by = specifierPrep + specifierTypeName;
-        }
-        String callName = opName + itemTypeName + ( contextType == null ? "" : contextPrep + contextTypeName ) + by
-                + newValuePrep;
+
+        String callName = opName + itemTypeName + of + by + newValuePrep;
 
         // if just printing a hypothetical method signature to a string, create a MethodCall that does it
         Method method = null;
@@ -864,8 +879,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             method = ClassUtils.getMethodForArgs( sysClass, callName, argList );
         }
         if ( method == null && by.length() > 0 ) {
-            callName = opName + itemTypeName + ( contextType == null ? "" : contextPrep + contextTypeName );
-            method = ClassUtils.getMethodForArgTypes( sysClass, callName , argTypes , complain );
+            //callName = opName + itemTypeName + of;
+            method = ClassUtils.getMethodForArgTypes( sysClass, callName, argTypes , complain );
             if ( method == null ) {
                 method = ClassUtils.getMethodForArgs( sysClass, callName, argList );
             }
@@ -1073,7 +1088,16 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                   SystemModel.ModelItem specifierType,
                                   SystemModel.ModelItem newValueType,
                                   Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
+        //if ( contextType == null ) return false;
+        if ( contextType == null && specifierType == null ) return false;
+        if ( model != null ) {
+            if ( itemType == ModelItem.NAME && !model.namesAreSettable() ) {
+                return false;
+            }
+            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreSettable() ) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -1123,6 +1147,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                   SystemModel.ModelItem specifierType,
                                   Boolean failForMultipleItemMatches ) {
         // TODO Auto-generated method stub
+        if ( contextType == null && specifierType == null ) return false;
         return true;
     }
 
@@ -1173,7 +1198,16 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                      SystemModel.ModelItem contextType,
                                      SystemModel.ModelItem specifierType,
                                      Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
+        //if ( contextType == null ) return false;
+        if ( contextType == null && specifierType == null ) return false;
+        if ( model != null ) {
+            if ( itemType == ModelItem.NAME && !model.namesAreSettable() ) {
+                return false;
+            }
+            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreSettable() ) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -1242,7 +1276,18 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                                      SystemModel.ModelItem specifierType,
                                      SystemModel.ModelItem newValueType,
                                      boolean failForMultipleItemMatches ) {
-        if ( contextType != null && itemType != null && !canContain( contextType, itemType ) ) return false;
+        if ( contextType != null && itemType != null
+             && !canContain( contextType, itemType ) ) {
+            return false;
+        }
+        if ( model != null ) {
+            if ( itemType == ModelItem.NAME && !model.namesAreSettable() ) {
+                return false;
+            }
+            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreSettable() ) {
+                return false;
+            }
+        }
         // specifier is used to specify which item, but if the item is created, it doesn't need to be specified; a new value can be used
         //if ( itemType != null && specifierType != null ) return false;
         // TODO -- what can't be created? version? id? 
