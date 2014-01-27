@@ -32,20 +32,16 @@ import gov.nasa.jpl.mbee.util.MethodCall;
 import gov.nasa.jpl.mbee.util.Pair;
 
 import java.lang.Object;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 /**
  * A generic interface for accessing system models as simplified SysML (without UML).
  * REVIEW -- What else might this need to be compatible with other things, like CMIS, OSLC, EMF, etc.  
  */
-public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
+public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     /**
      * ModelItems are types of things in a model on which Operations can be
      * performed.
@@ -54,7 +50,7 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, <br>
      */
     public static enum ModelItem {
-        OBJECT, //CONTEXT,
+        ELEMENT, //CONTEXT,
         TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
         RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT;
     };
@@ -97,10 +93,10 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * <p>
      * Examples:
      * <ol>
-     * <li> {@code op(READ, (OBJECT), null, ("123", IDENTIFIER), null)} returns
-     * the object(s) with ID = "123."
+     * <li> {@code op(READ, (ELEMENT), null, ("123", IDENTIFIER), null)} returns
+     * the element(s) with ID = "123."
      * <li>
-     * {@code op(UPDATE, (PROPERTY), ((o1, OBJECT),(o2, OBJECT)), (("mass", NAME), ("kg", TYPE)), 1.0)}
+     * {@code op(UPDATE, (PROPERTY), ((o1, ELEMENT),(o2, ELEMENT)), (("mass", NAME), ("kg", TYPE)), 1.0)}
      * returns a collection of the "mass" properties of o1 and o2 with values
      * updated to 1.0kg.
      * <li>
@@ -153,8 +149,8 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * not allowed in identifiers.
      * <li> {@code isAllowed(null, (IDENTIFIER), null, null, ("x y", VALUE))}
      * returns true iff "x y" is a legal identifier.
-     * <li> {@code isAllowed(CREATE, (OBJECT), null, null, (null, TYPE))}
-     * returns true iff an object can be assigned a type.
+     * <li> {@code isAllowed(CREATE, (ELEMENT), null, null, (null, TYPE))}
+     * returns true iff an element can be assigned a type.
      * </ol>
      * 
      * @param operation
@@ -272,45 +268,45 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     public V getVersion();    
     
     // accessors for class/object/element
-    public O getObject( C context, I identifier, V version );
-    public Collection<O> getRootObjects( V version );
-    public I getObjectId( O object, V version );
-    public N getName( O object, V version );
-    public T getTypeOf( O object, V version );
+    public E getElement( C context, I identifier, V version );
+    public Collection<E> getRootElements( V version );
+    public I getElementId( E element, V version );
+    public N getName( E element, V version );
+    public T getTypeOf( E element, V version );
     public T getType( C context, N name, V version );
     public Collection<P> getTypeProperties( T type, V version );
-    public Collection<P> getProperties( O object, V version );
-    public P getProperty( O object, N propertyName, V version );
-    public Collection<R> getRelationships( O object, V version );
+    public Collection<P> getProperties( E element, V version );
+    public P getProperty( E element, N propertyName, V version );
+    public Collection<R> getRelationships( E element, V version );
     /**
-     * @param object an object that participates in the relationships
+     * @param element an element that participates in the relationships
      * @param relationshipName
-     * @param version the version of the relationship or object; null is interpreted as most current.
-     * @return all of the object's relationships with the given name and version
+     * @param version the version of the relationship or element; null is interpreted as most current.
+     * @return all of the element's relationships with the given name and version
      */
-    public Collection<R> getRelationships( O object, N relationshipName, V version );
-    public Collection<O> getRelated( O object, N relationshipName, V version );
+    public Collection<R> getRelationships( E element, N relationshipName, V version );
+    public Collection<E> getRelated( E element, N relationshipName, V version );
 
     // relationships
     public boolean isDirected( R relationship, V version );
-    public O getRelatedObjects( R relationship, V version );
+    public E getRelatedElements( R relationship, V version );
     /**
      * @param relationship
      * @param role a role in a relationship might be source, target, first, second, last, numerator, denominator, quotient, sender, receiver, . . .
      * @param version the version of the relationship
-     * @return the object serving the named role in the relationship
+     * @return the element serving the named role in the relationship
      */
-    public O getObjectForRole( R relationship, N role, V version );
-    public O getSource( R relationship, V version );
-    public O getTarget( R relationship, V version );
+    public E getElementForRole( R relationship, N role, V version );
+    public E getSource( R relationship, V version );
+    public E getTarget( R relationship, V version );
     
     public V latestVersion( Collection<C> context );
 
     // ModelItem classes
-    // OBJECT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
+    // ELEMENT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
     // RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT    
     public Class<?> getClass( ModelItem item );
-    public Class<O> getObjectClass();
+    public Class<E> getElementClass();
     public Class<C> getContextClass();
     public Class<T> getTypeClass();
     public Class<P> getPropertyClass();
@@ -321,14 +317,14 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     public Class<V> getVersionClass();
     public Class<W> getWorkspaceClass();
     public Class<CT> getConstraintClass();
-    public abstract Class< ? extends O > getViewClass();
-    public abstract Class< ? extends O > getViewpointClass();
+    public abstract Class< ? extends E > getViewClass();
+    public abstract Class< ? extends E > getViewpointClass();
 
     /**
      * @param o
-     * @return a conversion of the java.lang.Object to a SystemModel object or null
+     * @return a conversion of the java.lang.Object to a SystemModel element or null
      */
-    public O asObject( Object o );
+    public E asElement( Object o );
 
     /**
      * @param object
@@ -352,143 +348,139 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
     public W asWorkspace( Object o );
     public CT asConstraint( Object o );
     
-
-
-    
-    
     // general edit policies
     public boolean idsAreSettable();
     public boolean namesAreSettable();
-    public boolean objectsMayBeChangedForVersion( V version );
+    public boolean elementsMayBeChangedForVersion( V version );
     public boolean typesMayBeChangedForVersion( V version );
     public boolean propertiesMayBeChangedForVersion( V version );
-    public boolean objectsMayBeCreatedForVersion( V version );
+    public boolean elementsMayBeCreatedForVersion( V version );
     public boolean typesMayBeCreatedForVersion( V version );
     public boolean propertiesMayBeCreatedForVersion( V version );
-    public boolean objectsMayBeDeletedForVersion( V version );
+    public boolean elementsMayBeDeletedForVersion( V version );
     public boolean typesMayBeDeletedForVersion( V version );
     public boolean propertiesMayBeDeletedForVersion( V version );
 
     // create fcns
     // TODO
-    public O createObject( I identifier, V version );
-    public boolean setIdentifier( O object, V version );
-    public boolean setName( O object, V version );
-    public boolean setType( O object, V version );
+    public E createElement( I identifier, V version );
+    public boolean setIdentifier( E element, V version );
+    public boolean setName( E element, V version );
+    public boolean setType( E element, V version );
 
     // delete fcns
     // TODO
-    O deleteObject( I identifier, V version );
-    T deleteType( O object, V version );
+    E deleteElement( I identifier, V version );
+    T deleteType( E element, V version );
 	
 	// query functions
     /**
-     * Apply the method to each of the objects and return results. Subclasses
+     * Apply the method to each of the elements and return results. Subclasses
      * implementing map() may employ utilities for functional Java provided in
      * FunctionalUtils (TODO).
      * 
-     * @param objects
-     *            the objects, on each of which the method is applied
+     * @param elements
+     *            the elements, on each of which the method is applied
      * @param methodCall
-     *            Java method call where the method is either of Class O or with
-     *            a parameter that is or extends O (for the objects). This
+     *            Java method call where the method is either of Class E or with
+     *            a parameter that is or extends E (for the elements). This
      *            method could be a call to op() or a call to a custom function
      *            that includes calls to various ModelInterface methods.
-     * @param indexOfObjectArgument
-     *            where in the list of arguments an object from the collection
+     * @param indexOfElementArgument
+     *            where in the list of arguments an element from the collection
      *            is substituted (1 to total number of args or 0 to indicate
-     *            that the objects are each substituted for
+     *            that the elements are each substituted for
      *            methodCall.objectOfCall).
      * @return null if the method call returns void; otherwise, a return value
-     *         for each object
+     *         for each element
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public Collection< Object > map( Collection< O > objects,
+    public Collection< Object > map( Collection< E > elements,
                                      MethodCall methodCall,
-                                     int indexOfObjectArgument )
+                                     int indexOfElementArgument )
                                              throws java.lang.reflect.InvocationTargetException;
     
     /**
-     * Filter out the objects for which the method does not return true.
+     * Filter out the elements for which the method does not return true.
      * Subclasses implementing filter() may employ utilities for functional Java
      * provided in FunctionalUtils (TODO).
      * 
-     * @param objects
-     *            the objects being filtered
+     * @param elements
+     *            the elements being filtered
      * @param methodCall
-     *            Java method call where the method is either of Class O or with
-     *            a parameter that is or extends O (for the objects) and
+     *            Java method call where the method is either of Class E or with
+     *            a parameter that is or extends E (for the elements) and
      *            returning a value that can be interpreted as a Boolean by
      *            Utils.isTrue().
-     * @param indexOfObjectArgument
-     *            where in the list of arguments an object from the collection
+     * @param indexOfElementArgument
+     *            where in the list of arguments an element from the collection
      *            is substituted (1 to total number of args or 0 to indicate
-     *            that the objects are each substituted for
+     *            that the elements are each substituted for
      *            methodCall.objectOfCall).
      * @return null if the function returns void; otherwise, a return value for
-     *         each object
+     *         each element
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public Collection< O > filter( Collection< O > objects,
+    public Collection< E > filter( Collection< E > elements,
                                    MethodCall methodCall,
-                                   int indexOfObjectArgument )
+                                   int indexOfElementArgument )
                                            throws java.lang.reflect.InvocationTargetException;
 
     /**
-     * Check whether the method returns true for each object. Subclasses
+     * Check whether the method returns true for each element. Subclasses
      * implementing forAll() may employ utilities for functional Java provided
      * in FunctionalUtils (TODO).
      * 
-     * @param objects
-     *            the objects being tested
+     * @param elements
+     *            the elements being tested
      * @param methodCall
-     *            Java method call where the method is either of Class O or with
-     *            a parameter that is or extends O (for the objects) and
+     *            Java method call where the method is either of Class E or with
+     *            a parameter that is or extends E (for the elements) and
      *            returning a value that can be interpreted as a Boolean by
      *            Utils.isTrue().
-     * @param indexOfObjectArgument
-     *            where in the list of arguments an object from the collection
+     * @param indexOfElementArgument
+     *            where in the list of arguments an element from the collection
      *            is substituted (1 to total number of args or 0 to indicate
-     *            that the objects are each substituted for
+     *            that the elements are each substituted for
      *            methodCall.objectOfCall).
      * @return true iff all method calls can clearly be interpreted as true
      *         (consistent with Utils.isTrue())
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public boolean forAll( Collection< O > objects,
+    public boolean forAll( Collection< E > elements,
                            MethodCall methodCall,
-                           int indexOfObjectArgument )
+                           int indexOfElementArgument )
                                    throws java.lang.reflect.InvocationTargetException;
 
     /**
-     * Check whether the method returns true for some object. Subclasses
+     * Check whether the method returns true for some element. Subclasses
      * implementing thereExists() may employ utilities for functional Java
      * provided in FunctionalUtils (TODO).
      * 
-     * @param objects
-     *            the objects being tested
+     * @param elements
+     *            the elements being tested
      * @param methodCall
-     *            Java method call where the method is either of Class O or with
-     *            a parameter that is or extends O (for the objects) and
+     *            Java method call where the method is either of Class E or with
+     *            a parameter that is or extends E (for the elements) and
      *            returning a value that can be interpreted as a Boolean by
      *            Utils.isTrue().
-     * @param indexOfObjectArgument
-     *            where in the list of arguments an object from the collection
+     * @param indexOfElementArgument
+     *            where in the list of arguments an element from the collection
      *            is substituted (1 to total number of args or 0 to indicate
-     *            that the objects are each substituted for
+     *            that the elements are each substituted for
      *            methodCall.objectOfCall).
      * @return true iff any method call return value can clearly be interpreted
      *         as true (consistent with Utils.isTrue())
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public boolean thereExists( Collection< O > objects,
+    public boolean thereExists( Collection< E > elements,
                                 MethodCall methodCall,
-                                int indexOfObjectArgument )
+                                int indexOfElementArgument )
                                         throws java.lang.reflect.InvocationTargetException;
 
     /**
      * Inductively combine the results of applying the method to each of the
-     * objects and the return results for the prior object. Subclasses
+     * elements and the return results for the prior element. Subclasses
      * implementing fold() may employ utilities for functional Java provided in
      * FunctionalUtils (TODO).
      * <p>
@@ -497,63 +489,63 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
      * {@code int[] array = new int[] ( 2, 5, 6, 5 );}<br>
      * {@code int result = fold(Arrays.asList(array), 0.0, ClassUtils.getMethodForName(this.getClass(), "plus"), 0, 1, null); // result = 18}
      * 
-     * @param objects
+     * @param elements
      * @param initialValue
      *            an initial value to act as the first argument to first
      *            invocation of the method.
      * @param methodCall
-     *            Java method call where the method is either of Class O or with
-     *            a parameter that is or extends O (for the objects). Including
+     *            Java method call where the method is either of Class E or with
+     *            a parameter that is or extends E (for the elements). Including
      *            the objectOfCall with the arguments if not static, the method
      *            must have two or more parameters, one of which can be assigned
      *            the prior result, which should have the same type as the
-     *            method's return type, and another that is an O or extends O
-     *            (object).
-     * @param indexOfObjectArgument
-     *            where in the list of arguments an object from the collection
+     *            method's return type, and another that is an E or extends E
+     *            (element).
+     * @param indexOfElementArgument
+     *            where in the list of arguments an element from the collection
      *            is substituted (1 to total number of args) or 0 to indicate
-     *            that the objects are each substituted for
+     *            that the elements are each substituted for
      *            methodCall.objectOfCall.
      * @param indexOfPriorResultArgument
      *            where in the list of arguments the prior result value is
      *            substituted (1 to total number of args or 0 to indicate that
-     *            the objects are each substituted for methodCall.objectOfCall).
-     * @return the result of calling the method on the last object after calling
-     *         the method on each prior object (in order), passing the prior
-     *         return value into the call on each object.
+     *            the elements are each substituted for methodCall.objectOfCall).
+     * @return the result of calling the method on the last element after calling
+     *         the method on each prior element (in order), passing the prior
+     *         return value into the call on each element.
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public Object fold( Collection< O > objects,
+    public Object fold( Collection< E > elements,
                         Object initialValue,
                         MethodCall methodCall,
-                        int indexOfObjectArgument,
+                        int indexOfElementArgument,
                         int indexOfPriorResultArgument )
                                 throws java.lang.reflect.InvocationTargetException;
     
     /**
-     * Apply the method to each of the objects and return results. Subclasses
+     * Apply the method to each of the elements and return results. Subclasses
      * implementing sort() may employ utilities for functional Java provided in
      * FunctionalUtils (TODO).
      * 
-     * @param objects to be sorted
+     * @param elements to be sorted
      * @param comparator specifies precedence relation on a pair of return values
      * @param methodCall
-     *            Java method call where the method is either of Class O or with
-     *            a parameter that is or extends O (for the objects). This
+     *            Java method call where the method is either of Class E or with
+     *            a parameter that is or extends E (for the elements). This
      *            method could be a call to op() or a call to a custom function
      *            that includes calls to various ModelInterface methods.
-     * @param indexOfObjectArgument
-     *            where in the list of arguments an object from the collection
+     * @param indexOfElementArgument
+     *            where in the list of arguments an element from the collection
      *            is substituted (1 to total number of args or 0 to indicate
-     *            that the objects are each substituted for
+     *            that the elements are each substituted for
      *            methodCall.objectOfCall).
-     * @return the input objects in a new Collection sorted according to the method and comparator
+     * @return the input elements in a new Collection sorted according to the method and comparator
      * @throws java.lang.reflect.InvocationTargetException
      */
-    public Collection< O > sort( Collection< O > objects,
+    public Collection< E > sort( Collection< E > elements,
                                  Comparator< ? > comparator,
                                  MethodCall methodCall,
-                                 int indexOfObjectArgument )
+                                 int indexOfElementArgument )
                                          throws java.lang.reflect.InvocationTargetException;     
 
     // support for problem solving
@@ -583,27 +575,27 @@ public interface SystemModel<O, C, T, P, N, I, U, R, V, W, CT> {
 //    public Constraint addDomainConstraint( CE constraintElement, V version, Pair<U,U> valueDomainRange, W workspace );
 //    public Constraint relaxDomain( CE constraintElement, V version, Set<U> valueDomainSet, W workspace );
 //    public Constraint relaxDomain( CE constraintElement, V version, Pair<U,U> valueDomainRange, W workspace );
-//    public Collection<CE> getConstraintElementsOfElement( O element, V version, W workspace );
+//    public Collection<CE> getConstraintElementsOfElement( E element, V version, W workspace );
 //    public Collection<CE> getConstraintElementsOfContext( C context );
-//    public Collection<Constraint> getConstraintsOfElement( O element, V version, W workspace );
+//    public Collection<Constraint> getConstraintsOfElement( E element, V version, W workspace );
 //    public Collection<Constraint> getConstraintsOfContext( C context );
 //    public void setOptimizationFunction( Method method, Object... arguments ); // REVIEW -- should these be elements?
-//    public Collection<CE> getViolatedConstraintElementsOfElement( O element, V version );
+//    public Collection<CE> getViolatedConstraintElementsOfElement( E element, V version );
 //    public Collection<CE> getViolatedConstraintElementsOfContext( C context );
-//    public Collection<Constraint> getViolatedConstraintsOfElement( O element, V version );
+//    public Collection<Constraint> getViolatedConstraintsOfElement( E element, V version );
 //    public Collection<Constraint> getViolatedConstraintsOfContext( C context );
 //    public Number getScore();
     
     // Constraint CRUD
-    public CT getDomainConstraint( O object, V version, W workspace );
+    public CT getDomainConstraint( E element, V version, W workspace );
     public void addConstraint( CT constraint, V version, W workspace );
     public void addDomainConstraint( CT constraint, V version, Set<U> valueDomainSet, W workspace );
     public void addDomainConstraint( CT constraint, V version, Pair<U,U> valueDomainRange, W workspace );
     public void relaxDomain( CT constraint, V version, Set<U> valueDomainSet, W workspace );
     public void relaxDomain( CT constraint, V version, Pair<U,U> valueDomainRange, W workspace );
-    public Collection<CT> getConstraintsOfObject( O object, V version, W workspace );
+    public Collection<CT> getConstraintsOfElement( E element, V version, W workspace );
     public Collection<CT> getConstraintsOfContext( C context );
-    public Collection<CT> getViolatedConstraintsOfObject( O object, V version );
+    public Collection<CT> getViolatedConstraintsOfElement( E element, V version );
     public Collection<CT> getViolatedConstraintsOfContext( C context );
     public void setOptimizationFunction( Method method, Object... arguments ); // REVIEW -- should these be elements? should the function be an interface type (add F to ModelItem)?
     public Number getScore();

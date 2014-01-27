@@ -24,18 +24,18 @@ import java.util.TreeMap;
 /**
  * An abstract SystemModel that provides some straightforward implementations of
  * the more abstract methods, such as op(), get(), set(), map(), and filter(),
- * based on more specific methods, like {@link getName(O, V)}, that overlap
+ * based on more specific methods, like {@link getName(E, V)}, that overlap
  * functionality.
  */
-public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
-                      implements SystemModel< O, C, T, P, N, I, U, R, V, W, CT > {
+public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
+                      implements SystemModel< E, C, T, P, N, I, U, R, V, W, CT > {
 
     static String getGenericSymbol( ModelItem itemType ) {
         switch ( itemType ) {
             //case CONTEXT:
             case IDENTIFIER:
             case NAME:
-            case OBJECT:
+            case ELEMENT:
             case PROPERTY:
             case RELATIONSHIP:
             case TYPE:
@@ -47,9 +47,9 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
             case VALUE:
                 return "U";
             case VIEW:
-                return "O";
+                return "E";
             case VIEWPOINT:
-                return "O";
+                return "E";
             default:
                 Debug.error( "Unexpected ModelItem: " + itemType );
         }
@@ -306,20 +306,20 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > isA =
             Utils.newMap( pair( ModelItem.CONSTRAINT,
-                                itemSet( ModelItem.OBJECT ) ), //, ModelItem.PROPERTY,
+                                itemSet( ModelItem.ELEMENT ) ), //, ModelItem.PROPERTY,
                                          //ModelItem.RELATIONSHIP ) ), // ???
 //                          pair( ModelItem.CONTEXT, itemSet( ModelItem.OBJECT ) ),
                           pair( ModelItem.IDENTIFIER, itemSet() ),
                           pair( ModelItem.NAME, itemSet() ),
-                          pair( ModelItem.OBJECT, itemSet() ),
-                          pair( ModelItem.PROPERTY, itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.ELEMENT, itemSet() ),
+                          pair( ModelItem.PROPERTY, itemSet( ModelItem.ELEMENT ) ),
                           pair( ModelItem.RELATIONSHIP,
-                                itemSet( ModelItem.OBJECT ) ),
-                          pair( ModelItem.TYPE, itemSet( ModelItem.OBJECT ) ),
-                          pair( ModelItem.VALUE, itemSet( ModelItem.OBJECT ) ),
+                                itemSet( ModelItem.ELEMENT ) ),
+                          pair( ModelItem.TYPE, itemSet( ModelItem.ELEMENT ) ),
+                          pair( ModelItem.VALUE, itemSet( ModelItem.ELEMENT ) ),
                           pair( ModelItem.VERSION, itemSet() ),
-                          pair( ModelItem.VIEW, itemSet( ModelItem.OBJECT ) ),
-                          pair( ModelItem.VIEWPOINT, itemSet( ModelItem.OBJECT ) ),
+                          pair( ModelItem.VIEW, itemSet( ModelItem.ELEMENT ) ),
+                          pair( ModelItem.VIEWPOINT, itemSet( ModelItem.ELEMENT ) ),
                           pair( ModelItem.WORKSPACE, itemSet() ) );
 
     public static boolean isA( ModelItem kind1, ModelItem kind2 ) {
@@ -338,10 +338,10 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 
     @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > canContain =
-            Utils.newMap( pair( ModelItem.OBJECT, //itemSet( ModelItem.OBJECT ) ),
+            Utils.newMap( pair( ModelItem.ELEMENT, //itemSet( ModelItem.OBJECT ) ),
                                 (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( //ModelItem.CONTEXT, 
                                                                                                     ModelItem.RELATIONSHIP, ModelItem.VALUE, ModelItem.TYPE, ModelItem.VERSION, ModelItem.WORKSPACE  ) ) ),
-                          pair( ModelItem.WORKSPACE, itemSet( ModelItem.OBJECT ) ) );
+                          pair( ModelItem.WORKSPACE, itemSet( ModelItem.ELEMENT ) ) );
     @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > canHave =
             Utils.newMap( 
@@ -356,8 +356,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
 //                                Utils.newSet( ModelItem.values() ) ),
 //                          pair( ModelItem.IDENTIFIER, Utils.getEmptySetOfType(ModelItem.class) ),                                                                
 //                          pair( ModelItem.NAME, Utils.getEmptySetOfType(ModelItem.class) ),
-                          pair( ModelItem.OBJECT,
-                                (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( ModelItem.OBJECT) ) )
+                          pair( ModelItem.ELEMENT,
+                                (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( ModelItem.ELEMENT) ) )
 //                          pair( ModelItem.PROPERTY, Utils.getEmptySetOfType(ModelItem.class) ),
 //                          pair( ModelItem.RELATIONSHIP, Utils.getEmptySetOfType(ModelItem.class) )
                                       );
@@ -1378,31 +1378,31 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#getObject(java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract O getObject( C context, I identifier, V version );
+    public abstract E getElement( C context, I identifier, V version );
 
     /* (non-Javadoc)
-     * @see SystemModel#getRootObjects(java.lang.Object)
+     * @see SystemModel#getRootElements(java.lang.Object)
      */
     @Override
-    public abstract Collection< O > getRootObjects( V version );
+    public abstract Collection< E > getRootElements( V version );
 
     /* (non-Javadoc)
-     * @see SystemModel#getObjectId(java.lang.Object, java.lang.Object)
+     * @see SystemModel#getElementId(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract I getObjectId( O object, V version );
+    public abstract I getElementId( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getName(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract N getName( O object, V version );
+    public abstract N getName( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getTypeOf(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract T getTypeOf( O object, V version );
+    public abstract T getTypeOf( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getType(java.lang.Object, java.lang.Object, java.lang.Object)
@@ -1420,32 +1420,32 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#getProperties(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract Collection< P > getProperties( O object, V version );
+    public abstract Collection< P > getProperties( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getProperty(java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract P getProperty( O object, N propertyName, V version );
+    public abstract P getProperty( E element, N propertyName, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getRelationships(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract Collection< R > getRelationships( O object, V version );
+    public abstract Collection< R > getRelationships( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getRelationships(java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract Collection< R > getRelationships( O object, N relationshipName,
+    public abstract Collection< R > getRelationships( E element, N relationshipName,
                                              V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getRelated(java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract Collection< O > getRelated( O object, N relationshipName, V version );
+    public abstract Collection< E > getRelated( E element, N relationshipName, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#isDirected(java.lang.Object, java.lang.Object)
@@ -1454,28 +1454,28 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public abstract boolean isDirected( R relationship, V version );
 
     /* (non-Javadoc)
-     * @see SystemModel#getRelatedObjects(java.lang.Object, java.lang.Object)
+     * @see SystemModel#getRelatedElements(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract O getRelatedObjects( R relationship, V version );
+    public abstract E getRelatedElements( R relationship, V version );
 
     /* (non-Javadoc)
-     * @see SystemModel#getObjectForRole(java.lang.Object, java.lang.Object, java.lang.Object)
+     * @see SystemModel#getElementForRole(java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract O getObjectForRole( R relationship, N role, V version );
+    public abstract E getElementForRole( R relationship, N role, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getSource(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract O getSource( R relationship, V version );
+    public abstract E getSource( R relationship, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#getTarget(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract O getTarget( R relationship, V version );
+    public abstract E getTarget( R relationship, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#latestVersion(java.util.Collection)
@@ -1494,8 +1494,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
                 return getIdentifierClass();
             case NAME:
                 return getNameClass();
-            case OBJECT:
-                return getObjectClass();
+            case ELEMENT:
+                return getElementClass();
             case PROPERTY:
                 return getPropertyClass();
             case RELATIONSHIP:
@@ -1519,10 +1519,10 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     }
 
     /* (non-Javadoc)
-     * @see SystemModel#getObjectClass()
+     * @see SystemModel#getElementClass()
      */
     @Override
-    public abstract Class< O > getObjectClass();
+    public abstract Class< E > getElementClass();
 
 //    /* (non-Javadoc)
 //     * @see SystemModel#getContextClass()
@@ -1588,13 +1588,13 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see sysml.SystemModel#getViewClass()
      */
     @Override
-    public abstract Class< ? extends O > getViewClass();
+    public abstract Class< ? extends E > getViewClass();
     
     /* (non-Javadoc)
      * @see sysml.SystemModel#getViewpointClass()
      */
     @Override
-    public abstract Class< ? extends O > getViewpointClass();
+    public abstract Class< ? extends E > getViewpointClass();
 
     
     /**
@@ -1629,8 +1629,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#asObject(java.lang.Object)
      */
     @Override
-    public O asObject( Object o ) {
-        return as( o, getObjectClass() );
+    public E asElement( Object o ) {
+        return as( o, getElementClass() );
     }
     
     /* (non-Javadoc)
@@ -1721,10 +1721,10 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public abstract boolean namesAreSettable();
 
     /* (non-Javadoc)
-     * @see SystemModel#objectsMayBeChangedForVersion(java.lang.Object)
+     * @see SystemModel#elementsMayBeChangedForVersion(java.lang.Object)
      */
     @Override
-    public abstract boolean objectsMayBeChangedForVersion( V version );
+    public abstract boolean elementsMayBeChangedForVersion( V version );
 
     /* (non-Javadoc)
      * @see SystemModel#typesMayBeChangedForVersion(java.lang.Object)
@@ -1739,10 +1739,10 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public abstract boolean propertiesMayBeChangedForVersion( V version );
 
     /* (non-Javadoc)
-     * @see SystemModel#objectsMayBeCreatedForVersion(java.lang.Object)
+     * @see SystemModel#elementsMayBeCreatedForVersion(java.lang.Object)
      */
     @Override
-    public abstract boolean objectsMayBeCreatedForVersion( V version );
+    public abstract boolean elementsMayBeCreatedForVersion( V version );
 
     /* (non-Javadoc)
      * @see SystemModel#typesMayBeCreatedForVersion(java.lang.Object)
@@ -1757,10 +1757,10 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public abstract boolean propertiesMayBeCreatedForVersion( V version );
 
     /* (non-Javadoc)
-     * @see SystemModel#objectsMayBeDeletedForVersion(java.lang.Object)
+     * @see SystemModel#elementsMayBeDeletedForVersion(java.lang.Object)
      */
     @Override
-    public abstract boolean objectsMayBeDeletedForVersion( V version );
+    public abstract boolean elementsMayBeDeletedForVersion( V version );
 
     /* (non-Javadoc)
      * @see SystemModel#typesMayBeDeletedForVersion(java.lang.Object)
@@ -1775,61 +1775,61 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
     public abstract boolean propertiesMayBeDeletedForVersion( V version );
 
     /* (non-Javadoc)
-     * @see SystemModel#createObject(java.lang.Object, java.lang.Object)
+     * @see SystemModel#createElement(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract O createObject( I identifier, V version );
+    public abstract E createElement( I identifier, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#setIdentifier(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract boolean setIdentifier( O object, V version );
+    public abstract boolean setIdentifier( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#setName(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract boolean setName( O object, V version );
+    public abstract boolean setName( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#setType(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract boolean setType( O object, V version );
+    public abstract boolean setType( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#deleteObject(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract O deleteObject( I identifier, V version );
+    public abstract E deleteElement( I identifier, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#deleteType(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract T deleteType( O object, V version );
+    public abstract T deleteType( E element, V version );
 
     /* (non-Javadoc)
      * @see SystemModel#map(java.util.Collection, SystemModel.MethodCall, int)
      */
     @Override
     public Collection< Object >
-            map( Collection< O > objects,
+            map( Collection< E > elements,
                  MethodCall methodCall,
-                 int indexOfObjectArgument ) throws InvocationTargetException {
-        return methodCall.map( objects, indexOfObjectArgument );
+                 int indexOfElementArgument ) throws InvocationTargetException {
+        return methodCall.map( elements, indexOfElementArgument );
     }
 
     /* (non-Javadoc)
      * @see SystemModel#filter(java.util.Collection, SystemModel.MethodCall, int)
      */
     @Override
-    public Collection< O >
-            filter( Collection< O > objects,
+    public Collection< E >
+            filter( Collection< E > elements,
                     MethodCall methodCall,
-                    int indexOfObjectArgument ) throws InvocationTargetException {
-        return methodCall.filter( objects, indexOfObjectArgument );
+                    int indexOfElementArgument ) throws InvocationTargetException {
+        return methodCall.filter( elements, indexOfElementArgument );
     }
 
     /* (non-Javadoc)
@@ -1837,9 +1837,9 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      */
     @Override
     public boolean
-            forAll( Collection< O > objects,
+            forAll( Collection< E > elements,
                     MethodCall methodCall,
-                    int indexOfObjectArgument ) throws InvocationTargetException {
+                    int indexOfElementArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return false;
     }
@@ -1848,9 +1848,9 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#thereExists(java.util.Collection, SystemModel.MethodCall, int)
      */
     @Override
-    public boolean thereExists( Collection< O > objects,
+    public boolean thereExists( Collection< E > elements,
                                 MethodCall methodCall,
-                                int indexOfObjectArgument ) throws InvocationTargetException {
+                                int indexOfElementArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return false;
     }
@@ -1859,8 +1859,8 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#fold(java.util.Collection, java.lang.Object, SystemModel.MethodCall, int, int)
      */
     @Override
-    public Object fold( Collection< O > objects, Object initialValue,
-                        MethodCall methodCall, int indexOfObjectArgument,
+    public Object fold( Collection< E > elements, Object initialValue,
+                        MethodCall methodCall, int indexOfElementArgument,
                         int indexOfPriorResultArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return null;
@@ -1870,10 +1870,10 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#sort(java.util.Collection, java.util.Comparator, SystemModel.MethodCall, int)
      */
     @Override
-    public Collection< O >
-            sort( Collection< O > objects, Comparator< ? > comparator,
+    public Collection< E >
+            sort( Collection< E > elements, Comparator< ? > comparator,
                   MethodCall methodCall,
-                  int indexOfObjectArgument ) throws InvocationTargetException {
+                  int indexOfElementArgument ) throws InvocationTargetException {
         // TODO Auto-generated method stub
         return null;
     }
@@ -1882,7 +1882,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#getDomainConstraint(java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract CT getDomainConstraint( O object, V version, W workspace );
+    public abstract CT getDomainConstraint( E element, V version, W workspace );
 
     /* (non-Javadoc)
      * @see SystemModel#addConstraint(java.lang.Object, java.lang.Object, java.lang.Object)
@@ -1923,7 +1923,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#getConstraintsOfElement(java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract Collection< CT > getConstraintsOfObject( O element, V version,
+    public abstract Collection< CT > getConstraintsOfElement( E element, V version,
                                                      W workspace );
 
     /* (non-Javadoc)
@@ -1936,7 +1936,7 @@ public abstract class AbstractSystemModel< O, C, T, P, N, I, U, R, V, W, CT >
      * @see SystemModel#getViolatedConstraintsOfElement(java.lang.Object, java.lang.Object)
      */
     @Override
-    public abstract Collection< CT > getViolatedConstraintsOfObject( O element,
+    public abstract Collection< CT > getViolatedConstraintsOfElement( E element,
                                                              V version );
 
     /* (non-Javadoc)
