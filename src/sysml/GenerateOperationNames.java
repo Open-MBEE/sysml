@@ -109,7 +109,7 @@ public class GenerateOperationNames {
                                             false) ) {
                                 continue;
                             }
-                            String name = 
+                            String name =
                                     AbstractSystemModel.getMethodName( operation, 
                                                                        nullItem ? null : itemType,
                                                                        nullContext ? null : new SystemModel.Item(null, contextType),

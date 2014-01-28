@@ -4,6 +4,7 @@
 package sysml;
 
 import gov.nasa.jpl.mbee.util.ClassUtils;
+import gov.nasa.jpl.mbee.util.Debug;
 import gov.nasa.jpl.mbee.util.MethodCall;
 import gov.nasa.jpl.mbee.util.Pair;
 import gov.nasa.jpl.mbee.util.Utils;
@@ -16,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import sysml.AbstractReference.Interpretation.Category;
+import sysml.SystemModel.Item;
 import sysml.SystemModel.ModelItem;
 
 /**
@@ -244,14 +246,13 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
         Collection< RT > theItems = null;
         E scopeElement = getModel().asElement( getScope() );
         Collection< R > rels =
-                getModel().getRelationships( scopeElement,
-                                             getModel().asName( getSpecifier() ),
-                                             null );
+                getModel().getRelationshipWithName( scopeElement,
+                                                    getModel().asName( getSpecifier() ) );
         //theItems = Utils.asList( rels, getType() );
         if ( Utils.isNullOrEmpty( rels ) ) {
             String s = getSpecifier().toString().toLowerCase();
             if ( s.contains( "relation" ) || s.contains("source") ) {
-                rels = getModel().getRelationships( scopeElement, null );
+                rels = getModel().getRelationship( scopeElement, null );
                 Method method;
                 try {
                     method = getModel().getClass().getMethod( "getSource()",
@@ -287,10 +288,14 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
 //                                          getModel().getElementClass(), true );
 //                scopeElement = resO.first ? resO.second : (E)getScope(); // REVIEW -- potential ClassCastException!
                 scopeElement = getModel().asElement( getScope() );
-                related = getModel().getRelated( scopeElement,
-                                                 getModel().asName( getSpecifier() ),
-                                                 null );
-                theItems = Utils.asList( related, getType() ); // REVIEW -- need to use coerce instead?
+                Collection< R > relationships = getModel().getRelationship( getScope(), getSpecifier() );
+                for ( R r : relationships ) {
+                    Collection< E > result = getModel().getRelatedElements( r );
+                    if ( related == null ) related = result;
+                    else if ( result != null ) related.addAll( result );
+                }
+                Pair< Boolean, List< RT > > p = ClassUtils.coerceList( related, getType(), true ); // REVIEW -- need to use coerce instead?
+                theItems = p.second;
                 //                }
 //                SystemModel.MethodCall methodCall =
 //                        new SystemModel.MethodCall( getModel(),
@@ -314,14 +319,13 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
 //                scopeElement = resO.first ? resO.second : (E)getScope(); // REVIEW -- potential ClassCastException!
                 scopeElement = getModel().asElement( getScope() );
                 Collection< R > rels =
-                        getModel().getRelationships( scopeElement,
-                                                     getModel().asName( getSpecifier() ),
-                                                     null );
+                        getModel().getRelationshipWithName( scopeElement,
+                                                            getModel().asName( getSpecifier() ) );
                 //theItems = Utils.asList( rels, getType() );
                 if ( Utils.isNullOrEmpty( rels ) ) {
                     String s = getSpecifier().toString().toLowerCase();
                     if ( s.contains( "relation" ) || s.contains("source") ) {
-                        rels = getModel().getRelationships( scopeElement, null );
+                        rels = getModel().getRelationship( scopeElement, null );
                         Method method;
                         try {
                             method = getModel().getClass().getMethod( "getSource()",
@@ -344,21 +348,34 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
                 // TODO
                 break;
             case ModelItem:
-                if ( i.modelItemInterpretation == null ) return Collections.emptyList();
-                Collection< RT > items = Collections.emptyList();
-                Collection< ModelItem > itemTypes = Utils.newList( i.modelItemInterpretation );
-                Collection< C > context = getScopeAsContext();
-                if ( Utils.isNullOrEmpty( context ) ) {
-                    context = getModel().getContext(); 
+                if ( i.modelItemInterpretation == null ) {
+                    return Collections.emptyList();
                 }
+                Collection< RT > items = Collections.emptyList();
+                Collection< ModelItem > itemTypes =
+                        Utils.newList( i.modelItemInterpretation );
+//                Collection< C > context = getScopeAsContext();
+//                if ( Utils.isNullOrEmpty( context ) ) {
+//                    context = getModel().asContextCollection(getModel());
+//                }
+                Collection<Item> context = new ArrayList<Item>();
+                context.add( new Item( getScope(), ModelItem.ELEMENT ) );
                 I id = null;
-                Pair< Boolean, I > resI = ClassUtils.coerce( getSpecifier(), getModel().getIdentifierClass(), true );
+                Pair< Boolean, I > resI =
+                        ClassUtils.coerce( getSpecifier(),
+                                           getModel().getIdentifierClass(),
+                                           true );
                 if ( resI.first ) id = resI.second;
                 N name = null;
-                Pair< Boolean, N > resN = ClassUtils.coerce( getSpecifier(), getModel().getNameClass(), true );
+                Pair< Boolean, N > resN =
+                        ClassUtils.coerce( getSpecifier(),
+                                           getModel().getNameClass(), true );
                 if ( resN.first ) name = resN.second;
-                Object result = getModel().op( SystemModel.Operation.READ, itemTypes, context, id, name, null, false );
-                Pair< Boolean, List< RT > > resL = ClassUtils.coerceList( result, getType(), true );
+                Collection< Object > result =
+                        getModel().op( SystemModel.Operation.READ, itemTypes,
+                                       context, id, name, null, null, false );
+                Pair< Boolean, List< RT > > resL =
+                        ClassUtils.coerceList( result, getType(), true );
                 if ( resL.first ) {
                     items = resL.second;
                 }
@@ -383,6 +400,7 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
 //                    // TODO
 //                };
             default:
+                Debug.error( "Unknown interpretation category " + i.category );
                 // TODO -- ERROR!
         };
         return Collections.emptyList();
@@ -391,7 +409,7 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
     @Override
     public Collection< RT > getItems() {
         // TOOD
-        return null;
+        return items;
     }
 
 }

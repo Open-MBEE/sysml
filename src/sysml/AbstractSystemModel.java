@@ -4,6 +4,7 @@
 package sysml;
 
 import gov.nasa.jpl.mbee.util.ClassUtils;
+import gov.nasa.jpl.mbee.util.CompareUtils;
 import gov.nasa.jpl.mbee.util.Debug;
 import gov.nasa.jpl.mbee.util.MethodCall;
 import gov.nasa.jpl.mbee.util.Pair;
@@ -20,6 +21,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
+
+import sysml.SystemModel.Item;
 
 /**
  * An abstract SystemModel that provides some straightforward implementations of
@@ -497,7 +501,6 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             default:
                 Debug.error( "Unexpected SystemModel.Operation: " + operation );
         }
-        // TODO Auto-generated method stub
         return false;
 //        return model.isAllowed( operation, itemType, contextType,
 //                                specifierType, newValueType,
@@ -537,17 +540,54 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         return null;
     }
     
+    private boolean equals( Item context, ModelItem itemType, Item specifier,
+                            Object value, boolean complain ) {
+        MethodCall call =
+                getMethodCall( this, Operation.GET, itemType, context, specifier,
+                               null, false, complain );
+        if ( call == null ) return false;
+        Pair< Boolean, Object > p = call.invoke( !complain );
+        if ( p.first != true ) return false;
+        return Utils.valuesEqual( p.second, value );
+    }
+    
     /* (non-Javadoc)
      * @see SystemModel#op(SystemModel.Operation, java.util.Collection, java.util.Collection, java.lang.Object, java.lang.Object, java.lang.Object, boolean)
      */
     @Override
     public Collection< Object >
             op( SystemModel.Operation operation,
-                Collection< SystemModel.ModelItem > itemTypes,
-                Collection< C > context, I identifier, N name, V version,
+                Collection< ModelItem > itemTypes,
+                Collection< Item > context, I identifier, N name, V version,
+                U newValue,
                 boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
-        return null;
+        Collection< Item > specifier = new ArrayList< Item >();
+        Item item = null;
+        Collection<Object> result = null;
+        if ( identifier != null ) {
+            item = new Item( identifier, ModelItem.IDENTIFIER );
+            specifier.clear();
+            specifier.add( item );
+            result = op( operation, itemTypes, context, specifier, newValue, failForMultipleItemMatches );
+            if ( Utils.isNullOrEmpty( result ) ) {
+                return result;
+            }
+        }
+        if ( version != null ) {
+            item = new Item( version, ModelItem.VERSION );
+            specifier.clear();
+            specifier.add( item );
+            Collection< Object > resultV = op( operation, itemTypes, context, specifier, newValue, failForMultipleItemMatches );
+            Utils.intersect( result, resultV );
+        }
+        if ( name != null ) {
+            item = new Item( name, ModelItem.NAME );
+            specifier.clear();
+            specifier.add( item );
+            Collection< Object > resultV = op( operation, itemTypes, context, specifier, newValue, failForMultipleItemMatches );
+            Utils.intersect( result, resultV );
+        }
+        return result == null ? Collections.emptyList() : result;
     }
 
     protected static String toCamelCase( String s ) {
@@ -752,10 +792,6 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         ArrayList< Class< ? > > argTypeList = new ArrayList< Class< ? > >();
         ArrayList< Object > argList = new ArrayList< Object >();
         ArrayList< String > argTypeStrings = new ArrayList< String >();
-//        ArrayList< Class< ? > > shortArgTypeList1 = new ArrayList< Class< ? > >();
-//        ArrayList< Class< ? > > shortArgTypeList2 = new ArrayList< Class< ? > >();
-//        ArrayList< Object > shortArgList1 = new ArrayList< Object >();
-//        ArrayList< Object > shortArgList2 = new ArrayList< Object >();
 
         String opName = getOperationName( operation );
 
@@ -862,12 +898,6 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             return new MethodCall( returnTypeString + " " + callName, method, Utils.toString( argTypeStrings, false ) );
         }
         
-        // FIXME -- delete debug code!
-        boolean wasOn = Debug.isOn();
-        Debug.turnOn();
-        Debug.outln( returnTypeString + " " + callName + Utils.toString( argTypeStrings, false ) );
-        if ( !wasOn ) Debug.turnOff();
-
         // put the argument types into an array
         Class< ? >[] argTypes = new Class<?>[ argTypeList.size() ];
         argTypeList.toArray( argTypes );
@@ -896,140 +926,6 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         return new MethodCall( systemModel, method, arguments );
     }
     
-//    public Collection< Object > get( Collection< SystemModel.ModelItem > itemTypes,
-//                                     Collection< SystemModel.Item > contexts,
-//                                     Collection< SystemModel.Item > specifiers,
-//                                     Boolean failForMultipleItemMatches ) {
-//        
-//    }
-
-//    private Collection< Object >
-//            getWorkspace( Collection< sysml.SystemModel.Item > context,
-//                          Collection< sysml.SystemModel.Item > specifier,
-//                          Boolean failForMultipleItemMatches ) {
-
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getViewpoint( Collection< sysml.SystemModel.Item > context,
-//                          Collection< sysml.SystemModel.Item > specifier,
-//                          Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getView( Collection< sysml.SystemModel.Item > context,
-//                     Collection< sysml.SystemModel.Item > specifier,
-//                     Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getVersion( Collection< sysml.SystemModel.Item > context,
-//                        Collection< sysml.SystemModel.Item > specifier,
-//                        Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getValue( Collection< sysml.SystemModel.Item > context,
-//                      Collection< sysml.SystemModel.Item > specifier,
-//                      Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getType( Collection< sysml.SystemModel.Item > context,
-//                     Collection< sysml.SystemModel.Item > specifier,
-//                     Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getRelationship( Collection< sysml.SystemModel.Item > context,
-//                             Collection< sysml.SystemModel.Item > specifier,
-//                             Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getProperty( Collection< sysml.SystemModel.Item > context,
-//                         Collection< sysml.SystemModel.Item > specifier,
-//                         Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getObject( Collection< sysml.SystemModel.Item > context,
-//                       Collection< sysml.SystemModel.Item > specifier,
-//                       Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getName( Collection< sysml.SystemModel.Item > context,
-//                     Collection< sysml.SystemModel.Item > specifier,
-//                     Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getIdentifier( Collection< sysml.SystemModel.Item > context,
-//                           Collection< sysml.SystemModel.Item > specifier,
-//                           Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//
-//    private Collection< Object >
-//            getContext( Collection< sysml.SystemModel.Item > context,
-//                        Collection< sysml.SystemModel.Item > specifier,
-//                        Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//    public Collection< Object >
-//            getConstraints( Collection< SystemModel.Item > context,
-//                            Collection< SystemModel.Item > specifier,
-//                            Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-
-//    public Collection< Object >
-//            create( Collection< SystemModel.ModelItem > itemTypes,
-//                    Collection< SystemModel.Item > context,
-//                    Collection< SystemModel.Item > specifier, U newValue,
-//                    Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//    public Collection< Object >
-//            set( Collection< SystemModel.ModelItem > itemTypes,
-//                 Collection< SystemModel.Item > context,
-//                 Collection< SystemModel.Item > specifier, U newValue,
-//                 Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-//
-//    public Collection< Object >
-//            delete( Collection< SystemModel.ModelItem > itemTypes,
-//                    Collection< SystemModel.Item > context,
-//                    Collection< SystemModel.Item > specifier,
-//                    Boolean failForMultipleItemMatches ) {
-//        return null;
-//    }
-
     
     public static boolean usesNewValue( SystemModel.Operation operation ) {
         return Utils.newList( //Operation.CREATE, 
@@ -1050,8 +946,17 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                                   Collection< SystemModel.Item > specifier,
                                   SystemModel.Item newValue,
                                   Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
-        return true;
+        for ( SystemModel.ModelItem itemType : itemTypes ) {
+            for ( SystemModel.Item subcontext : context ) {
+                for ( SystemModel.Item subspecifier : specifier ) {
+                    if ( model.maySet( itemType, subcontext, subspecifier,
+                                          newValue, failForMultipleItemMatches ) ) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     public boolean maySet( SystemModel.ModelItem itemType,
                            SystemModel.Item context,
@@ -1089,12 +994,12 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                                   SystemModel.ModelItem newValueType,
                                   Boolean failForMultipleItemMatches ) {
         //if ( contextType == null ) return false;
-        if ( contextType == null && specifierType == null ) return false;
+        //if ( contextType == null && specifierType == null ) return false;
         if ( model != null ) {
-            if ( itemType == ModelItem.NAME && !model.namesAreSettable() ) {
+            if ( itemType == ModelItem.NAME && !model.namesAreWritable() ) {
                 return false;
             }
-            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreSettable() ) {
+            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreWritable() ) {
                 return false;
             }
         }
@@ -1114,8 +1019,17 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                                   Collection< SystemModel.Item > context,
                                   Collection< SystemModel.Item > specifier,
                                   Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
-        return true;
+        for ( SystemModel.ModelItem itemType : itemTypes ) {
+            for ( SystemModel.Item subcontext : context ) {
+                for ( SystemModel.Item subspecifier : specifier ) {
+                    if ( model.mayGet( itemType, subcontext, subspecifier,
+                                       failForMultipleItemMatches ) ) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     public boolean mayGet( SystemModel.ModelItem itemType,
                            SystemModel.Item context,
@@ -1160,11 +1074,20 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     }
     public static boolean mayDelete( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
                                      Collection< SystemModel.ModelItem > itemTypes,
-                                     Collection< SystemModel.Item > contexts,
-                                     Collection< SystemModel.Item > specifiers,
+                                     Collection< SystemModel.Item > context,
+                                     Collection< SystemModel.Item > specifier,
                                      Boolean failForMultipleItemMatches ) {
-        // TODO Auto-generated method stub
-        return true;
+        for ( SystemModel.ModelItem itemType : itemTypes ) {
+            for ( SystemModel.Item subcontext : context ) {
+                for ( SystemModel.Item subspecifier : specifier ) {
+                    if ( model.mayDelete( itemType, subcontext, subspecifier,
+                                          failForMultipleItemMatches ) ) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     public boolean mayDelete( SystemModel.ModelItem itemType,
                               SystemModel.Item context,
@@ -1199,12 +1122,12 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                                      SystemModel.ModelItem specifierType,
                                      Boolean failForMultipleItemMatches ) {
         //if ( contextType == null ) return false;
-        if ( contextType == null && specifierType == null ) return false;
+        //if ( contextType == null && specifierType == null ) return false;
         if ( model != null ) {
-            if ( itemType == ModelItem.NAME && !model.namesAreSettable() ) {
+            if ( itemType == ModelItem.NAME && !model.namesAreWritable() ) {
                 return false;
             }
-            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreSettable() ) {
+            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreWritable() ) {
                 return false;
             }
         }
@@ -1236,8 +1159,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                     }
                 }
             }
-        // TODO -- Do similar thing for other mayXXX
-        return true;
+        return false;
     }
 
     public boolean mayCreate( SystemModel.ModelItem itemType,
@@ -1281,28 +1203,29 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             return false;
         }
         if ( model != null ) {
-            if ( itemType == ModelItem.NAME && !model.namesAreSettable() ) {
+            if ( itemType == ModelItem.NAME && !model.namesAreWritable() ) {
                 return false;
             }
-            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreSettable() ) {
+            if ( itemType == ModelItem.IDENTIFIER && !model.idsAreWritable() ) {
+                return false;
+            }
+            if ( itemType == ModelItem.VERSION && !model.versionsAreWritable() ) {
                 return false;
             }
         }
         // specifier is used to specify which item, but if the item is created, it doesn't need to be specified; a new value can be used
         //if ( itemType != null && specifierType != null ) return false;
-        // TODO -- what can't be created? version? id? 
-        // TODO -- any more
         return true;
     }
+    
     /* (non-Javadoc)
      * @see SystemModel#get(java.util.Collection, java.util.Collection, java.lang.Object, java.lang.Object, java.lang.Object)
      */
     @Override
     public Collection< Object >
             get( Collection< SystemModel.ModelItem > itemTypes,
-                 Collection< C > context, I identifier, N name, V version ) {
-        // TODO Auto-generated method stub
-        return null;
+                 Collection< Item > context, I identifier, N name, V version ) {
+        return op( Operation.GET, itemTypes, context, identifier, name, version, null, false );
     }
 
     /* (non-Javadoc)
@@ -1310,10 +1233,11 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
      */
     @Override
     public Collection< Object > create( SystemModel.ModelItem itemType,
-                                        Collection< C > context, I identifier,
+                                        Collection< Item > context, I identifier,
                                         N name, V version ) {
-        // TODO Auto-generated method stub
-        return null;
+        Collection< SystemModel.ModelItem > itemTypes = new ArrayList< SystemModel.ModelItem >();
+        itemTypes.add(itemType);
+        return op( Operation.CREATE, itemTypes, context, identifier, name, version, null, false );
     }
 
     /* (non-Javadoc)
@@ -1321,10 +1245,11 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
      */
     @Override
     public Collection< Object > delete( SystemModel.ModelItem itemType,
-                                        Collection< C > context, I identifier,
+                                        Collection< Item > context, I identifier,
                                         N name, V version ) {
-        // TODO Auto-generated method stub
-        return null;
+        Collection< SystemModel.ModelItem > itemTypes = new ArrayList< SystemModel.ModelItem >();
+        itemTypes.add(itemType);
+        return op( Operation.CREATE, itemTypes, context, identifier, name, version, null, false );
     }
 
     /* (non-Javadoc)
@@ -1332,156 +1257,13 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
      */
     @Override
     public Collection< Object > set( SystemModel.ModelItem itemType,
-                                     Collection< C > context, I identifier,
+                                     Collection< Item > context, I identifier,
                                      N name, V version, U newValue ) {
-        // TODO Auto-generated method stub
-        return null;
+        Collection< SystemModel.ModelItem > itemTypes = new ArrayList< SystemModel.ModelItem >();
+        itemTypes.add(itemType);
+        return op( Operation.CREATE, itemTypes, context, identifier, name, version, newValue, false );
     }
 
-    /* (non-Javadoc)
-     * @see SystemModel#setContext(java.util.Collection)
-     */
-    @Override
-    public abstract void setContext( Collection< C > context );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getContext()
-     */
-    @Override
-    public abstract Collection< C > getContext();
-
-    /* (non-Javadoc)
-     * @see SystemModel#setWorkspace(java.lang.Object)
-     */
-    @Override
-    public abstract void setWorkspace( W workspace );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getWorkspace()
-     */
-    @Override
-    public abstract W getWorkspace();
-
-    /* (non-Javadoc)
-     * @see SystemModel#setVersion(java.lang.Object)
-     */
-    @Override
-    public abstract void setVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getVersion()
-     */
-    @Override
-    public abstract V getVersion();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getObject(java.lang.Object, java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract E getElement( C context, I identifier, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getRootElements(java.lang.Object)
-     */
-    @Override
-    public abstract Collection< E > getRootElements( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getElementId(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract I getElementId( E element, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getName(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract N getName( E element, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getTypeOf(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract T getTypeOf( E element, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getType(java.lang.Object, java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract T getType( C context, N name, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getTypeProperties(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract Collection< P > getTypeProperties( T type, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getProperties(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract Collection< P > getProperties( E element, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getProperty(java.lang.Object, java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract P getProperty( E element, N propertyName, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getRelationships(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract Collection< R > getRelationships( E element, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getRelationships(java.lang.Object, java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract Collection< R > getRelationships( E element, N relationshipName,
-                                             V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getRelated(java.lang.Object, java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract Collection< E > getRelated( E element, N relationshipName, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#isDirected(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract boolean isDirected( R relationship, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getRelatedElements(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract E getRelatedElements( R relationship, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getElementForRole(java.lang.Object, java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract E getElementForRole( R relationship, N role, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getSource(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract E getSource( R relationship, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#getTarget(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract E getTarget( R relationship, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#latestVersion(java.util.Collection)
-     */
-    @Override
-    public abstract V latestVersion( Collection< C > context );
 
     @Override
     public Class<?> getClass(ModelItem item) {
@@ -1517,85 +1299,6 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         }
         return null;
     }
-
-    /* (non-Javadoc)
-     * @see SystemModel#getElementClass()
-     */
-    @Override
-    public abstract Class< E > getElementClass();
-
-//    /* (non-Javadoc)
-//     * @see SystemModel#getContextClass()
-//     */
-//    @Override
-//    public abstract Class< C > getContextClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getTypeClass()
-     */
-    @Override
-    public abstract Class< T > getTypeClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getPropertyClass()
-     */
-    @Override
-    public abstract Class< P > getPropertyClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getNameClass()
-     */
-    @Override
-    public abstract Class< N > getNameClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getIdentifierClass()
-     */
-    @Override
-    public abstract Class< I > getIdentifierClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getValueClass()
-     */
-    @Override
-    public abstract Class< U > getValueClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getRelationshipClass()
-     */
-    @Override
-    public abstract Class< R > getRelationshipClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getVersionClass()
-     */
-    @Override
-    public abstract Class< V > getVersionClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getWorkspaceClass()
-     */
-    @Override
-    public abstract Class< W > getWorkspaceClass();
-
-    /* (non-Javadoc)
-     * @see SystemModel#getConstraintClass()
-     */
-    @Override
-    public abstract Class< CT > getConstraintClass();
-    
-    /* (non-Javadoc)
-     * @see sysml.SystemModel#getViewClass()
-     */
-    @Override
-    public abstract Class< ? extends E > getViewClass();
-    
-    /* (non-Javadoc)
-     * @see sysml.SystemModel#getViewpointClass()
-     */
-    @Override
-    public abstract Class< ? extends E > getViewpointClass();
-
     
     /**
      * @param o
@@ -1709,107 +1412,113 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     }
 
     /* (non-Javadoc)
-     * @see SystemModel#idsAreSettable()
+     * @see SystemModel#idsAreWritable()
      */
     @Override
-    public abstract boolean idsAreSettable();
+    public abstract boolean idsAreWritable();
 
     /* (non-Javadoc)
-     * @see SystemModel#namesAreSettable()
+     * @see SystemModel#namesAreWritable()
      */
     @Override
-    public abstract boolean namesAreSettable();
+    public abstract boolean namesAreWritable();
 
     /* (non-Javadoc)
-     * @see SystemModel#elementsMayBeChangedForVersion(java.lang.Object)
+     * @see SystemModel#versionsAreWritable()
      */
     @Override
-    public abstract boolean elementsMayBeChangedForVersion( V version );
+    public abstract boolean versionsAreWritable();
 
-    /* (non-Javadoc)
-     * @see SystemModel#typesMayBeChangedForVersion(java.lang.Object)
-     */
-    @Override
-    public abstract boolean typesMayBeChangedForVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#propertiesMayBeChangedForVersion(java.lang.Object)
-     */
-    @Override
-    public abstract boolean propertiesMayBeChangedForVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#elementsMayBeCreatedForVersion(java.lang.Object)
-     */
-    @Override
-    public abstract boolean elementsMayBeCreatedForVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#typesMayBeCreatedForVersion(java.lang.Object)
-     */
-    @Override
-    public abstract boolean typesMayBeCreatedForVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#propertiesMayBeCreatedForVersion(java.lang.Object)
-     */
-    @Override
-    public abstract boolean propertiesMayBeCreatedForVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#elementsMayBeDeletedForVersion(java.lang.Object)
-     */
-    @Override
-    public abstract boolean elementsMayBeDeletedForVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#typesMayBeDeletedForVersion(java.lang.Object)
-     */
-    @Override
-    public abstract boolean typesMayBeDeletedForVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#propertiesMayBeDeletedForVersion(java.lang.Object)
-     */
-    @Override
-    public abstract boolean propertiesMayBeDeletedForVersion( V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#createElement(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract E createElement( I identifier, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#setIdentifier(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract boolean setIdentifier( E element, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#setName(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract boolean setName( E element, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#setType(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract boolean setType( E element, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#deleteObject(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract E deleteElement( I identifier, V version );
-
-    /* (non-Javadoc)
-     * @see SystemModel#deleteType(java.lang.Object, java.lang.Object)
-     */
-    @Override
-    public abstract T deleteType( E element, V version );
-
+//    /* (non-Javadoc)
+//     * @see SystemModel#elementsMayBeChangedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean elementsMayBeChangedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#typesMayBeChangedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean typesMayBeChangedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#propertiesMayBeChangedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean propertiesMayBeChangedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#elementsMayBeCreatedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean elementsMayBeCreatedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#typesMayBeCreatedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean typesMayBeCreatedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#propertiesMayBeCreatedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean propertiesMayBeCreatedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#elementsMayBeDeletedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean elementsMayBeDeletedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#typesMayBeDeletedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean typesMayBeDeletedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#propertiesMayBeDeletedForVersion(java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean propertiesMayBeDeletedForVersion( V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#createElement(java.lang.Object, java.lang.Object)
+//     */
+//    @Override
+//    public abstract E createElement( I identifier, V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#setIdentifier(java.lang.Object, java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean setIdentifier( E element, V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#setName(java.lang.Object, java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean setName( E element, V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#setType(java.lang.Object, java.lang.Object)
+//     */
+//    @Override
+//    public abstract boolean setType( E element, V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#deleteObject(java.lang.Object, java.lang.Object)
+//     */
+//    @Override
+//    public abstract E deleteElement( I identifier, V version );
+//
+//    /* (non-Javadoc)
+//     * @see SystemModel#deleteType(java.lang.Object, java.lang.Object)
+//     */
+//    @Override
+//    public abstract T deleteType( E element, V version );
+    
     /* (non-Javadoc)
      * @see SystemModel#map(java.util.Collection, SystemModel.MethodCall, int)
      */

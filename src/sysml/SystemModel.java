@@ -37,6 +37,8 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Set;
 
+import sysml.SystemModel.Item;
+
 /**
  * A generic interface for accessing system models as simplified SysML (without UML).
  * REVIEW -- What else might this need to be compatible with other things, like CMIS, OSLC, EMF, etc.  
@@ -198,14 +200,15 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      *            if true and multiple items are identified by the other
      *            arguments for a READ, UPDATE, or DELETE operation, then do not
      *            perform the operation, and return null.
-     * @return the matching or resulting item(s)
+     * @return the matching or resulting item(s);
      */
     public Collection< Object > op( Operation operation,
                                     Collection< ModelItem > itemTypes,
-                                    Collection< C > context,
+                                    Collection< Item > context,
                                     I identifier,
                                     N name,
                                     V version,
+                                    U newValue,
                                     boolean failForMultipleItemMatches );
 
     // More specific functions that overlap with or may help implement the general functions above.
@@ -217,106 +220,106 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 	 * @param kindOfItem
 	 *            the item(s) must be of one of these specified kinds
 	 * @param context
-	 *            the objects that collectively contain the sought item(s)
+	 *            the objects that collectively contain the sought item(s);
 	 * @param identifier
 	 * @param name
 	 * @param version
 	 * @return the matching items
 	 */
 	public Collection<Object> get( Collection< ModelItem > itemTypes,
-				                   Collection< C > context,
+				                   Collection< Item > context,
 				                   I identifier,
 				                   N name,
 				                   V version );
-    public Collection<Object> create( ModelItem item, Collection<C> context, I identifier, N name, V version );
-    public Collection<Object> delete( ModelItem item, Collection<C> context, I identifier, N name, V version );
-    public Collection<Object> set( ModelItem item, Collection<C> context, I identifier, N name, V version, U newValue );
-    // TODO -- update args and add update() and maybe copy()/clone()
+    public Collection<Object> create( ModelItem item, Collection< Item > context, I identifier, N name, V version );
+    public Collection<Object> delete( ModelItem item, Collection< Item > context, I identifier, N name, V version );
+    public Collection<Object> set( ModelItem item, Collection< Item > context, I identifier, N name, V version, U newValue );
+    // TODO -- update args and add update() and maybe copy()/clone();
 
-    /**
-     * Set a context that may be used by other SystemModel functions when
-     * otherwise unspecified.
-     * 
-     * @param context
-     */
-    public void setContext( Collection< C > context );
-    /**
-     * @return the context used by this SystemModel when otherwise unspecified
-     */
-    public Collection< C > getContext();
-    /**
-     * Set a workspace context that may be used by other SystemModel functions
-     * when otherwise unspecified.
-     * 
-     * @param workspace
-     */
-    public void setWorkspace( W workspace );
-    /**
-     * @return the workspace used by this SystemModel when otherwise unspecified
-     */
-    public W getWorkspace();
-    /**
-     * Set a version context that may be used by other SystemModel functions
-     * when otherwise unspecified.
-     * 
-     * @param version
-     */
-    public void setVersion( V version );
-    /**
-     * @return the version used by this SystemModel when otherwise unspecified
-     */
-    public V getVersion();    
-    
-    // accessors for class/object/element
-    public E getElement( C context, I identifier, V version );
-    public Collection<E> getRootElements( V version );
-    public I getElementId( E element, V version );
-    public N getName( E element, V version );
-    public T getTypeOf( E element, V version );
-    public T getType( C context, N name, V version );
-    public Collection<P> getTypeProperties( T type, V version );
-    public Collection<P> getProperties( E element, V version );
-    public P getProperty( E element, N propertyName, V version );
-    public Collection<R> getRelationships( E element, V version );
-    /**
-     * @param element an element that participates in the relationships
-     * @param relationshipName
-     * @param version the version of the relationship or element; null is interpreted as most current.
-     * @return all of the element's relationships with the given name and version
-     */
-    public Collection<R> getRelationships( E element, N relationshipName, V version );
-    public Collection<E> getRelated( E element, N relationshipName, V version );
+//    /**
+//     * Set a context that may be used by other SystemModel functions when
+//     * otherwise unspecified.
+//     * 
+//     * @param context
+//     */
+//    public void setContext( Collection< C > context );
+//    /**
+//     * @return the context used by this SystemModel when otherwise unspecified
+//     */
+//    public Collection< C > getContext();
+//    /**
+//     * Set a workspace context that may be used by other SystemModel functions
+//     * when otherwise unspecified.
+//     * 
+//     * @param workspace
+//     */
+//    public void setWorkspace( W workspace );
+//    /**
+//     * @return the workspace used by this SystemModel when otherwise unspecified
+//     */
+//    public W getWorkspace();
+//    /**
+//     * Set a version context that may be used by other SystemModel functions
+//     * when otherwise unspecified.
+//     * 
+//     * @param version
+//     */
+//    public void setVersion( V version );
+//    /**
+//     * @return the version used by this SystemModel when otherwise unspecified
+//     */
+//    public V getVersion();    
+//    
+//    // accessors for class/object/element
+//    public E getElement( C context, I identifier, V version );
+//    public Collection<E> getRootElements( V version );
+//    public I getElementId( E element, V version );
+//    public N getName( E element, V version );
+//    public T getTypeOf( E element, V version );
+//    public T getType( C context, N name, V version );
+//    public Collection<P> getTypeProperties( T type, V version );
+//    public Collection<P> getProperties( E element, V version );
+//    public P getProperty( E element, N propertyName, V version );
+//    public Collection<R> getRelationships( E element, V version );
+//    /**
+//     * @param element an element that participates in the relationships
+//     * @param relationshipName
+//     * @param version the version of the relationship or element; null is interpreted as most current.
+//     * @return all of the element's relationships with the given name and version
+//     */
+//    public Collection<R> getRelationships( E element, N relationshipName, V version );
+//    public Collection<E> getRelated( E element, N relationshipName, V version );
 
     // relationships
-    public boolean isDirected( R relationship, V version );
-    public E getRelatedElements( R relationship, V version );
+    public boolean isDirected( R relationship );//, V version );
+    public Collection< E > getRelatedElements( R relationship );//, V version );
     /**
      * @param relationship
      * @param role a role in a relationship might be source, target, first, second, last, numerator, denominator, quotient, sender, receiver, . . .
      * @param version the version of the relationship
      * @return the element serving the named role in the relationship
      */
-    public E getElementForRole( R relationship, N role, V version );
-    public E getSource( R relationship, V version );
-    public E getTarget( R relationship, V version );
+    public Collection< E > getElementForRole( R relationship, N role );
+    public Collection< E >  getSource( R relationship );
+    public Collection< E >  getTarget( R relationship );
     
-    public V latestVersion( Collection<C> context );
+//    public V latestVersion( Collection<C> context );
 
     // ModelItem classes
     // ELEMENT, CONTEXT, TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
-    // RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT    
-    public Class<?> getClass( ModelItem item );
-    public Class<E> getElementClass();
-    public Class<C> getContextClass();
-    public Class<T> getTypeClass();
-    public Class<P> getPropertyClass();
-    public Class<N> getNameClass();
-    public Class<I> getIdentifierClass();
-    public Class<U> getValueClass();
-    public Class<R> getRelationshipClass();
-    public Class<V> getVersionClass();
-    public Class<W> getWorkspaceClass();
-    public Class<CT> getConstraintClass();
+    // RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT
+    public Class< ? > getClass( ModelItem item );
+    public Class< E > getElementClass();
+    public Class< C > getContextClass();
+    public Class< T > getTypeClass();
+    public Class< P > getPropertyClass();
+    public Class< N > getNameClass();
+    public Class< I > getIdentifierClass();
+    public Class< U > getValueClass();
+    public Class< R > getRelationshipClass();
+    public Class< V > getVersionClass();
+    public Class< W > getWorkspaceClass();
+    public Class< CT > getConstraintClass();
     public abstract Class< ? extends E > getViewClass();
     public abstract Class< ? extends E > getViewpointClass();
 
@@ -349,31 +352,149 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     public CT asConstraint( Object o );
     
     // general edit policies
-    public boolean idsAreSettable();
-    public boolean namesAreSettable();
-    public boolean elementsMayBeChangedForVersion( V version );
-    public boolean typesMayBeChangedForVersion( V version );
-    public boolean propertiesMayBeChangedForVersion( V version );
-    public boolean elementsMayBeCreatedForVersion( V version );
-    public boolean typesMayBeCreatedForVersion( V version );
-    public boolean propertiesMayBeCreatedForVersion( V version );
-    public boolean elementsMayBeDeletedForVersion( V version );
-    public boolean typesMayBeDeletedForVersion( V version );
-    public boolean propertiesMayBeDeletedForVersion( V version );
+
+    public boolean idsAreWritable();
+    public boolean namesAreWritable();
+    public boolean versionsAreWritable();
+
+//    public boolean elementsMayBeChangedForVersion( V version );
+//    public boolean typesMayBeChangedForVersion( V version );
+//    public boolean propertiesMayBeChangedForVersion( V version );
+//    public boolean elementsMayBeCreatedForVersion( V version );
+//    public boolean typesMayBeCreatedForVersion( V version );
+//    public boolean propertiesMayBeCreatedForVersion( V version );
+//    public boolean elementsMayBeDeletedForVersion( V version );
+//    public boolean typesMayBeDeletedForVersion( V version );
+//    public boolean propertiesMayBeDeletedForVersion( V version );
 
     // create fcns
-    // TODO
-    public E createElement( I identifier, V version );
-    public boolean setIdentifier( E element, V version );
-    public boolean setName( E element, V version );
-    public boolean setType( E element, V version );
+//    // TODO
+//    public E createElement( I identifier, V version );
+//    public boolean setIdentifier( E element, V version );
+//    public boolean setName( E element, V version );
+//    public boolean setType( E element, V version );
 
-    // delete fcns
-    // TODO
-    E deleteElement( I identifier, V version );
-    T deleteType( E element, V version );
+//    // delete fcns
+//    // TODO
+//    E deleteElement( I identifier, V version );
+//    T deleteType( E element, V version );
 	
-	// query functions
+    CT createConstraint( Object context );
+    E createElement( Object context );
+    I createIdentifier( Object context ); // depends on idsAreWritable()
+    N createName( Object context ); // depends on namesAreWritable()
+    P createProperty( Object context );
+    R createRelationship( Object context );
+    T createType( Object context );
+    U createValue( Object context );
+    V createVersion( Object context );  // depends on versionsAreWritable()
+    E createView( Object context );
+    E createViewpoint( Object context );
+    W createWorkspace( Object context );
+    Object delete( Object object  );
+    Collection< CT > getConstraint( Object context, Object specifier  );
+    Collection< CT > getConstraintWithElement( Object context, E specifier );
+    Collection< CT > getConstraintWithIdentifier( Object context, I specifier );
+    Collection< CT > getConstraintWithName( Object context, N specifier );
+    Collection< CT > getConstraintWithProperty( Object context, P specifier );
+    Collection< CT > getConstraintWithRelationship( Object context, R specifier );
+    Collection< CT > getConstraintWithType( Object context, T specifier );
+    Collection< CT > getConstraintWithValue( Object context, U specifier );
+    Collection< CT > getConstraintWithVersion( Object context, V specifier );
+    Collection< CT > getConstraintWithView( Object context, E specifier );
+    Collection< CT > getConstraintWithViewpoint( Object context, E specifier );
+    Collection< CT > getConstraintWithWorkspace( Object context, W specifier );
+    Collection< E > getElement( Object context, Object specifier );
+    Collection< E > getElementWithConstraint( Object context, CT specifier );
+    Collection< E > getElementWithIdentifier( Object context, I specifier );
+    Collection< E > getElementWithName( Object context, N specifier );
+    Collection< E > getElementWithProperty( Object context, P specifier );
+    Collection< E > getElementWithRelationship( Object context, R specifier );
+    Collection< E > getElementWithType( Object context, T specifier );
+    Collection< E > getElementWithValue( Object context, U specifier );
+    Collection< E > getElementWithVersion( Object context, V specifier );
+    Collection< E > getElementWithView( Object context, E specifier );
+    Collection< E > getElementWithViewpoint( Object context, E specifier );
+    Collection< E > getElementWithWorkspace( Object context, W specifier );
+    Collection< N > getName( Object context );
+    Collection< I > getIdentifier( Object context );
+    Collection< P > getProperty( Object context, Object specifier );
+    Collection< P > getPropertyWithConstraint( Object context, CT specifier );
+    Collection< P > getPropertyWithElement( Object context, E specifier );
+    Collection< P > getPropertyWithIdentifier( Object context, I specifier );
+    Collection< P > getPropertyWithRelationship( Object context, R specifier );
+    Collection< P > getPropertyWithType( Object context, T specifier );
+    Collection< P > getPropertyWithValue( Object context, U specifier );
+    Collection< P > getPropertyWithVersion( Object context, V specifier );
+    Collection< P > getPropertyWithView( Object context, E specifier );
+    Collection< P > getPropertyWithViewpoint( Object context, E specifier );
+    Collection< P > getPropertyWithWorkspace( Object context, W specifier );
+    Collection< R > getRelationship( Object context, Object specifier );
+    Collection< R > getRelationshipWithConstraint( Object context, CT specifier );
+    Collection< R > getRelationshipWithElement( Object context, E specifier );
+    Collection< R > getRelationshipWithIdentifier( Object context, I specifier );
+    Collection< R > getRelationshipWithName( Object context, N specifier );
+    Collection< R > getRelationshipWithProperty( Object context, P specifier );
+    Collection< R > getRelationshipWithType( Object context, T specifier );
+    Collection< R > getRelationshipWithValue( Object context, U specifier );
+    Collection< R > getRelationshipWithVersion( Object context, V specifier );
+    Collection< R > getRelationshipWithView( Object context, E specifier );
+    Collection< R > getRelationshipWithViewpoint( Object context, E specifier );
+    Collection< R > getRelationshipWithWorkspace( Object context, W specifier );
+    Collection< T > getType( Object context, Object specifier );
+    Collection< T > getTypeWithConstraint( Object context, CT specifier );
+    Collection< T > getTypeWithElement( Object context, E specifier );
+    Collection< T > getTypeWithIdentifier( Object context, I specifier );
+    Collection< T > getTypeWithName( Object context, N specifier );
+    Collection< T > getTypeWithProperty( Object context, P specifier );
+    Collection< T > getTypeWithRelationship( Object context, R specifier );
+    Collection< T > getTypeWithValue( Object context, U specifier );
+    Collection< T > getTypeWithVersion( Object context, V specifier );
+    Collection< T > getTypeWithView( Object context, E specifier );
+    Collection< T > getTypeWithViewpoint( Object context, E specifier );
+    Collection< T > getTypeWithWorkspace( Object context, W specifier );
+    Collection< U > getValue( Object context, Object specifier );
+    Collection< U > getValueWithConstraint( Object context, CT specifier );
+    Collection< U > getValueWithElement( Object context, E specifier );
+    Collection< U > getValueWithIdentifier( Object context, I specifier );
+    Collection< U > getValueWithName( Object context, N specifier );
+    Collection< U > getValueWithProperty( Object context, P specifier );
+    Collection< U > getValueWithRelationship( Object context, R specifier );
+    Collection< U > getValueWithType( Object context, T specifier );
+    Collection< U > getValueWithVersion( Object context, V specifier );
+    Collection< U > getValueWithView( Object context, E specifier );
+    Collection< U > getValueWithViewpoint( Object context, E specifier );
+    Collection< U > getValueWithWorkspace( Object context, W specifier );
+    Collection< V > getVersion( Object context );
+    Collection< E > getView( Object context, Object specifier );
+    Collection< E > getViewpoint( Object context, Object specifier );
+    Collection< E > getViewpointWithConstraint( Object context, CT specifier );
+    Collection< E > getViewpointWithElement( Object context, E specifier );
+    Collection< E > getViewpointWithIdentifier( Object context, I specifier );
+    Collection< E > getViewpointWithName( Object context, N specifier );
+    Collection< E > getViewpointWithProperty( Object context, P specifier );
+    Collection< E > getViewpointWithRelationship( Object context, R specifier );
+    Collection< E > getViewpointWithType( Object context, T specifier );
+    Collection< E > getViewpointWithValue( Object context, U specifier );
+    Collection< E > getViewpointWithVersion( Object context, V specifier );
+    Collection< E > getViewpointWithView( Object context, E specifier );
+    Collection< E > getViewpointWithWorkspace( Object context, W specifier );
+    Collection< E > getViewWithConstraint( Object context, CT specifier );
+    Collection< E > getViewWithElement( Object context, E specifier );
+    Collection< E > getViewWithIdentifier( Object context, I specifier );
+    Collection< E > getViewWithName( Object context, N specifier );
+    Collection< E > getViewWithProperty( Object context, P specifier );
+    Collection< E > getViewWithRelationship( Object context, R specifier );
+    Collection< E > getViewWithType( Object context, T specifier );
+    Collection< E > getViewWithValue( Object context, U specifier );
+    Collection< E > getViewWithVersion( Object context, V specifier );
+    Collection< E > getViewWithViewpoint( Object context, E specifier );
+    Collection< E > getViewWithWorkspace( Object context, W specifier );
+    Collection< W > getWorkspace( Object context );
+    Object set( Object object, Object specifier, U value );
+
+    
+    // query functions
     /**
      * Apply the method to each of the elements and return results. Subclasses
      * implementing map() may employ utilities for functional Java provided in
@@ -444,7 +565,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      *            that the elements are each substituted for
      *            methodCall.objectOfCall).
      * @return true iff all method calls can clearly be interpreted as true
-     *         (consistent with Utils.isTrue())
+     *         (consistent with Utils.isTrue());
      * @throws java.lang.reflect.InvocationTargetException
      */
     public boolean forAll( Collection< E > elements,
@@ -470,7 +591,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      *            that the elements are each substituted for
      *            methodCall.objectOfCall).
      * @return true iff any method call return value can clearly be interpreted
-     *         as true (consistent with Utils.isTrue())
+     *         as true (consistent with Utils.isTrue());
      * @throws java.lang.reflect.InvocationTargetException
      */
     public boolean thereExists( Collection< E > elements,
