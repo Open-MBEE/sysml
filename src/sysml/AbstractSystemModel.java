@@ -23,8 +23,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import sysml.SystemModel.Item;
-
 /**
  * An abstract SystemModel that provides some straightforward implementations of
  * the more abstract methods, such as op(), get(), set(), map(), and filter(),
@@ -1429,6 +1427,29 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     @Override
     public abstract boolean versionsAreWritable();
 
+    @Override
+    public Collection< E > getElement( Object context,
+                                       Object specifier ) {
+        // REVIEW -- should check permissions before trying
+        Collection< E > elements =
+                new TreeSet< E >( CompareUtils.GenericComparator.instance() );
+        I id = asIdentifier( specifier );
+        if ( id != null ) {
+            elements.addAll( getElementWithIdentifier( context, id ) );
+        }
+        N name = asName( specifier );
+        if ( name != null ) {
+            elements.addAll( getElementWithName( context, name ) );
+        }
+        V version = asVersion( specifier );
+        if ( name != null ) {
+            elements.addAll( getElementWithVersion( context, version ) );
+        }
+        // TODO -- repeat for the remaining item types!
+        return elements;
+    }
+
+    
 //    /* (non-Javadoc)
 //     * @see SystemModel#elementsMayBeChangedForVersion(java.lang.Object)
 //     */
