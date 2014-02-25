@@ -588,16 +588,6 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         return result == null ? Collections.emptyList() : result;
     }
 
-    protected static String toCamelCase( String s ) {
-        if ( s == null ) return null;
-        if ( s.isEmpty() || !Character.isLetter( s.codePointAt( 0 ) ) )
-            return s;
-        char prefix = s.charAt( 0 );
-        String suffix = s.substring( 1 ).toLowerCase();
-        prefix = Character.toUpperCase( prefix );
-        return prefix + suffix;
-    }
-
     /**
      * @param operation
      * @param itemType
@@ -640,7 +630,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         if ( itemType == null ) {
             itemTypeName = "";
         } else {
-            itemTypeName = toCamelCase( itemType.toString() );
+            itemTypeName = Utils.toCamelCase( itemType.toString() );
         }
         
         String specifierTypeName;
@@ -651,7 +641,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             }
             specifierTypeName = "";
         } else {
-            specifierTypeName = toCamelCase( specifierType.toString() );
+            specifierTypeName = Utils.toCamelCase( specifierType.toString() );
             if ( itemType == null ) {
                 itemTypeName = specifierTypeName;
             }
@@ -660,7 +650,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         if ( contextType == null ) {
             contextTypeName = "";
         } else {
-            contextTypeName = toCamelCase( contextType.toString() );
+            contextTypeName = Utils.toCamelCase( contextType.toString() );
         }
         
         // construct method call name
@@ -799,7 +789,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         if ( itemType == null ) {
             itemTypeName = "";
         } else {
-            itemTypeName = toCamelCase( itemType.toString() );
+            itemTypeName = Utils.toCamelCase( itemType.toString() );
             //argTypeList.add( getClass( itemType ) );
             returnTypeString = getGenericSymbol( itemType );
         }
@@ -813,7 +803,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             // No need to include context type in call name unless there is no
             // specifier and no new value
             if ( specifier == null && ( newValue == null || !usesNewValue( operation ) ) ) {
-                contextTypeName = toCamelCase( contextType.toString() );
+                contextTypeName = Utils.toCamelCase( contextType.toString() );
 //            }
 //            if ( !Utils.isNullOrEmpty( contextTypeName ) ) {
                 contextPrep = getMethodNamePrepositionForContext( operation, itemType, contextType );
@@ -841,7 +831,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             // No need for specifier in call name if there are parameters also
             // for the context and new value.
             if ( context == null || newValue == null || !usesNewValue( operation ) ) {
-                specifierTypeName = toCamelCase( specifierType.toString() );
+                specifierTypeName = Utils.toCamelCase( specifierType.toString() );
             }
             if ( itemType == null ) {
                 itemTypeName = specifierTypeName;
@@ -1570,7 +1560,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             forAll( Collection< E > elements,
                     MethodCall methodCall,
                     int indexOfElementArgument ) throws InvocationTargetException {
-        // TODO Auto-generated method stub
+        //return methodCall.
         return false;
     }
 
@@ -1592,8 +1582,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public Object fold( Collection< E > elements, Object initialValue,
                         MethodCall methodCall, int indexOfElementArgument,
                         int indexOfPriorResultArgument ) throws InvocationTargetException {
-        // TODO Auto-generated method stub
-        return null;
+        return methodCall.fold( elements, initialValue, indexOfElementArgument, indexOfPriorResultArgument );
     }
 
     /* (non-Javadoc)
@@ -1604,8 +1593,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             sort( Collection< E > elements, Comparator< ? > comparator,
                   MethodCall methodCall,
                   int indexOfElementArgument ) throws InvocationTargetException {
-        // TODO Auto-generated method stub
-        return null;
+        return methodCall.sort( elements, comparator, indexOfElementArgument );
     }
 
     /* (non-Javadoc)
