@@ -3,7 +3,6 @@
   <!-- Customize properties below for your installation. -->
   <loadproperties srcFile="build.properties"/>
 
-  <property name="junitJarFile" value="${home}/.yoxoslauncher/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
   <property name="gitDir" value="${home}/git"/>
   <property name="view_repo" value="${gitDir}/alfresco-view-repo"/>
   <property name="view_repo_web_lib" value="${view_repo}/target/view-repo-war/WEB-INF/lib"/>
@@ -22,7 +21,6 @@
     <jar destfile="sysml.jar">
       <fileset includes="**/*.class" dir="bin"/>
       <fileset includes="rebel.xml" dir="."/>
-      <zipfileset includes="**/*.class" src="${junitJarFile}"/>
     	<!--
       <manifest>
         <attribute name="Main-Class" value="tests/TestEventXmlToJava"/>
