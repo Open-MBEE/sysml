@@ -671,6 +671,16 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 
     // support for problem solving
     
+    // example problem solving session
+    //
+    // f = getElementWithName( "MyFolder" ).iterator().next();
+    // x = getElementWithName( f, "x" ).iterator().next();
+    // y = getElementWithName( f, "y" ).iterator().next();
+    // c = createConstraint( f );
+    // fixConstraintViolations(c);
+    // System.out.println(y.toString());
+
+    
 //    // problem solving session
 //    // TODO -- replace sessions with model workspaces
 //    // TODO -- otherwise, create a Session class that would include these session functions, which would return Sessions.
@@ -709,18 +719,25 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     
     // Constraint CRUD
     public CT getDomainConstraint( E element, V version, W workspace );
+    // TODO -- easier i/f for adding constraint that
     public void addConstraint( CT constraint, V version, W workspace );
     public void addDomainConstraint( CT constraint, V version, Set<U> valueDomainSet, W workspace );
     public void addDomainConstraint( CT constraint, V version, Pair<U,U> valueDomainRange, W workspace );
     public void relaxDomain( CT constraint, V version, Set<U> valueDomainSet, W workspace );
     public void relaxDomain( CT constraint, V version, Pair<U,U> valueDomainRange, W workspace );
     public Collection<CT> getConstraintsOfElement( E element, V version, W workspace );
-    public Collection<CT> getConstraintsOfContext( C context );
+    //public Collection<CT> getConstraintsOfContext( C context );
     public Collection<CT> getViolatedConstraintsOfElement( E element, V version );
-    public Collection<CT> getViolatedConstraintsOfContext( C context );
+    //public Collection<CT> getViolatedConstraintsOfContext( C context );
     public void setOptimizationFunction( Method method, Object... arguments ); // REVIEW -- should these be elements? should the function be an interface type (add F to ModelItem)?
     public Number getScore();
     //public <B> Number getScore(B objective); // TODO -- add B to class parameters?
     // TODO -- add other functions? like for delete? update?
 
+    // TODO -- invoke solver/fix
+    public boolean fixConstraintViolations( E element, V version );
+    
+    
+    
+    
 }

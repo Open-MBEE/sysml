@@ -1644,11 +1644,11 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public abstract Collection< CT > getConstraintsOfElement( E element, V version,
                                                      W workspace );
 
-    /* (non-Javadoc)
-     * @see SystemModel#getConstraintsOfContext(java.lang.Object)
-     */
-    @Override
-    public abstract Collection< CT > getConstraintsOfContext( C context );
+//    /* (non-Javadoc)
+//     * @see SystemModel#getConstraintsOfContext(java.lang.Object)
+//     */
+//    @Override
+//    public abstract Collection< CT > getConstraintsOfContext( C context );
 
     /* (non-Javadoc)
      * @see SystemModel#getViolatedConstraintsOfElement(java.lang.Object, java.lang.Object)
@@ -1657,11 +1657,11 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public abstract Collection< CT > getViolatedConstraintsOfElement( E element,
                                                              V version );
 
-    /* (non-Javadoc)
-     * @see SystemModel#getViolatedConstraintsOfContext(java.lang.Object)
-     */
-    @Override
-    public abstract Collection< CT > getViolatedConstraintsOfContext( C context );
+//    /* (non-Javadoc)
+//     * @see SystemModel#getViolatedConstraintsOfContext(java.lang.Object)
+//     */
+//    @Override
+//    public abstract Collection< CT > getViolatedConstraintsOfContext( C context );
 
     /* (non-Javadoc)
      * @see SystemModel#setOptimizationFunction(java.lang.reflect.Method, java.lang.Object[])
