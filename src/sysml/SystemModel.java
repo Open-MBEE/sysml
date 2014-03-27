@@ -442,6 +442,8 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     Collection< R > getRelationshipWithViewpoint( Object context, E specifier );
     Collection< R > getRelationshipWithWorkspace( Object context, W specifier );
     Collection< T > getType( Object context, Object specifier );
+    // TODO remove this once we fix getType()
+    String getTypeString( Object context, Object specifier );
     Collection< T > getTypeWithConstraint( Object context, CT specifier );
     Collection< T > getTypeWithElement( Object context, E specifier );
     Collection< T > getTypeWithIdentifier( Object context, I specifier );
