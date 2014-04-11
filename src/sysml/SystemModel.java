@@ -52,7 +52,9 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, <br>
      */
     public static enum ModelItem {
-        ELEMENT, //CONTEXT,
+        ELEMENT, //CONTEXT, // COMMENT
+        // TODO -- add COMMENT and associated methods, and remove C from generic
+        // parameters
         TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
         RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT;
     };
@@ -60,7 +62,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     /**
      * Operation is a CRUD operation.  READ is the same as GET, and UPDATE is the same as SET.
      * <p>
-     * REVIEW -- Consider adding CLONE/COPY, REPAIR, EXECUTE, EVALUATE, ???<br>
+     * REVIEW -- Consider adding CLONE/COPY, MOVE, REPAIR, EXECUTE, EVALUATE, ???<br>
      * REVIEW -- Consider adding MAP, FILTER, FOLD, FORALL, EXISTS, SORT, ???<br>
      * REVIEW -- Consider adding SUM, SUBTRACT, INTERSECT, UNITE, DIFF, ???<br>
      * REVIEW -- Consider adding SATISFY, OPTIMIZE
@@ -98,7 +100,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * <li> {@code op(READ, (ELEMENT), null, ("123", IDENTIFIER), null)} returns
      * the element(s) with ID = "123."
      * <li>
-     * {@code op(UPDATE, (PROPERTY), ((o1, ELEMENT),(o2, ELEMENT)), (("mass", NAME), ("kg", TYPE)), 1.0)}
+     * {@code op(UPDATE, (PROPERTY), ((o1, ELEMENT),(o2, ELEMENT)), (("mass", NAME)), kg(1.0))}
      * returns a collection of the "mass" properties of o1 and o2 with values
      * updated to 1.0kg.
      * <li>
