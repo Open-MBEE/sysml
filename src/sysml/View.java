@@ -8,4 +8,6 @@ import java.util.Collection;
  */
 public interface View< E > extends Viewable< E > {
     public Collection< View< E > > getChildViews();
+    public E getElement();
+    public void setElement( E element );
 }
