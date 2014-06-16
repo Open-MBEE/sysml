@@ -1,4 +1,4 @@
-package sysml;
+package sysml.view;
 
 /**
  * a list of {@link Viewable}s to embed in a {@link View}

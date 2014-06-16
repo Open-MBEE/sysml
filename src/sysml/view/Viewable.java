@@ -1,4 +1,4 @@
-package sysml;
+package sysml.view;
 
 import java.util.Collection;
 

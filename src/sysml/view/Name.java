@@ -1,4 +1,4 @@
-package sysml;
+package sysml.view;
 
 /**
  * a Name to embed in a {@link View}
