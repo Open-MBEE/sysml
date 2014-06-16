@@ -50,11 +50,12 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * <p>
      * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, EVENT<br>
      * REVIEW -- Consider adding FUNCTION/PREDICATE, EXPRESSION, <br>
+     * TODO -- add COMMENT and associated methods, and remove C from generic
+     *         parameters <br>
+     * TODO? -- add SITE, CATEGORY, PROJECT???, PRODUCT, SNAPSHOT, CHANGESET, CONFIGURATION, ARTIFACT <br>
      */
     public static enum ModelItem {
         ELEMENT, //CONTEXT, // COMMENT
-        // TODO -- add COMMENT and associated methods, and remove C from generic
-        // parameters
         TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
         RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT;
     };
@@ -443,6 +444,12 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     Collection< R > getRelationshipWithView( Object context, E specifier );
     Collection< R > getRelationshipWithViewpoint( Object context, E specifier );
     Collection< R > getRelationshipWithWorkspace( Object context, W specifier );
+    /**
+     * Get types
+     * @param context
+     * @param specifier
+     * @return type objects in the context that match the specifier
+     */
     Collection< T > getType( Object context, Object specifier );
     // TODO remove this once we fix getType()
     String getTypeString( Object context, Object specifier );
