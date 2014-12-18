@@ -115,7 +115,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 	
-	protected boolean hasElementValue(JSONObject element, String jsonName) {
+	protected boolean hasElementValue(JSONObject element, String jsonName) throws JSONException {
 		
 		// See if element has the jsonName field:
 		if( element.has(jsonName) ) {
@@ -132,7 +132,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return false;
 	}
 
-	protected Object getElementValue(JSONObject element, String jsonName) {
+	protected Object getElementValue(JSONObject element, String jsonName) throws JSONException {
 		
 		// See if element has the jsonName field:
 		if( element.has(jsonName) ) {
@@ -161,13 +161,17 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 			
 			// If element has value and there is not provided jsonValue to match it against, return that element
 			// If element has the value and there is a provided jsonValue to match it against, return that element if it equals the jsonValue
-			if( hasElementValue(element, jsonName) )
-			{
-				if( jsonValue == null || getElementValue(element, jsonName).equals(jsonValue))
-				{
-					elementList.add(element);
-				}
-			}
+			try {
+                if( hasElementValue(element, jsonName) )
+                {
+                	if( jsonValue == null || getElementValue(element, jsonName).equals(jsonValue))
+                	{
+                		elementList.add(element);
+                	}
+                }
+            } catch ( JSONException e ) {
+                e.printStackTrace();
+            }
 		}
 		
 		if(elementList.isEmpty()){
@@ -509,7 +513,13 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
   		// Note: This returns the sysml:name not the cm:name, which is what we
   		//		 want
-  		Object name = getElementValue(element, "name");
+  		Object name = null;
+        try {
+            name = getElementValue(element, "name");
+        } catch ( JSONException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
   		return Utils.asList(name, String.class);
   	}
@@ -527,7 +537,13 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	  	if (context instanceof JSONObject) {
 
 	  		JSONObject element = (JSONObject) context;
-	  		Object id = getElementValue(element, "sysmlid");
+	  		Object id = null;
+            try {
+                id = getElementValue(element, "sysmlid");
+            } catch ( JSONException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
 	  		return Utils.asList(id, String.class);
 	  	}
@@ -543,13 +559,18 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	public Collection<JSONObject> getProperty(Object context, Object specifier) {
 		if ( context instanceof JSONObject ) {
 			JSONObject jsonContext = (JSONObject) context;
-			if( context != null && hasElementValue(jsonContext, "" + specifier) ) {
-				String id = (String) getElementValue(jsonContext, "" + specifier);
-				JSONObject element = getElement(id);
-				if( element != null ) {
-					return Utils.newList( element );	
-				}
-			}
+			try {
+                if( context != null && hasElementValue(jsonContext, "" + specifier) ) {
+                	String id = (String) getElementValue(jsonContext, "" + specifier);
+                	JSONObject element = getElement(id);
+                	if( element != null ) {
+                		return Utils.newList( element );	
+                	}
+                }
+            } catch ( JSONException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 		}
 		return null;
 	}
@@ -701,7 +722,13 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	  	if (context instanceof JSONObject) {
 
 	  		JSONObject element = (JSONObject) context;
-	  		Object type = getElementValue(element, "type");
+	  		Object type = null;
+            try {
+                type = getElementValue(element, "type");
+            } catch ( JSONException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
 	  		return Utils.asList(type, String.class);
 	  	}
@@ -793,13 +820,18 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	public Collection<Object> getValue(Object context, Object specifier) {
 		if ( context instanceof JSONObject ) {
 			JSONObject jsonContext = (JSONObject) context;
-			if( context != null && hasElementValue(jsonContext, "" + specifier) ) {
-				String id = (String) getElementValue(jsonContext, "" + specifier);
-				Object element = getElement(id);
-				if( element != null ) {
-					return Utils.newList( element );	
-				}
-			}
+			try {
+                if( context != null && hasElementValue(jsonContext, "" + specifier) ) {
+                	String id = (String) getElementValue(jsonContext, "" + specifier);
+                	Object element = getElement(id);
+                	if( element != null ) {
+                		return Utils.newList( element );	
+                	}
+                }
+            } catch ( JSONException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 		}
 		return null;
 	}
