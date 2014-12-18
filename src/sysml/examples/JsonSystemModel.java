@@ -51,7 +51,7 @@ import org.json.JSONObject;
  * Run: from mbee-dev/sysml/src run: Opening sysml/examples/Load Job PROJECT-ID_10_14_14_11_41_30_AM_188fb709_1490a823d0d_7361_europa_tw_jpl_nasa_gov_128_149_19_48.json
  *  
  */
-public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject, JSONObject, JSONObject, String, String, Object, JSONObject, String, String, JSONObject > {
+public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject, String, JSONObject, String, String, Object, JSONObject, String, String, JSONObject > {
 	
 	// JSONObject that contains the JSON:
 	protected JSONObject json = null;
@@ -108,6 +108,47 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		}
 	}
 	
+	protected JSONObject getElement(String id) {
+		if( elementMap.containsKey(id) ) {
+			return elementMap.get(id);
+		}
+		return null;
+	}
+	
+	protected boolean hasElementValue(JSONObject element, String jsonName) {
+		
+		// See if element has the jsonName field:
+		if( element.has(jsonName) ) {
+			return true;
+		}
+		// See if element has a specialization that has the jsonName field:
+		else if( element.has("specialization") ){
+			JSONObject specialization = (JSONObject) element.get("specialization");
+			if( specialization != null && specialization.has(jsonName) ) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	protected Object getElementValue(JSONObject element, String jsonName) {
+		
+		// See if element has the jsonName field:
+		if( element.has(jsonName) ) {
+			return element.get(jsonName);
+		}
+		// See if element has a specialization that has the jsonName field:
+		else if( element.has("specialization") ){
+			JSONObject specialization = (JSONObject) element.get("specialization");
+			if( specialization != null && specialization.has(jsonName) ) {
+				return specialization.get(jsonName);
+			}
+		}
+		
+		return null;
+	}
+	
 	protected Collection<JSONObject> searchForElements(Object context,
 			String jsonName, String jsonValue) {
 		
@@ -117,8 +158,13 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		List<JSONObject> elementList = new ArrayList<JSONObject>();
 		// TODO -- take into account context:
 		for( JSONObject element : elementMap.values() ) {
-			if( element.has(jsonName) ) {
-				if( jsonValue == null || element.get(jsonName).equals(jsonValue) ) {
+			
+			// If element has value and there is not provided jsonValue to match it against, return that element
+			// If element has the value and there is a provided jsonValue to match it against, return that element if it equals the jsonValue
+			if( hasElementValue(element, jsonName) )
+			{
+				if( jsonValue == null || getElementValue(element, jsonName).equals(jsonValue))
+				{
 					elementList.add(element);
 				}
 			}
@@ -152,14 +198,12 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<JSONObject> getSource(JSONObject relationship) {
-		// TODO Auto-generated method stub
-		return null;
+		return getProperty(relationship, "source");
 	}
 
 	@Override
 	public Collection<JSONObject> getTarget(JSONObject relationship) {
-		// TODO Auto-generated method stub
-		return null;
+		return getProperty(relationship, "target");
 	}
 
 	@Override
@@ -173,8 +217,8 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	}
 
 	@Override
-	public Class<JSONObject> getTypeClass() {
-		return JSONObject.class;
+	public Class<String> getTypeClass() {
+		return String.class;
 	}
 
 	@Override
@@ -264,7 +308,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	}
 
 	@Override
-	public JSONObject createType(Object context) {
+	public String createType(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -348,7 +392,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<JSONObject> getConstraintWithType(Object context,
-			JSONObject specifier) {
+			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -420,9 +464,11 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<JSONObject> getElementWithType(Object context,
-			JSONObject specifier) {
-		// TODO Auto-generated method stub
-		return null;
+			String specifier) {
+		if( specifier == null ){
+			return null; 
+		}
+		return searchForElements(context,"type", specifier);
 	}
 
 	@Override
@@ -463,27 +509,48 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
   		// Note: This returns the sysml:name not the cm:name, which is what we
   		//		 want
-  		Object name = element.getString("name");
+  		Object name = getElementValue(element, "name");
 
   		return Utils.asList(name, String.class);
   	}
 
   	else {
           // TODO -- error????  Are there any other contexts than an JSONObject that would have a property?
-          Debug.error("context is not an EmsScriptNode!");
+          Debug.error("context is not an JSONObject!");
           return null;
       }
     }
 
 	@Override
 	public Collection<String> getIdentifier(Object context) {
-		// TODO Auto-generated method stub
-		return null;
+		// Assuming that we can only have JSONObject context:
+	  	if (context instanceof JSONObject) {
+
+	  		JSONObject element = (JSONObject) context;
+	  		Object id = getElementValue(element, "sysmlid");
+
+	  		return Utils.asList(id, String.class);
+	  	}
+
+	  	else {
+	          // TODO -- error????  Are there any other contexts than an JSONObject that would have a property?
+	          Debug.error("context is not an JSONObject!");
+	          return null;
+	    }
 	}
 
 	@Override
 	public Collection<JSONObject> getProperty(Object context, Object specifier) {
-		// TODO Auto-generated method stub
+		if ( context instanceof JSONObject ) {
+			JSONObject jsonContext = (JSONObject) context;
+			if( context != null && hasElementValue(jsonContext, "" + specifier) ) {
+				String id = (String) getElementValue(jsonContext, "" + specifier);
+				JSONObject element = getElement(id);
+				if( element != null ) {
+					return Utils.newList( element );	
+				}
+			}
+		}
 		return null;
 	}
 
@@ -517,7 +584,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<JSONObject> getPropertyWithType(Object context,
-			JSONObject specifier) {
+			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -594,7 +661,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<JSONObject> getRelationshipWithType(Object context,
-			JSONObject specifier) {
+			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -628,9 +695,22 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	}
 
 	@Override
-	public Collection<JSONObject> getType(Object context, Object specifier) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<String> getType(Object context, Object specifier) {
+		// Assuming that we can only have JSONObject context:
+		// TODO: Take into account specifier??
+	  	if (context instanceof JSONObject) {
+
+	  		JSONObject element = (JSONObject) context;
+	  		Object type = getElementValue(element, "type");
+
+	  		return Utils.asList(type, String.class);
+	  	}
+
+	  	else {
+	          // TODO -- error????  Are there any other contexts than an JSONObject that would have a property?
+	          Debug.error("context is not an JSONObject!");
+	          return null;
+	    }
 	}
 
 	@Override
@@ -640,70 +720,70 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithConstraint(Object context,
+	public Collection<String> getTypeWithConstraint(Object context,
 			JSONObject specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithElement(Object context,
+	public Collection<String> getTypeWithElement(Object context,
 			JSONObject specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithIdentifier(Object context,
+	public Collection<String> getTypeWithIdentifier(Object context,
 			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithName(Object context,
+	public Collection<String> getTypeWithName(Object context,
 			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithProperty(Object context,
+	public Collection<String> getTypeWithProperty(Object context,
 			JSONObject specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithRelationship(Object context,
+	public Collection<String> getTypeWithRelationship(Object context,
 			JSONObject specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithVersion(Object context,
+	public Collection<String> getTypeWithVersion(Object context,
 			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithView(Object context,
+	public Collection<String> getTypeWithView(Object context,
 			JSONObject specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithViewpoint(Object context,
+	public Collection<String> getTypeWithViewpoint(Object context,
 			JSONObject specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithWorkspace(Object context,
+	public Collection<String> getTypeWithWorkspace(Object context,
 			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
@@ -711,7 +791,16 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<Object> getValue(Object context, Object specifier) {
-		// TODO Auto-generated method stub
+		if ( context instanceof JSONObject ) {
+			JSONObject jsonContext = (JSONObject) context;
+			if( context != null && hasElementValue(jsonContext, "" + specifier) ) {
+				String id = (String) getElementValue(jsonContext, "" + specifier);
+				Object element = getElement(id);
+				if( element != null ) {
+					return Utils.newList( element );	
+				}
+			}
+		}
 		return null;
 	}
 
@@ -759,7 +848,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<Object> getValueWithType(Object context,
-			JSONObject specifier) {
+			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -854,7 +943,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<JSONObject> getViewpointWithType(Object context,
-			JSONObject specifier) {
+			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -924,7 +1013,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<JSONObject> getViewWithType(Object context,
-			JSONObject specifier) {
+			String specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -1055,7 +1144,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	}
 
 	@Override
-	public Collection<JSONObject> getTypeWithValue(Object context,
+	public Collection<String> getTypeWithValue(Object context,
 			Object specifier) {
 		// TODO Auto-generated method stub
 		return null;
@@ -1124,12 +1213,33 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
             System.out.println("Opening " + args[0]);
             String jsonString = FileUtils.fileToString(args[0]);            
             JsonSystemModel systemModel = new JsonSystemModel(jsonString);
+            Collection<JSONObject> elements;
             
             // Search for all elements with the name "Info":
-            Collection<JSONObject> elements = systemModel.getElementWithName(null, "Info");
-            System.out.println("Items with name Info (" + elements.size() + "):");
+            elements = systemModel.getElementWithName(null, "Info");
+            System.out.println("\nItems with name 'Info' (" + elements.size() + "):");
             for( JSONObject element : elements.toArray(new JSONObject[0]) ){
-            	System.out.println(element.toString());
+            	System.out.println(systemModel.getName(element) + ": " + element.toString());
+            }
+            
+        	// Search for all elements with the type "Expose":
+            elements = systemModel.getElementWithType(null, "Expose");
+            System.out.println("\nItems with type 'Expose' (" + elements.size() + "):");
+            for( JSONObject element : elements.toArray(new JSONObject[0]) ){
+            	System.out.println(systemModel.getType(element, null) + ": " + element.toString());
+            	
+            	// Print the source and target for this expose:
+            	JSONObject source = systemModel.getSource(element).toArray(new JSONObject[0])[0];
+            	JSONObject target = systemModel.getTarget(element).toArray(new JSONObject[0])[0];
+            	System.out.println("\tsource: " + systemModel.getType( source, null ) + " " + systemModel.getName( source ) + " " + systemModel.getIdentifier( source ));
+            	System.out.println("\ttarget: " + systemModel.getType( target, null ) + " " + systemModel.getName( target ) + " " + systemModel.getIdentifier( target ));
+            }
+            
+            // Search for all elements with the sysmlid "_17_0_5_1_6050206_1414171540166_947652_15968":
+            elements = systemModel.getElementWithIdentifier(null, "_17_0_5_1_6050206_1414171540166_947652_15968");
+            System.out.println("\nItems with id '_17_0_5_1_6050206_1414171540166_947652_15968' (" + elements.size() + "):");
+            for( JSONObject element : elements.toArray(new JSONObject[0]) ){
+            	System.out.println(systemModel.getIdentifier(element) + ": " + element.toString());
             }
         
         } catch (Exception e){
