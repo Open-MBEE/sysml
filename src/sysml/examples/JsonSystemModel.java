@@ -115,6 +115,23 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 	
+	protected Collection<JSONObject> getChildrenElements(String id) {
+		if( id != null && ownershipMap.containsKey(id) ) {
+			List<String> childrenIds = ownershipMap.get(id);
+			List<JSONObject> children = new ArrayList<JSONObject>();
+			for( String childId : childrenIds ) {
+				JSONObject child = getElement(childId);
+				if( child != null ) {
+					children.add(child);
+				}
+			}
+			if( !children.isEmpty() ){
+				return children;
+			}
+		}
+		return null;
+	}
+	
 	protected boolean hasElementValue(JSONObject element, String jsonName) throws JSONException {
 		
 		// See if element has the jsonName field:
@@ -149,34 +166,66 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 	
+	protected List<JSONObject> searchWithinContext(JSONObject owner, String jsonValue, String jsonName) {
+		if( owner == null )
+			return null;
+			
+		List<JSONObject> children = (List<JSONObject>) getChildren(owner);
+		if( children == null ) 
+			return null;
+			
+		List<JSONObject> elementList = new ArrayList<JSONObject>();
+		for( JSONObject child : children ) {
+			// Search for element using dfs:
+			if( jsonValue == null || getElementValue(child, jsonName).equals(jsonValue)) {
+        		elementList.add(child);
+        	}
+			
+			List<JSONObject> childElementList = searchWithinContext(child, jsonValue, jsonName);
+			if( childElementList != null ) {
+				elementList.addAll(childElementList);
+			}
+		}
+		
+		if( elementList.isEmpty() )
+			return null;
+		
+		return elementList;
+	}
+
+	
 	protected Collection<JSONObject> searchForElements(Object context,
 			String jsonName, String jsonValue) {
 		
 		if( jsonName == null )
 			return null;
 		
-		List<JSONObject> elementList = new ArrayList<JSONObject>();
-		// TODO -- take into account context:
-		for( JSONObject element : elementMap.values() ) {
-			
-			// If element has value and there is not provided jsonValue to match it against, return that element
-			// If element has the value and there is a provided jsonValue to match it against, return that element if it equals the jsonValue
-			try {
-                if( hasElementValue(element, jsonName) )
-                {
-                	if( jsonValue == null || getElementValue(element, jsonName).equals(jsonValue))
-                	{
-                		elementList.add(element);
-                	}
-                }
-            } catch ( JSONException e ) {
-                e.printStackTrace();
-            }
+		List<JSONObject> elementList;
+		if( context != null && context instanceof JSONObject ) {
+			// Do depth first search within the context of the owner for a match:
+			JSONObject owner = (JSONObject) context;
+			elementList = searchWithinContext(owner, jsonValue, jsonName);
+		} else {
+			elementList = new ArrayList<JSONObject>();
+			// Search for element by going linearly through all the elements:
+			for( JSONObject element : elementMap.values() ) {
+				
+				// If element has value and there is not provided jsonValue to match it against, return that element
+				// If element has the value and there is a provided jsonValue to match it against, return that element if it equals the jsonValue
+				try {
+	                if( hasElementValue(element, jsonName) ) {
+	                	if( jsonValue == null || getElementValue(element, jsonName).equals(jsonValue)) {
+	                		elementList.add(element);
+	                	}
+	                }
+	            } catch ( JSONException e ) {
+	                e.printStackTrace();
+	            }
+			}
 		}
 		
-		if(elementList.isEmpty()){
+		if(elementList.isEmpty())
 			return null;
-		}
 		
 		return elementList;
 	}
@@ -210,6 +259,25 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return getProperty(relationship, "target");
 	}
 
+	public Collection<JSONObject> getOwner(JSONObject relationship) {
+		return getProperty(relationship, "owner");
+	}
+	
+	public Collection<JSONObject> getChildren(JSONObject relationship) {
+		if ( relationship instanceof JSONObject ) {
+			try {
+                if( relationship != null ) {
+                	String id = (String) getElementValue(relationship, "sysmlid");
+                	return getChildrenElements(id);
+                }
+            } catch ( JSONException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+		}
+		return null;		
+	}
+	
 	@Override
 	public Class<JSONObject> getElementClass() {
 		return JSONObject.class;
@@ -439,8 +507,13 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	@Override
 	public Collection<JSONObject> getElementWithIdentifier(Object context,
 			String specifier) {
-		// TODO -- need to take into account the context!
-        return Utils.newList( elementMap.get(specifier) );
+		if( specifier == null ){
+			return null; 
+		}
+		if( context == null ){
+			return Utils.newList( elementMap.get(specifier) ); 
+		}
+		return searchForElements(context,"sysmlid", specifier); 
 	}
 
 	@Override
@@ -1245,19 +1318,19 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
             System.out.println("Opening " + args[0]);
             String jsonString = FileUtils.fileToString(args[0]);            
             JsonSystemModel systemModel = new JsonSystemModel(jsonString);
-            Collection<JSONObject> elements;
+            List<JSONObject> elements;
             
             // Search for all elements with the name "Info":
-            elements = systemModel.getElementWithName(null, "Info");
+            elements = (List<JSONObject>) systemModel.getElementWithName(null, "Info");
             System.out.println("\nItems with name 'Info' (" + elements.size() + "):");
-            for( JSONObject element : elements.toArray(new JSONObject[0]) ){
+            for( JSONObject element : elements ){
             	System.out.println(systemModel.getName(element) + ": " + element.toString());
             }
             
         	// Search for all elements with the type "Expose":
-            elements = systemModel.getElementWithType(null, "Expose");
+            elements = (List<JSONObject>) systemModel.getElementWithType(null, "Expose");
             System.out.println("\nItems with type 'Expose' (" + elements.size() + "):");
-            for( JSONObject element : elements.toArray(new JSONObject[0]) ){
+            for( JSONObject element : elements ){
             	System.out.println(systemModel.getType(element, null) + ": " + element.toString());
             	
             	// Print the source and target for this expose:
@@ -1268,12 +1341,46 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
             }
             
             // Search for all elements with the sysmlid "_17_0_5_1_6050206_1414171540166_947652_15968":
-            elements = systemModel.getElementWithIdentifier(null, "_17_0_5_1_6050206_1414171540166_947652_15968");
+            elements = (List<JSONObject>) systemModel.getElementWithIdentifier(null, "_17_0_5_1_6050206_1414171540166_947652_15968");
             System.out.println("\nItems with id '_17_0_5_1_6050206_1414171540166_947652_15968' (" + elements.size() + "):");
-            for( JSONObject element : elements.toArray(new JSONObject[0]) ){
+            for( JSONObject element : elements ){
             	System.out.println(systemModel.getIdentifier(element) + ": " + element.toString());
             }
-        
+            
+            // List all children elements of the element with sysmlid "_17_0_5_1_6050206_1413312418477_883812_11347":
+            elements = (List<JSONObject>) systemModel.getElementWithIdentifier(null, "_17_0_5_1_6050206_1413312418477_883812_11347");
+            System.out.println("\nChildren of element '_17_0_5_1_6050206_1413312418477_883812_11347' (" + elements.size() + "):");
+            for( JSONObject element : elements ){
+            	List<JSONObject> children = (List<JSONObject>) systemModel.getChildren(element);
+            	for( JSONObject child : children ) {
+            		JSONObject owner = systemModel.getOwner(element).toArray(new JSONObject[0])[0];
+                	System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(child) + ": " + child.toString());
+            	}
+            }
+            
+            // Search for all elements with the type "Element" within the context of element with name "Bike":
+            elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
+            //elements = (List<JSONObject>) systemModel.getElementWithIdentifier(null, "_17_0_5_1_6050206_1413319804206_110143_29011");
+            System.out.println("\nItems with name 'Bike' (" + elements.size() + "):");
+            for( JSONObject element : elements ){
+            	List<JSONObject> properties = (List<JSONObject>) systemModel.getElementWithType(element, "Element");
+            	for( JSONObject property : properties ){
+            		JSONObject owner = systemModel.getOwner(property).toArray(new JSONObject[0])[0];
+            		System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(property) + ": " + property.toString());
+            	}
+            }
+            
+            // Search for all elements with the id "_17_0_5_1_6050206_1413312418570_676124_11381" within the context of element with name "Bike":
+            elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
+            System.out.println("\nItems with name 'Bike' (" + elements.size() + "):");
+            for( JSONObject element : elements ){
+            	List<JSONObject> properties = (List<JSONObject>) systemModel.getElementWithIdentifier(element, "_17_0_5_1_6050206_1413312418570_676124_11381");
+            	for( JSONObject property : properties ){
+            		JSONObject owner = systemModel.getOwner(property).toArray(new JSONObject[0])[0];
+            		System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(property) + ": " + property.toString());
+            	}
+            }
+            
         } catch (Exception e){
             System.err.println(e.getMessage());
             System.exit(1);
