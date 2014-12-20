@@ -133,6 +133,34 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 	
+	protected Object getSpecialization(JSONObject element, String name) {
+		if( element.has("specialization") ){
+			JSONObject specialization = (JSONObject) element.get("specialization");
+			if( specialization != null && specialization.has(name) ) {
+				return specialization.get(name);
+			}
+		}
+		return null;
+	}
+	
+	protected String getType(JSONObject element) {
+		return (String) getSpecialization(element, "type");
+	}
+	
+	protected Object getValue(JSONObject element) {
+		return getSpecialization(element, "value");
+	}
+	
+	protected String getPropertyType(JSONObject element) {
+		 String id = (String) getSpecialization(element, "propertyType");
+		 if( id != null ) {
+			 JSONObject property = getElement(id);
+			 if( property != null )
+				 return (String) property.get("name");
+		 } 
+		 return null;
+	}
+	
 	protected boolean hasElementProperty(JSONObject element, String name) throws JSONException {
 		
 		if( element != null ) {
@@ -141,11 +169,8 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 				return true;
 			}
 			// See if element has a specialization that has the jsonName field:
-			else if( element.has("specialization") ){
-				JSONObject specialization = (JSONObject) element.get("specialization");
-				if( specialization != null && specialization.has(name) ) {
-					return true;
-				}
+			else if( getSpecialization(element, name) != null ) {
+				return true;
 			}
 			
 			// See if the element has any children with this name:
@@ -163,7 +188,6 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	}
 	
 	protected Object getElementProperty(JSONObject element, String name) throws JSONException {
-		
 		if( element != null ) {
 			// See if element has the field name in json:
 			if( element.has(name) ) {
@@ -171,12 +195,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 			}
 			
 			// See if element has a specialization that has the jsonName field:
-			else if( element.has("specialization") ){
-				JSONObject specialization = (JSONObject) element.get("specialization");
-				if( specialization != null && specialization.has(name) ) {
-					return specialization.get(name);
-				}
-			}
+			Object property = getSpecialization(element, name);
+			if( property != null )
+				return property;
 			
 			// See if the element has any children with this name:
 			List<JSONObject> children = (List<JSONObject>) getChildren(element);
@@ -188,11 +209,10 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 				}
 			}
 		}
-		
 		return null;
 	}
 	
-	protected Map<String, Object> jsonToMap(JSONObject json) throws JSONException {
+	public static Map<String, Object> jsonToMap(JSONObject json) throws JSONException {
 		
 		if( json != null ) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -226,9 +246,12 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 				List<JSONObject> children = (List<JSONObject>) getChildren(element);
 				if( children != null ) {
 					for( JSONObject child : children ) {
-						if( child.has("name") ) {
+						
+						// Make sure the children are of type "Property":
+						if( getType(child).equals("Property") ) {
 							propertyMap.put( (String) child.get("name"), (Object) child );
 						}
+												
 					}
 				}
 			}
@@ -348,8 +371,8 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	public Collection<JSONObject> getChildren(JSONObject relationship) {
 		if ( relationship instanceof JSONObject ) {
 			try {
-                if( relationship != null ) {
-                	String id = (String) getElementProperty(relationship, "sysmlid");
+                if( relationship != null && relationship.has("sysmlid")) {
+                	String id = (String) relationship.get("sysmlid");
                 	return getChildrenElements(id);
                 }
             } catch ( JSONException e ) {
@@ -747,7 +770,30 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	@Override
 	public Collection<Object> getPropertyWithIdentifier(Object context,
 			String specifier) {
-		// TODO Auto-generated method stub
+		
+		Map<String, Object> properties = getElementProperties((JSONObject) context);
+		if( properties != null )
+		{
+			Collection<Object> propertiesToReturn = new ArrayList<Object>();
+			for (Object property : properties.values()) {
+				
+				// Make sure property type matches the specifier:
+				if (property instanceof JSONObject) { 
+					JSONObject jsonProperty = (JSONObject) property;
+					Collection<String> identifier = getIdentifier(jsonProperty);
+					if( identifier != null ) {
+						String id = identifier.toArray(new String[0])[0];
+						if( id != null && id.equals(specifier) ) {
+							propertiesToReturn.add(jsonProperty);
+						}
+					}
+				}
+			}
+			
+			if( !propertiesToReturn.isEmpty() )
+				return propertiesToReturn;
+		}
+		
 		return null;
 	}
 
@@ -761,7 +807,26 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	@Override
 	public Collection<Object> getPropertyWithType(Object context,
 			String specifier) {
-		// TODO Auto-generated method stub
+		
+		Map<String, Object> properties = getElementProperties((JSONObject) context);
+		if( properties != null )
+		{
+			Collection<Object> propertiesToReturn = new ArrayList<Object>();
+			for (Object property : properties.values()) {
+				// Make sure property type matches the specifier:
+				if (property instanceof JSONObject) { 
+					JSONObject jsonProperty = (JSONObject) property;
+					String propertyType = getPropertyType(jsonProperty);
+					if( propertyType != null && propertyType.equals(specifier) ) {
+						propertiesToReturn.add(jsonProperty);
+					}
+				}
+			}
+			
+			if( !propertiesToReturn.isEmpty() )
+				return propertiesToReturn;
+		}
+		
 		return null;
 	}
 
@@ -1476,6 +1541,32 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	    		for (Map.Entry<String, Object> prop : allProperties.entrySet()) {
 	    		    System.out.println(prop.getKey() + ": " + prop.getValue().toString());
 	    		}
+            }
+            
+            // Get all properties of element with id "_17_0_5_1_6050206_1413312418570_676124_11381" of propertyType "Wheel"
+            elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
+            System.out.println("\nItems with name 'Bike' (" + elements.size() + "):");
+            for( JSONObject element : elements ){
+            	List<Object> properties  = (List<Object>) systemModel.getPropertyWithType(element, "Wheel");
+	    		System.out.println("Properties of type 'Wheel':");
+	    		for( Object property : properties ){
+	    			JSONObject jsonProperty = (JSONObject) property;
+            		JSONObject owner = systemModel.getOwner(jsonProperty).toArray(new JSONObject[0])[0];
+            		System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(jsonProperty) + ": " + systemModel.getPropertyType((JSONObject) property) + " "+ property.toString());
+            	}
+            }
+            
+            // Get all properties of element with id "_17_0_5_1_6050206_1413312418570_676124_11381" with Identifier "_17_0_5_1_6050206_1413312418586_274282_11406"
+            elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
+            System.out.println("\nItems with name 'Bike' (" + elements.size() + "):");
+            for( JSONObject element : elements ){
+            	List<Object> properties  = (List<Object>) systemModel.getPropertyWithIdentifier(element, "_17_0_5_1_6050206_1413312418586_274282_11406");
+	    		System.out.println("Properties with id '_17_0_5_1_6050206_1413312418586_274282_11406':");
+	    		for( Object property : properties ){
+	    			JSONObject jsonProperty = (JSONObject) property;
+            		JSONObject owner = systemModel.getOwner(jsonProperty).toArray(new JSONObject[0])[0];
+            		System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(jsonProperty) + ": " + systemModel.getPropertyType((JSONObject) property) + " "+ property.toString());
+            	}
             }
             
         } catch (Exception e){
