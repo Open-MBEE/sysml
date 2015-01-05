@@ -342,18 +342,27 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return elementList;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public boolean isDirected(JSONObject relationship) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelatedElements(JSONObject relationship) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementForRole(JSONObject relationship,
 			String role) {
@@ -464,90 +473,135 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return JSONObject.class;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public JSONObject createConstraint(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public JSONObject createElement(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public String createIdentifier(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public String createName(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public JSONObject createProperty(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public JSONObject createRelationship(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public String createType(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public JSONObject createValue(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public String createVersion(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public JSONObject createView(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public JSONObject createViewpoint(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public String createWorkspace(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Object delete(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraint(Object context, Object specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithElement(Object context,
 			JSONObject specifier) {
@@ -555,6 +609,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithIdentifier(Object context,
 			String specifier) {
@@ -562,6 +619,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithName(Object context,
 			String specifier) {
@@ -569,6 +629,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithProperty(Object context,
 			Object specifier) {
@@ -576,6 +639,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithRelationship(Object context,
 			JSONObject specifier) {
@@ -583,6 +649,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithType(Object context,
 			String specifier) {
@@ -590,6 +659,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithVersion(Object context,
 			String specifier) {
@@ -597,6 +669,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithView(Object context,
 			JSONObject specifier) {
@@ -604,6 +679,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithViewpoint(Object context,
 			JSONObject specifier) {
@@ -611,6 +689,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithWorkspace(Object context,
 			String specifier) {
@@ -618,6 +699,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementWithConstraint(Object context,
 			JSONObject specifier) {
@@ -646,6 +730,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return searchForElements(context,"name", specifier);
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementWithProperty(Object context,
 			Object specifier) {
@@ -653,6 +740,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementWithRelationship(Object context,
 			JSONObject specifier) {
@@ -669,6 +759,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return searchForElements(context,"type", specifier);
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementWithVersion(Object context,
 			String specifier) {
@@ -676,6 +769,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementWithView(Object context,
 			JSONObject specifier) {
@@ -683,6 +779,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementWithViewpoint(Object context,
 			JSONObject specifier) {
@@ -690,6 +789,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementWithWorkspace(Object context,
 			String specifier) {
@@ -770,6 +872,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getPropertyWithConstraint(Object context,
 			JSONObject specifier) {
@@ -819,6 +924,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getPropertyWithRelationship(Object context,
 			JSONObject specifier) {
@@ -858,6 +966,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getPropertyWithVersion(Object context,
 			String specifier) {
@@ -865,6 +976,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getPropertyWithView(Object context,
 			JSONObject specifier) {
@@ -872,6 +986,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getPropertyWithViewpoint(Object context,
 			JSONObject specifier) {
@@ -879,6 +996,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getPropertyWithWorkspace(Object context,
 			String specifier) {
@@ -886,6 +1006,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationship(Object context,
 			Object specifier) {
@@ -893,6 +1016,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithConstraint(Object context,
 			JSONObject specifier) {
@@ -900,6 +1026,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithElement(Object context,
 			JSONObject specifier) {
@@ -907,6 +1036,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithIdentifier(Object context,
 			String specifier) {
@@ -914,6 +1046,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithName(Object context,
 			String specifier) {
@@ -921,6 +1056,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithProperty(Object context,
 			Object specifier) {
@@ -928,6 +1066,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithType(Object context,
 			String specifier) {
@@ -935,6 +1076,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithVersion(Object context,
 			String specifier) {
@@ -942,6 +1086,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithView(Object context,
 			JSONObject specifier) {
@@ -949,6 +1096,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithViewpoint(Object context,
 			JSONObject specifier) {
@@ -956,6 +1106,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithWorkspace(Object context,
 			String specifier) {
@@ -988,12 +1141,18 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	    }
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public String getTypeString(Object context, Object specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithConstraint(Object context,
 			JSONObject specifier) {
@@ -1001,6 +1160,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithElement(Object context,
 			JSONObject specifier) {
@@ -1008,6 +1170,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithIdentifier(Object context,
 			String specifier) {
@@ -1015,6 +1180,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithName(Object context,
 			String specifier) {
@@ -1022,6 +1190,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithProperty(Object context,
 			Object specifier) {
@@ -1029,6 +1200,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithRelationship(Object context,
 			JSONObject specifier) {
@@ -1036,6 +1210,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithVersion(Object context,
 			String specifier) {
@@ -1043,6 +1220,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithView(Object context,
 			JSONObject specifier) {
@@ -1050,6 +1230,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithViewpoint(Object context,
 			JSONObject specifier) {
@@ -1057,6 +1240,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithWorkspace(Object context,
 			String specifier) {
@@ -1088,6 +1274,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithConstraint(Object context,
 			JSONObject specifier) {
@@ -1095,6 +1284,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithElement(Object context,
 			JSONObject specifier) {
@@ -1102,6 +1294,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithIdentifier(Object context,
 			String specifier) {
@@ -1109,6 +1304,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithName(Object context,
 			String specifier) {
@@ -1116,6 +1314,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithProperty(Object context,
 			Object specifier) {
@@ -1123,6 +1324,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithRelationship(Object context,
 			JSONObject specifier) {
@@ -1130,6 +1334,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithType(Object context,
 			String specifier) {
@@ -1137,6 +1344,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithVersion(Object context,
 			String specifier) {
@@ -1144,6 +1354,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithView(Object context,
 			JSONObject specifier) {
@@ -1151,6 +1364,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithViewpoint(Object context,
 			JSONObject specifier) {
@@ -1158,6 +1374,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getValueWithWorkspace(Object context,
 			String specifier) {
@@ -1165,24 +1384,36 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getVersion(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getView(Object context, Object specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpoint(Object context, Object specifier) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithConstraint(Object context,
 			JSONObject specifier) {
@@ -1190,6 +1421,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithElement(Object context,
 			JSONObject specifier) {
@@ -1197,6 +1431,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithIdentifier(Object context,
 			String specifier) {
@@ -1204,6 +1441,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithName(Object context,
 			String specifier) {
@@ -1211,6 +1451,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithProperty(Object context,
 			Object specifier) {
@@ -1218,6 +1461,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithRelationship(Object context,
 			JSONObject specifier) {
@@ -1225,6 +1471,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithType(Object context,
 			String specifier) {
@@ -1232,6 +1481,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithVersion(Object context,
 			String specifier) {
@@ -1239,6 +1491,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithView(Object context,
 			JSONObject specifier) {
@@ -1246,6 +1501,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithWorkspace(Object context,
 			String specifier) {
@@ -1253,6 +1511,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithConstraint(Object context,
 			JSONObject specifier) {
@@ -1260,6 +1521,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithElement(Object context,
 			JSONObject specifier) {
@@ -1267,6 +1531,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithIdentifier(Object context,
 			String specifier) {
@@ -1274,6 +1541,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithName(Object context,
 			String specifier) {
@@ -1281,6 +1551,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithProperty(Object context,
 			Object specifier) {
@@ -1288,6 +1561,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithRelationship(Object context,
 			JSONObject specifier) {
@@ -1295,6 +1571,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithType(Object context,
 			String specifier) {
@@ -1302,6 +1581,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithVersion(Object context,
 			String specifier) {
@@ -1309,6 +1591,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithViewpoint(Object context,
 			JSONObject specifier) {
@@ -1316,6 +1601,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithWorkspace(Object context,
 			String specifier) {
@@ -1323,36 +1611,54 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getWorkspace(Object context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public boolean fixConstraintViolations(JSONObject element, String version) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public boolean idsAreWritable() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public boolean namesAreWritable() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public boolean versionsAreWritable() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public JSONObject getDomainConstraint(JSONObject element, String version,
 			String workspace) {
@@ -1360,6 +1666,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public void addConstraint(JSONObject constraint, String version,
 			String workspace) {
@@ -1367,6 +1676,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintsOfElement(JSONObject element,
 			String version, String workspace) {
@@ -1374,6 +1686,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViolatedConstraintsOfElement(
 			JSONObject element, String version) {
@@ -1381,12 +1696,18 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public void setOptimizationFunction(Method method, Object... arguments) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Number getScore() {
 		// TODO Auto-generated method stub
@@ -1399,6 +1720,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getConstraintWithValue(Object context,
 			Object specifier) {
@@ -1406,6 +1730,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getElementWithValue(Object context,
 			Object specifier) {
@@ -1413,6 +1740,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<Object> getPropertyWithValue(Object context,
 			Object specifier) {
@@ -1420,6 +1750,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getRelationshipWithValue(Object context,
 			Object specifier) {
@@ -1427,6 +1760,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<String> getTypeWithValue(Object context,
 			Object specifier) {
@@ -1434,6 +1770,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewpointWithValue(Object context,
 			Object specifier) {
@@ -1441,6 +1780,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Collection<JSONObject> getViewWithValue(Object context,
 			Object specifier) {
@@ -1448,12 +1790,18 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public Object set(Object object, Object specifier, Object value) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public void addDomainConstraint(JSONObject constraint, String version,
 			Set<Object> valueDomainSet, String workspace) {
@@ -1461,28 +1809,37 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	}
 
+	/**
+	 * Not yet implemented.
+	 */
 	@Override
 	public void addDomainConstraint(JSONObject constraint, String version,
-			Pair<Object, Object> valueDomainRange, String workspace) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void relaxDomain(JSONObject constraint, String version,
-			Set<Object> valueDomainSet, String workspace) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void relaxDomain(JSONObject constraint, String version,
 			Pair<Object, Object> valueDomainRange, String workspace) {
 		// TODO Auto-generated method stub
 
 	}
 
 	/**
+	 * Not yet implemented.
+	 */
+	@Override
+	public void relaxDomain(JSONObject constraint, String version,
+			Set<Object> valueDomainSet, String workspace) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Not yet implemented.
+	 */
+	@Override
+	public void relaxDomain(JSONObject constraint, String version,
+			Pair<Object, Object> valueDomainRange, String workspace) {
+		// TODO Auto-generated method stub
+
+	}
+
+    /**
      * @param args
      */
     public static void main( String[] args ) {
