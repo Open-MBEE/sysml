@@ -1,121 +1,122 @@
 /*******************************************************************************
- * Copyright (c) <2014>, California Institute of Technology ("Caltech").  
+ * Copyright (c) <2014>, California Institute of Technology ("Caltech").
  * U.S. Government sponsorship acknowledged.
- * 
+ *
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, are 
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are
  * permitted provided that the following conditions are met:
- * 
- *  - Redistributions of source code must retain the above copyright notice, this list of 
+ *
+ *  - Redistributions of source code must retain the above copyright notice, this list of
  *    conditions and the following disclaimer.
- *  - Redistributions in binary form must reproduce the above copyright notice, this list 
- *    of conditions and the following disclaimer in the documentation and/or other materials 
+ *  - Redistributions in binary form must reproduce the above copyright notice, this list
+ *    of conditions and the following disclaimer in the documentation and/or other materials
  *    provided with the distribution.
- *  - Neither the name of Caltech nor its operating division, the Jet Propulsion Laboratory, 
- *    nor the names of its contributors may be used to endorse or promote products derived 
+ *  - Neither the name of Caltech nor its operating division, the Jet Propulsion Laboratory,
+ *    nor the names of its contributors may be used to endorse or promote products derived
  *    from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS 
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY 
- * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER  
- * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON 
- * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
- * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  ******************************************************************************/
 
 package sysml.examples;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import gov.nasa.jpl.mbee.util.Debug;
 import gov.nasa.jpl.mbee.util.FileUtils;
 import gov.nasa.jpl.mbee.util.Pair;
 import gov.nasa.jpl.mbee.util.Utils;
-import sysml.AbstractSystemModel;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import sysml.AbstractSystemModel;
+
 /**
  * Compile: from mbee-dev/sysml/src run: javac sysml/examples/ReadJSON.java -classpath ".:org:../../util/src/"
  * Run: from mbee-dev/sysml/src run: Opening sysml/examples/Load Job PROJECT-ID_10_14_14_11_41_30_AM_188fb709_1490a823d0d_7361_europa_tw_jpl_nasa_gov_128_149_19_48.json
- *  
+ *
  */
 public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject, String, Object, String, String, Object, JSONObject, String, String, JSONObject > {
-	
+
 	// JSONObject that contains the JSON:
 	protected JSONObject json = null;
-	
+
 	// Map of element sysmlid to JSON element objects:
-	protected Map<String, JSONObject> elementMap = new HashMap<String, JSONObject>();
-	
+	protected Map<String, JSONObject> elementMap = new LinkedHashMap<String, JSONObject>();
+
 	// Map of element sysmlid to List of sysmlids that that element owns
-	protected Map<String, List<String> > ownershipMap = new HashMap<String, List<String> >();
-		
-	public JsonSystemModel(String jsonString) throws JSONException{ 
+	protected Map<String, List<String> > ownershipMap = new LinkedHashMap<String, List<String> >();
+
+	public JsonSystemModel(String jsonString) throws JSONException{
 		readJson(jsonString);
 	}
-	
+
 	public void readJson(String jsonString) throws JSONException{
 		try{
 			json = new JSONObject(jsonString);
 			// Make sure JSON format contains what we expect:
 			if( json.has("elements") ) {
     			JSONArray elements = json.getJSONArray("elements");
-    			
+
     			for( int i = 0; i < elements.length(); i++) {
     				JSONObject jsonObj = elements.getJSONObject(i);
     				//System.out.println(i + ": " + jsonObj.toString());
-    	
+
     				// Make sure JSON format contains what we expect:
     				if( jsonObj.has("sysmlid") ) {
-    					
+
     					// Update element map:
     					//System.out.println("Key: " + jsonObj.getString("sysmlid"));
     					elementMap.put(jsonObj.getString("sysmlid"), jsonObj);
-    					
+
     					// Update ownership map:
     					if( jsonObj.has("owner") ) {
     						String owner = jsonObj.getString("owner");
     						List<String> owned = ownershipMap.get(owner);
-    					    if (owned == null) {        
+    					    if (owned == null) {
     					    	ownershipMap.put(owner, (owned = new ArrayList<String>()) );
     					    }
     					    owned.add(jsonObj.getString("sysmlid"));
         				}
-    					
+
     				}else {
     					System.err.println("Error, invalid JSON format!");
     				}
-    			}	
+    			}
     		} else {
     			System.err.println("Error, invalid JSON format!");
     		}
-			
+
 		} catch (Exception e){
             System.err.println("Error reading JSON string!");
             throw e;
 		}
 	}
-	
+
 	protected JSONObject getElement(String id) {
 		if( elementMap.containsKey(id) ) {
 			return elementMap.get(id);
 		}
 		return null;
 	}
-	
+
 	protected Collection<JSONObject> getChildrenElements(String id) {
 		if( id != null && ownershipMap.containsKey(id) ) {
 			List<String> childrenIds = ownershipMap.get(id);
@@ -132,37 +133,47 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		}
 		return null;
 	}
-	
+
 	protected Object getSpecialization(JSONObject element, String name) {
 		if( element.has("specialization") ){
-			JSONObject specialization = (JSONObject) element.get("specialization");
-			if( specialization != null && specialization.has(name) ) {
-				return specialization.get(name);
-			}
+			JSONObject specialization = null;
+            try {
+                specialization = (JSONObject) element.get("specialization");
+    			if( specialization != null && specialization.has(name) ) {
+                        return specialization.get(name);
+    			}
+            } catch ( JSONException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 		}
 		return null;
 	}
-	
+
 	protected String getType(JSONObject element) {
 		return (String) getSpecialization(element, "type");
 	}
-	
+
 	protected Object getValue(JSONObject element) {
 		return getSpecialization(element, "value");
 	}
-	
+
 	protected String getPropertyType(JSONObject element) {
 		 String id = (String) getSpecialization(element, "propertyType");
 		 if( id != null ) {
 			 JSONObject property = getElement(id);
-			 if( property != null )
-				 return (String) property.get("name");
-		 } 
+			 if( property != null ) try {
+                return (String) property.get("name");
+            } catch ( JSONException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+		 }
 		 return null;
 	}
-	
+
 	protected boolean hasElementProperty(JSONObject element, String name) throws JSONException {
-		
+
 		if( element != null ) {
 			// See if element has the jsonName field:
 			if( element.has(name) ) {
@@ -172,7 +183,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 			else if( getSpecialization(element, name) != null ) {
 				return true;
 			}
-			
+
 			// See if the element has any children with this name:
 			List<JSONObject> children = (List<JSONObject>) getChildren(element);
 			if( children != null ) {
@@ -183,22 +194,22 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 				}
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	protected Object getElementProperty(JSONObject element, String name) throws JSONException {
 		if( element != null ) {
 			// See if element has the field name in json:
 			if( element.has(name) ) {
 				return element.get(name);
 			}
-			
+
 			// See if element has a specialization that has the jsonName field:
 			Object property = getSpecialization(element, name);
 			if( property != null )
 				return property;
-			
+
 			// See if the element has any children with this name:
 			List<JSONObject> children = (List<JSONObject>) getChildren(element);
 			if( children != null ) {
@@ -211,29 +222,29 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		}
 		return null;
 	}
-	
+
 	public static Map<String, Object> jsonToMap(JSONObject json) throws JSONException {
-		
+
 		if( json != null ) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			
+			Map<String, Object> map = new LinkedHashMap<String, Object>();
+
 			// Get the json properties in the element:
-			Iterator<String> keys = json.keys(); 
+			Iterator<String> keys = json.keys();
 			while ( keys.hasNext() ) {
 			    String key = keys.next();
 			    map.put(key, json.get(key));
 			}
-			
+
 			return map;
 		}
-		
+
 		return null;
-	}		
-			
+	}
+
 	protected Map<String, Object> getElementProperties(JSONObject element) throws JSONException {
-		
+
 		if( element != null ) {
-			
+
 			Map<String, Object> propertyMap = jsonToMap(element);
 			if( propertyMap != null ) {
 				// See if element has a specialization that has the jsonName field:
@@ -241,61 +252,66 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 					JSONObject specialization = (JSONObject) element.get("specialization");
 					propertyMap.putAll( jsonToMap( specialization ) );
 				}
-			
+
 				// See if the element has any children with this name:
 				List<JSONObject> children = (List<JSONObject>) getChildren(element);
 				if( children != null ) {
 					for( JSONObject child : children ) {
-						
+
 						// Make sure the children are of type "Property":
 						if( getType(child).equals("Property") ) {
 							propertyMap.put( (String) child.get("name"), (Object) child );
 						}
-												
+
 					}
 				}
 			}
 			if( !propertyMap.isEmpty() )
 				return propertyMap;
 		}
-		
+
 		return null;
 	}
-	
+
 	protected List<JSONObject> searchWithinContext(JSONObject owner, String jsonName, Object jsonValue) {
 		if( owner == null )
 			return null;
-			
+
 		List<JSONObject> children = (List<JSONObject>) getChildren(owner);
-		if( children == null ) 
+		if( children == null )
 			return null;
-			
+
 		List<JSONObject> elementList = new ArrayList<JSONObject>();
 		for( JSONObject child : children ) {
 			// Search for element using dfs:
-			if( jsonValue == null || getElementProperty(child, jsonName).equals(jsonValue)) {
-        		elementList.add(child);
-        	}
-			
+			try {
+                if( jsonValue == null || getElementProperty(child, jsonName).equals(jsonValue)) {
+                	elementList.add(child);
+                }
+            } catch ( JSONException e ) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
 			List<JSONObject> childElementList = searchWithinContext(child, jsonName, jsonValue);
 			if( childElementList != null ) {
 				elementList.addAll(childElementList);
 			}
 		}
-		
+
 		if( elementList.isEmpty() )
 			return null;
-		
+
 		return elementList;
 	}
 
-	
+
 	protected Collection<JSONObject> searchForElements(Object context,
 			String jsonName, Object jsonValue) {
-		
+
 		if( jsonName == null )
 			return null;
-		
+
 		List<JSONObject> elementList;
 		if( context != null && context instanceof JSONObject ) {
 			// Do depth first search within the context of the owner for a match:
@@ -305,7 +321,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 			elementList = new ArrayList<JSONObject>();
 			// Search for element by going linearly through all the elements:
 			for( JSONObject element : elementMap.values() ) {
-				
+
 				// If element has value and there is not provided jsonValue to match it against, return that element
 				// If element has the value and there is a provided jsonValue to match it against, return that element if it equals the jsonValue
 				try {
@@ -319,10 +335,10 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	            }
 			}
 		}
-		
+
 		if(elementList.isEmpty())
 			return null;
-		
+
 		return elementList;
 	}
 
@@ -367,7 +383,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 			return getElementWithIdentifier(null, id);
 		return null;
 	}
-	
+
 	public Collection<JSONObject> getChildren(JSONObject relationship) {
 		if ( relationship instanceof JSONObject ) {
 			try {
@@ -380,9 +396,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
                 e.printStackTrace();
             }
 		}
-		return null;		
+		return null;
 	}
-	
+
 	@Override
 	public Class<JSONObject> getElementClass() {
 		return JSONObject.class;
@@ -613,19 +629,19 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	public Collection<JSONObject> getElementWithIdentifier(Object context,
 			String specifier) {
 		if( specifier == null ){
-			return null; 
+			return null;
 		}
 		if( context == null ){
-			return Utils.newList( elementMap.get(specifier) ); 
+			return Utils.newList( elementMap.get(specifier) );
 		}
-		return searchForElements(context,"sysmlid", specifier); 
+		return searchForElements(context,"sysmlid", specifier);
 	}
 
 	@Override
 	public Collection<JSONObject> getElementWithName(Object context,
 			String specifier) {
 		if( specifier == null ){
-			return null; 
+			return null;
 		}
 		return searchForElements(context,"name", specifier);
 	}
@@ -648,7 +664,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	public Collection<JSONObject> getElementWithType(Object context,
 			String specifier) {
 		if( specifier == null ){
-			return null; 
+			return null;
 		}
 		return searchForElements(context,"type", specifier);
 	}
@@ -736,14 +752,14 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	@Override
 	// Assuming this is get property with "name" as the specifier...
 	public Collection<Object> getProperty(Object context, Object specifier) {
-		
+
 		if ( context != null && context instanceof JSONObject ) {
 			JSONObject jsonContext = (JSONObject) context;
 			try {
                 if( hasElementProperty(jsonContext, "" + specifier) ) {
                 	Object property = getElementProperty(jsonContext, "" + specifier);
                 	if( property != null ) {
-                		return Utils.newList( property );	
+                		return Utils.newList( property );
                 	}
                 }
             } catch ( JSONException e ) {
@@ -770,15 +786,21 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	@Override
 	public Collection<Object> getPropertyWithIdentifier(Object context,
 			String specifier) {
-		
-		Map<String, Object> properties = getElementProperties((JSONObject) context);
+
+		Map< String, Object > properties = null;
+        try {
+            properties = getElementProperties((JSONObject) context);
+        } catch ( JSONException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		if( properties != null )
 		{
 			Collection<Object> propertiesToReturn = new ArrayList<Object>();
 			for (Object property : properties.values()) {
-				
+
 				// Make sure property type matches the specifier:
-				if (property instanceof JSONObject) { 
+				if (property instanceof JSONObject) {
 					JSONObject jsonProperty = (JSONObject) property;
 					Collection<String> identifier = getIdentifier(jsonProperty);
 					if( identifier != null ) {
@@ -789,11 +811,11 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 					}
 				}
 			}
-			
+
 			if( !propertiesToReturn.isEmpty() )
 				return propertiesToReturn;
 		}
-		
+
 		return null;
 	}
 
@@ -807,14 +829,20 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	@Override
 	public Collection<Object> getPropertyWithType(Object context,
 			String specifier) {
-		
-		Map<String, Object> properties = getElementProperties((JSONObject) context);
+
+		Map< String, Object > properties = null;
+        try {
+            properties = getElementProperties((JSONObject) context);
+        } catch ( JSONException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		if( properties != null )
 		{
 			Collection<Object> propertiesToReturn = new ArrayList<Object>();
 			for (Object property : properties.values()) {
 				// Make sure property type matches the specifier:
-				if (property instanceof JSONObject) { 
+				if (property instanceof JSONObject) {
 					JSONObject jsonProperty = (JSONObject) property;
 					String propertyType = getPropertyType(jsonProperty);
 					if( propertyType != null && propertyType.equals(specifier) ) {
@@ -822,11 +850,11 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 					}
 				}
 			}
-			
+
 			if( !propertiesToReturn.isEmpty() )
 				return propertiesToReturn;
 		}
-		
+
 		return null;
 	}
 
@@ -1038,7 +1066,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 
 	@Override
 	public Collection<Object> getValue(Object context, Object specifier) {
-		
+
 		/*
 		if ( context instanceof JSONObject ) {
 			JSONObject jsonContext = (JSONObject) context;
@@ -1047,7 +1075,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
                 	String id = (String) getElementValue(jsonContext, "" + specifier);
                 	Object element = getElement(id);
                 	if( element != null ) {
-                		return Utils.newList( element );	
+                		return Utils.newList( element );
                 	}
                 }
             } catch ( JSONException e ) {
@@ -1336,7 +1364,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	public void addConstraint(JSONObject constraint, String version,
 			String workspace) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -1356,7 +1384,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	@Override
 	public void setOptimizationFunction(Method method, Object... arguments) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -1364,13 +1392,13 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 		// TODO Auto-generated method stub
 		return null;
 	}
-		
+
 	protected Collection< JSONObject > searchForElement(String property, String value)
 	{
-		
+
 		return null;
 	}
-	
+
 	@Override
 	public Collection<JSONObject> getConstraintWithValue(Object context,
 			Object specifier) {
@@ -1430,28 +1458,28 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	public void addDomainConstraint(JSONObject constraint, String version,
 			Set<Object> valueDomainSet, String workspace) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addDomainConstraint(JSONObject constraint, String version,
 			Pair<Object, Object> valueDomainRange, String workspace) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void relaxDomain(JSONObject constraint, String version,
 			Set<Object> valueDomainSet, String workspace) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void relaxDomain(JSONObject constraint, String version,
 			Pair<Object, Object> valueDomainRange, String workspace) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -1464,40 +1492,40 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
             System.err.println("Must provide JSON filename as argument!");
             System.exit(1);
         }
-        
+
         try {
             System.out.println("Opening " + args[0]);
-            String jsonString = FileUtils.fileToString(args[0]);            
+            String jsonString = FileUtils.fileToString(args[0]);
             JsonSystemModel systemModel = new JsonSystemModel(jsonString);
             List<JSONObject> elements;
-            
+
             // Search for all elements with the name "Info":
             elements = (List<JSONObject>) systemModel.getElementWithName(null, "Info");
             System.out.println("\nItems with name 'Info' (" + elements.size() + "):");
             for( JSONObject element : elements ){
             	System.out.println(systemModel.getName(element) + ": " + element.toString());
             }
-            
+
         	// Search for all elements with the type "Expose":
             elements = (List<JSONObject>) systemModel.getElementWithType(null, "Expose");
             System.out.println("\nItems with type 'Expose' (" + elements.size() + "):");
             for( JSONObject element : elements ){
             	System.out.println(systemModel.getType(element, null) + ": " + element.toString());
-            	
+
             	// Print the source and target for this expose:
             	JSONObject source = systemModel.getSource(element).toArray(new JSONObject[0])[0];
             	JSONObject target = systemModel.getTarget(element).toArray(new JSONObject[0])[0];
             	System.out.println("\tsource: " + systemModel.getType( source, null ) + " " + systemModel.getName( source ) + " " + systemModel.getIdentifier( source ));
             	System.out.println("\ttarget: " + systemModel.getType( target, null ) + " " + systemModel.getName( target ) + " " + systemModel.getIdentifier( target ));
             }
-            
+
             // Search for all elements with the sysmlid "_17_0_5_1_6050206_1414171540166_947652_15968":
             elements = (List<JSONObject>) systemModel.getElementWithIdentifier(null, "_17_0_5_1_6050206_1414171540166_947652_15968");
             System.out.println("\nItems with id '_17_0_5_1_6050206_1414171540166_947652_15968' (" + elements.size() + "):");
             for( JSONObject element : elements ){
             	System.out.println(systemModel.getIdentifier(element) + ": " + element.toString());
             }
-            
+
             // List all children elements of the element with sysmlid "_17_0_5_1_6050206_1413312418477_883812_11347":
             elements = (List<JSONObject>) systemModel.getElementWithIdentifier(null, "_17_0_5_1_6050206_1413312418477_883812_11347");
             System.out.println("\nChildren of element '_17_0_5_1_6050206_1413312418477_883812_11347' (" + elements.size() + "):");
@@ -1508,7 +1536,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
                 	System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(child) + ": " + child.toString());
             	}
             }
-            
+
             // Search for all elements with the type "Element" within the context of element with name "Bike":
             elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
             //elements = (List<JSONObject>) systemModel.getElementWithIdentifier(null, "_17_0_5_1_6050206_1413319804206_110143_29011");
@@ -1520,7 +1548,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
             		System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(property) + ": " + property.toString());
             	}
             }
-            
+
             // Search for all elements with the id "_17_0_5_1_6050206_1413312418570_676124_11381" within the context of element with name "Bike":
             elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
             System.out.println("\nItems with name 'Bike' (" + elements.size() + "):");
@@ -1531,7 +1559,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
             		System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(property) + ": " + property.toString());
             	}
             }
-            
+
             // Get all properties of element with id "_17_0_5_1_6050206_1413312418570_676124_11381"
             elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
             System.out.println("\nItems with name 'Bike' (" + elements.size() + "):");
@@ -1542,7 +1570,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 	    		    System.out.println(prop.getKey() + ": " + prop.getValue().toString());
 	    		}
             }
-            
+
             // Get all properties of element with id "_17_0_5_1_6050206_1413312418570_676124_11381" of propertyType "Wheel"
             elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
             System.out.println("\nItems with name 'Bike' (" + elements.size() + "):");
@@ -1555,7 +1583,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
             		System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(jsonProperty) + ": " + systemModel.getPropertyType((JSONObject) property) + " "+ property.toString());
             	}
             }
-            
+
             // Get all properties of element with id "_17_0_5_1_6050206_1413312418570_676124_11381" with Identifier "_17_0_5_1_6050206_1413312418586_274282_11406"
             elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
             System.out.println("\nItems with name 'Bike' (" + elements.size() + "):");
@@ -1568,7 +1596,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
             		System.out.println(systemModel.getName(owner) + " " + systemModel.getIdentifier(owner) + " owns " + systemModel.getIdentifier(jsonProperty) + ": " + systemModel.getPropertyType((JSONObject) property) + " "+ property.toString());
             	}
             }
-            
+
         } catch (Exception e){
             System.err.println(e.getMessage());
             System.exit(1);
