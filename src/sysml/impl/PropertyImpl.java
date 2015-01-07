@@ -10,9 +10,7 @@ import sysml.Property;
 import sysml.Version;
 import sysml.Workspace;
 
-public class PropertyImpl< X >
-                         implements
-                         Property< String, String, sysml.Version< String, Date, Element< String, String, Version, Date, X > >, Date, X > {
+public class PropertyImpl implements Property< String, String, Date > {
 
     public PropertyImpl() {
         // TODO Auto-generated constructor stub
@@ -31,85 +29,81 @@ public class PropertyImpl< X >
     }
 
     @Override
-    public
-            Workspace< String, String, Version< String, Date, Element< String, String, Version, Date, X >>, Date, X >
-            getWorkspace() {
+    public Element< String, String, Date > clone() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public
-            Collection< Property< String, String, Version< String, Date, Element< String, String, Version, Date, X >>, Date, X >>
+    public Workspace< String, String, Date > getWorkspace() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Collection< Property< String, String, Date >>
             getProperty( Object specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public
-            Collection< Property< String, String, Version< String, Date, Element< String, String, Version, Date, X >>, Date, X >>
+    public Collection< Property< String, String, Date >>
             getPropertyWithIdentifier( String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public
-            Collection< Property< String, String, Version< String, Date, Element< String, String, Version, Date, X >>, Date, X >>
+    public Collection< Property< String, String, Date >>
             getPropertyWithName( String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public
-            Collection< Property< String, String, Version< String, Date, Element< String, String, Version, Date, X >>, Date, X >>
-            getPropertyWithType( Element< String, String, Version< String, Date, Element< String, String, Version, Date, X >>, Date, X > specifier ) {
+    public Collection< Property< String, String, Date >>
+            getPropertyWithType( Element< String, String, Date > specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public
-            Collection< Property< String, String, Version< String, Date, Element< String, String, Version, Date, X >>, Date, X >>
+    public Collection< Property< String, String, Date >>
             getPropertyWithValue( Object specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public
-            List< Version< String, Date, Element< String, String, Version, Date, X >>>
+    public List< Version< String, Date, Element< String, String, Date >>>
             getVersions() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public
-            Map< Date, Version< String, Date, Element< String, String, Version, Date, X >>>
+    public Map< Date, Version< String, Date, Element< String, String, Date >>>
             getVersionMap() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Version< String, Date, Element< String, String, Version, Date, X >>
+    public Version< String, Date, Element< String, String, Date >>
             getLatestVersion() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Version< String, Date, Element< String, String, Version, Date, X >>
-            getVersion() {
+    public Version< String, Date, Element< String, String, Date >> getVersion() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Version< String, Date, Element< String, String, Version, Date, X >>
+    public Version< String, Date, Element< String, String, Date >>
             getVersion( Date dateTime ) {
         // TODO Auto-generated method stub
         return null;
@@ -128,19 +122,16 @@ public class PropertyImpl< X >
     }
 
     @Override
-    public int compareTo( Element< String, String,
-                                   Version< String, Date, Element< String, String, Version, Date, X > >,
-                                   Date, X > o ) {
+    public int compareTo( Element< String, String, Date > o ) {
         // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
-    public Collection< Element< String, String,
-                                Version< String, Date, Element< String, String, Version, Date, X >>,
-                                Date, X >> getType() {
+    public Collection< Element< String, String, Date >> getType() {
         // TODO Auto-generated method stub
         return null;
     }
+
 
 }

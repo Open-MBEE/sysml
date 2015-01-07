@@ -10,25 +10,27 @@ import java.util.Map;
 /**
  *
  */
-public interface Element<N, I, V, D, X> extends Comparable< Element<N, I, V, D, X> >, Cloneable {
+public interface Element<N, I, D> extends Comparable< Element<N, I, D> >, Cloneable {
+
+    public Element<N, I, D> clone() throws CloneNotSupportedException;
 
     public I getId();
 
     public N getName();
 
-    public Workspace< N, I, V, D, X >  getWorkspace();
+    public Workspace< N, I, D >  getWorkspace();
 
-    public Collection< Property<N, I, V, D, X > > getProperty( Object specifier );
-    public Collection< Property< N, I, V, D, X > > getPropertyWithIdentifier( I specifier );
-    public Collection< Property< N, I, V, D, X > > getPropertyWithName( N specifier );
-    public Collection< Property< N, I, V, D, X > > getPropertyWithType( Element< N, I, V, D, X > specifier );
-    public Collection< Property< N, I, V, D, X > > getPropertyWithValue( Object specifier );
+    public Collection< Property< N, I, D > > getProperty( Object specifier );
+    public Collection< Property< N, I, D > > getPropertyWithIdentifier( I specifier );
+    public Collection< Property< N, I, D > > getPropertyWithName( N specifier );
+    public Collection< Property< N, I, D > > getPropertyWithType( Element< N, I, D > specifier );
+    public Collection< Property< N, I, D > > getPropertyWithValue( Object specifier );
 
-    public List< V > getVersions();
-    public Map< D, V > getVersionMap();
-    public V getLatestVersion();
-    public V getVersion();
-    public V getVersion( D dateTime );
+    public List< Version< N, D, Element< N, I, D > > > getVersions();
+    public Map< D, Version< N, D, Element< N, I, D > > > getVersionMap();
+    public Version< N, D, Element< N, I, D > > getLatestVersion();
+    public Version< N, D, Element< N, I, D > > getVersion();
+    public Version< N, D, Element< N, I, D > > getVersion( D dateTime );
 
     public D getCreationTime();
     public D getModifiedTime();
