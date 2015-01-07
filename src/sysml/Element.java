@@ -24,6 +24,5 @@ public interface Element<N, I, V, D, X> extends Comparable< Element<N, I, V, D, 
     public List< V > getVersions();
     public V getLatestVersion();
     public V getVersion();
-    public V getVersion( );
 
 }
