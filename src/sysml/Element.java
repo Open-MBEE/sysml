@@ -4,6 +4,7 @@
 package sysml;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,9 @@ public interface Element<N, I, D> extends Comparable< Element<N, I, D> >, Clonea
 
     public Workspace< N, I, D >  getWorkspace();
 
+    public Collection< Property< N, I, D > > getProperties();
     public Collection< Property< N, I, D > > getProperty( Object specifier );
-    public Collection< Property< N, I, D > > getPropertyWithIdentifier( I specifier );
+    public Property< String, String, Date > getPropertyWithIdentifier( I specifier );
     public Collection< Property< N, I, D > > getPropertyWithName( N specifier );
     public Collection< Property< N, I, D > > getPropertyWithType( Element< N, I, D > specifier );
     public Collection< Property< N, I, D > > getPropertyWithValue( Object specifier );
