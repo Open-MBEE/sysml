@@ -28,13 +28,18 @@ public interface Element<N, I, D> extends Comparable< Element<N, I, D> >, Clonea
     public Collection< Property< N, I, D > > getPropertyWithType( Element< N, I, D > specifier );
     public Collection< Property< N, I, D > > getPropertyWithValue( Object specifier );
 
+    public <T> T getPropertyValue( Object specifier );
+
     public List< Version< N, D, Element< N, I, D > > > getVersions();
     public Map< D, Version< N, D, Element< N, I, D > > > getVersionMap();
     public Version< N, D, Element< N, I, D > > getLatestVersion();
     public Version< N, D, Element< N, I, D > > getVersion();
     public Version< N, D, Element< N, I, D > > getVersion( D dateTime );
 
-    public D getCreationTime();
-    public D getModifiedTime();
+    public D getCreationTime(); // ??
+    public D getModifiedTime(); // ??
+
+
+    public void setVersion( Version< N, D, Element< N, I, D > > version );
 
 }

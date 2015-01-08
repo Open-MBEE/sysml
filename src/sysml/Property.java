@@ -9,5 +9,5 @@ public interface Property<N, I, D> extends Element< N, I, D > {
     // ElementInstance, or something. But, since old SysML allows defaultValues,
     // we're stuck with them. I suppose we should have Property serve the
     // purpose of both the declaration and the instance.
-    public Object getValue(); // REVIEW -- Should the return type be Element?
+    public <T> T getValue(); // REVIEW -- Should the return type be Element?
 }
