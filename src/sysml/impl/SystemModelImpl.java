@@ -13,19 +13,19 @@ import sysml.AbstractSystemModel;
 public class SystemModelImpl
         extends AbstractSystemModel< ElementImpl, Object, ElementImpl, PropertyImpl, String, String, ElementImpl, ElementImpl, VersionImpl, WorkspaceImpl, ElementImpl > {
 
-    protected static SystemModelImpl instance = new SystemModelImpl();
+    //protected static SystemModelImpl instance = new SystemModelImpl();
 
     Map< String, WorkspaceImpl > workspaces =
             new LinkedHashMap< String, WorkspaceImpl >();
 
-    public SystemModelImpl getInstance() {
-        return instance;
-    }
+//    public SystemModelImpl getInstance() {
+//        return instance;
+//    }
 
     //Map< I, Element > elements;
 
     public SystemModelImpl() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
     @Override
@@ -894,6 +894,11 @@ public class SystemModelImpl
     public Collection< WorkspaceImpl > getWorkspace( Object context ) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    // FIXME -- TODO -- This should be defined in the SystemModel interface!
+    public WorkspaceImpl getWorkspaceWithId( String id ) {
+        return workspaces.get( id );
     }
 
     @Override
