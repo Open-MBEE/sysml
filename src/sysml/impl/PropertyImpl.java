@@ -82,8 +82,8 @@ public class PropertyImpl extends ElementImpl implements Property< String, Strin
     }
 
     @Override
-    public Object getValue() {
-        return value;
+    public <T> T getValue() {
+        return (T)value;
     }
 
 

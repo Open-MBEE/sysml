@@ -4,6 +4,8 @@
 package sysml.impl;
 
 import gov.nasa.jpl.mbee.util.CompareUtils;
+import gov.nasa.jpl.mbee.util.InterpolatedMap;
+import gov.nasa.jpl.mbee.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +33,9 @@ public class ElementImpl implements Element< String, String, Date > {
     String qualifiedName = null;
     String qualifiedId = null;
 
+    // TODO -- superclass
 
+    // TODO -- create version
     public ElementImpl( Workspace< String, String, Date > workspace,
                         String id,
                         String name,
@@ -141,6 +145,14 @@ public class ElementImpl implements Element< String, String, Date > {
         return props;
     }
 
+    public Property< String, String, Date > getSingleProperty( Object specifier ) {
+        Collection< Property< String, String, Date > > props = getProperty( specifier );
+        if ( Utils.isNullOrEmpty( props ) ) {
+            return null;
+        }
+        return props.iterator().next();
+    }
+
     @Override
     public Property< String, String, Date >
            getPropertyWithIdentifier( String id ) {
@@ -199,32 +211,88 @@ public class ElementImpl implements Element< String, String, Date > {
 
     @Override
     public Version< String, Date, Element< String, String, Date > > getLatestVersion() {
-        // TODO Auto-generated method stub
-        return null;
+        List< Version< String, Date, Element< String, String, Date > > > versions =
+                getVersions();
+        if ( versions.isEmpty() ) {
+            if ( version != null ) {
+                // TODO -- REVIEW -- should this case never happen?
+                return version;
+            }
+            return null;
+        }
+        return versions.get( versions.size() - 1 );
     }
 
     @Override
     public Version< String, Date, Element< String, String, Date > > getVersion() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.version;
     }
 
     @Override
     public Version< String, Date, Element< String, String, Date > > getVersion( Date dateTime ) {
-        // TODO Auto-generated method stub
-        return null;
+        Map< Date, Version< String, Date, Element< String, String, Date > > > map =
+                getVersionMap();
+        InterpolatedMap< Date, Version< String, Date, Element< String, String, Date > > > imap;
+        if ( map instanceof InterpolatedMap ) {
+            imap = (InterpolatedMap< Date, Version< String, Date, Element< String, String, Date > > >)map;
+        } else {
+            imap = new InterpolatedMap< Date, Version< String, Date, Element< String, String, Date > > >( map );
+        }
+        return imap.get( dateTime );
     }
 
     @Override
-    public Date getCreationTime() {
-        // TODO Auto-generated method stub
+    public <T> T getPropertyValue( Object specifier ) {
+        try {
+            Property< String, String, Date > prop =
+                    getSingleProperty( specifier );
+            if ( prop == null ) return null;
+            return (T)prop.getValue();
+        } catch ( ClassCastException e ) {
+            e.printStackTrace();
+        }
         return null;
+     }
+
+    @Override
+    public Date getCreationTime() {
+        version = getVersion();
+        if ( version == null ) {
+            Date val = getPropertyValue( "created" );
+            if ( val != null ) return val;
+            val = getPropertyValue( "creationTime" );
+            if ( val != null ) return val;
+            val = getPropertyValue( "createdTime" );
+            if ( val != null ) return val;
+            val = getPropertyValue( "creation" );
+            if ( val != null ) return val;
+            return val;
+        } else {
+            return version.getTimestamp();
+        }
     }
 
     @Override
     public Date getModifiedTime() {
-        // TODO Auto-generated method stub
-        return null;
+        version = getLatestVersion();
+        if ( version == null ) {
+            Date val = getPropertyValue( "modified" );
+            if ( val != null ) return val;
+            val = getPropertyValue( "modifiedTime" );
+            if ( val != null ) return val;
+            val = getPropertyValue( "modificationTime" );
+            if ( val != null ) return val;
+            val = getPropertyValue( "modification" );
+            if ( val != null ) return val;
+            return val;
+        } else {
+            return version.getTimestamp();
+        }
+    }
+
+    @Override
+    public void setVersion( Version< String, Date, Element< String, String, Date > > version ) {
+        this.version = version;
     }
 
 
