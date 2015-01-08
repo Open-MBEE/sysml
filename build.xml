@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="sysml" default="makejar" basedir=".">
   <!-- Customize properties below for your installation. -->
-  <loadproperties srcFile="build.properties"/>
-
-  <property name="gitDir" value="${home}/git"/>
+  <property name="gitDir" value="${basedir}/.."/>
   <property name="view_repo" value="${gitDir}/alfresco-view-repo"/>
   <property name="view_repo_web_lib" value="${view_repo}/target/mms-repo-war/WEB-INF/lib"/>
   <property name="view_repo_lib" value="${view_repo}/src/main/amp/web/WEB-INF/lib"/>
