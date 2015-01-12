@@ -1,10 +1,12 @@
 package sysml;
 
+import gov.nasa.jpl.mbee.util.HasId;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public interface Workspace< N, I, D > {
+public interface Workspace< N, I, D > extends HasId<I> {
     public Map< I, Element< N, I, D > > getElements();
     public Element< N, I, D > getElement( I id );
     public Element< N, I, D > getElement( I id, D dateTime );

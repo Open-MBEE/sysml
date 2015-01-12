@@ -40,6 +40,11 @@ public class WorkspaceImpl implements Workspace<String, String, Date> {
     }
 
     @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
     public Map< Date, Version< String, Date, Element< String, String, Date > > > getVersionMap( String id ) {
         return versions.get( id );
     }

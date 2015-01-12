@@ -1,14 +1,18 @@
 package sysml.impl;
 
+import gov.nasa.jpl.mbee.util.HasId;
 import gov.nasa.jpl.mbee.util.Pair;
+import gov.nasa.jpl.mbee.util.Utils;
 
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
 import sysml.AbstractSystemModel;
+import sysml.Element;
 
 public class SystemModelImpl
         extends AbstractSystemModel< ElementImpl, Object, ElementImpl, PropertyImpl, String, String, ElementImpl, ElementImpl, VersionImpl, WorkspaceImpl, ElementImpl > {
@@ -17,6 +21,9 @@ public class SystemModelImpl
 
     Map< String, WorkspaceImpl > workspaces =
             new LinkedHashMap< String, WorkspaceImpl >();
+
+    Map< String, ElementImpl > elements =
+            new LinkedHashMap< String, ElementImpl >();
 
 //    public SystemModelImpl getInstance() {
 //        return instance;
@@ -340,9 +347,16 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getElementWithVersion( Object context, VersionImpl specifier ) {
+            getElementWithVersion( Object context, VersionImpl version ) {
         // TODO Auto-generated method stub
-        return null;
+        Element< String, String, Date > e = version.getData();
+        ElementImpl element;
+        if ( e instanceof ElementImpl ) {
+            element = (ElementImpl)e;
+        } else {
+            element = new ElementImpl( e );
+        }
+        return Utils.newList( element );
     }
 
     @Override
@@ -373,8 +387,12 @@ public class SystemModelImpl
     }
 
     @Override
-    public Collection< String > getIdentifier( Object context ) {
-        // TODO Auto-generated method stub
+    public String getIdentifier( Object context ) {
+        if ( context instanceof HasId ) {
+            Object id = ( (Element)context ).getId();
+            if ( id == null )  return null;
+            return id.toString();
+        }
         return null;
     }
 

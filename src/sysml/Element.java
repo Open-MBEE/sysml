@@ -3,6 +3,8 @@
  */
 package sysml;
 
+import gov.nasa.jpl.mbee.util.HasId;
+
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -11,10 +13,11 @@ import java.util.Map;
 /**
  *
  */
-public interface Element<N, I, D> extends Comparable< Element<N, I, D> >, Cloneable {
+public interface Element<N, I, D> extends HasId<I>, Comparable< Element<N, I, D> >, Cloneable {
 
     public Element<N, I, D> clone() throws CloneNotSupportedException;
 
+    @Override
     public I getId();
 
     public N getName();

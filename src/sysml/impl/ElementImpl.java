@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import sysml.Element;
 import sysml.Property;
@@ -55,17 +54,17 @@ public class ElementImpl implements Element< String, String, Date > {
         this.workspace = workspace;
     }
 
-    public ElementImpl( ElementImpl e ) {
-        this.id = e.id;
-        this.name = e.name;
-        this.workspace = e.workspace;
-        this.version = e.version;
-        for ( Entry< String, Property< String, String, Date > > pe :
-              e.getPropertyMap().entrySet() ) {
+    public ElementImpl( Element< String, String, Date > e ) {
+        this.id = e.getId();
+        this.name = e.getName();
+        this.workspace = e.getWorkspace();
+        this.version = e.getVersion();
+        Collection< Property< String, String, Date > > props = e.getProperties();
+        for ( Property< String, String, Date > prop : props ) {
             try {
                 Property< String, String, Date > newValue =
-                        (Property< String, String, Date >)pe.getValue().clone();
-                this.getPropertyMap().put( pe.getKey(), newValue );
+                        (Property< String, String, Date >)prop.clone();
+                this.getPropertyMap().put( prop.getId(), newValue );
             } catch ( CloneNotSupportedException e1 ) {
                 e1.printStackTrace();
             }
