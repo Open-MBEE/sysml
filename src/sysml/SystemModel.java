@@ -1,29 +1,29 @@
 /*******************************************************************************
- * Copyright (c) <2013>, California Institute of Technology ("Caltech").  
+ * Copyright (c) <2013>, California Institute of Technology ("Caltech").
  * U.S. Government sponsorship acknowledged.
- * 
+ *
  * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, are 
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are
  * permitted provided that the following conditions are met:
- * 
- *  - Redistributions of source code must retain the above copyright notice, this list of 
+ *
+ *  - Redistributions of source code must retain the above copyright notice, this list of
  *    conditions and the following disclaimer.
- *  - Redistributions in binary form must reproduce the above copyright notice, this list 
- *    of conditions and the following disclaimer in the documentation and/or other materials 
+ *  - Redistributions in binary form must reproduce the above copyright notice, this list
+ *    of conditions and the following disclaimer in the documentation and/or other materials
  *    provided with the distribution.
- *  - Neither the name of Caltech nor its operating division, the Jet Propulsion Laboratory, 
- *    nor the names of its contributors may be used to endorse or promote products derived 
+ *  - Neither the name of Caltech nor its operating division, the Jet Propulsion Laboratory,
+ *    nor the names of its contributors may be used to endorse or promote products derived
  *    from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS 
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY 
- * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER  
- * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON 
- * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
- * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  ******************************************************************************/
 package sysml;
@@ -41,7 +41,7 @@ import sysml.SystemModel.Item;
 
 /**
  * A generic interface for accessing system models as simplified SysML (without UML).
- * REVIEW -- What else might this need to be compatible with other things, like CMIS, OSLC, EMF, etc.  
+ * REVIEW -- What else might this need to be compatible with other things, like CMIS, OSLC, EMF, etc.
  */
 public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     /**
@@ -59,7 +59,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
         TYPE, PROPERTY, NAME, IDENTIFIER, VALUE,
         RELATIONSHIP, VERSION, WORKSPACE, CONSTRAINT, VIEW, VIEWPOINT;
     };
-    
+
     /**
      * Operation is a CRUD operation.  READ is the same as GET, and UPDATE is the same as SET.
      * <p>
@@ -72,7 +72,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
                                    GET, SET };
 
     /**
-     * An Object with a label for the kind of model item it is.  
+     * An Object with a label for the kind of model item it is.
      */
     public static class Item {
         public ModelItem kind;
@@ -83,11 +83,11 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
             this.obj = obj;
         }
     }
-    
-    
-    
+
+
+
     // general functions
-    
+
     /**
      * Perform an Operation on something as specified by the input arguments.
      * Null values are interpreted as "unknown," "don't care," or
@@ -109,7 +109,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * creates and returns a new version "v2" that is a copy of v1 and
      * follows/branches v1.
      * </ol>
-     * 
+     *
      * @param operation
      *            whether to read, create, delete, or update the item
      * @param itemTypes
@@ -157,7 +157,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * <li> {@code isAllowed(CREATE, (ELEMENT), null, null, (null, TYPE))}
      * returns true iff an element can be assigned a type.
      * </ol>
-     * 
+     *
      * @param operation
      *            whether to create, read/get, update/set, or delete the item
      * @param itemTypes
@@ -186,7 +186,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * Either create, read/get, update/set, or delete something as specified by
      * the input arguments. Null values are interpreted as "unknown,"
      * "don't care," or "not applicable."
-     * 
+     *
      * @param op
      *            whether to read/get, create, or delete the item
      * @param itemTypes
@@ -219,7 +219,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     /**
 	 * Get the model item(s) identified by or matching the input arguments. Null
 	 * values are interpreted as "unknown," "don't care," or "not applicable."
-	 * 
+	 *
 	 * @param kindOfItem
 	 *            the item(s) must be of one of these specified kinds
 	 * @param context
@@ -242,7 +242,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 //    /**
 //     * Set a context that may be used by other SystemModel functions when
 //     * otherwise unspecified.
-//     * 
+//     *
 //     * @param context
 //     */
 //    public void setContext( Collection< C > context );
@@ -253,7 +253,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 //    /**
 //     * Set a workspace context that may be used by other SystemModel functions
 //     * when otherwise unspecified.
-//     * 
+//     *
 //     * @param workspace
 //     */
 //    public void setWorkspace( W workspace );
@@ -264,15 +264,15 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 //    /**
 //     * Set a version context that may be used by other SystemModel functions
 //     * when otherwise unspecified.
-//     * 
+//     *
 //     * @param version
 //     */
 //    public void setVersion( V version );
 //    /**
 //     * @return the version used by this SystemModel when otherwise unspecified
 //     */
-//    public V getVersion();    
-//    
+//    public V getVersion();
+//
 //    // accessors for class/object/element
 //    public E getElement( C context, I identifier, V version );
 //    public Collection<E> getRootElements( V version );
@@ -305,7 +305,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     public Collection< E > getElementForRole( R relationship, N role );
     public Collection< E >  getSource( R relationship );
     public Collection< E >  getTarget( R relationship );
-    
+
 //    public V latestVersion( Collection<C> context );
 
     // ModelItem classes
@@ -353,7 +353,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     public V asVersion( Object o );
     public W asWorkspace( Object o );
     public CT asConstraint( Object o );
-    
+
     // general edit policies
 
     public boolean idsAreWritable();
@@ -381,7 +381,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 //    // TODO
 //    E deleteElement( I identifier, V version );
 //    T deleteType( E element, V version );
-	
+
     CT createConstraint( Object context );
     E createElement( Object context );
     I createIdentifier( Object context ); // depends on idsAreWritable()
@@ -420,7 +420,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     Collection< E > getElementWithViewpoint( Object context, E specifier );
     Collection< E > getElementWithWorkspace( Object context, W specifier );
     Collection< N > getName( Object context );
-    Collection< I > getIdentifier( Object context );
+    I getIdentifier( Object context );
     Collection< P > getProperty( Object context, Object specifier );
     Collection< P > getPropertyWithConstraint( Object context, CT specifier );
     Collection< P > getPropertyWithElement( Object context, E specifier );
@@ -504,13 +504,13 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     Collection< W > getWorkspace( Object context );
     Object set( Object object, Object specifier, U value );
 
-    
+
     // query functions
     /**
      * Apply the method to each of the elements and return results. Subclasses
      * implementing map() may employ utilities for functional Java provided in
      * FunctionalUtils (TODO).
-     * 
+     *
      * @param elements
      *            the elements, on each of which the method is applied
      * @param methodCall
@@ -531,12 +531,12 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
                                      MethodCall methodCall,
                                      int indexOfElementArgument )
                                              throws java.lang.reflect.InvocationTargetException;
-    
+
     /**
      * Filter out the elements for which the method does not return true.
      * Subclasses implementing filter() may employ utilities for functional Java
      * provided in FunctionalUtils (TODO).
-     * 
+     *
      * @param elements
      *            the elements being filtered
      * @param methodCall
@@ -562,7 +562,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * Check whether the method returns true for each element. Subclasses
      * implementing forAll() may employ utilities for functional Java provided
      * in FunctionalUtils (TODO).
-     * 
+     *
      * @param elements
      *            the elements being tested
      * @param methodCall
@@ -588,7 +588,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * Check whether the method returns true for some element. Subclasses
      * implementing thereExists() may employ utilities for functional Java
      * provided in FunctionalUtils (TODO).
-     * 
+     *
      * @param elements
      *            the elements being tested
      * @param methodCall
@@ -620,7 +620,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
      * {@code int plus(int a, int b) ( return a+b; )} <br>
      * {@code int[] array = new int[] ( 2, 5, 6, 5 );}<br>
      * {@code int result = fold(Arrays.asList(array), 0.0, ClassUtils.getMethodForName(this.getClass(), "plus"), 0, 1, null); // result = 18}
-     * 
+     *
      * @param elements
      * @param initialValue
      *            an initial value to act as the first argument to first
@@ -653,12 +653,12 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
                         int indexOfElementArgument,
                         int indexOfPriorResultArgument )
                                 throws java.lang.reflect.InvocationTargetException;
-    
+
     /**
      * Apply the method to each of the elements and return results. Subclasses
      * implementing sort() may employ utilities for functional Java provided in
      * FunctionalUtils (TODO).
-     * 
+     *
      * @param elements to be sorted
      * @param comparator specifies precedence relation on a pair of return values
      * @param methodCall
@@ -678,10 +678,10 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
                                  Comparator< ? > comparator,
                                  MethodCall methodCall,
                                  int indexOfElementArgument )
-                                         throws java.lang.reflect.InvocationTargetException;     
+                                         throws java.lang.reflect.InvocationTargetException;
 
     // support for problem solving
-    
+
     // example problem solving session
     //
     // f = getElementWithName( "MyFolder" ).iterator().next();
@@ -691,7 +691,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     // fixConstraintViolations(c);
     // System.out.println(y.toString());
 
-    
+
 //    // problem solving session
 //    // TODO -- replace sessions with model workspaces
 //    // TODO -- otherwise, create a Session class that would include these session functions, which would return Sessions.
@@ -701,7 +701,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 //	 * TODO -- REVIEW -- this is similar to a workspace where hypothetical model
 //	 * changes can be made -- this should be implemented for the model as a
 //	 * whole, and problem solving sessions will be unnecessary.
-//	 * 
+//	 *
 //	 * @param suggestedSessionId
 //	 * @return the id for a new problem solving session, the one suggested if
 //	 *         possible
@@ -710,7 +710,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 //    public I copySolverSession( I idOfSessionToCopy );
 //    public I switchSolverSession( I idOfSessionToWhichToSwitch );
 //    public I deleteSolverSession( I idOfSessionToWhichToSwitch );
-    
+
 //    // Constraint CRUD
 //    public Constraint addConstraint( CE constraintElement, V version, W workspace );
 //    public Constraint addDomainConstraint( CE constraintElement, V version, Set<U> valueDomainSet, W workspace );
@@ -727,7 +727,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 //    public Collection<Constraint> getViolatedConstraintsOfElement( E element, V version );
 //    public Collection<Constraint> getViolatedConstraintsOfContext( C context );
 //    public Number getScore();
-    
+
     // Constraint CRUD
     public CT getDomainConstraint( E element, V version, W workspace );
     // TODO -- easier i/f for adding constraint that
@@ -747,8 +747,8 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 
     // TODO -- invoke solver/fix
     public boolean fixConstraintViolations( E element, V version );
-    
-    
-    
-    
+
+
+
+
 }

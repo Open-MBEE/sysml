@@ -828,7 +828,7 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
     }
 
 	@Override
-	public Collection<String> getIdentifier(Object context) {
+	public String getIdentifier(Object context) {
 		// Assuming that we can only have JSONObject context:
 	  	if (context instanceof JSONObject) {
 
@@ -840,8 +840,8 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
-	  		return Utils.asList(id, String.class);
+            if ( id == null ) return null;
+	  		return id.toString();//Utils.asList(id, String.class);
 	  	}
 
 	  	else {
@@ -907,12 +907,9 @@ public class JsonSystemModel extends AbstractSystemModel< JSONObject, JSONObject
 				// Make sure property type matches the specifier:
 				if (property instanceof JSONObject) {
 					JSONObject jsonProperty = (JSONObject) property;
-					Collection<String> identifier = getIdentifier(jsonProperty);
-					if( identifier != null ) {
-						String id = identifier.toArray(new String[0])[0];
-						if( id != null && id.equals(specifier) ) {
-							propertiesToReturn.add(jsonProperty);
-						}
+					String id = getIdentifier(jsonProperty);
+					if( id != null && id.equals(specifier) ) {
+						propertiesToReturn.add(jsonProperty);
 					}
 				}
 			}
