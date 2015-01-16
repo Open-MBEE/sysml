@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import sysml.Element;
 import sysml.Property;
@@ -27,12 +29,11 @@ public class ElementImpl implements Element< String, String, Date > {
     Workspace< String, String, Date > workspace;
     String id;
     String name;
+    Set< Element< String, String, Date > > superClasses = null;
     Version< String, Date, Element< String, String, Date > > version = null;
     Map< String, Property< String, String, Date > > properties;
     String qualifiedName = null;
     String qualifiedId = null;
-
-    // TODO -- superclass
 
     // TODO -- create version
     public ElementImpl( Workspace< String, String, Date > workspace,
@@ -111,6 +112,14 @@ public class ElementImpl implements Element< String, String, Date > {
     @Override
     public Workspace< String, String, Date > getWorkspace() {
         return workspace;
+    }
+
+    @Override
+    public Collection< Element< String, String, Date > > getSuperClasses() {
+        if ( superClasses == null ) {
+            superClasses = new LinkedHashSet< Element< String, String, Date > >();
+        }
+        return superClasses;
     }
 
     @Override

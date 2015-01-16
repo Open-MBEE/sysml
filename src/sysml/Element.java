@@ -20,9 +20,11 @@ public interface Element<N, I, D> extends HasId<I>, Comparable< Element<N, I, D>
     @Override
     public I getId();
 
+    public Workspace< N, I, D >  getWorkspace();
+
     public N getName();
 
-    public Workspace< N, I, D >  getWorkspace();
+    public Collection< Element< N, I, D > > getSuperClasses();
 
     public Collection< Property< N, I, D > > getProperties();
     public Collection< Property< N, I, D > > getProperty( Object specifier );
