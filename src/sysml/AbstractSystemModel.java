@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package sysml;
 
@@ -26,7 +26,7 @@ import java.util.TreeSet;
 /**
  * An abstract SystemModel that provides some straightforward implementations of
  * the more abstract methods, such as op(), get(), set(), map(), and filter(),
- * based on more specific methods, like {@link getName(E, V)}, that overlap
+ * based on more specific methods, like {@link getName(E, V)}, that overlap in
  * functionality.
  */
 public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
@@ -92,9 +92,9 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         boolean someResultsWereNull = false;
         boolean allResultsWereNull = true;
         for ( SystemModel.Item context : contexts ) {
-            //SystemModel.ModelItem contextType = context == null ? null : context.kind;  
+            //SystemModel.ModelItem contextType = context == null ? null : context.kind;
             for ( SystemModel.Item specifier : specifiers ) {
-                //SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;  
+                //SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
                 for ( SystemModel.ModelItem itemType : itemTypes ) {
                     try {
                         MethodCall mc =
@@ -248,7 +248,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         }
         return false;
     }
-    
+
     /* (non-Javadoc)
      * @see SystemModel#isAllowed(SystemModel.Operation, java.util.Collection, java.util.Collection, java.util.Collection, SystemModel.Item, java.lang.Boolean)
      */
@@ -261,7 +261,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                        SystemModel.Item newValue,
                        Boolean failForMultipleItemMatches ) {
         // put most general tests here and delegate others to operation-specific functions
-        
+
         // we must know what kind of thing is being operated on
         if ( Utils.isNullOrEmpty( itemTypes ) ) return false;
         if ( anyAllowed( operation, itemTypes, contexts, specifiers, newValue, failForMultipleItemMatches ) ) {
@@ -287,11 +287,11 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         }
         return false;
     }
-    
+
     protected static Set< ModelItem > itemTypeNotEqualContextTypeSet =
-            Utils.newSet( //ModelItem.CONTEXT, 
+            Utils.newSet( //ModelItem.CONTEXT,
                           ModelItem.IDENTIFIER,
-                          ModelItem.NAME, 
+                          ModelItem.NAME,
                           ModelItem.TYPE,
                           ModelItem.VALUE,
                           ModelItem.VERSION,
@@ -302,7 +302,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     }
 
     protected static Set<ModelItem> itemSet(ModelItem...items) {
-        return (Set< ModelItem >)Utils.newSet(items);
+        return Utils.newSet(items);
     }
 
     @SuppressWarnings( "unchecked" )
@@ -341,12 +341,12 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > canContain =
             Utils.newMap( pair( ModelItem.ELEMENT, //itemSet( ModelItem.OBJECT ) ),
-                                (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( //ModelItem.CONTEXT, 
+                                Utils.minus(itemSet( ModelItem.values() ), itemSet( //ModelItem.CONTEXT,
                                                                                                     ModelItem.RELATIONSHIP, ModelItem.VALUE, ModelItem.TYPE, ModelItem.VERSION, ModelItem.WORKSPACE  ) ) ),
                           pair( ModelItem.WORKSPACE, itemSet( ModelItem.ELEMENT ) ) );
     @SuppressWarnings( "unchecked" )
     protected static Map< ModelItem, Set< ModelItem > > canHave =
-            Utils.newMap( 
+            Utils.newMap(
 //                          pair( ModelItem.CONSTRAINT,
 //                                Utils.newSet( ModelItem.CONSTRAINT,
 //                                              ModelItem.IDENTIFIER,
@@ -356,10 +356,10 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
 //                                              ModelItem.RELATIONSHIP ) ),
 //                          pair( ModelItem.CONTEXT,
 //                                Utils.newSet( ModelItem.values() ) ),
-//                          pair( ModelItem.IDENTIFIER, Utils.getEmptySetOfType(ModelItem.class) ),                                                                
+//                          pair( ModelItem.IDENTIFIER, Utils.getEmptySetOfType(ModelItem.class) ),
 //                          pair( ModelItem.NAME, Utils.getEmptySetOfType(ModelItem.class) ),
                           pair( ModelItem.ELEMENT,
-                                (Set<ModelItem>)Utils.minus(itemSet( ModelItem.values() ), itemSet( ModelItem.ELEMENT) ) )
+                                Utils.minus(itemSet( ModelItem.values() ), itemSet( ModelItem.ELEMENT) ) )
 //                          pair( ModelItem.PROPERTY, Utils.getEmptySetOfType(ModelItem.class) ),
 //                          pair( ModelItem.RELATIONSHIP, Utils.getEmptySetOfType(ModelItem.class) )
                                       );
@@ -386,7 +386,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         Debug.outln( "whatIsA(" + item + ") = " + isItemSet );
         return isItemSet;
     }
-    
+
     protected static Map< ModelItem, Set< ModelItem > > canHaveClosure =
             new TreeMap< ModelItem, Set< ModelItem > >( canHave ) {
                 private static final long serialVersionUID = 1L;
@@ -404,7 +404,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                     }
                 }
             };
-            
+
     protected static Map< ModelItem, Set< ModelItem > > canContainClosure =
             new TreeMap< ModelItem, Set< ModelItem > >( canContain ) {
                 private static final long serialVersionUID = 1L;
@@ -422,7 +422,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                     }
                 }
             };
-                    
+
             public static boolean canContain( ModelItem kind1, ModelItem kind2 ) {
                 Set< ModelItem > list = canContainClosure.get( kind1 );
                 return ( list != null && list.contains( kind2 ) );
@@ -463,10 +463,10 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                        SystemModel.ModelItem newValueType,
                        Boolean failForMultipleItemMatches ) {
         // operation independent criteria
-        
+
         // we must know what kind of thing is being operated on
         if ( itemType == null ) return false;
-                
+
                 // incompatible itemType and contextType when equal;
         // ex. getNameOfName() doesn't make sense, so it shouldn't be allowed.
         if ( itemType == contextType ) {
@@ -474,9 +474,9 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                 return false;
             }
         }
-        
+
         // incompatible itemType and contextType
-        
+
         // TODO -- what other operation independent rules can we assume?
         if ( contextType != null && !canHave( contextType, itemType ) ) return false;
         if ( specifierType != null && !canHave( itemType, specifierType ) ) return false;
@@ -537,7 +537,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         }
         return null;
     }
-    
+
     private boolean equals( Item context, ModelItem itemType, Item specifier,
                             Object value, boolean complain ) {
         MethodCall call =
@@ -548,7 +548,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         if ( p.first != true ) return false;
         return Utils.valuesEqual( p.second, value );
     }
-    
+
     /* (non-Javadoc)
      * @see SystemModel#op(SystemModel.Operation, java.util.Collection, java.util.Collection, java.lang.Object, java.lang.Object, java.lang.Object, boolean)
      */
@@ -594,7 +594,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
      * @param contextType
      * @param specifierType
      * @param complain
-     * @return the specific Method in this class for performing the operation with the given arguments.   
+     * @return the specific Method in this class for performing the operation with the given arguments.
      */
     public static String getMethodName( SystemModel.Operation operation,
                                         SystemModel.ModelItem itemType,
@@ -612,7 +612,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
      * @param contextType
      * @param specifierType
      * @param complain
-     * @return the specific Method in this class for performing the operation with the given arguments.   
+     * @return the specific Method in this class for performing the operation with the given arguments.
      */
     public static String getMethodName( SystemModel.Operation operation,
                                         SystemModel.ModelItem itemType,
@@ -632,7 +632,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         } else {
             itemTypeName = Utils.toCamelCase( itemType.toString() );
         }
-        
+
         String specifierTypeName;
         if ( specifierType == null ) {
             if ( itemType == null ) {
@@ -646,13 +646,13 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                 itemTypeName = specifierTypeName;
             }
         }
-        
+
         if ( contextType == null ) {
             contextTypeName = "";
         } else {
             contextTypeName = Utils.toCamelCase( contextType.toString() );
         }
-        
+
         // construct method call name
         String by = "";
         if ( itemType != null && specifierType != null
@@ -671,7 +671,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         String callName = opName + itemTypeName + of + by;
         return callName;
     }
-    
+
     public static String getMethodNamePrepositionForContext( Operation operation,
                                                              SystemModel.ModelItem targetType,
                                                              SystemModel.ModelItem contextType ) {
@@ -706,7 +706,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         }
         return "With";
     }
-    
+
     public static <VAL> String getMethodNamePrepositionForNewValue( Operation operation,
                                                                     SystemModel.ModelItem specifierType,
                                                                     SystemModel.ModelItem contextType,
@@ -727,7 +727,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
        }
        return "";
    }
-   
+
     /**
      * @param systemModel
      * @param operation
@@ -748,7 +748,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                                                   VAL newValue,
                                                   boolean complain ) {
         return getMethodCall( systemModel, operation, itemType, context, specifier, newValue, false, complain );
-        
+
     }
     /**
      * @param systemModel
@@ -771,7 +771,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                                                   VAL newValue,
                                                   boolean justStringRepresentation,
                                                   boolean complain ) {
-        
+
         if ( operation == null ) {
             Debug.error( complain, complain, "Trying to pass in null operation!" );
             return null;
@@ -793,9 +793,9 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             //argTypeList.add( getClass( itemType ) );
             returnTypeString = getGenericSymbol( itemType );
         }
-        
+
         // get name and args for context
-        SystemModel.ModelItem contextType = context == null ? null : context.kind;  
+        SystemModel.ModelItem contextType = context == null ? null : context.kind;
         String contextTypeName = "";
         String contextPrep = "";
         String of = "";
@@ -809,12 +809,12 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                 contextPrep = getMethodNamePrepositionForContext( operation, itemType, contextType );
                 of = contextPrep + contextTypeName;
             }
-            String paramType = Utils.isNullOrEmpty( of ) ? "Object" : getGenericSymbol( contextType );  
+            String paramType = Utils.isNullOrEmpty( of ) ? "Object" : getGenericSymbol( contextType );
             if ( systemModel != null ) argTypeList.add( paramType.equals( "Object" ) ? Object.class : systemModel.getClass( contextType ) );
             argList.add( context.obj );
             argTypeStrings.add( paramType + " context" );
         }
-        
+
         // get name and args for specifier (and for the item as the specifier if itemType == null)
         SystemModel.ModelItem specifierType = specifier == null ? null : specifier.kind;
         String specifierTypeName = "";
@@ -848,7 +848,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             argList.add( specifier.obj );
             argTypeStrings.add( paramType + " specifier" );
         }
-        
+
         // get args for new value
         if ( usesNewValue( operation ) ) {
             argList.add( newValue );
@@ -866,7 +866,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                 }
             }
         }
-        
+
         // construct method call name
         String newValuePrep = "";
         if ( usesNewValue( operation )
@@ -885,13 +885,13 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
             method = ClassUtils.getMethodForArgTypes( String.class, "concat", String.class );
             return new MethodCall( returnTypeString + " " + callName, method, Utils.toString( argTypeStrings, false ) );
         }
-        
+
         // put the argument types into an array
         Class< ? >[] argTypes = new Class<?>[ argTypeList.size() ];
         argTypeList.toArray( argTypes );
-        
-        // try to lookup the Method from the callName and argTypes using reflection 
-        Class<?> sysClass = systemModel == null ? AbstractSystemModel.class : systemModel.getClass(); 
+
+        // try to lookup the Method from the callName and argTypes using reflection
+        Class<?> sysClass = systemModel == null ? AbstractSystemModel.class : systemModel.getClass();
         method = ClassUtils.getMethodForArgTypes( sysClass, callName , argTypes , complain );
         if ( method == null ) {
             method = ClassUtils.getMethodForArgs( sysClass, callName, argList );
@@ -905,18 +905,18 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         }
         // fail and return null if the Method could not be found
         if ( method == null ) return null;
-        
+
         // put the arguments into an array
         Object[] arguments = new Object[ argList.size() ];
         argList.toArray( arguments );
-        
+
         // construct the method call
         return new MethodCall( systemModel, method, arguments );
     }
-    
-    
+
+
     public static boolean usesNewValue( SystemModel.Operation operation ) {
-        return Utils.newList( //Operation.CREATE, 
+        return Utils.newList( //Operation.CREATE,
                              Operation.SET, Operation.UPDATE ).contains( operation );
     }
 
@@ -1000,7 +1000,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                            Boolean failForMultipleItemMatches ) {
         return mayGet( this, itemTypes, context, specifier,
                        failForMultipleItemMatches );
-        
+
     }
     public static boolean mayGet( AbstractSystemModel< ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? > model,
                                   Collection< SystemModel.ModelItem > itemTypes,
@@ -1205,7 +1205,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         //if ( itemType != null && specifierType != null ) return false;
         return true;
     }
-    
+
     /* (non-Javadoc)
      * @see SystemModel#get(java.util.Collection, java.util.Collection, java.lang.Object, java.lang.Object, java.lang.Object)
      */
@@ -1287,7 +1287,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         }
         return null;
     }
-    
+
     /**
      * @param o
      * @param cls the type to which the Object is converted
@@ -1299,7 +1299,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         if ( res.first ) t = res.second;
         return t;
     }
-    
+
     /* (non-Javadoc)
      * @see sysml.SystemModel#asName(java.lang.Object)
      */
@@ -1307,7 +1307,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public N asName( Object o ) {
         return as( o, getNameClass() );
     }
-    
+
     /* (non-Javadoc)
      * @see sysml.SystemModel#asIdentifier(java.lang.Object)
      */
@@ -1323,7 +1323,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public E asElement( Object o ) {
         return as( o, getElementClass() );
     }
-    
+
     /* (non-Javadoc)
      * @see sysml.SystemModel#asContextCollection(java.lang.Object)
      */
@@ -1439,7 +1439,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         return elements;
     }
 
-    
+
 //    /* (non-Javadoc)
 //     * @see SystemModel#elementsMayBeChangedForVersion(java.lang.Object)
 //     */
@@ -1529,7 +1529,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
 //     */
 //    @Override
 //    public abstract T deleteType( E element, V version );
-    
+
     /* (non-Javadoc)
      * @see SystemModel#map(java.util.Collection, SystemModel.MethodCall, int)
      */
