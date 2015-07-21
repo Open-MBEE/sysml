@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import sysml.BaseElement;
 import sysml.Element;
 import sysml.Property;
 import sysml.Version;
@@ -24,13 +25,13 @@ import sysml.Workspace;
 /**
  *
  */
-public class ElementImpl implements Element< String, String, Date > {
+public class ElementImpl extends BaseElementImpl implements Element< String, String, Date > {
 
     Workspace< String, String, Date > workspace;
     String id;
     String name;
     Set< Element< String, String, Date > > superClasses = null;
-    Version< String, Date, Element< String, String, Date > > version = null;
+    Version< String, Date, BaseElement< String, String, Date > > version = null;
     Map< String, Property< String, String, Date > > properties;
     String qualifiedName = null;
     String qualifiedId = null;
@@ -39,27 +40,17 @@ public class ElementImpl implements Element< String, String, Date > {
     public ElementImpl( Workspace< String, String, Date > workspace,
                         String id,
                         String name,
-                        Version< String, Date, Element< String, String, Date >> version,
+                        Version< String, Date, BaseElement< String, String, Date >> version,
                         Map< String, Property< String, String, Date >> properties ) {
-        this( workspace, id, name );
-        this.version = version;
+       
+        super( workspace, id, name, version );
+
         this.properties = properties;
     }
 
-    public ElementImpl( Workspace< String, String, Date > workspace,
-                        String id,
-                        String name ) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.workspace = workspace;
-    }
-
     public ElementImpl( Element< String, String, Date > e ) {
-        this.id = e.getId();
-        this.name = e.getName();
-        this.workspace = e.getWorkspace();
-        this.version = e.getVersion();
+        super(e.getWorkspace(), e.getId(), e.getName(), e.getVersion());
+
         Collection< Property< String, String, Date > > props = e.getProperties();
         for ( Property< String, String, Date > prop : props ) {
             try {
@@ -206,102 +197,4 @@ public class ElementImpl implements Element< String, String, Date > {
         }
         return list;
     }
-
-    @Override
-    public List< Version< String, Date, Element< String, String, Date > > > getVersions() {
-        return getWorkspace().getVersions( getId() );
-    }
-
-    @Override
-    public Map< Date, Version< String, Date, Element< String, String, Date > > > getVersionMap() {
-        return getWorkspace().getVersionMap( getId() );
-    }
-
-    @Override
-    public Version< String, Date, Element< String, String, Date > > getLatestVersion() {
-        List< Version< String, Date, Element< String, String, Date > > > versions =
-                getVersions();
-        if ( versions.isEmpty() ) {
-            if ( version != null ) {
-                // TODO -- REVIEW -- should this case never happen?
-                return version;
-            }
-            return null;
-        }
-        return versions.get( versions.size() - 1 );
-    }
-
-    @Override
-    public Version< String, Date, Element< String, String, Date > > getVersion() {
-        return this.version;
-    }
-
-    @Override
-    public Version< String, Date, Element< String, String, Date > > getVersion( Date dateTime ) {
-        Map< Date, Version< String, Date, Element< String, String, Date > > > map =
-                getVersionMap();
-        InterpolatedMap< Date, Version< String, Date, Element< String, String, Date > > > imap;
-        if ( map instanceof InterpolatedMap ) {
-            imap = (InterpolatedMap< Date, Version< String, Date, Element< String, String, Date > > >)map;
-        } else {
-            imap = new InterpolatedMap< Date, Version< String, Date, Element< String, String, Date > > >( map );
-        }
-        return imap.get( dateTime );
-    }
-
-    @Override
-    public <T> T getPropertyValue( Object specifier ) {
-        try {
-            Property< String, String, Date > prop =
-                    getSingleProperty( specifier );
-            if ( prop == null ) return null;
-            return (T)prop.getValue();
-        } catch ( ClassCastException e ) {
-            e.printStackTrace();
-        }
-        return null;
-     }
-
-    @Override
-    public Date getCreationTime() {
-        version = getVersion();
-        if ( version == null ) {
-            Date val = getPropertyValue( "created" );
-            if ( val != null ) return val;
-            val = getPropertyValue( "creationTime" );
-            if ( val != null ) return val;
-            val = getPropertyValue( "createdTime" );
-            if ( val != null ) return val;
-            val = getPropertyValue( "creation" );
-            if ( val != null ) return val;
-            return val;
-        } else {
-            return version.getTimestamp();
-        }
-    }
-
-    @Override
-    public Date getModifiedTime() {
-        version = getLatestVersion();
-        if ( version == null ) {
-            Date val = getPropertyValue( "modified" );
-            if ( val != null ) return val;
-            val = getPropertyValue( "modifiedTime" );
-            if ( val != null ) return val;
-            val = getPropertyValue( "modificationTime" );
-            if ( val != null ) return val;
-            val = getPropertyValue( "modification" );
-            if ( val != null ) return val;
-            return val;
-        } else {
-            return version.getTimestamp();
-        }
-    }
-
-    @Override
-    public void setVersion( Version< String, Date, Element< String, String, Date > > version ) {
-        this.version = version;
-    }
-
-
 }

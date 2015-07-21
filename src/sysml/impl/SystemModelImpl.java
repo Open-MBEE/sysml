@@ -13,6 +13,7 @@ import java.util.Set;
 
 import sysml.AbstractSystemModel;
 import sysml.Element;
+import sysml.BaseElement;
 
 public class SystemModelImpl
         extends AbstractSystemModel< ElementImpl, Object, ElementImpl, PropertyImpl, String, String, ElementImpl, ElementImpl, VersionImpl, WorkspaceImpl, ElementImpl > {
@@ -349,14 +350,7 @@ public class SystemModelImpl
     public Collection< ElementImpl >
             getElementWithVersion( Object context, VersionImpl version ) {
         // TODO Auto-generated method stub
-        Element< String, String, Date > e = version.getData();
-        ElementImpl element;
-        if ( e instanceof ElementImpl ) {
-            element = (ElementImpl)e;
-        } else {
-            element = new ElementImpl( e );
-        }
-        return Utils.newList( element );
+        return null;
     }
 
     @Override
