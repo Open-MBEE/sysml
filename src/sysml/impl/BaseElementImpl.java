@@ -59,6 +59,11 @@ public abstract class BaseElementImpl implements BaseElement< String, String, Da
     }
 
     @Override
+    public BaseElement<String, String, Date> getOwner() {
+        return null;
+    }
+    
+    @Override
     public List< Version< String, Date, BaseElement< String, String, Date > > > getVersions() {
         return getWorkspace().getVersions( getId() );
     }
@@ -127,4 +132,5 @@ public abstract class BaseElementImpl implements BaseElement< String, String, Da
     
     @Override
     public abstract BaseElement<String, String, Date> clone() throws CloneNotSupportedException;
+    
 }

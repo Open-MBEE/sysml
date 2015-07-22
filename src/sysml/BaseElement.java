@@ -32,4 +32,6 @@ public interface BaseElement<N, I, D> extends HasId<I>, Cloneable {
     public void setVersion( Version< N, D, BaseElement< N, I, D > > version );
         
     public BaseElement< N, I, D > clone() throws CloneNotSupportedException;
+    
+    public BaseElement< N, I, D > getOwner();    
 }

@@ -27,9 +27,6 @@ import sysml.Workspace;
  */
 public class ElementImpl extends BaseElementImpl implements Element< String, String, Date > {
 
-    Workspace< String, String, Date > workspace;
-    String id;
-    String name;
     Set< Element< String, String, Date > > superClasses = null;
     Version< String, Date, BaseElement< String, String, Date > > version = null;
     Map< String, Property< String, String, Date > > properties;
@@ -88,21 +85,6 @@ public class ElementImpl extends BaseElementImpl implements Element< String, Str
     public boolean equals( Object o ) {
         if ( o == null || !( o instanceof Element ) ) return false;
         return compareTo( (Element)o ) == 0;
-    }
-
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public Workspace< String, String, Date > getWorkspace() {
-        return workspace;
     }
 
     @Override
