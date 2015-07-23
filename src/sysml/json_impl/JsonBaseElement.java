@@ -3,6 +3,8 @@
  */
 package sysml.json_impl;
 
+import gov.nasa.jpl.mbee.util.CompareUtils;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +18,7 @@ import org.json.JSONObject;
 /**
  *
  */
-public class JsonBaseElement implements BaseElement< String, String, Date > {
+public class JsonBaseElement implements BaseElement< String, String, Date >, Comparable<JsonBaseElement> {
 
     JsonSystemModel systemModel;
     String id;
@@ -112,8 +114,37 @@ public class JsonBaseElement implements BaseElement< String, String, Date > {
     }
     
     @Override
+    public int compareTo(JsonBaseElement o)
+    {
+       // NOTE: simply check the element id
+       return CompareUtils.compare(getId(), o.getId());
+    }
+    
+    @Override
+    public boolean equals(Object o)
+    {
+       if (o == null)
+          return false;
+
+       if (o instanceof JsonBaseElement)
+       {
+          return compareTo((JsonBaseElement) o) == 0;
+       } 
+       else
+       {
+          return false;
+       }
+    }    
+    
+    @Override
     public JsonBaseElement clone() throws CloneNotSupportedException
     {
-       return systemModel.wrap(jsonObj);
+       return new JsonBaseElement(this);
     }
+    
+    @Override
+    public int hashCode()
+    {
+       return getId().hashCode();
+    }    
 }

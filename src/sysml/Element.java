@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  *
  */
-public interface Element<N, I, D> extends BaseElement<N, I, D>, Comparable<Element<N, I, D> > {
+public interface Element<N, I, D> extends BaseElement<N, I, D> {
 
     public Collection< Element< N, I, D > > getSuperClasses();
 

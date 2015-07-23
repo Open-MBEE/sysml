@@ -28,13 +28,6 @@ public class JsonProperty extends JsonBaseElement implements
    }
 
    @Override
-   public int compareTo(Property<String, String, Date> o)
-   {
-      // NOTE: simply check the element id
-      return CompareUtils.compare(getId(), o.getId());
-   }
-
-   @Override
    public boolean equals(Object o)
    {
       if (o == null)

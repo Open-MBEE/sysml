@@ -66,28 +66,6 @@ public class ElementImpl extends BaseElementImpl implements Element< String, Str
     }
 
     @Override
-    public int compareTo( Element< String, String, Date > o ) {
-        if ( this == o ) return 0;
-        if ( o == null ) return 1;
-        int comp = CompareUtils.compare( getWorkspace(), o.getWorkspace() );
-        if ( comp != 0 ) return comp;
-        comp = CompareUtils.compare( getId(), o.getId() );
-        if ( comp != 0 ) return comp;
-        comp = CompareUtils.compare( getName(), o.getName() );
-        if ( comp != 0 ) return comp;
-        comp = CompareUtils.compare( getProperties(), o.getProperties() );
-        // Note, not considering version, so two nodes of different versions may
-        // be the same.
-        return 0;
-    }
-
-    @Override
-    public boolean equals( Object o ) {
-        if ( o == null || !( o instanceof Element ) ) return false;
-        return compareTo( (Element)o ) == 0;
-    }
-
-    @Override
     public Collection< Element< String, String, Date > > getSuperClasses() {
         if ( superClasses == null ) {
             superClasses = new LinkedHashSet< Element< String, String, Date > >();

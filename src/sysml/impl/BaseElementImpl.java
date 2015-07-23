@@ -3,6 +3,7 @@
  */
 package sysml.impl;
 
+import gov.nasa.jpl.mbee.util.CompareUtils;
 import gov.nasa.jpl.mbee.util.InterpolatedMap;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import sysml.BaseElement;
+import sysml.Element;
 import sysml.Property;
 import sysml.Version;
 import sysml.Workspace;
@@ -17,7 +19,7 @@ import sysml.Workspace;
 /**
  *
  */
-public abstract class BaseElementImpl implements BaseElement< String, String, Date > {
+public class BaseElementImpl implements BaseElement< String, String, Date >, Comparable<BaseElementImpl> {
 
     Workspace< String, String, Date > workspace;
     String id;
@@ -131,6 +133,47 @@ public abstract class BaseElementImpl implements BaseElement< String, String, Da
     }
     
     @Override
-    public abstract BaseElement<String, String, Date> clone() throws CloneNotSupportedException;
+    public BaseElement<String, String, Date> clone() throws CloneNotSupportedException
+    {
+       return new BaseElementImpl(this);
+    }
     
+    @Override
+    public int compareTo( BaseElementImpl o ) {
+        if ( this == o ) return 0;
+        if ( o == null ) return 1;
+        int comp = CompareUtils.compare( getWorkspace(), o.getWorkspace() );
+        if ( comp != 0 ) return comp;
+        comp = CompareUtils.compare( getId(), o.getId() );
+        if ( comp != 0 ) return comp;
+        comp = CompareUtils.compare( getName(), o.getName() );
+        return comp;
+    }
+
+    @Override
+    public boolean equals( Object o ) {
+        if ( o == null ) return false;
+        
+        if( o instanceof BaseElementImpl )
+        {
+           return compareTo( (BaseElementImpl)o ) == 0;
+        }
+        else
+        {
+           return false;
+        }
+    }
+    
+    @Override
+    public int hashCode()
+    {
+       StringBuilder sb = new StringBuilder();
+       sb.append(getWorkspace() == null ? "" : getWorkspace().getId());
+       sb.append("_");
+       sb.append(getId());
+       sb.append("_");
+       sb.append(getName());
+       
+       return sb.toString().hashCode();
+    }
 }
