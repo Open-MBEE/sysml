@@ -1,6 +1,5 @@
 package sysml.json_impl;
 
-import gov.nasa.jpl.mbee.util.CompareUtils;
 import java.util.Date;
 
 import java.util.logging.Level;
@@ -9,7 +8,6 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import sysml.Element;
 import sysml.Property;
 
 public class JsonProperty extends JsonBaseElement implements
@@ -28,23 +26,7 @@ public class JsonProperty extends JsonBaseElement implements
    }
 
    @Override
-   public boolean equals(Object o)
-   {
-      if (o == null)
-         return false;
-
-      if (o instanceof Property)
-      {
-         return compareTo((Property) o) == 0;
-      } 
-      else
-      {
-         return false;
-      }
-   }
-
-   @Override
-   public Element<String, String, Date> getType()
+   public JsonElement getType()
    {
       String propID = systemModel.getPropertyTypeID(jsonObj);
 
@@ -54,9 +36,9 @@ public class JsonProperty extends JsonBaseElement implements
       JSONObject jTypeObj = systemModel.getElement(propID);
       JsonBaseElement typeObj = systemModel.wrap(jTypeObj);
 
-      if (typeObj instanceof Element)
+      if (typeObj instanceof JsonElement)
       {
-         return (Element) typeObj;
+         return (JsonElement) typeObj;
       }
       return null;
    }
