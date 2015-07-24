@@ -18,7 +18,7 @@ import sysml.Version;
 import sysml.Workspace;
 
 import org.json.JSONObject;
-import org.json.JSONArray;
+
 
 /**
  *
@@ -113,7 +113,7 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
    }   
 
    @Override
-   public BaseElement<String, String, Date> getProject()
+   public JsonProject getProject()
    {
       Object qId = systemModel.getJsonProperty(jsonObj, JsonSystemModel.QUALIFIED_ID);
       if (qId instanceof String)
@@ -131,7 +131,7 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
             String projectId = stk.nextToken();
 
             JSONObject jProject = systemModel.getElement(projectId);
-            return systemModel.wrap(jProject);
+            return (JsonProject)systemModel.wrap(jProject);
          }
       } else
       {

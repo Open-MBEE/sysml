@@ -38,6 +38,9 @@ import sysml.json_impl.JsonConstraintProperty;
 import sysml.json_impl.JsonParametricDiagram;
 import sysml.json_impl.JsonBindingConnector;
 import sysml.json_impl.JsonBaseElement;
+import sysml.json_impl.JsonProject;
+import sysml.json_impl.JsonStereotype;
+import sysml.json_impl.JsonProperty;
 
 
 import gov.nasa.jpl.mbee.util.FileUtils;
@@ -172,6 +175,15 @@ public class JsonSystemModelTest
                constraintParameter.getTagValue(JsonSystemModel.UPPER_BOUND)));     
          System.out.println(String.format("       Tag (%s): %s", JsonSystemModel.DIRECTION, 
                constraintParameter.getTagValue(JsonSystemModel.DIRECTION)));         
-      }      
+      }
+      
+      // Projects
+      System.out.println(String.format("MBSEAnalyzer profile"));      
+      JSONObject jMbseAnalyzerProj = systemModel.getProject("MBSEAnalyzer");
+      JsonProject mbseAnalyzerProj = (JsonProject)systemModel.wrap(jMbseAnalyzerProj);
+      JsonStereotype externalAnalysis = mbseAnalyzerProj.getStereotype(JsonSystemModel.EXTERNAL_ANALYSIS);
+      System.out.println(String.format("   %s (%s)", externalAnalysis.getName(), externalAnalysis.getId()));
+      JsonProperty urlTag = externalAnalysis.getTag(JsonSystemModel.URL);
+      System.out.println(String.format("      %s (%s)", urlTag.getName(), urlTag.getId()));
    }
 }

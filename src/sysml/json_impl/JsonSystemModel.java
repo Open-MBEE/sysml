@@ -101,6 +101,7 @@ public class JsonSystemModel
    public static final String ST_CONFORMS = "_17_0_2_3_407019f_1389807639137_860750_29082";
    public static final String ST_DIAGRAM_INFO = "_9_0_be00301_1108044380615_150487_0";
    public static final String ST_DIAGRAM = "_9_0_62a020a_1106296071977_61607_0";   
+   public static final String ST_STEREOTYPE = "_9_0_62a020a_1105704941426_574917_9666";
    
    public static final String TAG_GENERATED_FROM_VIEW = "_17_0_5_1_407019f_1430628276506_565_12080";
    
@@ -170,6 +171,9 @@ public class JsonSystemModel
    // JSONObject that contains the JSON model:
    protected JSONObject root = null;
 
+   // Map of project names
+   protected Map<String, JSONObject> projectMap = new LinkedHashMap<String, JSONObject>();   
+
    // Map of element sysmlid to JSON element objects:
    protected Map<String, JSONObject> elementMap = new LinkedHashMap<String, JSONObject>();
 
@@ -209,6 +213,8 @@ public class JsonSystemModel
    {
       try
       {
+         JSONObject project = null;
+         
          JSONObject json = new JSONObject(jsonString);
          // Make sure JSON format contains what we expect:
          if (json.has(ELEMENTS))
@@ -222,6 +228,29 @@ public class JsonSystemModel
                // Make sure JSON format contains what we expect:
                if (jsonObj.has(SYSMLID))
                {
+                  // check for owner id rather than owner object since the owner
+                  // may not be available in the model.
+                  if (getOwnerId(jsonObj) == null)
+                  {
+                     if (project == null)
+                     {
+                        project = jsonObj;
+                        String projectName = getName(project);
+                        if (projectMap.containsKey(projectName))
+                        {
+                           LOGGER.log(Level.WARNING, "Project with the same name already exists: {0}", projectName);
+                        }
+                        else
+                        {
+                           projectMap.put(getName(project), project);
+                        }
+                     }
+                     else
+                     {
+                        LOGGER.log(Level.WARNING, "There is more than one element with no owner: {0}", jsonObj);
+                     }
+                  }
+                  
                   // Update element map
                   elementMap.put(jsonObj.getString(SYSMLID), jsonObj);
 
@@ -294,12 +323,17 @@ public class JsonSystemModel
       }
    }
    
+   
    public JsonBaseElement wrap(JSONObject jObj)
    {
       if (jObj == null)
       {
          return null;
       }
+      else if (isProject(jObj))
+      {
+         return new JsonProject(this, jObj);
+      }      
       else if (isBlock(jObj))
       {
          return new JsonBlock(this, jObj);
@@ -307,19 +341,23 @@ public class JsonSystemModel
       else if (isPart(jObj))
       {
          return new JsonPart(this, jObj);
-      }      
-      else if (isValueProperty(jObj))
-      {
-         return new JsonValueProperty(this, jObj);
-      }      
+      }         
       else if (isConstraintBlock(jObj))
       {
          return new JsonConstraintBlock(this, jObj);
       }
+      else if (isValueProperty(jObj))
+      {
+         return new JsonValueProperty(this, jObj);
+      }         
       else if (isConstraintProperty(jObj))
       {
          return new JsonConstraintProperty(this, jObj);
-      } 
+      }
+      else if (isSlot(jObj))
+      {
+         return new JsonSlot(this, jObj);
+      }              
       else if (isConstraintParameter(jObj))
       {
          return new JsonConstraintParameter(this, jObj);
@@ -327,22 +365,30 @@ public class JsonSystemModel
       else if (isBindingConnector(jObj))
       {
          return new JsonBindingConnector(this, jObj);
-      }
-      else if (isSlot(jObj))
-      {
-         return new JsonSlot(this, jObj);
-      }      
+      }  
       else if (isParametricDiagram(jObj))
       {
          return new JsonParametricDiagram(this, jObj);
       }
+      else if (isStereotype(jObj))
+      {
+         return new JsonStereotype(this, jObj);
+      }      
+      // Note: this should come after checking more specific properties such as value property and slot
+      else if (isProperty(jObj))   
+      {
+         return new JsonProperty(this, jObj);
+      }         
       else
       {
          return new JsonBaseElement(this, jObj);
       }
- 
    }   
    
+   public JSONObject getProject(String name)
+   {
+      return projectMap.get(name);   
+   }
    
    public String getElementName(JSONObject element)
    {
@@ -423,6 +469,12 @@ public class JsonSystemModel
       return metaTypes.contains(ST_CONSTRAINT_BLOCK);
    }
    
+   public boolean isProperty(JSONObject element)
+   {
+      String type = getType(element);
+      return PROPERTY.equals(type);
+   } 
+   
    public boolean isConstraintProperty(JSONObject element)
    {
       List<String> metaTypes = getAppliedMetaTypes(element);
@@ -452,6 +504,17 @@ public class JsonSystemModel
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_DIAGRAM);
    }
+   
+   public boolean isStereotype(JSONObject element)
+   {
+      List<String> metaTypes = getAppliedMetaTypes(element);
+      return metaTypes.contains(ST_STEREOTYPE);
+   }   
+   
+   public boolean isProject(JSONObject element)
+   {
+      return getOwnerId(element) == null;
+   }    
    
    public boolean isParametricDiagram(JSONObject element)
    {
@@ -947,6 +1010,16 @@ public class JsonSystemModel
       }
       return null;
    }
+   
+   public String getOwnerId(JSONObject element)
+   {
+      Object prop = getJsonProperty(element, OWNER);
+      if (prop instanceof String)
+      {
+         return (String) prop;
+      }
+      return null;
+   }   
    
    
    // override
