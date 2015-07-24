@@ -19,6 +19,7 @@ public interface BaseElement<N, I, D> extends HasId<I>, Cloneable {
     public Workspace< N, I, D >  getWorkspace();
 
     public N getName();
+    public N getQualifiedName();
 
     public List< Version< N, D, BaseElement< N, I, D > > > getVersions();
     public Map< D, Version< N, D, BaseElement< N, I, D > > > getVersionMap();
@@ -34,4 +35,11 @@ public interface BaseElement<N, I, D> extends HasId<I>, Cloneable {
     public BaseElement< N, I, D > clone() throws CloneNotSupportedException;
     
     public BaseElement< N, I, D > getOwner();    
+    public List<? extends BaseElement< N, I, D >> getOwnedElements();
+    
+    public BaseElement< N, I, D > getProject();
+    
+    public boolean isStereotypedAs(String name);
+    
+    public String getTagValue(String name);
 }

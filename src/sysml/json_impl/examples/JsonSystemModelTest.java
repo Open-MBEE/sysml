@@ -31,8 +31,9 @@ package sysml.json_impl.examples;
 
 import sysml.json_impl.JsonSystemModel;
 import sysml.json_impl.JsonBlock;
-import sysml.json_impl.JsonPart;
 import sysml.json_impl.JsonConstraintBlock;
+import sysml.json_impl.JsonPart;
+import sysml.json_impl.JsonConstraintParameter;
 import sysml.json_impl.JsonConstraintProperty;
 import sysml.json_impl.JsonParametricDiagram;
 import sysml.json_impl.JsonBindingConnector;
@@ -97,7 +98,8 @@ public class JsonSystemModelTest
          JsonBlock partType = part.getType();
          System.out.println(String.format("   %s (%s)  type: %s", part.getName(), part.getId(), partType.getName()));
       }
-
+      
+      // Parametric diagram
       List<JsonParametricDiagram> parametricDiagrams = bike.getParametricDiagrams();
       for (JsonParametricDiagram parametricDiagram : parametricDiagrams)
       {
@@ -134,5 +136,42 @@ public class JsonSystemModelTest
             }
          }         
       }
+      
+      // Constraint block "SumTwo"
+      elements = (List<JSONObject>) systemModel.getElementWithName(null, "SumTwo");
+      if (elements.size() == 0)
+      {
+         throw new Exception("No element was found");   
+      }
+      else if (elements.size() > 1)
+      {
+         throw new Exception("More than one element was found");   
+      }         
+      iter = elements.iterator();       
+      JSONObject jSumTwo = iter.next();      
+      JsonConstraintBlock sumTwo = (JsonConstraintBlock)systemModel.wrap(jSumTwo);
+      System.out.println(String.format("Constraint block: %s (%s)", sumTwo.getName(), sumTwo.getId()));
+      
+      boolean isStereotyped = sumTwo.isStereotypedAs(JsonSystemModel.EXTERNAL_ANALYSIS);
+      System.out.println(String.format("   Stereotyped by \"%s\": %s", JsonSystemModel.EXTERNAL_ANALYSIS, isStereotyped));
+      
+      System.out.println(String.format("   Tag (%s): %s", JsonSystemModel.URL, 
+            sumTwo.getTagValue(JsonSystemModel.URL)));      
+      System.out.println(String.format("   Tag (%s): %s", JsonSystemModel.TYPE, 
+            sumTwo.getTagValue(JsonSystemModel.TYPE)));      
+      
+      List<JsonConstraintParameter> constraintParameters = sumTwo.getConstraintParameters();
+      for (JsonConstraintParameter constraintParameter : constraintParameters)
+      {
+         System.out.println(String.format("   %s (%s)", constraintParameter.getName(), constraintParameter.getId()));
+         System.out.println(String.format("       Tag (%s): %s", JsonSystemModel.DEFAULT_VALUE, 
+               constraintParameter.getTagValue(JsonSystemModel.DEFAULT_VALUE)));          
+         System.out.println(String.format("       Tag (%s): %s", JsonSystemModel.LOWER_BOUND, 
+               constraintParameter.getTagValue(JsonSystemModel.LOWER_BOUND))); 
+         System.out.println(String.format("       Tag (%s): %s", JsonSystemModel.UPPER_BOUND, 
+               constraintParameter.getTagValue(JsonSystemModel.UPPER_BOUND)));     
+         System.out.println(String.format("       Tag (%s): %s", JsonSystemModel.DIRECTION, 
+               constraintParameter.getTagValue(JsonSystemModel.DIRECTION)));         
+      }      
    }
 }

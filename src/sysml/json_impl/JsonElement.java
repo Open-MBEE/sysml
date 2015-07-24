@@ -3,26 +3,20 @@
  */
 package sysml.json_impl;
 
-import gov.nasa.jpl.mbee.util.CompareUtils;
-import gov.nasa.jpl.mbee.util.InterpolatedMap;
+
 import gov.nasa.jpl.mbee.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.json.JSONObject;
 
-import sysml.BaseElement;
 import sysml.Element;
 import sysml.Property;
-import sysml.Version;
-import sysml.Workspace;
 
 /**
  *
@@ -34,22 +28,6 @@ public class JsonElement extends JsonBaseElement implements
    public JsonElement(JsonSystemModel systemModel, JSONObject jObj)
    {
       super(systemModel, jObj);
-   }
-
-   @Override
-   public boolean equals(Object o)
-   {
-      if (o == null)
-         return false;
-
-      if (o instanceof Element)
-      {
-         return compareTo((Element) o) == 0;
-      } 
-      else
-      {
-         return false;
-      }
    }
 
    @Override

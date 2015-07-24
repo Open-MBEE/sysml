@@ -6,15 +6,21 @@ package sysml.impl;
 import gov.nasa.jpl.mbee.util.CompareUtils;
 import gov.nasa.jpl.mbee.util.InterpolatedMap;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+
+import org.json.JSONObject;
 
 import sysml.BaseElement;
 import sysml.Element;
 import sysml.Property;
 import sysml.Version;
 import sysml.Workspace;
+import sysml.json_impl.JsonBaseElement;
+import sysml.json_impl.JsonSystemModel;
 
 /**
  *
@@ -54,7 +60,33 @@ public class BaseElementImpl implements BaseElement< String, String, Date >, Com
     public String getName() {
         return name;
     }
+    
+    @Override
+    public String getQualifiedName() {
+        // TODO: implement
+        return null;
+    }    
+    
+    @Override
+    public BaseElementImpl getProject() {
+        // TODO: implement
+        return null;
+    }      
 
+    @Override
+    public boolean isStereotypedAs(String name)
+    {
+       // TODO: implement
+       return false;
+    }
+    
+    @Override
+    public String getTagValue(String name)
+    {
+       // TODO: implement
+       return null;
+    }
+    
     @Override
     public Workspace< String, String, Date > getWorkspace() {
         return workspace;
@@ -64,6 +96,13 @@ public class BaseElementImpl implements BaseElement< String, String, Date >, Com
     public BaseElement<String, String, Date> getOwner() {
         return null;
     }
+    
+    @Override
+    public List<JsonBaseElement> getOwnedElements()
+    {
+       // TODO: implement
+       return null;
+    }   
     
     @Override
     public List< Version< String, Date, BaseElement< String, String, Date > > > getVersions() {

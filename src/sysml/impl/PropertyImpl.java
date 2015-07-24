@@ -39,24 +39,6 @@ public class PropertyImpl extends BaseElementImpl implements Property< String, S
     }   
 
     @Override
-    public int compareTo( Property< String, String, Date > o ) {
-       if ( this == o ) return 0;
-       if ( o == null ) return 1;
-       int comp = CompareUtils.compare( getWorkspace(), o.getWorkspace() );
-       if ( comp != 0 ) return comp;
-       comp = CompareUtils.compare( getId(), o.getId() );
-       if ( comp != 0 ) return comp;
-       comp = CompareUtils.compare( getName(), o.getName() );
-       if ( comp != 0 ) return comp;
-       comp = CompareUtils.compare( getType(), o.getType() );
-       if ( comp != 0 ) return comp;
-       comp = CompareUtils.compare( getValue(), o.getValue() );     
-       // Note, not considering version, so two nodes of different versions may
-       // be the same.
-       return 0;
-    }
-
-    @Override
     public Element<String, String, Date> getType() {
         return type;
     }

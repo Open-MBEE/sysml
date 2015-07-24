@@ -104,7 +104,7 @@ public class JsonPropertyValues
       }
       else if (type.equals(LITERAL_BOOLEAN))
       {
-         return Boolean.valueOf(jValue.getString(BOOLEAN));
+         return Boolean.valueOf(jValue.getBoolean(BOOLEAN));
       }
       else if (type.equals(ELEMENT_VALUE))
       {
@@ -112,11 +112,48 @@ public class JsonPropertyValues
       }
       else if (type.equals(INSTANCE_VALUE))
       {
-         return systemModel.getElement(jValue.getString(ELEMENT));
+         return systemModel.getElement(jValue.getString(INSTANCE));
       }
       
       LOGGER.log(Level.WARNING, "unknown property value type: %s", jsonArray);
 
       return null;
    }
+   
+   public String getValueAsString(int i)
+   {
+      String type = getValueType();
+      if (type == null)
+      {
+         return "";
+      }
+      
+      JSONObject jValue = jsonArray.getJSONObject(i);
+      if (type.equals(LITERAL_REAL))
+      {
+         return "" + jValue.getDouble(DOUBLE);
+      }
+      else if (type.equals(LITERAL_STRING))
+      {
+         return jValue.getString(STRING);
+      }
+      else if (type.equals(LITERAL_BOOLEAN))
+      {
+         return "" + jValue.getBoolean(BOOLEAN);
+      }
+      else if (type.equals(ELEMENT_VALUE))
+      {
+         // return element id
+         return jValue.getString(ELEMENT);
+      }
+      else if (type.equals(INSTANCE_VALUE))
+      {
+         // return element id
+         return jValue.getString(INSTANCE);
+      }
+      
+      LOGGER.log(Level.WARNING, "unknown property value type: %s", jsonArray);
+
+      return "";
+   }   
 }

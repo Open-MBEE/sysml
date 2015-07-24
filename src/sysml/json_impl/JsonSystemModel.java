@@ -33,17 +33,20 @@ import gov.nasa.jpl.mbee.util.Debug;
 import gov.nasa.jpl.mbee.util.FileUtils;
 import gov.nasa.jpl.mbee.util.Pair;
 import gov.nasa.jpl.mbee.util.Utils;
+import gov.nasa.jpl.mbee.util.FileUtils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.io.FileNotFoundException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,13 +57,14 @@ import sysml.AbstractSystemModel;
 
 public class JsonSystemModel
 {
-
+   public static final String MBSE_ANALYZER_JSON = "MBSE_Analyzer.json";
    public static final String NAME = "name";
    public static final String TYPE = "type";
    public static final String OWNER = "owner";
    public static final String SOURCE = "source";
    public static final String TARGET = "target";
    public static final String SYSMLID = "sysmlid";
+   public static final String QUALIFIED_ID = "qualifiedId";
    public static final String ELEMENTS = "elements";
    public static final String SPECIALIZATION = "specialization";
    public static final String VALUE = "value";   
@@ -74,16 +78,20 @@ public class JsonSystemModel
    public static final String _SLOT_ = "-slot-";    
    public static final String STRING = "string";
    public static final String LIST = "list";   
+   public static final String INSTANCE_SPECIFICATION = "InstanceSpecification";
    public static final String INSTANCE_SPECIFICATION_SPECIFICATION = "instanceSpecificationSpecification";
    public static final String SOURCE_PATH = "sourcePath";
    public static final String TARGET_PATH = "targetPath";
+   public static final String CLASSIFIER = "classifier";   
    
    public static final String ST_BLOCK = "_11_5EAPbeta_be00301_1147424179914_458922_958"; 
    public static final String ST_PART = "_15_0_be00301_1199377756297_348405_2678";
    public static final String ST_VALUE_PROPERTY = "_12_0_be00301_1164123483951_695645_2041";
-   public static final String ST_CONSTRAINT_BLOCK = "_17_0_1_42401aa_1327611546796_59249_12173";
+   public static final String ST_CONSTRAINT_BLOCK = "_11_5EAPbeta_be00301_1147767804973_159489_404";
    public static final String ST_CONSTRAINT_PROPERTY = "_11_5EAPbeta_be00301_1147767840464_372327_467";   
    public static final String ST_CONSTRAINT_PARAMETER = "_17_0_1_42401aa_1327611824171_784118_12184";   
+   
+   public static final String ST_SLOT = "_9_0_62a020a_1105704885275_885607_7905";   
    
    public static final String ST_BINDING_CONNECTOR = "_15_0_be00301_1204738115945_253883_5044";   
    public static final String ST_DEPENDENCY = "_16_5_4_409a058d_1259862803278_226185_1083";
@@ -96,7 +104,68 @@ public class JsonSystemModel
    
    public static final String TAG_GENERATED_FROM_VIEW = "_17_0_5_1_407019f_1430628276506_565_12080";
    
+   // MBSE Analyzer stereotypes and tags
+   public static final String ST_EXTERNAL_ANALYSIS = "_17_0_1_42401aa_1327611546796_59249_12173";
+   public static final String TAG_URL = "_17_0_1_42401aa_1327611913312_170324_12190";
+   public static final String TAG_TYPE = "_17_0_2_60c020e_1382374932939_673434_11829";
+   public static final String EXTERNAL_ANALYSIS = "ExternalAnalysis";
+   public static final String URL = "url";
+   
+   public static final String ST_ANALYSIS_VARIABLE = "_17_0_1_42401aa_1327611824171_784118_12184"; 
+   public static final String TAG_ANALYSYS_VAR_NAME = "_17_0_1_42401aa_1327611953156_52897_12191";
+   public static final String TAG_DEFAULT_VALUE = "_17_0_1_2_42401aa_1340748740267_950617_11079";    
+   public static final String TAG_LOWER_BOUND = "_17_0_1_2_42401aa_1340762556414_622074_11080"; 
+   public static final String TAG_UPPER_BOUND = "_17_0_1_2_42401aa_1340762569113_63864_11081"; 
+   public static final String TAG_DIRECTION = "_17_0_2_42401aa_1360724516348_444121_11837";   
+   public static final String ANALYSIS_VARIABLE = "AnalysisVariable";
+   public static final String ANALYSYS_VAR_NAME = "analysisVarName";
+   public static final String DEFAULT_VALUE = "defaultValue";
+   public static final String LOWER_BOUND = "lowerBound";
+   public static final String UPPER_BOUND = "upperBound";
+   public static final String DIRECTION = "direction";   
+
+   public static final String ST_SCRIPT = "_17_0_2_60c020e_1372450719621_997016_11834";
+   public static final String TAG_LANGUAGE = "_17_0_2_60c020e_1372450756111_40969_11857";
+   public static final String TAG_BODY = "_17_0_2_42401aa_1383670300996_566645_11829";
+   public static final String SCRIPT = "Script";  
+   public static final String LANGUAGE = "language";  
+   public static final String BODY = "body";     
+   
+   // Map of stereotypes
+   static protected Map<String, String> stereotypeMap = new HashMap<String, String>();
+   
+   // Map of tags
+   static protected Map<String, String> tagMap = new HashMap<String, String>();      
+   
+   static
+   {
+      stereotypeMap.put(EXTERNAL_ANALYSIS, ST_EXTERNAL_ANALYSIS);
+      stereotypeMap.put(ANALYSIS_VARIABLE, ST_ANALYSIS_VARIABLE);
+      stereotypeMap.put(SCRIPT, ST_SCRIPT);
+      
+      tagMap.put(URL, TAG_URL);
+      tagMap.put(TYPE, TAG_TYPE);
+      tagMap.put(ANALYSYS_VAR_NAME, TAG_ANALYSYS_VAR_NAME);
+      tagMap.put(DEFAULT_VALUE, TAG_DEFAULT_VALUE);
+      tagMap.put(LOWER_BOUND, TAG_LOWER_BOUND);
+      tagMap.put(UPPER_BOUND, TAG_UPPER_BOUND);
+      tagMap.put(DIRECTION, TAG_DIRECTION);
+      tagMap.put(LANGUAGE, TAG_LANGUAGE);
+      tagMap.put(BODY, TAG_BODY);
+   }
+   
+   // Special view and viewpoint to collect elements on parametric diagrams
    public static final String ID_COLLECT_PARAM_DIAGRAM_ELEMENTS_VIEWPOINT = "_18_0_2_f060354_1436758053298_656033_17322";
+   
+   public static String getStereotypeID(String name)
+   {
+      return stereotypeMap.get(name);
+   }
+   
+   public static String getTagID(String name)
+   {
+      return tagMap.get(name);
+   }   
    
    // JSONObject that contains the JSON model:
    protected JSONObject root = null;
@@ -113,10 +182,21 @@ public class JsonSystemModel
    // Map of view to viewpoint
    protected Map<String, String> viewpointMap = new LinkedHashMap<String, String>();     
    
+
+   
    private final static Logger LOGGER = Logger.getLogger(JsonSystemModel.class.getName());
 
    public JsonSystemModel(String jsonString) throws JsonSystemModelException
    {
+      try
+      {
+         readJson(FileUtils.fileToString(MBSE_ANALYZER_JSON));
+      }
+      catch(FileNotFoundException ex)
+      {
+         throw new JsonSystemModelException("Failed to load MBSE Analyzer profile.", ex);
+      }
+      
       readJson(jsonString);
    }
 
@@ -248,6 +328,10 @@ public class JsonSystemModel
       {
          return new JsonBindingConnector(this, jObj);
       }
+      else if (isSlot(jObj))
+      {
+         return new JsonSlot(this, jObj);
+      }      
       else if (isParametricDiagram(jObj))
       {
          return new JsonParametricDiagram(this, jObj);
@@ -356,6 +440,12 @@ public class JsonSystemModel
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_BINDING_CONNECTOR);
    }   
+   
+   public boolean isSlot(JSONObject element)
+   {
+      List<String> metaTypes = getAppliedMetaTypes(element);
+      return metaTypes.contains(ST_SLOT);
+   }      
 
    public boolean isDiagram(JSONObject element)
    {
