@@ -42,6 +42,11 @@ public class JsonProperty extends JsonBaseElement implements
       }
       return null;
    }
+   
+   public String getTypeId()
+   {
+      return systemModel.getPropertyTypeID(jsonObj);
+   }   
 
    @Override
    public JsonPropertyValues getValue()

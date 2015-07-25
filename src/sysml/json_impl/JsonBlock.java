@@ -44,7 +44,7 @@ public class JsonBlock extends JsonElement
    public List<JsonValueProperty> getValueProperties()
    {
       ArrayList<JsonValueProperty> valueProps = new ArrayList<JsonValueProperty>();
-      List<JSONObject> jList = systemModel.getParts(jsonObj);
+      List<JSONObject> jList = systemModel.getValueProperties(jsonObj);
       for (JSONObject jObj : jList)
       {
          if (systemModel.isValueProperty(jObj))

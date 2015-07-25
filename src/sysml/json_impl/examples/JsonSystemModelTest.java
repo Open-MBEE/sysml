@@ -30,6 +30,7 @@
 package sysml.json_impl.examples;
 
 import sysml.json_impl.JsonSystemModel;
+import sysml.json_impl.JsonElement;
 import sysml.json_impl.JsonBlock;
 import sysml.json_impl.JsonConstraintBlock;
 import sysml.json_impl.JsonPart;
@@ -41,6 +42,8 @@ import sysml.json_impl.JsonBaseElement;
 import sysml.json_impl.JsonProject;
 import sysml.json_impl.JsonStereotype;
 import sysml.json_impl.JsonProperty;
+import sysml.json_impl.JsonPropertyValues;
+import sysml.json_impl.JsonValueProperty;
 
 
 import gov.nasa.jpl.mbee.util.FileUtils;
@@ -96,31 +99,47 @@ public class JsonSystemModelTest
       JsonBlock bike = (JsonBlock)systemModel.wrap(jBike);
       List<JsonPart> parts = bike.getParts();
       System.out.println(String.format("Block: %s (%s)", bike.getName(), bike.getId()));
+      System.out.println(String.format("   parts count: %d ", parts.size()));
       for (JsonPart part : parts)
       {
          JsonBlock partType = part.getType();
-         System.out.println(String.format("   %s (%s)  type: %s", part.getName(), part.getId(), partType.getName()));
+         System.out.println(String.format("   %s (%s)  type: %s", 
+               part.getName(), part.getId(), partType.getName()));
       }
+      
+      List<JsonValueProperty> valueProps = bike.getValueProperties();
+      System.out.println(String.format("   value properties count: %d ", valueProps.size()));
+      for (JsonValueProperty valueProp : valueProps)
+      {
+         JsonPropertyValues values = valueProp.getValue();
+         String valuePropTypeId = valueProp.getTypeId();
+         System.out.println(String.format("   %s (%s)  value: %s value.class: %s type: %s", 
+               valueProp.getName(), valueProp.getId(), values.getValueAsString(0), 
+               values.getClass().getName(), valuePropTypeId));
+      }      
       
       // Parametric diagram
       List<JsonParametricDiagram> parametricDiagrams = bike.getParametricDiagrams();
       for (JsonParametricDiagram parametricDiagram : parametricDiagrams)
       {
-         System.out.println(String.format("   parametricDiagram: %s (%s)", parametricDiagram.getName(), parametricDiagram.getId()));
+         System.out.println(String.format("   parametricDiagram: %s (%s)", 
+               parametricDiagram.getName(), parametricDiagram.getId()));
          
          List<JsonConstraintProperty> constraintProperties = parametricDiagram.getConstraintProperties();
          System.out.println(String.format("      constraint properties: count=%d", constraintProperties.size()));
          for (JsonConstraintProperty constraintProperty : constraintProperties)
          {
             JsonConstraintBlock cpType = constraintProperty.getType();
-            System.out.println(String.format("         %s (%s)  type: %s", constraintProperty.getName(), constraintProperty.getId(), cpType.getName()));
+            System.out.println(String.format("         %s (%s)  type: %s", 
+                  constraintProperty.getName(), constraintProperty.getId(), cpType.getName()));
          }
          
          List<JsonBindingConnector> bindingConnectors = parametricDiagram.getBindingConnectors();
          System.out.println(String.format("      binding connectors: count=%d", bindingConnectors.size()));
          for (JsonBindingConnector bindingConnector : bindingConnectors)
          {
-            System.out.println(String.format("         %s (%s)", bindingConnector.getName(), bindingConnector.getId()));
+            System.out.println(String.format("         %s (%s)", 
+                  bindingConnector.getName(), bindingConnector.getId()));
             
             System.out.println("            Source sequence:");
             List<JsonBaseElement> sourceSequence = bindingConnector.getSourcePath();
@@ -178,9 +197,17 @@ public class JsonSystemModelTest
       }
       
       // Projects
-      System.out.println(String.format("MBSEAnalyzer profile"));      
+      JsonProject p1 = bike.getProject();
+      JsonProject p2 = sumTwo.getProject();
+      
+      System.out.println(String.format("Project of Bike: %s (%s)", p1.getName(), p1.getId()));
+      System.out.println(String.format("Project of SumTwo: %s (%s)", p2.getName(), p2.getId()));
+      System.out.println(String.format("p1==p2: %s", p1.equals(p2)));
+                  
       JSONObject jMbseAnalyzerProj = systemModel.getProject("MBSEAnalyzer");
       JsonProject mbseAnalyzerProj = (JsonProject)systemModel.wrap(jMbseAnalyzerProj);
+      System.out.println(String.format("MBSEAnalyzer profile: %s (%s)", 
+            mbseAnalyzerProj.getName(), mbseAnalyzerProj.getId()));
       JsonStereotype externalAnalysis = mbseAnalyzerProj.getStereotype(JsonSystemModel.EXTERNAL_ANALYSIS);
       System.out.println(String.format("   %s (%s)", externalAnalysis.getName(), externalAnalysis.getId()));
       JsonProperty urlTag = externalAnalysis.getTag(JsonSystemModel.URL);
