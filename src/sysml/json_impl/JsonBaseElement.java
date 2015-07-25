@@ -323,4 +323,10 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
    {
       return getId().hashCode();
    }
+   
+   @Override
+   public String toString()
+   {
+      return String.format("%s (%s)", getName(), getId());
+   }
 }

@@ -108,11 +108,27 @@ public class JsonPropertyValues
       }
       else if (type.equals(ELEMENT_VALUE))
       {
-         return systemModel.getElement(jValue.getString(ELEMENT));
+         if (jValue.isNull(ELEMENT))
+         {
+            LOGGER.log(Level.WARNING, "Element property value is null: %s", jsonArray);
+            return null;
+         }
+         else
+         {
+            return systemModel.getElement(jValue.getString(ELEMENT));
+         }
       }
       else if (type.equals(INSTANCE_VALUE))
       {
-         return systemModel.getElement(jValue.getString(INSTANCE));
+         if (jValue.isNull(INSTANCE))
+         {
+            LOGGER.log(Level.WARNING, "Element property value is null: %s", jsonArray);
+            return null;
+         }
+         else
+         {
+            return systemModel.getElement(jValue.getString(INSTANCE));
+         }         
       }
       
       LOGGER.log(Level.WARNING, "unknown property value type: %s", jsonArray);

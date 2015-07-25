@@ -1,0 +1,4001 @@
+{"elements": [
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865838234_342285_6462/_16_6_2104050f_1253865838234_536529_6463/_16_6_2104050f_1253865838234_536529_6463-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/J//",
+        "sysmlid": "_16_6_2104050f_1253865838234_536529_6463-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:00.461-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:27 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865838234_536529_6463",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.344-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865521234_252677_6222/_16_6_2104050f_1253865521234_20202_6223/_16_6_2104050f_1253865521234_20202_6223-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Bq//",
+        "sysmlid": "_16_6_2104050f_1253865521234_20202_6223-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:22.434-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:49 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865521234_20202_6223",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.363-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865838234_342285_6462",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/J",
+        "sysmlid": "_16_6_2104050f_1253865838234_342285_6462",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:14:59.953-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:26 PDT 2015",
+        "name": "J",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.381-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866118890_542058_6821/_16_6_2104050f_1253866118890_983561_6822/_16_6_2104050f_1253866118890_983561_6822-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Pa//",
+        "sysmlid": "_16_6_2104050f_1253866118890_983561_6822-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:30.431-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:59 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866118890_983561_6822",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.390-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245649125606_277898_7819",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865414453_562584_6170/_16_6_2104050f_1253865414453_916159_6171",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/m/",
+        "sysmlid": "_16_6_2104050f_1253865414453_916159_6171",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:10.258-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:37 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865414453_562584_6170",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.408-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866190015_590196_6911/_16_6_2104050f_1253866190015_941638_6912/_16_6_2104050f_1253866190015_941638_6912-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/s//",
+        "sysmlid": "_16_6_2104050f_1253866190015_941638_6912-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:05.931-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:33 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866190015_941638_6912",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.422-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245558801890_74944_4509",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866196609_4624_6935/_16_6_2104050f_1253866196609_412875_6936/_16_6_2104050f_1253866196609_412875_6936-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/S//",
+        "sysmlid": "_16_6_2104050f_1253866196609_412875_6936-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:19.706-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:47 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866196609_412875_6936",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.440-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865836343_263823_6420",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/H",
+        "sysmlid": "_16_6_2104050f_1253865836343_263823_6420",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:00.674-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:27 PDT 2015",
+        "name": "H",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.458-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865524203_478402_6285/_16_6_2104050f_1253865524203_214540_6286",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/C/",
+        "sysmlid": "_16_6_2104050f_1253865524203_214540_6286",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:25.732-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:53 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865524203_478402_6285",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.466-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865963328_346522_6638/_16_6_2104050f_1253865963328_448831_6639/_16_6_2104050f_1253865963328_448831_6639-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/lx//",
+        "sysmlid": "_16_6_2104050f_1253865963328_448831_6639-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:07.366-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:34 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865963328_448831_6639",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.481-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865297062_670416_4757",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A",
+        "sysmlid": "_16_6_2104050f_1253865297062_670416_4757",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:01.354-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:28 PDT 2015",
+        "name": "A",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.498-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866112953_623906_6737/_16_6_2104050f_1253866112953_833622_6738",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mol/",
+        "sysmlid": "_16_6_2104050f_1253866112953_833622_6738",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:14.040-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:41 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866112953_623906_6737",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.507-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865525312_896795_6306",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m³",
+        "sysmlid": "_16_6_2104050f_1253865525312_896795_6306",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:02.085-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:29 PDT 2015",
+        "name": "m³",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.521-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866111500_367563_6716",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/s²",
+        "sysmlid": "_16_6_2104050f_1253866111500_367563_6716",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:02.780-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:29 PDT 2015",
+        "name": "m/s²",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.530-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866117390_114480_6800",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Ω",
+        "sysmlid": "_16_6_2104050f_1253866117390_114480_6800",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:03.507-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:30 PDT 2015",
+        "name": "Ω",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.539-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865839390_549605_6483/_16_6_2104050f_1253865839390_434838_6484",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kat/",
+        "sysmlid": "_16_6_2104050f_1253865839390_434838_6484",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:24.276-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:51 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865839390_549605_6483",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.548-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866111500_367563_6716/_16_6_2104050f_1253866111500_961375_6717",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/s²/",
+        "sysmlid": "_16_6_2104050f_1253866111500_961375_6717",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:02.870-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:30 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866111500_367563_6716",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.562-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866229171_239601_7055/_16_6_2104050f_1253866229171_426302_7056/_16_6_2104050f_1253866229171_426302_7056-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/V//",
+        "sysmlid": "_16_6_2104050f_1253866229171_426302_7056-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:09.231-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:36 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866229171_426302_7056",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.576-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865525312_896795_6306/_16_6_2104050f_1253865525312_253822_6307/_16_6_2104050f_1253865525312_253822_6307-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m³//",
+        "sysmlid": "_16_6_2104050f_1253865525312_253822_6307-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:02.558-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:29 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865525312_253822_6307",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.594-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865964703_823615_6659",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m",
+        "sysmlid": "_16_6_2104050f_1253865964703_823615_6659",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:04.209-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:31 PDT 2015",
+        "name": "m",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.611-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865962046_891350_6617",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/lm",
+        "sysmlid": "_16_6_2104050f_1253865962046_891350_6617",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:05.015-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:32 PDT 2015",
+        "name": "lm",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.620-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865960625_344379_6596/_16_6_2104050f_1253865960625_989205_6597/_16_6_2104050f_1253865960625_989205_6597-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kg/m³//",
+        "sysmlid": "_16_6_2104050f_1253865960625_989205_6597-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:09.655-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:37 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865960625_989205_6597",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.629-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245576305098_969824_5493",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866196609_4624_6935/_16_6_2104050f_1253866196609_412875_6936/_16_6_2104050f_1253866196609_412875_6936-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/S//",
+        "sysmlid": "_16_6_2104050f_1253866196609_412875_6936-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:19.425-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:47 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866196609_412875_6936",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.647-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_2_ff3038a_1245881602473_580919_8246",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866190015_590196_6911/_16_6_2104050f_1253866190015_941638_6912",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/s/",
+        "sysmlid": "_16_6_2104050f_1253866190015_941638_6912",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:05.808-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:33 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866190015_590196_6911",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.663-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865834343_544587_6378/_16_6_2104050f_1253865834343_937877_6379",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/˚C/",
+        "sysmlid": "_16_6_2104050f_1253865834343_937877_6379",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:16.201-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:44 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865834343_544587_6378",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.675-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865414453_562584_6170/_16_6_2104050f_1253865414453_916159_6171/_16_6_2104050f_1253865414453_916159_6171-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/m//",
+        "sysmlid": "_16_6_2104050f_1253865414453_916159_6171-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:10.370-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:38 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865414453_916159_6171",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.690-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245620876973_617416_5050",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866112953_623906_6737/_16_6_2104050f_1253866112953_833622_6738/_16_6_2104050f_1253866112953_833622_6738-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mol//",
+        "sysmlid": "_16_6_2104050f_1253866112953_833622_6738-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:14.447-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:42 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866112953_833622_6738",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.706-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245558843953_788987_4545",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866215312_584989_7007/_16_6_2104050f_1253866215312_156927_7008/_16_6_2104050f_1253866215312_156927_7008-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/sr//",
+        "sysmlid": "_16_6_2104050f_1253866215312_156927_7008-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:08.187-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:35 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866215312_156927_7008",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.723-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866110015_473554_6695/_16_6_2104050f_1253866110015_771058_6696/_16_6_2104050f_1253866110015_771058_6696-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/s//",
+        "sysmlid": "_16_6_2104050f_1253866110015_771058_6696-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:29.618-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:58 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866110015_771058_6696",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.741-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866110015_473554_6695/_16_6_2104050f_1253866110015_771058_6696",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/s/",
+        "sysmlid": "_16_6_2104050f_1253866110015_771058_6696",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:29.462-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:58 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866110015_473554_6695",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.759-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865957968_136935_6575/_16_6_2104050f_1253865957968_966463_6576/_16_6_2104050f_1253865957968_966463_6576-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kg//",
+        "sysmlid": "_16_6_2104050f_1253865957968_966463_6576-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:28.347-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:56 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865957968_966463_6576",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.772-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866190015_590196_6911",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/s",
+        "sysmlid": "_16_6_2104050f_1253866190015_590196_6911",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:05.712-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:32 PDT 2015",
+        "name": "s",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.789-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865960625_344379_6596/_16_6_2104050f_1253865960625_989205_6597",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kg/m³/",
+        "sysmlid": "_16_6_2104050f_1253865960625_989205_6597",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:09.537-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:37 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865960625_344379_6596",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.798-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866114390_861485_6758/_16_6_2104050f_1253866114390_197295_6759/_16_6_2104050f_1253866114390_197295_6759-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mol/m³//",
+        "sysmlid": "_16_6_2104050f_1253866114390_197295_6759-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:14.896-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:42 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866114390_197295_6759",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.811-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865522593_248625_6243",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/cd",
+        "sysmlid": "_16_6_2104050f_1253865522593_248625_6243",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:06.453-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:33 PDT 2015",
+        "name": "cd",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.828-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865840515_890551_6504/_16_6_2104050f_1253865840515_851729_6505/_16_6_2104050f_1253865840515_851729_6505-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Hz//",
+        "sysmlid": "_16_6_2104050f_1253865840515_851729_6505-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:25.363-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:52 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865840515_851729_6505",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.837-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245635839350_566315_6772",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865963328_346522_6638",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/lx",
+        "sysmlid": "_16_6_2104050f_1253865963328_346522_6638",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:07.159-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:34 PDT 2015",
+        "name": "lx",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.855-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866229171_239601_7055/_16_6_2104050f_1253866229171_426302_7056/_16_6_2104050f_1253866229171_426302_7056-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/V//",
+        "sysmlid": "_16_6_2104050f_1253866229171_426302_7056-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:08.897-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:36 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866229171_426302_7056",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.864-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865841765_665979_6525/_16_6_2104050f_1253865841765_720047_6526/_16_6_2104050f_1253865841765_720047_6526-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/K//",
+        "sysmlid": "_16_6_2104050f_1253865841765_720047_6526-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:17.823-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:46 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865841765_720047_6526",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.879-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245558834605_618778_4533",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866215312_584989_7007",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/sr",
+        "sysmlid": "_16_6_2104050f_1253866215312_584989_7007",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:07.944-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:35 PDT 2015",
+        "name": "sr",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.898-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865834343_544587_6378/_16_6_2104050f_1253865834343_937877_6379/_16_6_2104050f_1253865834343_937877_6379-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/˚C//",
+        "sysmlid": "_16_6_2104050f_1253865834343_937877_6379-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:16.674-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:44 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865834343_937877_6379",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.906-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_2_ff3038a_1245910546708_321035_9774",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865519453_888396_6201/_16_6_2104050f_1253865519453_451697_6202",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/m²/",
+        "sysmlid": "_16_6_2104050f_1253865519453_451697_6202",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:18.448-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:46 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865519453_888396_6201",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.923-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865957968_136935_6575/_16_6_2104050f_1253865957968_966463_6576/_16_6_2104050f_1253865957968_966463_6576-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kg//",
+        "sysmlid": "_16_6_2104050f_1253865957968_966463_6576-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:28.070-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:56 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865957968_966463_6576",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.937-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865840515_890551_6504/_16_6_2104050f_1253865840515_851729_6505/_16_6_2104050f_1253865840515_851729_6505-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Hz//",
+        "sysmlid": "_16_6_2104050f_1253865840515_851729_6505-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:25.094-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:52 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865840515_851729_6505",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.952-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866229171_239601_7055",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/V",
+        "sysmlid": "_16_6_2104050f_1253866229171_239601_7055",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:08.690-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:36 PDT 2015",
+        "name": "V",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.968-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865960625_344379_6596",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kg/m³",
+        "sysmlid": "_16_6_2104050f_1253865960625_344379_6596",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:09.456-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:36 PDT 2015",
+        "name": "kg/m³",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.976-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865414453_562584_6170",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/m",
+        "sysmlid": "_16_6_2104050f_1253865414453_562584_6170",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:10.158-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:37 PDT 2015",
+        "name": "A/m",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.985-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866118890_542058_6821/_16_6_2104050f_1253866118890_983561_6822/_16_6_2104050f_1253866118890_983561_6822-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Pa//",
+        "sysmlid": "_16_6_2104050f_1253866118890_983561_6822-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:30.691-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:59 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866118890_983561_6822",
+        "documentation": "",
+        "read": "2015-07-25T13:06:08.993-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245649035695_379354_7789",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866202765_378793_6959/_16_6_2104050f_1253866202765_280394_6960/_16_6_2104050f_1253866202765_280394_6960-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Sv//",
+        "sysmlid": "_16_6_2104050f_1253866202765_280394_6960-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:23.180-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:50 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866202765_280394_6960",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.009-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866222968_221323_7031/_16_6_2104050f_1253866222968_325972_7032/_16_6_2104050f_1253866222968_325972_7032-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/T//",
+        "sysmlid": "_16_6_2104050f_1253866222968_325972_7032-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:23.634-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:50 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866222968_325972_7032",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.027-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866183796_441605_6887/_16_6_2104050f_1253866183796_7511_6888",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mˉ ¹/",
+        "sysmlid": "_16_6_2104050f_1253866183796_7511_6888",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:28.711-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:57 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866183796_441605_6887",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.045-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865962046_891350_6617/_16_6_2104050f_1253865962046_36702_6618/_16_6_2104050f_1253865962046_36702_6618-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/lm//",
+        "sysmlid": "_16_6_2104050f_1253865962046_36702_6618-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:05.488-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:32 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865962046_36702_6618",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.059-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865834343_544587_6378/_16_6_2104050f_1253865834343_937877_6379/_16_6_2104050f_1253865834343_937877_6379-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/˚C//",
+        "sysmlid": "_16_6_2104050f_1253865834343_937877_6379-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:16.338-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:44 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865834343_937877_6379",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.077-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865525312_896795_6306/_16_6_2104050f_1253865525312_253822_6307/_16_6_2104050f_1253865525312_253822_6307-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m³//",
+        "sysmlid": "_16_6_2104050f_1253865525312_253822_6307-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:02.291-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:29 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865525312_253822_6307",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.092-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865835250_815008_6399",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/F",
+        "sysmlid": "_16_6_2104050f_1253865835250_815008_6399",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:10.932-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:38 PDT 2015",
+        "name": "F",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.108-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865836343_263823_6420/_16_6_2104050f_1253865836343_85378_6421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/H/",
+        "sysmlid": "_16_6_2104050f_1253865836343_85378_6421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:00.769-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:27 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865836343_263823_6420",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.117-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866202765_378793_6959/_16_6_2104050f_1253866202765_280394_6960/_16_6_2104050f_1253866202765_280394_6960-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Sv//",
+        "sysmlid": "_16_6_2104050f_1253866202765_280394_6960-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:22.925-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:50 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866202765_280394_6960",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.131-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866173703_454170_6863/_16_6_2104050f_1253866173703_124166_6864/_16_6_2104050f_1253866173703_124166_6864-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/rad//",
+        "sysmlid": "_16_6_2104050f_1253866173703_124166_6864-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:13.702-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:41 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866173703_124166_6864",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.146-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866251015_714433_7079",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/W",
+        "sysmlid": "_16_6_2104050f_1253866251015_714433_7079",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:11.715-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:39 PDT 2015",
+        "name": "W",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.164-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865964703_823615_6659/_16_6_2104050f_1253865964703_393505_6660",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/",
+        "sysmlid": "_16_6_2104050f_1253865964703_393505_6660",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:04.305-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:31 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865964703_823615_6659",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.173-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865833171_464083_6357/_16_6_2104050f_1253865833171_798558_6358",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m³/kg/",
+        "sysmlid": "_16_6_2104050f_1253865833171_798558_6358",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:20.006-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:48 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865833171_464083_6357",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.187-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865522593_248625_6243/_16_6_2104050f_1253865522593_488162_6244",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/cd/",
+        "sysmlid": "_16_6_2104050f_1253865522593_488162_6244",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:06.543-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:33 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865522593_248625_6243",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.201-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866258906_844168_7103",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Wb",
+        "sysmlid": "_16_6_2104050f_1253866258906_844168_7103",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:12.481-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:40 PDT 2015",
+        "name": "Wb",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.215-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866112953_623906_6737/_16_6_2104050f_1253866112953_833622_6738/_16_6_2104050f_1253866112953_833622_6738-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mol//",
+        "sysmlid": "_16_6_2104050f_1253866112953_833622_6738-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:14.173-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:41 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866112953_833622_6738",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.223-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245562275118_72899_4951",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866209062_933966_6983/_16_6_2104050f_1253866209062_908909_6984",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m²/",
+        "sysmlid": "_16_6_2104050f_1253866209062_908909_6984",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:26.431-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:54 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866209062_933966_6983",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.239-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865962046_891350_6617/_16_6_2104050f_1253865962046_36702_6618",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/lm/",
+        "sysmlid": "_16_6_2104050f_1253865962046_36702_6618",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:05.110-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:32 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865962046_891350_6617",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.253-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866110015_473554_6695/_16_6_2104050f_1253866110015_771058_6696/_16_6_2104050f_1253866110015_771058_6696-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/s//",
+        "sysmlid": "_16_6_2104050f_1253866110015_771058_6696-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:29.884-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:58 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866110015_771058_6696",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.266-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245566079651_244134_4218",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866251015_714433_7079/_16_6_2104050f_1253866251015_364536_7080",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/W/",
+        "sysmlid": "_16_6_2104050f_1253866251015_364536_7080",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:11.810-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:39 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866251015_714433_7079",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.282-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866117390_114480_6800/_16_6_2104050f_1253866117390_531404_6801/_16_6_2104050f_1253866117390_531404_6801-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Ω//",
+        "sysmlid": "_16_6_2104050f_1253866117390_531404_6801-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:03.717-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:30 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866117390_531404_6801",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.296-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866173703_454170_6863",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/rad",
+        "sysmlid": "_16_6_2104050f_1253866173703_454170_6863",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:13.178-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:40 PDT 2015",
+        "name": "rad",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.314-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866112953_623906_6737",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mol",
+        "sysmlid": "_16_6_2104050f_1253866112953_623906_6737",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:13.941-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:41 PDT 2015",
+        "name": "mol",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.322-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866209062_933966_6983/_16_6_2104050f_1253866209062_908909_6984/_16_6_2104050f_1253866209062_908909_6984-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m²//",
+        "sysmlid": "_16_6_2104050f_1253866209062_908909_6984-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:26.817-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:54 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866209062_908909_6984",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.331-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866114390_861485_6758",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mol/m³",
+        "sysmlid": "_16_6_2104050f_1253866114390_861485_6758",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:14.665-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:42 PDT 2015",
+        "name": "mol/m³",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.347-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866222968_221323_7031/_16_6_2104050f_1253866222968_325972_7032",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/T/",
+        "sysmlid": "_16_6_2104050f_1253866222968_325972_7032",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:23.517-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:50 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866222968_221323_7031",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.356-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865837250_380142_6441/_16_6_2104050f_1253865837250_888788_6442/_16_6_2104050f_1253865837250_888788_6442-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Gy//",
+        "sysmlid": "_16_6_2104050f_1253865837250_888788_6442-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:27.639-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:55 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865837250_888788_6442",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.368-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865297062_670416_4757/_16_6_2104050f_1253865297062_972274_4758",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/",
+        "sysmlid": "_16_6_2104050f_1253865297062_972274_4758",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:01.441-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:28 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865297062_670416_4757",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.386-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865963328_346522_6638/_16_6_2104050f_1253865963328_448831_6639",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/lx/",
+        "sysmlid": "_16_6_2104050f_1253865963328_448831_6639",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:07.242-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:34 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865963328_346522_6638",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.400-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866173703_454170_6863/_16_6_2104050f_1253866173703_124166_6864",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/rad/",
+        "sysmlid": "_16_6_2104050f_1253866173703_124166_6864",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:13.270-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:41 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866173703_454170_6863",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.413-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865839390_549605_6483/_16_6_2104050f_1253865839390_434838_6484/_16_6_2104050f_1253865839390_434838_6484-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kat//",
+        "sysmlid": "_16_6_2104050f_1253865839390_434838_6484-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:24.668-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:51 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865839390_434838_6484",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.426-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865833171_464083_6357/_16_6_2104050f_1253865833171_798558_6358/_16_6_2104050f_1253865833171_798558_6358-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m³/kg//",
+        "sysmlid": "_16_6_2104050f_1253865833171_798558_6358-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:20.123-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:48 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865833171_798558_6358",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.442-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866190015_590196_6911/_16_6_2104050f_1253866190015_941638_6912/_16_6_2104050f_1253866190015_941638_6912-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/s//",
+        "sysmlid": "_16_6_2104050f_1253866190015_941638_6912-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:06.239-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:33 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866190015_941638_6912",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.459-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_12c903cb_1245421159796_463381_6045",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866258906_844168_7103/_16_6_2104050f_1253866258906_908711_7104",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Wb/",
+        "sysmlid": "_16_6_2104050f_1253866258906_908711_7104",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:12.569-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:40 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866258906_844168_7103",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.475-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866115796_53784_6779",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/N",
+        "sysmlid": "_16_6_2104050f_1253866115796_53784_6779",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:15.406-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:43 PDT 2015",
+        "name": "N",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.489-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865840515_890551_6504/_16_6_2104050f_1253865840515_851729_6505",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Hz/",
+        "sysmlid": "_16_6_2104050f_1253865840515_851729_6505",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:24.981-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:52 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865840515_890551_6504",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.497-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866111500_367563_6716/_16_6_2104050f_1253866111500_961375_6717/_16_6_2104050f_1253866111500_961375_6717-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/s²//",
+        "sysmlid": "_16_6_2104050f_1253866111500_961375_6717-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:02.979-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:30 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866111500_961375_6717",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.510-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865834343_544587_6378",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/˚C",
+        "sysmlid": "_16_6_2104050f_1253865834343_544587_6378",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:16.117-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:44 PDT 2015",
+        "name": "˚C",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.527-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library",
+        "sysmlid": "_16_6_2104050f_1253865185640_239522_4731",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:14:59.833-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:26 PDT 2015",
+        "name": "SI ValueType Library",
+        "owner": "PROJECT-9c24b9c85bda414753741fd1a4d5a3b",
+        "documentation": "",
+        "read": "2015-07-25T10:24:49.638-0700",
+        "appliedMetatypes": [
+            "_12_1_8f90291_1173963323875_662612_98",
+            "magicdraw_1046861421236_39100_29",
+            "_9_0_62a020a_1105704885298_713292_7913"
+        ],
+        "specialization": {
+            "type": "Package",
+            "isSite": false
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866115796_53784_6779/_16_6_2104050f_1253866115796_707055_6780",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/N/",
+        "sysmlid": "_16_6_2104050f_1253866115796_707055_6780",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:15.497-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:43 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866115796_53784_6779",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.552-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865963328_346522_6638/_16_6_2104050f_1253865963328_448831_6639/_16_6_2104050f_1253865963328_448831_6639-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/lx//",
+        "sysmlid": "_16_6_2104050f_1253865963328_448831_6639-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:07.740-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:35 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865963328_448831_6639",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.566-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_2_ff3038a_1245912778038_470552_10792",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865522593_248625_6243/_16_6_2104050f_1253865522593_488162_6244/_16_6_2104050f_1253865522593_488162_6244-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/cd//",
+        "sysmlid": "_16_6_2104050f_1253865522593_488162_6244-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:06.667-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:34 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865522593_488162_6244",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.582-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245558862128_467276_4557",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865414453_562584_6170/_16_6_2104050f_1253865414453_916159_6171/_16_6_2104050f_1253865414453_916159_6171-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/m//",
+        "sysmlid": "_16_6_2104050f_1253865414453_916159_6171-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:10.717-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:38 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865414453_916159_6171",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.598-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865837250_380142_6441/_16_6_2104050f_1253865837250_888788_6442/_16_6_2104050f_1253865837250_888788_6442-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Gy//",
+        "sysmlid": "_16_6_2104050f_1253865837250_888788_6442-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:27.328-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:55 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865837250_888788_6442",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.614-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865523437_876_6264",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/cd/m²",
+        "sysmlid": "_16_6_2104050f_1253865523437_876_6264",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:16.893-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:44 PDT 2015",
+        "name": "cd/m²",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.629-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865835250_815008_6399/_16_6_2104050f_1253865835250_351677_6400/_16_6_2104050f_1253865835250_351677_6400-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/F//",
+        "sysmlid": "_16_6_2104050f_1253865835250_351677_6400-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:11.173-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:38 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865835250_351677_6400",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.638-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865297062_670416_4757/_16_6_2104050f_1253865297062_972274_4758/_16_6_2104050f_1253865297062_972274_4758-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A//",
+        "sysmlid": "_16_6_2104050f_1253865297062_972274_4758-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:01.565-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:28 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865297062_972274_4758",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.656-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865836343_263823_6420/_16_6_2104050f_1253865836343_85378_6421/_16_6_2104050f_1253865836343_85378_6421-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/H//",
+        "sysmlid": "_16_6_2104050f_1253865836343_85378_6421-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:01.134-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:28 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865836343_85378_6421",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.672-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866258906_844168_7103/_16_6_2104050f_1253866258906_908711_7104/_16_6_2104050f_1253866258906_908711_7104-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Wb//",
+        "sysmlid": "_16_6_2104050f_1253866258906_908711_7104-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:12.683-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:40 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866258906_908711_7104",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.688-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866183796_441605_6887/_16_6_2104050f_1253866183796_7511_6888/_16_6_2104050f_1253866183796_7511_6888-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mˉ ¹//",
+        "sysmlid": "_16_6_2104050f_1253866183796_7511_6888-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:28.850-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:57 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866183796_7511_6888",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.753-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865841765_665979_6525/_16_6_2104050f_1253865841765_720047_6526/_16_6_2104050f_1253865841765_720047_6526-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/K//",
+        "sysmlid": "_16_6_2104050f_1253865841765_720047_6526-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:18.146-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:46 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865841765_720047_6526",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.769-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865521234_252677_6222/_16_6_2104050f_1253865521234_20202_6223",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Bq/",
+        "sysmlid": "_16_6_2104050f_1253865521234_20202_6223",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:22.057-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:49 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865521234_252677_6222",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.785-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866117390_114480_6800/_16_6_2104050f_1253866117390_531404_6801",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Ω/",
+        "sysmlid": "_16_6_2104050f_1253866117390_531404_6801",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:03.602-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:30 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866117390_114480_6800",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.797-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865519453_888396_6201/_16_6_2104050f_1253865519453_451697_6202/_16_6_2104050f_1253865519453_451697_6202-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/m²//",
+        "sysmlid": "_16_6_2104050f_1253865519453_451697_6202-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:18.585-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:46 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865519453_451697_6202",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.810-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865964703_823615_6659/_16_6_2104050f_1253865964703_393505_6660/_16_6_2104050f_1253865964703_393505_6660-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m//",
+        "sysmlid": "_16_6_2104050f_1253865964703_393505_6660-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:04.419-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:31 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865964703_393505_6660",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.826-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_12c903cb_1245421859000_233075_6259",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865841765_665979_6525",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/K",
+        "sysmlid": "_16_6_2104050f_1253865841765_665979_6525",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:17.596-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:45 PDT 2015",
+        "name": "K",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.843-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865297062_670416_4757/_16_6_2104050f_1253865297062_972274_4758/_16_6_2104050f_1253865297062_972274_4758-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A//",
+        "sysmlid": "_16_6_2104050f_1253865297062_972274_4758-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:01.868-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:28 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865297062_972274_4758",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.851-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245561719620_187312_4893",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:14 PDT 2015",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library",
+        "name": "SI ValueType Library",
+        "owner": null,
+        "sysmlid": "PROJECT-9c24b9c85bda414753741fd1a4d5a3b",
+        "read": "2015-07-25T13:06:09.867-0700",
+        "editable": false,
+        "modified": "2015-06-05T14:14:26.604-0700",
+        "creator": "dlam"
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865841765_665979_6525/_16_6_2104050f_1253865841765_720047_6526",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/K/",
+        "sysmlid": "_16_6_2104050f_1253865841765_720047_6526",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:17.683-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:45 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865841765_665979_6525",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.872-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865964703_823615_6659/_16_6_2104050f_1253865964703_393505_6660/_16_6_2104050f_1253865964703_393505_6660-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m//",
+        "sysmlid": "_16_6_2104050f_1253865964703_393505_6660-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:04.766-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:31 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865964703_393505_6660",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.884-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865839390_549605_6483/_16_6_2104050f_1253865839390_434838_6484/_16_6_2104050f_1253865839390_434838_6484-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kat//",
+        "sysmlid": "_16_6_2104050f_1253865839390_434838_6484-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:24.398-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:51 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865839390_434838_6484",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.900-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865519453_888396_6201",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/m²",
+        "sysmlid": "_16_6_2104050f_1253865519453_888396_6201",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:18.346-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:46 PDT 2015",
+        "name": "A/m²",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.915-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865962046_891350_6617/_16_6_2104050f_1253865962046_36702_6618/_16_6_2104050f_1253865962046_36702_6618-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/lm//",
+        "sysmlid": "_16_6_2104050f_1253865962046_36702_6618-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:05.240-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:32 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865962046_36702_6618",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.923-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_2_ff3038a_1245912007076_777515_10208",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866173703_454170_6863/_16_6_2104050f_1253866173703_124166_6864/_16_6_2104050f_1253866173703_124166_6864-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/rad//",
+        "sysmlid": "_16_6_2104050f_1253866173703_124166_6864-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:13.395-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:41 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866173703_124166_6864",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.940-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245631114039_195948_5941",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865524203_478402_6285/_16_6_2104050f_1253865524203_214540_6286/_16_6_2104050f_1253865524203_214540_6286-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/C//",
+        "sysmlid": "_16_6_2104050f_1253865524203_214540_6286-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:26.122-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:53 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865524203_214540_6286",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.956-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866215312_584989_7007/_16_6_2104050f_1253866215312_156927_7008/_16_6_2104050f_1253866215312_156927_7008-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/sr//",
+        "sysmlid": "_16_6_2104050f_1253866215312_156927_7008-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:08.472-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:35 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866215312_156927_7008",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.973-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865835250_815008_6399/_16_6_2104050f_1253865835250_351677_6400",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/F/",
+        "sysmlid": "_16_6_2104050f_1253865835250_351677_6400",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:11.043-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:38 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865835250_815008_6399",
+        "documentation": "",
+        "read": "2015-07-25T13:06:09.988-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866196609_4624_6935",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/S",
+        "sysmlid": "_16_6_2104050f_1253866196609_4624_6935",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:19.119-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:47 PDT 2015",
+        "name": "S",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.001-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866118890_542058_6821/_16_6_2104050f_1253866118890_983561_6822",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Pa/",
+        "sysmlid": "_16_6_2104050f_1253866118890_983561_6822",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:30.309-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:59 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866118890_542058_6821",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.010-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865833171_464083_6357",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m³/kg",
+        "sysmlid": "_16_6_2104050f_1253865833171_464083_6357",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:19.916-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:48 PDT 2015",
+        "name": "m³/kg",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.022-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865521234_252677_6222",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Bq",
+        "sysmlid": "_16_6_2104050f_1253865521234_252677_6222",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:21.969-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:49 PDT 2015",
+        "name": "Bq",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.031-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865523437_876_6264/_16_6_2104050f_1253865523437_959427_6265",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/cd/m²/",
+        "sysmlid": "_16_6_2104050f_1253865523437_959427_6265",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:16.982-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:45 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865523437_876_6264",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.039-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866202765_378793_6959",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Sv",
+        "sysmlid": "_16_6_2104050f_1253866202765_378793_6959",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:22.706-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:49 PDT 2015",
+        "name": "Sv",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.053-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865835250_815008_6399/_16_6_2104050f_1253865835250_351677_6400/_16_6_2104050f_1253865835250_351677_6400-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/F//",
+        "sysmlid": "_16_6_2104050f_1253865835250_351677_6400-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:11.448-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:39 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865835250_351677_6400",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.062-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865523437_876_6264/_16_6_2104050f_1253865523437_959427_6265/_16_6_2104050f_1253865523437_959427_6265-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/cd/m²//",
+        "sysmlid": "_16_6_2104050f_1253865523437_959427_6265-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:17.127-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:45 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865523437_959427_6265",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.077-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866222968_221323_7031",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/T",
+        "sysmlid": "_16_6_2104050f_1253866222968_221323_7031",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:23.423-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:50 PDT 2015",
+        "name": "T",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.093-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865839390_549605_6483",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kat",
+        "sysmlid": "_16_6_2104050f_1253865839390_549605_6483",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:24.176-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:51 PDT 2015",
+        "name": "kat",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.101-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865838234_342285_6462/_16_6_2104050f_1253865838234_536529_6463/_16_6_2104050f_1253865838234_536529_6463-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/J//",
+        "sysmlid": "_16_6_2104050f_1253865838234_536529_6463-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:00.154-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:27 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865838234_536529_6463",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.110-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866209062_933966_6983/_16_6_2104050f_1253866209062_908909_6984/_16_6_2104050f_1253866209062_908909_6984-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m²//",
+        "sysmlid": "_16_6_2104050f_1253866209062_908909_6984-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:26.554-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:54 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866209062_908909_6984",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.125-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866117390_114480_6800/_16_6_2104050f_1253866117390_531404_6801/_16_6_2104050f_1253866117390_531404_6801-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Ω//",
+        "sysmlid": "_16_6_2104050f_1253866117390_531404_6801-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:03.994-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:31 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866117390_531404_6801",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.140-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_2_ff3038a_1245905095808_65656_6261",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865840515_890551_6504",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Hz",
+        "sysmlid": "_16_6_2104050f_1253865840515_890551_6504",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:24.879-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:52 PDT 2015",
+        "name": "Hz",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.156-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865837250_380142_6441/_16_6_2104050f_1253865837250_888788_6442",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Gy/",
+        "sysmlid": "_16_6_2104050f_1253865837250_888788_6442",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:27.198-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:54 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865837250_380142_6441",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.165-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866222968_221323_7031/_16_6_2104050f_1253866222968_325972_7032/_16_6_2104050f_1253866222968_325972_7032-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/T//",
+        "sysmlid": "_16_6_2104050f_1253866222968_325972_7032-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:23.896-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:51 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866222968_325972_7032",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.177-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865525312_896795_6306/_16_6_2104050f_1253865525312_253822_6307",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m³/",
+        "sysmlid": "_16_6_2104050f_1253865525312_253822_6307",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:02.170-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:29 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865525312_896795_6306",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.192-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866229171_239601_7055/_16_6_2104050f_1253866229171_426302_7056",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/V/",
+        "sysmlid": "_16_6_2104050f_1253866229171_426302_7056",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:08.774-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:36 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866229171_239601_7055",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.205-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866202765_378793_6959/_16_6_2104050f_1253866202765_280394_6960",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Sv/",
+        "sysmlid": "_16_6_2104050f_1253866202765_280394_6960",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:22.794-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:49 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866202765_378793_6959",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.218-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866251015_714433_7079/_16_6_2104050f_1253866251015_364536_7080/_16_6_2104050f_1253866251015_364536_7080-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/W//",
+        "sysmlid": "_16_6_2104050f_1253866251015_364536_7080-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:12.248-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:39 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866251015_364536_7080",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.230-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865522593_248625_6243/_16_6_2104050f_1253865522593_488162_6244/_16_6_2104050f_1253865522593_488162_6244-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/cd//",
+        "sysmlid": "_16_6_2104050f_1253865522593_488162_6244-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:06.939-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:34 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865522593_488162_6244",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.247-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866183796_441605_6887/_16_6_2104050f_1253866183796_7511_6888/_16_6_2104050f_1253866183796_7511_6888-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mˉ ¹//",
+        "sysmlid": "_16_6_2104050f_1253866183796_7511_6888-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:29.158-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:57 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866183796_7511_6888",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.262-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865833171_464083_6357/_16_6_2104050f_1253865833171_798558_6358/_16_6_2104050f_1253865833171_798558_6358-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m³/kg//",
+        "sysmlid": "_16_6_2104050f_1253865833171_798558_6358-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:21.721-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:48 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865833171_798558_6358",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.277-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866215312_584989_7007/_16_6_2104050f_1253866215312_156927_7008",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/sr/",
+        "sysmlid": "_16_6_2104050f_1253866215312_156927_7008",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:08.028-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:35 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866215312_584989_7007",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.293-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865524203_478402_6285",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/C",
+        "sysmlid": "_16_6_2104050f_1253865524203_478402_6285",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:25.630-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:52 PDT 2015",
+        "name": "C",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.306-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866209062_933966_6983",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m²",
+        "sysmlid": "_16_6_2104050f_1253866209062_933966_6983",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:26.333-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:53 PDT 2015",
+        "name": "m²",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.314-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866115796_53784_6779/_16_6_2104050f_1253866115796_707055_6780/_16_6_2104050f_1253866115796_707055_6780-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/N//",
+        "sysmlid": "_16_6_2104050f_1253866115796_707055_6780-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:15.902-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:43 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866115796_707055_6780",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.322-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865521234_252677_6222/_16_6_2104050f_1253865521234_20202_6223/_16_6_2104050f_1253865521234_20202_6223-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Bq//",
+        "sysmlid": "_16_6_2104050f_1253865521234_20202_6223-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:22.191-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:49 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865521234_20202_6223",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.339-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865837250_380142_6441",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Gy",
+        "sysmlid": "_16_6_2104050f_1253865837250_380142_6441",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:27.090-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:54 PDT 2015",
+        "name": "Gy",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.354-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865957968_136935_6575",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kg",
+        "sysmlid": "_16_6_2104050f_1253865957968_136935_6575",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:27.844-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:56 PDT 2015",
+        "name": "kg",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.362-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866196609_4624_6935/_16_6_2104050f_1253866196609_412875_6936",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/S/",
+        "sysmlid": "_16_6_2104050f_1253866196609_412875_6936",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:19.246-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:47 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866196609_4624_6935",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.371-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865519453_888396_6201/_16_6_2104050f_1253865519453_451697_6202/_16_6_2104050f_1253865519453_451697_6202-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/A/m²//",
+        "sysmlid": "_16_6_2104050f_1253865519453_451697_6202-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:18.882-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:47 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865519453_451697_6202",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.383-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865957968_136935_6575/_16_6_2104050f_1253865957968_966463_6576",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kg/",
+        "sysmlid": "_16_6_2104050f_1253865957968_966463_6576",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:27.949-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:56 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865957968_136935_6575",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.399-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865960625_344379_6596/_16_6_2104050f_1253865960625_989205_6597/_16_6_2104050f_1253865960625_989205_6597-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/kg/m³//",
+        "sysmlid": "_16_6_2104050f_1253865960625_989205_6597-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:09.954-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:37 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865960625_989205_6597",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.411-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866251015_714433_7079/_16_6_2104050f_1253866251015_364536_7080/_16_6_2104050f_1253866251015_364536_7080-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/W//",
+        "sysmlid": "_16_6_2104050f_1253866251015_364536_7080-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:11.935-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:39 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866251015_364536_7080",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.427-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866183796_441605_6887",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mˉ ¹",
+        "sysmlid": "_16_6_2104050f_1253866183796_441605_6887",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:28.613-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:57 PDT 2015",
+        "name": "mˉ ¹",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.442-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865836343_263823_6420/_16_6_2104050f_1253865836343_85378_6421/_16_6_2104050f_1253865836343_85378_6421-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/H//",
+        "sysmlid": "_16_6_2104050f_1253865836343_85378_6421-slot-_11_5EAPbeta_be00301_1147430364958_360156_1425",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:00.892-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:27 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865836343_85378_6421",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.450-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430364958_360156_1425",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866111500_367563_6716/_16_6_2104050f_1253866111500_961375_6717/_16_6_2104050f_1253866111500_961375_6717-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/s²//",
+        "sysmlid": "_16_6_2104050f_1253866111500_961375_6717-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:03.279-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:30 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866111500_961375_6717",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.466-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865524203_478402_6285/_16_6_2104050f_1253865524203_214540_6286/_16_6_2104050f_1253865524203_214540_6286-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/C//",
+        "sysmlid": "_16_6_2104050f_1253865524203_214540_6286-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:25.846-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:53 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865524203_214540_6286",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.481-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866115796_53784_6779/_16_6_2104050f_1253866115796_707055_6780/_16_6_2104050f_1253866115796_707055_6780-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/N//",
+        "sysmlid": "_16_6_2104050f_1253866115796_707055_6780-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:15.626-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:43 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866115796_707055_6780",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.496-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_1_ff3038a_1245648213998_639958_7320",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866110015_473554_6695",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/m/s",
+        "sysmlid": "_16_6_2104050f_1253866110015_473554_6695",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:29.373-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:58 PDT 2015",
+        "name": "m/s",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.512-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866114390_861485_6758/_16_6_2104050f_1253866114390_197295_6759/_16_6_2104050f_1253866114390_197295_6759-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mol/m³//",
+        "sysmlid": "_16_6_2104050f_1253866114390_197295_6759-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:15.207-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:43 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866114390_197295_6759",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.521-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865523437_876_6264/_16_6_2104050f_1253865523437_959427_6265/_16_6_2104050f_1253865523437_959427_6265-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/cd/m²//",
+        "sysmlid": "_16_6_2104050f_1253865523437_959427_6265-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:17.388-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:45 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865523437_959427_6265",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.536-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": null,
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866258906_844168_7103/_16_6_2104050f_1253866258906_908711_7104/_16_6_2104050f_1253866258906_908711_7104-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Wb//",
+        "sysmlid": "_16_6_2104050f_1253866258906_908711_7104-slot-_11_5EAPbeta_be00301_1147430349926_544971_1421",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:12.967-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:40 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866258906_908711_7104",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.551-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
+        "specialization": {
+            "propertyType": "_11_5EAPbeta_be00301_1147430349926_544971_1421",
+            "isSlot": true,
+            "isDerived": false,
+            "value": [{
+                "valueExpression": null,
+                "instance": "_16_5_2_ff3038a_1245905611730_950832_6718",
+                "type": "InstanceValue"
+            }],
+            "type": "Property"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866118890_542058_6821",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/Pa",
+        "sysmlid": "_16_6_2104050f_1253866118890_542058_6821",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:30.173-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:58 PDT 2015",
+        "name": "Pa",
+        "owner": "_16_6_2104050f_1253865185640_239522_4731",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.567-0700",
+        "appliedMetatypes": [
+            "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+            "_9_0_62a020a_1105704885376_903292_7939"
+        ],
+        "specialization": {"type": "Untyped"}
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253865838234_342285_6462/_16_6_2104050f_1253865838234_536529_6463",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/J/",
+        "sysmlid": "_16_6_2104050f_1253865838234_536529_6463",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:00.043-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:26 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253865838234_342285_6462",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.575-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    },
+    {
+        "qualifiedId": "/si-valuetype-library/PROJECT-9c24b9c85bda414753741fd1a4d5a3b/_16_6_2104050f_1253865185640_239522_4731/_16_6_2104050f_1253866114390_861485_6758/_16_6_2104050f_1253866114390_197295_6759",
+        "siteCharacterizationId": "si-valuetype-library",
+        "qualifiedName": "/si-valuetype-library/SI ValueType Library/SI ValueType Library/mol/m³/",
+        "sysmlid": "_16_6_2104050f_1253866114390_197295_6759",
+        "isMetatype": false,
+        "editable": false,
+        "creator": "dlam",
+        "modified": "2015-06-05T14:15:14.766-0700",
+        "modifier": "dlam",
+        "created": "Fri Jun 05 14:14:42 PDT 2015",
+        "name": "",
+        "owner": "_16_6_2104050f_1253866114390_861485_6758",
+        "documentation": "",
+        "read": "2015-07-25T13:06:10.588-0700",
+        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
+        "specialization": {
+            "slots": [],
+            "classifier": ["_11_5EAPbeta_be00301_1147430239267_179145_1189"],
+            "type": "InstanceSpecification"
+        }
+    }
+]}

@@ -40,6 +40,10 @@ public class JsonProperty extends JsonBaseElement implements
       {
          return (JsonElement) typeObj;
       }
+      else
+      {
+         LOGGER.log(Level.WARNING, "Type of property is not an element: %s", typeObj);
+      }      
       return null;
    }
    

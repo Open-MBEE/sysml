@@ -44,6 +44,7 @@ import sysml.json_impl.JsonStereotype;
 import sysml.json_impl.JsonProperty;
 import sysml.json_impl.JsonPropertyValues;
 import sysml.json_impl.JsonValueProperty;
+import sysml.json_impl.JsonValueType;
 
 
 import gov.nasa.jpl.mbee.util.FileUtils;
@@ -98,13 +99,13 @@ public class JsonSystemModelTest
       //
       JsonBlock bike = (JsonBlock)systemModel.wrap(jBike);
       List<JsonPart> parts = bike.getParts();
-      System.out.println(String.format("Block: %s (%s)", bike.getName(), bike.getId()));
+      System.out.println(String.format("Block: %s", bike));
       System.out.println(String.format("   parts count: %d ", parts.size()));
       for (JsonPart part : parts)
       {
          JsonBlock partType = part.getType();
-         System.out.println(String.format("   %s (%s)  type: %s", 
-               part.getName(), part.getId(), partType.getName()));
+         System.out.println(String.format("   %s  type: %s", 
+               part, partType.getName()));
       }
       
       List<JsonValueProperty> valueProps = bike.getValueProperties();
@@ -113,48 +114,52 @@ public class JsonSystemModelTest
       {
          JsonPropertyValues values = valueProp.getValue();
          String valuePropTypeId = valueProp.getTypeId();
-         System.out.println(String.format("   %s (%s)  value: %s value.class: %s type: %s", 
-               valueProp.getName(), valueProp.getId(), values.getValueAsString(0), 
-               values.getClass().getName(), valuePropTypeId));
+         JsonValueType valueType = valueProp.getType();
+         System.out.println(String.format("   %s value: %s value.class: %s typeId: %s type: %s", 
+               valueProp, values.getValueAsString(0), 
+               values.getClass().getName(), valuePropTypeId, valueType));
+         if (valueType != null)
+         {
+            System.out.println(String.format("      unit: %s quantityKind: %s", 
+                  valueType.getUnit(), valueType.getQuantityKind()));             
+         }
       }      
       
       // Parametric diagram
       List<JsonParametricDiagram> parametricDiagrams = bike.getParametricDiagrams();
       for (JsonParametricDiagram parametricDiagram : parametricDiagrams)
       {
-         System.out.println(String.format("   parametricDiagram: %s (%s)", 
-               parametricDiagram.getName(), parametricDiagram.getId()));
+         System.out.println(String.format("   parametricDiagram: %s", 
+               parametricDiagram));
          
          List<JsonConstraintProperty> constraintProperties = parametricDiagram.getConstraintProperties();
          System.out.println(String.format("      constraint properties: count=%d", constraintProperties.size()));
          for (JsonConstraintProperty constraintProperty : constraintProperties)
          {
             JsonConstraintBlock cpType = constraintProperty.getType();
-            System.out.println(String.format("         %s (%s)  type: %s", 
-                  constraintProperty.getName(), constraintProperty.getId(), cpType.getName()));
+            System.out.println(String.format("        %s  type: %s", 
+                  constraintProperty, cpType.getName()));
          }
          
          List<JsonBindingConnector> bindingConnectors = parametricDiagram.getBindingConnectors();
          System.out.println(String.format("      binding connectors: count=%d", bindingConnectors.size()));
          for (JsonBindingConnector bindingConnector : bindingConnectors)
          {
-            System.out.println(String.format("         %s (%s)", 
-                  bindingConnector.getName(), bindingConnector.getId()));
+            System.out.println(String.format("         %s", 
+                  bindingConnector));
             
             System.out.println("            Source sequence:");
             List<JsonBaseElement> sourceSequence = bindingConnector.getSourcePath();
             for (JsonBaseElement elem : sourceSequence)
             {
-               System.out.println(String.format("               %s (%s)", 
-                     elem.getName(), elem.getId()));
+               System.out.println(String.format("               %s", elem));
             }
 
             System.out.println("            Target sequence:");
             List<JsonBaseElement> targetSequence = bindingConnector.getTargetPath();
             for (JsonBaseElement elem : targetSequence)
             {
-               System.out.println(String.format("               %s (%s)", 
-                     elem.getName(), elem.getId()));
+               System.out.println(String.format("               %s", elem));
             }
          }         
       }
@@ -172,7 +177,7 @@ public class JsonSystemModelTest
       iter = elements.iterator();       
       JSONObject jSumTwo = iter.next();      
       JsonConstraintBlock sumTwo = (JsonConstraintBlock)systemModel.wrap(jSumTwo);
-      System.out.println(String.format("Constraint block: %s (%s)", sumTwo.getName(), sumTwo.getId()));
+      System.out.println(String.format("Constraint block: %s", sumTwo));
       
       boolean isStereotyped = sumTwo.isStereotypedAs(JsonSystemModel.EXTERNAL_ANALYSIS);
       System.out.println(String.format("   Stereotyped by \"%s\": %s", JsonSystemModel.EXTERNAL_ANALYSIS, isStereotyped));
@@ -200,17 +205,64 @@ public class JsonSystemModelTest
       JsonProject p1 = bike.getProject();
       JsonProject p2 = sumTwo.getProject();
       
-      System.out.println(String.format("Project of Bike: %s (%s)", p1.getName(), p1.getId()));
-      System.out.println(String.format("Project of SumTwo: %s (%s)", p2.getName(), p2.getId()));
+      System.out.println(String.format("Project of Bike: %s", p1));
+      System.out.println(String.format("Project of SumTwo: %s", p2));
       System.out.println(String.format("p1==p2: %s", p1.equals(p2)));
                   
       JSONObject jMbseAnalyzerProj = systemModel.getProject("MBSEAnalyzer");
       JsonProject mbseAnalyzerProj = (JsonProject)systemModel.wrap(jMbseAnalyzerProj);
-      System.out.println(String.format("MBSEAnalyzer profile: %s (%s)", 
-            mbseAnalyzerProj.getName(), mbseAnalyzerProj.getId()));
+      System.out.println(String.format("MBSEAnalyzer profile: %s", mbseAnalyzerProj));
       JsonStereotype externalAnalysis = mbseAnalyzerProj.getStereotype(JsonSystemModel.EXTERNAL_ANALYSIS);
       System.out.println(String.format("   %s (%s)", externalAnalysis.getName(), externalAnalysis.getId()));
       JsonProperty urlTag = externalAnalysis.getTag(JsonSystemModel.URL);
-      System.out.println(String.format("      %s (%s)", urlTag.getName(), urlTag.getId()));
+      System.out.println(String.format("      %s", urlTag));
+      
+      // value type
+      elements = (List<JSONObject>) systemModel.getElementWithName(null, "ton");
+      for (JSONObject jObj : elements)
+      {
+         if(systemModel.isValueType(jObj))
+         {
+            JsonValueType ton = (JsonValueType)systemModel.wrap(jObj);
+            System.out.println(String.format("      %s unit: %s quantityKind: %s", 
+                  ton, ton.getUnit(), ton.getQuantityKind()));              
+         }
+      }
+      
+      // value type
+      // Search for all elements with name "BlockTon"
+      /*
+      elements = (List<JSONObject>) systemModel.getElementWithName(null, "BlockTon");
+      if (elements.size() == 0)
+      {
+         throw new Exception("No element was found");   
+      }
+      else if (elements.size() > 1)
+      {
+         throw new Exception("More than one element was found");   
+      }         
+     
+      JSONObject jBlockTon = iter.next();
+      
+      //
+      JsonBlock blockTon = (JsonBlock)systemModel.wrap(jBlockTon);
+
+      valueProps = blockTon.getValueProperties();
+      System.out.println(String.format("   value properties count: %d ", valueProps.size()));
+      for (JsonValueProperty valueProp : valueProps)
+      {
+         JsonPropertyValues values = valueProp.getValue();
+         String valuePropTypeId = valueProp.getTypeId();
+         JsonValueType valueType = valueProp.getType();
+         System.out.println(String.format("   %s value: %s value.class: %s typeId: %s type: %s", 
+               valueProp, values.getValueAsString(0), 
+               values.getClass().getName(), valuePropTypeId, valueType));
+         if (valueType != null)
+         {
+            System.out.println(String.format("      unit: %s quantityKind: %s", 
+                  valueType.getUnit(), valueType.getQuantityKind()));             
+         }
+      }
+      */            
    }
 }

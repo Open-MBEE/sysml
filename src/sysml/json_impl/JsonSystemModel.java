@@ -53,11 +53,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.apache.commons.collections4.map.MultiValueMap;
 
-import sysml.AbstractSystemModel;
 
 public class JsonSystemModel
 {
    public static final String MBSE_ANALYZER_JSON = "MBSE_Analyzer.json";
+   public static final String SI_DEFINITIONS_JSON = "SI_Definitions.json";
+   public static final String SI_VALUE_TYPE_LIBRARY_JSON = "SI_Valuetype_Library.json";
+   public static final String SI_SPECIALIZATIONS_JSON = "SI_Specializations.json";
+   public static final String QUDV_JSON = "QUDV.json";
+   public static final String SYSML_JSON = "SYSML.json";
+   public static final String MD_CUSTOMIZATION_FOR_SYSML_JSON = "MD_Customization_for_SysML.json";
+   public static final String MD_CUSTOMIZATION_FOR_VIEW_VIEWPOINT_JSON = "MD_Customization_for_View_Viewpoint.json";
+   public static final String SYSML_EXTENSIONS_JSON = "SysML_Extensions.json";
+   
    public static final String NAME = "name";
    public static final String TYPE = "type";
    public static final String OWNER = "owner";
@@ -87,9 +95,12 @@ public class JsonSystemModel
    public static final String ST_BLOCK = "_11_5EAPbeta_be00301_1147424179914_458922_958"; 
    public static final String ST_PART = "_15_0_be00301_1199377756297_348405_2678";
    public static final String ST_VALUE_PROPERTY = "_12_0_be00301_1164123483951_695645_2041";
+   public static final String ST_VALUE_TYPE = "_11_5EAPbeta_be00301_1147430239267_179145_1189";
+   public static final String ST_UNIT = "_11_5EAPbeta_be00301_1147430329106_6539_1367";
+   public static final String ST_QUANTITY_KIND = "_11_5EAPbeta_be00301_1147430310770_313444_1322";
    public static final String ST_CONSTRAINT_BLOCK = "_11_5EAPbeta_be00301_1147767804973_159489_404";
    public static final String ST_CONSTRAINT_PROPERTY = "_11_5EAPbeta_be00301_1147767840464_372327_467";   
-   public static final String ST_CONSTRAINT_PARAMETER = "_17_0_1_42401aa_1327611824171_784118_12184";   
+   public static final String ST_CONSTRAINT_PARAMETER = "_17_0_1_42401aa_1327611824171_784118_12184"; 
    
    public static final String ST_SLOT = "_9_0_62a020a_1105704885275_885607_7905";   
    
@@ -104,6 +115,11 @@ public class JsonSystemModel
    public static final String ST_STEREOTYPE = "_9_0_62a020a_1105704941426_574917_9666";
    
    public static final String TAG_GENERATED_FROM_VIEW = "_17_0_5_1_407019f_1430628276506_565_12080";
+   public static final String TAG_UNIT = "_11_5EAPbeta_be00301_1147430364958_360156_1425";
+   public static final String TAG_QUANTITY_KIND = "_11_5EAPbeta_be00301_1147430349926_544971_1421";
+   
+   public static final String UNIT="unit";
+   public static final String QUANTITY_KIND="quantityKind";   
    
    // MBSE Analyzer stereotypes and tags
    public static final String ST_EXTERNAL_ANALYSIS = "_17_0_1_42401aa_1327611546796_59249_12173";
@@ -143,6 +159,9 @@ public class JsonSystemModel
       stereotypeMap.put(EXTERNAL_ANALYSIS, ST_EXTERNAL_ANALYSIS);
       stereotypeMap.put(ANALYSIS_VARIABLE, ST_ANALYSIS_VARIABLE);
       stereotypeMap.put(SCRIPT, ST_SCRIPT);
+      
+      tagMap.put(UNIT, TAG_UNIT);
+      tagMap.put(QUANTITY_KIND, TAG_QUANTITY_KIND);
       
       tagMap.put(URL, TAG_URL);
       tagMap.put(TYPE, TAG_TYPE);
@@ -195,10 +214,18 @@ public class JsonSystemModel
       try
       {
          readJson(FileUtils.fileToString(MBSE_ANALYZER_JSON));
+         readJson(FileUtils.fileToString(SI_DEFINITIONS_JSON));
+         readJson(FileUtils.fileToString(SI_VALUE_TYPE_LIBRARY_JSON));
+         readJson(FileUtils.fileToString(SI_SPECIALIZATIONS_JSON));
+         readJson(FileUtils.fileToString(QUDV_JSON));
+         readJson(FileUtils.fileToString(SYSML_JSON));
+         readJson(FileUtils.fileToString(MD_CUSTOMIZATION_FOR_SYSML_JSON));
+         readJson(FileUtils.fileToString(MD_CUSTOMIZATION_FOR_VIEW_VIEWPOINT_JSON));         
+         // readJson(FileUtils.fileToString(SYSML_EXTENSIONS_JSON));
       }
       catch(FileNotFoundException ex)
       {
-         throw new JsonSystemModelException("Failed to load MBSE Analyzer profile.", ex);
+         throw new JsonSystemModelException("Failed to load profile.", ex);
       }
       
       readJson(jsonString);
@@ -333,19 +360,23 @@ public class JsonSystemModel
       else if (isProject(jObj))
       {
          return new JsonProject(this, jObj);
-      }      
+      } 
+      else if (isValueType(jObj))
+      {
+         return new JsonValueType(this, jObj);
+      }       
       else if (isBlock(jObj))
       {
          return new JsonBlock(this, jObj);
-      }
-      else if (isPart(jObj))
-      {
-         return new JsonPart(this, jObj);
-      }         
+      }     
       else if (isConstraintBlock(jObj))
       {
          return new JsonConstraintBlock(this, jObj);
       }
+      else if (isPart(jObj))
+      {
+         return new JsonPart(this, jObj);
+      }          
       else if (isValueProperty(jObj))
       {
          return new JsonValueProperty(this, jObj);
@@ -393,7 +424,11 @@ public class JsonSystemModel
    public String getElementName(JSONObject element)
    {
       Object name = getJsonProperty(element, NAME);
-      if (name instanceof String)
+      if (name == null)
+      {
+         return "";
+      }
+      else if (name instanceof String)
       {
          return (String) name;
       }
@@ -462,7 +497,25 @@ public class JsonSystemModel
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_VALUE_PROPERTY);
    } 
+   
+   public boolean isValueType(JSONObject element)
+   {
+      List<String> metaTypes = getAppliedMetaTypes(element);
+      return metaTypes.contains(ST_VALUE_TYPE);
+   } 
+   
+   public boolean isUnit(JSONObject element)
+   {
+      List<String> metaTypes = getAppliedMetaTypes(element);
+      return metaTypes.contains(ST_UNIT);
+   }    
 
+   public boolean isQuantityKind(JSONObject element)
+   {
+      List<String> metaTypes = getAppliedMetaTypes(element);
+      return metaTypes.contains(ST_QUANTITY_KIND);
+   } 
+   
    public boolean isConstraintBlock(JSONObject element)
    {
       List<String> metaTypes = getAppliedMetaTypes(element);

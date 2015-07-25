@@ -19,6 +19,28 @@ public class JsonValueProperty extends JsonProperty
       super(systemModel, jObj);
    }
    
+   @Override
+   public JsonValueType getType()
+   {
+      String propID = systemModel.getPropertyTypeID(jsonObj);
+
+      if (propID == null)
+         return null;
+
+      JSONObject jTypeObj = systemModel.getElement(propID);
+      JsonBaseElement typeObj = systemModel.wrap(jTypeObj);
+
+      if (typeObj instanceof JsonValueType)
+      {
+         return (JsonValueType) typeObj;
+      }
+      else
+      {
+         LOGGER.log(Level.WARNING, "Type of value property is not a value type: %s", typeObj);
+      }
+      return null;
+   }
+   
    public Object getDefaultValue()
    {
       JsonPropertyValues values = getValue();
@@ -30,7 +52,4 @@ public class JsonValueProperty extends JsonProperty
       // TODO: return multiple values?
       return values.getValue(0);
    }
-   
-   // TODO: override getType
-   // TODO: getUnits
 }
