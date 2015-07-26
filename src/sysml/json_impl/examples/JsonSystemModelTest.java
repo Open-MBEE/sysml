@@ -108,6 +108,9 @@ public class JsonSystemModelTest
                part, partType.getName()));
       }
       
+      System.out.println(String.format("   getPart: %s", bike.getPart("frontWheel")));
+      System.out.println(String.format("   getValueProperty: %s", bike.getValueProperty("weight")));
+      
       List<JsonValueProperty> valueProps = bike.getValueProperties();
       System.out.println(String.format("   value properties count: %d ", valueProps.size()));
       for (JsonValueProperty valueProp : valueProps)
@@ -264,5 +267,77 @@ public class JsonSystemModelTest
          }
       }
       */            
+      
+      // generalization
+      JsonBlock childBlock = null;
+      JsonBlock parentBlock = null; 
+      JsonBlock grandParentBlock = null;      
+      
+      elements = (List<JSONObject>) systemModel.getElementWithName(null, "ChildBlock");
+      for (JSONObject jObj : elements)
+      {
+         if(systemModel.isBlock(jObj))
+         {
+            childBlock = (JsonBlock)systemModel.wrap(jObj);            
+         }
+      }      
+      
+      elements = (List<JSONObject>) systemModel.getElementWithName(null, "ParentBlock");
+      for (JSONObject jObj : elements)
+      {
+         if(systemModel.isBlock(jObj))
+         {
+            parentBlock = (JsonBlock)systemModel.wrap(jObj);            
+         }
+      } 
+      
+      elements = (List<JSONObject>) systemModel.getElementWithName(null, "GrantParentBlock");
+      for (JSONObject jObj : elements)
+      {
+         if(systemModel.isBlock(jObj))
+         {
+            grandParentBlock = (JsonBlock)systemModel.wrap(jObj);            
+         }
+      }       
+      
+      System.out.println(String.format("Super classes of : ", grandParentBlock));
+      Collection<JsonElement> superClasses = childBlock.getSuperClasses();
+      for (JsonElement superClass : superClasses)
+      {
+         System.out.println(String.format("   %s", superClass));
+      }
+      
+      System.out.println(String.format("%s is a super class of %s: %s", 
+            grandParentBlock.getName(), parentBlock.getName(), grandParentBlock.isSuperClassOf(parentBlock)));
+      System.out.println(String.format("%s is a super class of %s: %s", 
+            parentBlock.getName(), childBlock.getName(), parentBlock.isSuperClassOf(childBlock)));
+      System.out.println(String.format("%s is a super class of %s: %s", 
+            grandParentBlock.getName(), childBlock.getName(), grandParentBlock.isSuperClassOf(childBlock)));  
+      
+      System.out.println(String.format("%s is a sub class of %s: %s", 
+            grandParentBlock.getName(), parentBlock.getName(), grandParentBlock.isSubClassOf(parentBlock)));
+      System.out.println(String.format("%s is a sub class of %s: %s", 
+            parentBlock.getName(), childBlock.getName(), parentBlock.isSubClassOf(childBlock)));
+      System.out.println(String.format("%s is a sub class of %s: %s", 
+            grandParentBlock.getName(), childBlock.getName(), grandParentBlock.isSubClassOf(childBlock))); 
+      
+      System.out.println(String.format("%s is a super class of %s: %s", 
+            parentBlock.getName(), grandParentBlock.getName(), parentBlock.isSuperClassOf(grandParentBlock)));
+      System.out.println(String.format("%s is a super class of %s: %s", 
+            childBlock.getName(), parentBlock.getName(), childBlock.isSuperClassOf(parentBlock)));
+      System.out.println(String.format("%s is a super class of %s: %s", 
+            childBlock.getName(), grandParentBlock.getName(), childBlock.isSuperClassOf(grandParentBlock)));  
+      
+      System.out.println(String.format("%s is a sub class of %s: %s", 
+            parentBlock.getName(), grandParentBlock.getName(), parentBlock.isSubClassOf(grandParentBlock)));
+      System.out.println(String.format("%s is a sub class of %s: %s", 
+            childBlock.getName(), parentBlock.getName(), childBlock.isSubClassOf(parentBlock)));
+      System.out.println(String.format("%s is a sub class of %s: %s", 
+            childBlock.getName(), grandParentBlock.getName(), childBlock.isSubClassOf(grandParentBlock)));
+      
+      System.out.println(String.format("%s is a super class of %s: %s", 
+            bike.getName(), parentBlock.getName(), bike.isSuperClassOf(parentBlock)));  
+      System.out.println(String.format("%s is a sub class of %s: %s", 
+            bike.getName(), parentBlock.getName(), bike.isSubClassOf(parentBlock)));       
    }
 }

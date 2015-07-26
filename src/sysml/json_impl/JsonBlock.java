@@ -41,6 +41,22 @@ public class JsonBlock extends JsonElement
       return parts;
    }
    
+   public JsonPart getPart(String name)
+   {
+      List<JSONObject> jList = systemModel.getParts(jsonObj);
+      for (JSONObject jObj : jList)
+      {
+         if (systemModel.isPart(jObj))
+         {
+            if (name.equals(systemModel.getName(jObj)))
+            {
+               return (JsonPart)systemModel.wrap(jObj);
+            }
+         }
+      }
+      return null;
+   }   
+   
    public List<JsonValueProperty> getValueProperties()
    {
       ArrayList<JsonValueProperty> valueProps = new ArrayList<JsonValueProperty>();
@@ -55,6 +71,22 @@ public class JsonBlock extends JsonElement
       }
       return valueProps;
    }   
+   
+   public JsonValueProperty getValueProperty(String name)
+   {
+      List<JSONObject> jList = systemModel.getValueProperties(jsonObj);
+      for (JSONObject jObj : jList)
+      {
+         if (systemModel.isValueProperty(jObj))
+         {
+            if (name.equals(systemModel.getName(jObj)))
+            {
+               return (JsonValueProperty)systemModel.wrap(jObj);
+            }
+         }
+      }
+      return null;
+   }      
    
    public List<JsonParametricDiagram> getParametricDiagrams()
    {

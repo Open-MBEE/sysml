@@ -29,7 +29,7 @@ public class ElementImpl extends BaseElementImpl implements Element< String, Str
 
     Set< Element< String, String, Date > > superClasses = null;
     Version< String, Date, BaseElement< String, String, Date > > version = null;
-    Map< String, Property< String, String, Date > > properties;
+    Map<String, PropertyImpl> properties;
     String qualifiedName = null;
     String qualifiedId = null;
 
@@ -38,21 +38,21 @@ public class ElementImpl extends BaseElementImpl implements Element< String, Str
                         String id,
                         String name,
                         Version< String, Date, BaseElement< String, String, Date >> version,
-                        Map< String, Property< String, String, Date >> properties ) {
+                        Map<String, PropertyImpl> properties ) {
        
         super( workspace, id, name, version );
 
         this.properties = properties;
     }
 
-    public ElementImpl( Element< String, String, Date > e ) {
+    public ElementImpl( ElementImpl e ) {
         super(e.getWorkspace(), e.getId(), e.getName(), e.getVersion());
 
-        Collection< Property< String, String, Date > > props = e.getProperties();
+        Collection<PropertyImpl> props = e.getProperties();
         for ( Property< String, String, Date > prop : props ) {
             try {
-                Property< String, String, Date > newValue =
-                        (Property< String, String, Date >)prop.clone();
+                PropertyImpl newValue =
+                        (PropertyImpl) prop.clone();
                 this.getPropertyMap().put( prop.getId(), newValue );
             } catch ( CloneNotSupportedException e1 ) {
                 e1.printStackTrace();
@@ -74,13 +74,13 @@ public class ElementImpl extends BaseElementImpl implements Element< String, Str
     }
 
     @Override
-    public Collection< Property< String, String, Date > > getProperties() {
+    public Collection<PropertyImpl> getProperties() {
         return getPropertyMap().values();
     }
 
-    public Map< String, Property< String, String, Date > > getPropertyMap() {
+    public Map<String, PropertyImpl> getPropertyMap() {
         if ( properties == null ) properties =
-                new LinkedHashMap< String, Property< String, String, Date > >();
+                new LinkedHashMap<String, PropertyImpl>();
         return properties;
     }
 

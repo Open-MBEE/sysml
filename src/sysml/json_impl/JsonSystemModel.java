@@ -101,6 +101,7 @@ public class JsonSystemModel
    public static final String ST_CONSTRAINT_BLOCK = "_11_5EAPbeta_be00301_1147767804973_159489_404";
    public static final String ST_CONSTRAINT_PROPERTY = "_11_5EAPbeta_be00301_1147767840464_372327_467";   
    public static final String ST_CONSTRAINT_PARAMETER = "_17_0_1_42401aa_1327611824171_784118_12184"; 
+   public static final String ST_GENERALIZATION = "_9_0_62a020a_1105704885195_432731_7879";
    
    public static final String ST_SLOT = "_9_0_62a020a_1105704885275_885607_7905";   
    
@@ -148,11 +149,37 @@ public class JsonSystemModel
    public static final String LANGUAGE = "language";  
    public static final String BODY = "body";     
    
+   // Special view and viewpoint to collect elements on parametric diagrams
+   public static final String ID_COLLECT_PARAM_DIAGRAM_ELEMENTS_VIEWPOINT = "_18_0_2_f060354_1436758053298_656033_17322";   
+   
    // Map of stereotypes
    static protected Map<String, String> stereotypeMap = new HashMap<String, String>();
    
    // Map of tags
    static protected Map<String, String> tagMap = new HashMap<String, String>();      
+   
+   // Map of Generalization relationships (from child to parent)
+   protected MultiValueMap<String, String> generalizationMap = new MultiValueMap<String, String>();
+      
+   // JSONObject that contains the JSON model:
+   protected JSONObject root = null;
+
+   // Map of project names
+   protected Map<String, JSONObject> projectMap = new LinkedHashMap<String, JSONObject>();   
+
+   // Map of element sysmlid to JSON element objects:
+   protected Map<String, JSONObject> elementMap = new LinkedHashMap<String, JSONObject>();
+
+   // Map of element sysmlid to List of sysmlids that that element owns
+   protected Map<String, List<String>> ownershipMap = new LinkedHashMap<String, List<String>>();
+   
+   // Map of element sysmlid to List of views of the element
+   protected MultiValueMap<String, String> viewMap = new MultiValueMap<String, String>();   
+   
+   // Map of view to viewpoint
+   protected Map<String, String> viewpointMap = new LinkedHashMap<String, String>();     
+   
+   private final static Logger LOGGER = Logger.getLogger(JsonSystemModel.class.getName());
    
    static
    {
@@ -174,8 +201,7 @@ public class JsonSystemModel
       tagMap.put(BODY, TAG_BODY);
    }
    
-   // Special view and viewpoint to collect elements on parametric diagrams
-   public static final String ID_COLLECT_PARAM_DIAGRAM_ELEMENTS_VIEWPOINT = "_18_0_2_f060354_1436758053298_656033_17322";
+
    
    public static String getStereotypeID(String name)
    {
@@ -185,29 +211,7 @@ public class JsonSystemModel
    public static String getTagID(String name)
    {
       return tagMap.get(name);
-   }   
-   
-   // JSONObject that contains the JSON model:
-   protected JSONObject root = null;
-
-   // Map of project names
-   protected Map<String, JSONObject> projectMap = new LinkedHashMap<String, JSONObject>();   
-
-   // Map of element sysmlid to JSON element objects:
-   protected Map<String, JSONObject> elementMap = new LinkedHashMap<String, JSONObject>();
-
-   // Map of element sysmlid to List of sysmlids that that element owns
-   protected Map<String, List<String>> ownershipMap = new LinkedHashMap<String, List<String>>();
-   
-   // Map of element sysmlid to List of views of the element
-   protected MultiValueMap<String, String> viewMap = new MultiValueMap<String, String>();   
-   
-   // Map of view to viewpoint
-   protected Map<String, String> viewpointMap = new LinkedHashMap<String, String>();     
-   
-
-   
-   private final static Logger LOGGER = Logger.getLogger(JsonSystemModel.class.getName());
+   }      
 
    public JsonSystemModel(String jsonString) throws JsonSystemModelException
    {
@@ -292,6 +296,25 @@ public class JsonSystemModel
                         ownershipMap.put(owner, owned);
                      }
                      owned.add(jsonObj.getString(SYSMLID));
+                  }
+                  
+                  if (isGeneralization(jsonObj))
+                  {
+                     Object source = getSpecializationProperty(jsonObj, SOURCE);
+                     Object target = getSpecializationProperty(jsonObj, TARGET);
+                     
+                     if (!(source instanceof String))
+                     {
+                        LOGGER.log(Level.WARNING, "Source id is not a string for element: {0}", jsonObj);
+                     }
+                     else if (!(target instanceof String))
+                     {
+                        LOGGER.log(Level.WARNING, "Target id is not a string for element: {0}", jsonObj);
+                     }
+                     else
+                     {
+                        generalizationMap.put((String)source, (String)target);
+                     }                     
                   }
                   
                   if (isExpose(jsonObj))
@@ -475,9 +498,57 @@ public class JsonSystemModel
       return elements;
    }
    
-   public List<JSONObject> getSuperClasses(JSONObject element)
+   public Collection<JSONObject> getSuperClasses(JSONObject element)
    {
-      return null;
+      LinkedHashMap<String, JSONObject> classes = new LinkedHashMap<String, JSONObject>();
+      collectSuperClasses(element, classes, true);
+      
+      return classes.values();
+   }
+   
+   /*
+   public Collection<JSONObject> getSuperClassesRecursive(JSONObject element)
+   {
+      LinkedHashMap<String, JSONObject> classes = new LinkedHashMap<String, JSONObject>();
+      collectSuperClasses(element, classes, true);
+      
+      return classes.values();
+   } 
+   */  
+   
+   private void collectSuperClasses(JSONObject element, HashMap<String, JSONObject> classes, 
+         boolean recursive)
+   {
+      String id = getIdentifier(element);
+      Collection<String> parentIds = generalizationMap.getCollection(id);
+      if (parentIds != null)
+      {
+         for (String parentId : parentIds)
+         {
+            JSONObject parentElem = getElement(parentId);
+            classes.put(parentId, parentElem);
+            if (recursive)
+            {
+               collectSuperClasses(parentElem, classes, recursive);
+            }
+         }    
+      }
+   }
+   
+   public boolean isSuperClass(JSONObject ancestor, JSONObject child)
+   {
+      Collection<JSONObject> superClasses = getSuperClasses(child);
+      
+      String ancestorId = getIdentifier(ancestor);
+      for (JSONObject superClass : superClasses)
+      {
+         String superId = getIdentifier(superClass);
+         if (ancestorId.equals(superId))
+         {
+            return true;
+         }
+      }
+      return false;
    }
    
    public boolean isBlock(JSONObject element)
@@ -579,6 +650,12 @@ public class JsonSystemModel
       List<JSONObject> jList = getParametricDiagramElements(element);
       
       return jList.size() > 0;
+   }
+   
+   public boolean isGeneralization(JSONObject element)
+   {
+      List<String> metaTypes = getAppliedMetaTypes(element);
+      return metaTypes.contains(ST_GENERALIZATION);
    }
    
    public boolean isView(JSONObject element)
@@ -753,6 +830,22 @@ public class JsonSystemModel
       return parts;
    }   
    
+   public List<JSONObject> getPart(JSONObject element, String name)
+   {
+      Map<String, JSONObject> props = getElementProperties(element);
+      List<JSONObject> parts = new ArrayList<JSONObject>();
+      
+      for (JSONObject prop : props.values())
+      {
+         if (isPart(prop))
+         {
+            parts.add(prop);
+         }
+      }
+      
+      return parts;
+   }    
+   
    public List<JSONObject> getValueProperties(JSONObject element)
    {
       Map<String, JSONObject> props = getElementProperties(element);
@@ -915,6 +1008,28 @@ public class JsonSystemModel
       }
       return propertyMap;
    }
+   
+   public JSONObject getElementProperty(JSONObject element, String name)
+         throws JSONException
+   {      
+      if (element != null)
+      {
+         List<JSONObject> children = getOwnedElements(element);
+
+         for (JSONObject child : children)
+         {
+            // Make sure the children are of type "Property":
+            if (PROPERTY.equals(getType(child)))
+            {
+               if (name.equals(getName(child)))
+               {
+                  return child;
+               }
+            }
+         }
+      }
+      return null;
+   }   
 
    protected List<JSONObject> searchWithinContextByProperty(JSONObject owner,
          String propName, Object propValue)

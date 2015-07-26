@@ -14,7 +14,7 @@ public interface Connector<N, I, D> extends BaseElement<N, I, D> {
 
    public JsonBaseElement getTarget();   
    public JsonBaseElement getSource();    
-   public List<JsonBaseElement> getTargetPath();
-   public List<JsonBaseElement> getSourcePath();
+   public List<? extends JsonBaseElement> getTargetPath();
+   public List<? extends JsonBaseElement> getSourcePath();
 
 }

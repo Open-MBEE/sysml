@@ -11,12 +11,12 @@ import java.util.Date;
  */
 public interface Element<N, I, D> extends BaseElement<N, I, D> {
 
-    public Collection< Element< N, I, D > > getSuperClasses();
+    public Collection< ? extends Element< N, I, D > > getSuperClasses();
 
-    public Collection< Property< N, I, D > > getProperties();
-    public Collection< Property< N, I, D > > getProperty( Object specifier );
+    public Collection< ? extends Property< N, I, D > > getProperties();
+    public Collection< ? extends Property< N, I, D > > getProperty( Object specifier );
     public Property< String, String, Date > getPropertyWithIdentifier( I specifier );
-    public Collection< Property< N, I, D > > getPropertyWithName( N specifier );
-    public Collection< Property< N, I, D > > getPropertyWithType( Element< N, I, D > specifier );
-    public Collection< Property< N, I, D > > getPropertyWithValue( Object specifier );
+    public Collection< ? extends Property< N, I, D > > getPropertyWithName( N specifier );
+    public Collection< ? extends Property< N, I, D > > getPropertyWithType( Element< N, I, D > specifier );
+    public Collection< ? extends Property< N, I, D > > getPropertyWithValue( Object specifier );
 }

@@ -9,9 +9,10 @@ import gov.nasa.jpl.mbee.util.Utils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.JSONObject;
 
@@ -24,6 +25,12 @@ import sysml.Property;
 public class JsonElement extends JsonBaseElement implements
       Element<String, String, Date>
 {
+   private final static Logger LOGGER = Logger.getLogger(JsonBaseElement.class.getName());
+
+   public static void setLogLevel(Level level)
+   {
+      LOGGER.setLevel(level);
+   }   
 
    public JsonElement(JsonSystemModel systemModel, JSONObject jObj)
    {
@@ -31,10 +38,10 @@ public class JsonElement extends JsonBaseElement implements
    }
 
    @Override
-   public Collection<Element<String, String, Date>> getSuperClasses()
+   public Collection<JsonElement> getSuperClasses()
    {
-      List<Element<String, String, Date>> classes = new ArrayList<Element<String, String, Date>>();
-      List<JSONObject> jList = systemModel.getSuperClasses(systemModel
+      List<JsonElement> classes = new ArrayList<JsonElement>();
+      Collection<JSONObject> jList = systemModel.getSuperClasses(systemModel
             .getElement(id));
       for (JSONObject jObj : jList)
       {
@@ -43,15 +50,33 @@ public class JsonElement extends JsonBaseElement implements
          {
             classes.add((JsonElement) bElem);
          }
+         else
+         {
+            LOGGER.log(Level.WARNING, "Unexpected type of super class: %s", jsonObj);
+         }
       }
 
       return classes;
    }
+   
+   public boolean isSuperClassOf(JsonElement cls)
+   {
+      String id = cls.getId();
+      JSONObject jElem = systemModel.getElement(id);
+      return systemModel.isSuperClass(jsonObj, jElem);
+   }
+   
+   public boolean isSubClassOf(JsonElement cls)
+   {
+      String id = cls.getId();
+      JSONObject jElem = systemModel.getElement(id);
+      return systemModel.isSuperClass(jElem, jsonObj);
+   }   
 
    @Override
-   public Collection<Property<String, String, Date>> getProperties()
+   public Collection<JsonProperty> getProperties()
    {
-      List<Property<String, String, Date>> props = new ArrayList<Property<String, String, Date>>();
+      List<JsonProperty> props = new ArrayList<JsonProperty>();
       
       Map<String, JSONObject> jProps = systemModel.getElementProperties(jsonObj);
       for (JSONObject jProp : jProps.values())
@@ -66,18 +91,18 @@ public class JsonElement extends JsonBaseElement implements
    }
 
    @Override
-   public Collection<Property<String, String, Date>> getProperty(
+   public Collection<JsonProperty> getProperty(
          Object specifier)
    {
       if (specifier == null)
          return null;
       
-      Collection<Property<String, String, Date>> props = null;
-      Property<String, String, Date> prop = getPropertyWithIdentifier(specifier
+      Collection<JsonProperty> props = null;
+      JsonProperty prop = getPropertyWithIdentifier(specifier
             .toString());
       if (prop != null)
       {
-         props = new ArrayList<Property<String, String, Date>>();
+         props = new ArrayList<JsonProperty>();
          props.add(prop);
       }
       if (props == null || props.isEmpty())
@@ -91,9 +116,9 @@ public class JsonElement extends JsonBaseElement implements
       return props;
    }
 
-   public Property<String, String, Date> getSingleProperty(Object specifier)
+   public JsonProperty getSingleProperty(Object specifier)
    {
-      Collection<Property<String, String, Date>> props = getProperty(specifier);
+      Collection<JsonProperty> props = getProperty(specifier);
       if (Utils.isNullOrEmpty(props))
       {
          return null;
@@ -102,13 +127,13 @@ public class JsonElement extends JsonBaseElement implements
    }
 
    @Override
-   public Property<String, String, Date> getPropertyWithIdentifier(String id)
+   public JsonProperty getPropertyWithIdentifier(String id)
    {
       if (id == null)
          return null;
       
-      Collection<Property<String, String, Date>> props = getProperties();
-      for (Property<String, String, Date> prop : props)
+      Collection<JsonProperty> props = getProperties();
+      for (JsonProperty prop : props)
       {
          if (id.equals(prop.getId()))
          {
@@ -120,11 +145,11 @@ public class JsonElement extends JsonBaseElement implements
    }
 
    @Override
-   public Collection<Property<String, String, Date>> getPropertyWithName(
+   public Collection<JsonProperty> getPropertyWithName(
          String name)
    {
-      ArrayList<Property<String, String, Date>> list = new ArrayList<Property<String, String, Date>>();
-      for (Property<String, String, Date> prop : getProperties())
+      ArrayList<JsonProperty> list = new ArrayList<JsonProperty>();
+      for (JsonProperty prop : getProperties())
       {
          if (prop.getName() != null && prop.getName().equals(name))
          {
@@ -135,8 +160,8 @@ public class JsonElement extends JsonBaseElement implements
    }
 
    @Override
-   public Collection<Property<String, String, Date>> getPropertyWithType(
-         Element<String, String, Date> type)
+   public Collection<Property< String, String, Date >> getPropertyWithType(
+         Element< String, String, Date > type)
    {
       ArrayList<Property<String, String, Date>> list = new ArrayList<Property<String, String, Date>>();
       for (Property<String, String, Date> prop : getProperties())
@@ -150,11 +175,11 @@ public class JsonElement extends JsonBaseElement implements
    }
 
    @Override
-   public Collection<Property<String, String, Date>> getPropertyWithValue(
+   public Collection<JsonProperty> getPropertyWithValue(
          Object value)
    {
-      ArrayList<Property<String, String, Date>> list = new ArrayList<Property<String, String, Date>>();
-      for (Property<String, String, Date> prop : getProperties())
+      ArrayList<JsonProperty> list = new ArrayList<JsonProperty>();
+      for (JsonProperty prop : getProperties())
       {
          if (prop.getValue() != null && prop.getValue().equals(value))
          {
