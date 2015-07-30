@@ -78,16 +78,32 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
    @Override
    public String getQualifiedName()
    {
-      Object obj = systemModel.getJsonProperty(jsonObj, JsonSystemModel.QUALIFIED_ID);
-      if (obj instanceof String)
+      StringBuilder sb = new StringBuilder();
+      
+      List<JSONObject> jList = new ArrayList<JSONObject>();
+      
+      JSONObject current = jsonObj;
+      
+      while (current != null)
       {
-         return (String)obj;
+         jList.add(current);
+         current = systemModel.getOwner(current);
       }
-      else
+      
+      if (!systemModel.isProject(jList.get(jList.size()-1)))
       {
-         LOGGER.log(Level.WARNING, "Unexpected format for qualified name: %s", jsonObj);
-         return null;
+         LOGGER.log(Level.WARNING, "Project could not be determined for: %s. Return short name instead.", jsonObj);
+         return getName();
+      }      
+      
+      for (int i=jList.size()-1; i >= 0; i--)
+      {
+         JSONObject jObj = jList.get(i);
+         String n = systemModel.getName(jObj);
+         sb.append("/");
+         sb.append(n);
       }
+      return sb.toString();
    }
 
    @Override
@@ -115,27 +131,22 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
    @Override
    public JsonProject getProject()
    {
-      Object qId = systemModel.getJsonProperty(jsonObj, JsonSystemModel.QUALIFIED_ID);
-      if (qId instanceof String)
+      JSONObject current = jsonObj;
+      JSONObject parent = systemModel.getOwner(jsonObj);
+      
+      while (parent != null)
       {
-         StringTokenizer stk = new StringTokenizer((String) qId, "/");
-         if (stk.countTokens() < 2)
-         {
-            LOGGER.log(Level.WARNING, "Unexpected format of qualified id: %s", jsonObj);
-            return null;
-         } else
-         {
-            // first segment is site name
-            stk.nextToken();
-            // second segment is the project id
-            String projectId = stk.nextToken();
-
-            JSONObject jProject = systemModel.getElement(projectId);
-            return (JsonProject)systemModel.wrap(jProject);
-         }
-      } else
+         current = parent;
+         parent = systemModel.getOwner(current);
+      }
+      
+      if (systemModel.isProject(current))
       {
-         LOGGER.log(Level.WARNING, "Unexpected type of qualified id: %s", jsonObj);
+         return (JsonProject)systemModel.wrap(current);
+      }
+      else
+      {
+         LOGGER.log(Level.WARNING, "Project could not be determined for: %s", jsonObj);
          return null;
       }
    }

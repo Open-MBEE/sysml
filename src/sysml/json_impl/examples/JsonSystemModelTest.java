@@ -100,6 +100,7 @@ public class JsonSystemModelTest
       JsonBlock bike = (JsonBlock)systemModel.wrap(jBike);
       List<JsonPart> parts = bike.getParts();
       System.out.println(String.format("Block: %s", bike));
+      System.out.println(String.format("   Qualified name: %s", bike.getQualifiedName()));
       System.out.println(String.format("   parts count: %d ", parts.size()));
       for (JsonPart part : parts)
       {
@@ -118,8 +119,8 @@ public class JsonSystemModelTest
          JsonPropertyValues values = valueProp.getValue();
          String valuePropTypeId = valueProp.getTypeId();
          JsonValueType valueType = valueProp.getType();
-         System.out.println(String.format("   %s value: %s value.class: %s typeId: %s type: %s", 
-               valueProp, values.getValueAsString(0), 
+         System.out.println(String.format("   %s (%s) value: %s value.class: %s typeId: %s type: %s", 
+               valueProp, valueProp.getQualifiedName(), values.getValueAsString(0), 
                values.getClass().getName(), valuePropTypeId, valueType));
          if (valueType != null)
          {
@@ -132,8 +133,8 @@ public class JsonSystemModelTest
       List<JsonParametricDiagram> parametricDiagrams = bike.getParametricDiagrams();
       for (JsonParametricDiagram parametricDiagram : parametricDiagrams)
       {
-         System.out.println(String.format("   parametricDiagram: %s", 
-               parametricDiagram));
+         System.out.println(String.format("   parametricDiagram: %s  %s", 
+               parametricDiagram, parametricDiagram.getQualifiedName()));
          
          List<JsonConstraintProperty> constraintProperties = parametricDiagram.getConstraintProperties();
          System.out.println(String.format("      constraint properties: count=%d", constraintProperties.size()));

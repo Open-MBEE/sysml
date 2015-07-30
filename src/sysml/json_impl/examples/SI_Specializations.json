@@ -1,607 +1,402 @@
-{"elements": [
+{
+  "elements": [
     {
-        "modifier": "dlam",
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede",
-        "siteCharacterizationId": "sispecializations",
-        "created": "Fri Jun 05 14:11:55 PDT 2015",
-        "name": "SISpecializations",
-        "qualifiedName": "/sispecializations/SISpecializations",
-        "sysmlid": "PROJECT-352af929b97e226b626808513753ede",
-        "owner": null,
-        "read": "2015-07-25T13:10:26.435-0700",
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:15.550-0700"
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243697355_151563_5988",
+      "owner": "_16_5_2_ff3038a_1247243697354_621924_5986",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_2_ff3038a_1247243697354_621924_5986",
+        "target": "_16_5_1_12c903cb_1245417599296_513203_5108",
+        "type": "Generalization"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243572535_726847_5904/_16_5_2_ff3038a_1247243572536_579153_5905",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/Mass/",
-        "sysmlid": "_16_5_2_ff3038a_1247243572536_579153_5905",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:17.679-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:14 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243572535_726847_5904",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
-        "read": "2015-07-25T13:10:26.442-0700",
-        "specialization": {
-            "slots": [],
-            "classifier": ["_11_5EAPbeta_be00301_1147424179914_458922_958"],
-            "type": "InstanceSpecification"
-        }
-    },
-    {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243697354_621924_5986",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/kilogram",
-        "sysmlid": "_16_5_2_ff3038a_1247243697354_621924_5986",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:19.511-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:11 PDT 2015",
-        "name": "kilogram",
-        "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
-        "documentation": "",
-        "appliedMetatypes": [
-            "_11_5EAPbeta_be00301_1147424179914_458922_958",
-            "_9_0_62a020a_1105704885343_144138_7929"
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243572536_579153_5905",
+      "owner": "_16_5_2_ff3038a_1247243572535_726847_5904",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885251_933969_7897"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "classifier": [
+          "_11_5EAPbeta_be00301_1147424179914_458922_958"
         ],
-        "read": "2015-07-25T13:10:26.455-0700",
-        "specialization": {"type": "Element"}
+        "type": "InstanceSpecification"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243667106_946585_5957/_16_5_2_ff3038a_1247243667107_517278_5958/_16_5_2_ff3038a_1247243667107_517278_5958-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/metre//",
-        "sysmlid": "_16_5_2_ff3038a_1247243667107_517278_5958-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:17.187-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:13 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243667107_517278_5958",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
-        "read": "2015-07-25T13:10:26.467-0700",
-        "specialization": {
-            "propertyType": "_11_5EAPbeta_be00301_1147424201876_860708_1049",
-            "isDerived": false,
-            "isSlot": true,
-            "value": [{
-                "valueExpression": null,
-                "boolean": true,
-                "type": "LiteralBoolean"
-            }],
-            "type": "Property"
-        }
+      "name": "kilogram",
+      "sysmlid": "_16_5_2_ff3038a_1247243697354_621924_5986",
+      "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243517248_784484_5848/_16_5_2_ff3038a_1247243567271_536489_5903",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/Length/",
-        "sysmlid": "_16_5_2_ff3038a_1247243567271_536489_5903",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:18.149-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:14 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243517248_784484_5848",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885195_432731_7879"],
-        "read": "2015-07-25T13:10:26.488-0700",
-        "specialization": {
-            "source": "_16_5_2_ff3038a_1247243517248_784484_5848",
-            "target": "_16_5_1_12c903cb_1245415169125_739263_4059",
-            "type": "Generalization"
-        }
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243572536_229666_5906",
+      "owner": "_16_5_2_ff3038a_1247243572535_726847_5904",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_2_ff3038a_1247243572535_726847_5904",
+        "target": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "type": "Generalization"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243887843_647804_6101/_16_5_2_ff3038a_1247243887843_394036_6103",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/A_metre_unit_length_quantityKind/unit",
-        "sysmlid": "_16_5_2_ff3038a_1247243887843_394036_6103",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:16.722-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:12 PDT 2015",
-        "name": "unit",
-        "owner": "_16_5_2_ff3038a_1247243887843_647804_6101",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704884574_96724_7644"],
-        "read": "2015-07-25T13:10:26.498-0700",
-        "specialization": {
-            "propertyType": "_16_5_2_ff3038a_1247243667106_946585_5957",
-            "isDerived": false,
-            "isSlot": false,
-            "value": [],
-            "type": "Property"
-        }
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243567271_536489_5903",
+      "owner": "_16_5_2_ff3038a_1247243517248_784484_5848",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_2_ff3038a_1247243517248_784484_5848",
+        "target": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "type": "Generalization"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243887843_647804_6101",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/A_metre_unit_length_quantityKind",
-        "sysmlid": "_16_5_2_ff3038a_1247243887843_647804_6101",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:16.558-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:12 PDT 2015",
-        "name": "A_metre_unit_length_quantityKind",
-        "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885473_18793_7971"],
-        "read": "2015-07-25T13:10:26.510-0700",
-        "specialization": {
-            "targetAggregation": "NONE",
-            "source": "_16_5_2_ff3038a_1247243887843_394036_6103",
-            "sourceAggregation": "NONE",
-            "target": "_16_5_2_ff3038a_1247243887843_948975_6102",
-            "type": "Association",
-            "ownedEnd": ["_16_5_2_ff3038a_1247243887843_394036_6103"]
-        }
+      "name": "A_metre_unit_length_quantityKind",
+      "sysmlid": "_16_5_2_ff3038a_1247243887843_647804_6101",
+      "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_2_ff3038a_1247243887843_394036_6103",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_2_ff3038a_1247243887843_948975_6102",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_2_ff3038a_1247243887843_394036_6103"
+        ]
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243945417_62469_6120/_16_5_2_ff3038a_1247243945417_530804_6122",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/A_kilogram_unit_mass_quantityKind/unit",
-        "sysmlid": "_16_5_2_ff3038a_1247243945417_530804_6122",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:17.501-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:13 PDT 2015",
-        "name": "unit",
-        "owner": "_16_5_2_ff3038a_1247243945417_62469_6120",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704884574_96724_7644"],
-        "read": "2015-07-25T13:10:26.520-0700",
-        "specialization": {
-            "propertyType": "_16_5_2_ff3038a_1247243697354_621924_5986",
-            "isDerived": false,
-            "isSlot": false,
-            "value": [],
-            "type": "Property"
-        }
+      "name": "unit",
+      "sysmlid": "_16_5_2_ff3038a_1247243887843_394036_6103",
+      "owner": "_16_5_2_ff3038a_1247243887843_647804_6101",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_2_ff3038a_1247243667106_946585_5957",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243697354_621924_5986/_16_5_2_ff3038a_1247243697355_698575_5987/_16_5_2_ff3038a_1247243697355_698575_5987-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/kilogram//",
-        "sysmlid": "_16_5_2_ff3038a_1247243697355_698575_5987-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:16.254-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:12 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243697355_698575_5987",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
-        "read": "2015-07-25T13:10:26.531-0700",
-        "specialization": {
-            "propertyType": "_11_5EAPbeta_be00301_1147424201876_860708_1049",
-            "isDerived": false,
-            "isSlot": true,
-            "value": [{
-                "valueExpression": null,
-                "boolean": true,
-                "type": "LiteralBoolean"
-            }],
-            "type": "Property"
-        }
-    },
-    {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243667106_946585_5957/_16_5_2_ff3038a_1247243693874_148461_5985",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/metre/",
-        "sysmlid": "_16_5_2_ff3038a_1247243693874_148461_5985",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:16.896-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:13 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243667106_946585_5957",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885195_432731_7879"],
-        "read": "2015-07-25T13:10:26.549-0700",
-        "specialization": {
-            "source": "_16_5_2_ff3038a_1247243667106_946585_5957",
-            "target": "_16_5_1_12c903cb_1245417599296_513203_5108",
-            "type": "Generalization"
-        }
-    },
-    {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243667106_946585_5957",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/metre",
-        "sysmlid": "_16_5_2_ff3038a_1247243667106_946585_5957",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:19.411-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:12 PDT 2015",
-        "name": "metre",
-        "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
-        "documentation": "",
-        "appliedMetatypes": [
-            "_11_5EAPbeta_be00301_1147424179914_458922_958",
-            "_9_0_62a020a_1105704885343_144138_7929"
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243667107_517278_5958-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
+      "owner": "_16_5_2_ff3038a_1247243667107_517278_5958",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885275_885607_7905"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_11_5EAPbeta_be00301_1147424201876_860708_1049",
+        "isSlot": true,
+        "isDerived": false,
+        "value": [
+          {
+            "valueExpression": null,
+            "boolean": true,
+            "type": "LiteralBoolean"
+          }
         ],
-        "read": "2015-07-25T13:10:26.558-0700",
-        "specialization": {"type": "Element"}
+        "type": "Property"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243517248_784484_5848/_16_5_2_ff3038a_1247243517249_732988_5849/_16_5_2_ff3038a_1247243517249_732988_5849-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/Length//",
-        "sysmlid": "_16_5_2_ff3038a_1247243517249_732988_5849-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:18.390-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:15 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243517249_732988_5849",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
-        "read": "2015-07-25T13:10:26.569-0700",
-        "specialization": {
-            "propertyType": "_11_5EAPbeta_be00301_1147424201876_860708_1049",
-            "isDerived": false,
-            "isSlot": true,
-            "value": [{
-                "valueExpression": null,
-                "boolean": true,
-                "type": "LiteralBoolean"
-            }],
-            "type": "Property"
-        }
+      "name": "A_kilogram_unit_mass_quantityKind",
+      "sysmlid": "_16_5_2_ff3038a_1247243945417_62469_6120",
+      "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_2_ff3038a_1247243945417_530804_6122",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_2_ff3038a_1247243945417_968254_6121",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_2_ff3038a_1247243945417_530804_6122"
+        ]
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_6beta_17530432_1250160978812_830113_4626/_16_5_3_ff3038a_1248224500371_651840_5442",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/Diagrams/Figure C.5 (specialization)",
-        "sysmlid": "_16_5_3_ff3038a_1248224500371_651840_5442",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:18.659-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:15 PDT 2015",
-        "name": "Figure C.5 (specialization)",
-        "owner": "_16_6beta_17530432_1250160978812_830113_4626",
-        "documentation": "",
-        "appliedMetatypes": [
-            "_9_0_be00301_1108044380615_150487_0",
-            "_9_0_62a020a_1106296071977_61607_0"
+      "name": "SISpecializations",
+      "sysmlid": "_16_5_3_ff3038a_1248224392780_527302_5390",
+      "owner": "PROJECT-47f86fd9-9667-471f-aa8a-9a2f22164944",
+      "documentation": "",
+      "appliedMetatypes": [
+        "magicdraw_1046861421236_39100_29",
+        "_12_1_8f90291_1173963323875_662612_98",
+        "_9_0_62a020a_1105704885298_713292_7913"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Package",
+        "isSite": false
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243697355_698575_5987",
+      "owner": "_16_5_2_ff3038a_1247243697354_621924_5986",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885251_933969_7897"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "classifier": [
+          "_11_5EAPbeta_be00301_1147424179914_458922_958"
         ],
-        "read": "2015-07-25T13:10:26.586-0700",
-        "specialization": {"type": "Untyped"}
+        "type": "InstanceSpecification"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243517248_784484_5848/_16_5_2_ff3038a_1247243517249_732988_5849",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/Length/",
-        "sysmlid": "_16_5_2_ff3038a_1247243517249_732988_5849",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:18.281-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:15 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243517248_784484_5848",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
-        "read": "2015-07-25T13:10:26.594-0700",
-        "specialization": {
-            "slots": [],
-            "classifier": ["_11_5EAPbeta_be00301_1147424179914_458922_958"],
-            "type": "InstanceSpecification"
-        }
+      "name": "Mass",
+      "sysmlid": "_16_5_2_ff3038a_1247243572535_726847_5904",
+      "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
+      "documentation": "<p>\n      This diagram shows all of the different ways a particular unit can be \n      defined as one of the concrete specializations of Unit.\n    </p>",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243697354_621924_5986/_16_5_2_ff3038a_1247243697355_151563_5988",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/kilogram/",
-        "sysmlid": "_16_5_2_ff3038a_1247243697355_151563_5988",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:16.026-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:11 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243697354_621924_5986",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885195_432731_7879"],
-        "read": "2015-07-25T13:10:26.606-0700",
-        "specialization": {
-            "source": "_16_5_2_ff3038a_1247243697354_621924_5986",
-            "target": "_16_5_1_12c903cb_1245417599296_513203_5108",
-            "type": "Generalization"
-        }
+      "name": "unit",
+      "sysmlid": "_16_5_2_ff3038a_1247243945417_530804_6122",
+      "owner": "_16_5_2_ff3038a_1247243945417_62469_6120",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_2_ff3038a_1247243697354_621924_5986",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243572535_726847_5904/_16_5_2_ff3038a_1247243572536_229666_5906",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/Mass/",
-        "sysmlid": "_16_5_2_ff3038a_1247243572536_229666_5906",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:17.975-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:14 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243572535_726847_5904",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885195_432731_7879"],
-        "read": "2015-07-25T13:10:26.615-0700",
-        "specialization": {
-            "source": "_16_5_2_ff3038a_1247243572535_726847_5904",
-            "target": "_16_5_1_12c903cb_1245415169125_739263_4059",
-            "type": "Generalization"
-        }
+      "name": "Length",
+      "sysmlid": "_16_5_2_ff3038a_1247243517248_784484_5848",
+      "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
+      "documentation": "<p>\n      This diagram shows all of the different ways a particular unit can be \n      defined as one of the concrete specializations of Unit.\n    </p>",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243945417_62469_6120",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/A_kilogram_unit_mass_quantityKind",
-        "sysmlid": "_16_5_2_ff3038a_1247243945417_62469_6120",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:17.384-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:13 PDT 2015",
-        "name": "A_kilogram_unit_mass_quantityKind",
-        "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885473_18793_7971"],
-        "read": "2015-07-25T13:10:26.624-0700",
-        "specialization": {
-            "targetAggregation": "NONE",
-            "source": "_16_5_2_ff3038a_1247243945417_530804_6122",
-            "sourceAggregation": "NONE",
-            "target": "_16_5_2_ff3038a_1247243945417_968254_6121",
-            "type": "Association",
-            "ownedEnd": ["_16_5_2_ff3038a_1247243945417_530804_6122"]
-        }
-    },
-    {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243697354_621924_5986/_16_5_2_ff3038a_1247243697355_698575_5987",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/kilogram/",
-        "sysmlid": "_16_5_2_ff3038a_1247243697355_698575_5987",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:16.129-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:12 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243697354_621924_5986",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
-        "read": "2015-07-25T13:10:26.635-0700",
-        "specialization": {
-            "slots": [],
-            "classifier": ["_11_5EAPbeta_be00301_1147424179914_458922_958"],
-            "type": "InstanceSpecification"
-        }
-    },
-    {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations",
-        "sysmlid": "_16_5_3_ff3038a_1248224392780_527302_5390",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:15.867-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:11 PDT 2015",
-        "name": "SISpecializations",
-        "owner": "PROJECT-352af929b97e226b626808513753ede",
-        "documentation": "",
-        "read": "2015-07-25T12:22:44.453-0700",
-        "appliedMetatypes": [
-            "magicdraw_1046861421236_39100_29",
-            "_12_1_8f90291_1173963323875_662612_98",
-            "_9_0_62a020a_1105704885298_713292_7913"
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243572536_579153_5905-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
+      "owner": "_16_5_2_ff3038a_1247243572536_579153_5905",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885275_885607_7905"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_11_5EAPbeta_be00301_1147424201876_860708_1049",
+        "isSlot": true,
+        "isDerived": false,
+        "value": [
+          {
+            "valueExpression": null,
+            "boolean": true,
+            "type": "LiteralBoolean"
+          }
         ],
-        "specialization": {
-            "type": "Package",
-            "isSite": false
-        }
+        "type": "Property"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243572535_726847_5904",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/Mass",
-        "sysmlid": "_16_5_2_ff3038a_1247243572535_726847_5904",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:19.623-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:14 PDT 2015",
-        "name": "Mass",
-        "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
-        "documentation": "<p>\n      This diagram shows all of the different ways a particular unit can be \n      defined as one of the concrete specializations of Unit.\n    <\/p>",
-        "appliedMetatypes": [
-            "_11_5EAPbeta_be00301_1147424179914_458922_958",
-            "_9_0_62a020a_1105704885343_144138_7929"
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243697355_698575_5987-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
+      "owner": "_16_5_2_ff3038a_1247243697355_698575_5987",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885275_885607_7905"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_11_5EAPbeta_be00301_1147424201876_860708_1049",
+        "isSlot": true,
+        "isDerived": false,
+        "value": [
+          {
+            "valueExpression": null,
+            "boolean": true,
+            "type": "LiteralBoolean"
+          }
         ],
-        "read": "2015-07-25T13:10:26.649-0700",
-        "specialization": {"type": "Element"}
+        "type": "Property"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_6beta_17530432_1250160978812_830113_4626",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/Diagrams",
-        "sysmlid": "_16_6beta_17530432_1250160978812_830113_4626",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:18.587-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:15 PDT 2015",
-        "name": "Diagrams",
-        "owner": "PROJECT-352af929b97e226b626808513753ede",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885298_713292_7913"],
-        "read": "2015-07-25T13:10:26.659-0700",
-        "specialization": {
-            "type": "Package",
-            "isSite": false
-        }
+      "name": "quantityKind",
+      "sysmlid": "_16_5_2_ff3038a_1247243887843_948975_6102",
+      "owner": "_16_5_2_ff3038a_1247243667106_946585_5957",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_2_ff3038a_1247243517248_784484_5848",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243517248_784484_5848",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/Length",
-        "sysmlid": "_16_5_2_ff3038a_1247243517248_784484_5848",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:19.723-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:14 PDT 2015",
-        "name": "Length",
-        "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
-        "documentation": "<p>\n      This diagram shows all of the different ways a particular unit can be \n      defined as one of the concrete specializations of Unit.\n    <\/p>",
-        "appliedMetatypes": [
-            "_11_5EAPbeta_be00301_1147424179914_458922_958",
-            "_9_0_62a020a_1105704885343_144138_7929"
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243517249_732988_5849-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
+      "owner": "_16_5_2_ff3038a_1247243517249_732988_5849",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885275_885607_7905"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_11_5EAPbeta_be00301_1147424201876_860708_1049",
+        "isSlot": true,
+        "isDerived": false,
+        "value": [
+          {
+            "valueExpression": null,
+            "boolean": true,
+            "type": "LiteralBoolean"
+          }
         ],
-        "read": "2015-07-25T13:10:26.666-0700",
-        "specialization": {"type": "Element"}
+        "type": "Property"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243667106_946585_5957/_16_5_2_ff3038a_1247243887843_948975_6102",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/metre/quantityKind",
-        "sysmlid": "_16_5_2_ff3038a_1247243887843_948975_6102",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:16.976-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:13 PDT 2015",
-        "name": "quantityKind",
-        "owner": "_16_5_2_ff3038a_1247243667106_946585_5957",
-        "documentation": "",
-        "appliedMetatypes": [
-            "_15_0_be00301_1199378032543_992832_3096",
-            "_9_0_62a020a_1105704884574_96724_7644"
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243693874_148461_5985",
+      "owner": "_16_5_2_ff3038a_1247243667106_946585_5957",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_2_ff3038a_1247243667106_946585_5957",
+        "target": "_16_5_1_12c903cb_1245417599296_513203_5108",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "metre",
+      "sysmlid": "_16_5_2_ff3038a_1247243667106_946585_5957",
+      "owner": "_16_5_3_ff3038a_1248224392780_527302_5390",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243667107_517278_5958",
+      "owner": "_16_5_2_ff3038a_1247243667106_946585_5957",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885251_933969_7897"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "classifier": [
+          "_11_5EAPbeta_be00301_1147424179914_458922_958"
         ],
-        "read": "2015-07-25T13:10:26.676-0700",
-        "specialization": {
-            "propertyType": "_16_5_2_ff3038a_1247243517248_784484_5848",
-            "isDerived": false,
-            "isSlot": false,
-            "value": [],
-            "type": "Property"
-        }
+        "type": "InstanceSpecification"
+      }
     },
     {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243667106_946585_5957/_16_5_2_ff3038a_1247243667107_517278_5958",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/metre/",
-        "sysmlid": "_16_5_2_ff3038a_1247243667107_517278_5958",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:17.078-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:13 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243667106_946585_5957",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885251_933969_7897"],
-        "read": "2015-07-25T13:10:26.686-0700",
-        "specialization": {
-            "slots": [],
-            "classifier": ["_11_5EAPbeta_be00301_1147424179914_458922_958"],
-            "type": "InstanceSpecification"
-        }
-    },
-    {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243572535_726847_5904/_16_5_2_ff3038a_1247243572536_579153_5905/_16_5_2_ff3038a_1247243572536_579153_5905-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/Mass//",
-        "sysmlid": "_16_5_2_ff3038a_1247243572536_579153_5905-slot-_11_5EAPbeta_be00301_1147424201876_860708_1049",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:17.789-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:14 PDT 2015",
-        "name": "",
-        "owner": "_16_5_2_ff3038a_1247243572536_579153_5905",
-        "documentation": "",
-        "appliedMetatypes": ["_9_0_62a020a_1105704885275_885607_7905"],
-        "read": "2015-07-25T13:10:26.747-0700",
-        "specialization": {
-            "propertyType": "_11_5EAPbeta_be00301_1147424201876_860708_1049",
-            "isDerived": false,
-            "isSlot": true,
-            "value": [{
-                "valueExpression": null,
-                "boolean": true,
-                "type": "LiteralBoolean"
-            }],
-            "type": "Property"
-        }
-    },
-    {
-        "qualifiedId": "/sispecializations/PROJECT-352af929b97e226b626808513753ede/_16_5_3_ff3038a_1248224392780_527302_5390/_16_5_2_ff3038a_1247243697354_621924_5986/_16_5_2_ff3038a_1247243945417_968254_6121",
-        "siteCharacterizationId": "sispecializations",
-        "qualifiedName": "/sispecializations/SISpecializations/SISpecializations/kilogram/quantityKind",
-        "sysmlid": "_16_5_2_ff3038a_1247243945417_968254_6121",
-        "isMetatype": false,
-        "editable": false,
-        "creator": "dlam",
-        "modified": "2015-06-05T14:12:16.452-0700",
-        "modifier": "dlam",
-        "created": "Fri Jun 05 14:12:12 PDT 2015",
-        "name": "quantityKind",
-        "owner": "_16_5_2_ff3038a_1247243697354_621924_5986",
-        "documentation": "",
-        "appliedMetatypes": [
-            "_15_0_be00301_1199378032543_992832_3096",
-            "_9_0_62a020a_1105704884574_96724_7644"
+      "name": "",
+      "sysmlid": "_16_5_2_ff3038a_1247243517249_732988_5849",
+      "owner": "_16_5_2_ff3038a_1247243517248_784484_5848",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885251_933969_7897"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "classifier": [
+          "_11_5EAPbeta_be00301_1147424179914_458922_958"
         ],
-        "read": "2015-07-25T13:10:26.764-0700",
-        "specialization": {
-            "propertyType": "_16_5_2_ff3038a_1247243572535_726847_5904",
-            "isDerived": false,
-            "isSlot": false,
-            "value": [],
-            "type": "Property"
-        }
+        "type": "InstanceSpecification"
+      }
+    },
+    {
+      "name": "quantityKind",
+      "sysmlid": "_16_5_2_ff3038a_1247243945417_968254_6121",
+      "owner": "_16_5_2_ff3038a_1247243697354_621924_5986",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_2_ff3038a_1247243572535_726847_5904",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
     }
-]}
+  ]
+}

@@ -61,7 +61,7 @@ public class JsonSystemModel
    public static final String SI_VALUE_TYPE_LIBRARY_JSON = "SI_Valuetype_Library.json";
    public static final String SI_SPECIALIZATIONS_JSON = "SI_Specializations.json";
    public static final String QUDV_JSON = "QUDV.json";
-   public static final String SYSML_JSON = "SYSML.json";
+   public static final String SYSML_JSON = "SysML.json";
    public static final String MD_CUSTOMIZATION_FOR_SYSML_JSON = "MD_Customization_for_SysML.json";
    public static final String MD_CUSTOMIZATION_FOR_VIEW_VIEWPOINT_JSON = "MD_Customization_for_View_Viewpoint.json";
    public static final String SYSML_EXTENSIONS_JSON = "SysML_Extensions.json";
