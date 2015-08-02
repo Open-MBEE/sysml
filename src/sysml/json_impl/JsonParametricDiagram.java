@@ -3,6 +3,7 @@ package sysml.json_impl;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
+import java.util.Collection;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -61,6 +62,11 @@ public class JsonParametricDiagram extends JsonBaseElement
       
       return props;
    }   
+   
+   public Collection<JsonGraphicalElement> getGraphicalElements()
+   {
+      return systemModel.getDiagramGraphElements(jsonObj);
+   }
    
    public JSONObject getContextBlock()
    {

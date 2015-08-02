@@ -41,6 +41,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -171,7 +172,7 @@ public class JsonSystemModel
    protected Map<String, JSONObject> elementMap = new LinkedHashMap<String, JSONObject>();
 
    // Map of element sysmlid to List of sysmlids that that element owns
-   protected Map<String, List<String>> ownershipMap = new LinkedHashMap<String, List<String>>();
+   protected Map<String, List<String>> ownershipMap = new LinkedHashMap<String, List<String>>(); 
    
    // Map of element sysmlid to List of views of the element
    protected MultiValueMap<String, String> viewMap = new MultiValueMap<String, String>();   
@@ -776,36 +777,54 @@ public class JsonSystemModel
       return parametricDiagramViews;
    }
    
-
-   public JSONGraphElement createJSONGraphElement(JSONObject element)
+   public Collection<JsonGraphicalElement> getDiagramGraphElements(JSONObject parametricDiagram)
    {
-      if (isBindingConnector(element))
-      {
-         return new JSONGraphEdge(element);
-      }
-      else if (isConstraintProperty(element))
-      {
-         return new JSONGraphNode(element);
-      }
-      else
-      {
-         LOGGER.log(Level.WARNING, "unsupported element type for graph element: %s", element);
-      }
-      return null;
-   }
-   
-   public List<JSONGraphElement> getDiagramGraphElements(JSONObject parametricDiagram)
-   {
-      List<JSONGraphElement> graphElements = new ArrayList<JSONGraphElement>();
+      LinkedHashSet<JsonGraphicalElement> graphElements = new LinkedHashSet<JsonGraphicalElement>();
       
       List<JSONObject> diagramElements = getParametricDiagramElements(parametricDiagram);
       
+      JsonParametricDiagram diagram = (JsonParametricDiagram) wrap(parametricDiagram);
+      
+      JSONObject jContext = diagram.getContextBlock();
+      
+      JsonGraphicalNode gContext = new JsonGraphicalNode(this, jContext, null);
+      
       for (JSONObject diagramElement : diagramElements)
       {
-         JSONGraphElement graphElement = createJSONGraphElement(diagramElement);
-         if (graphElement != null)
+         if (isConstraintProperty(diagramElement))
          {
-            graphElements.add(graphElement);
+            JsonGraphicalElement gElem = new JsonGraphicalNode(this, diagramElement, gContext);
+            graphElements.add(gElem);
+         }
+         else if (isBindingConnector(diagramElement))
+         {
+            JsonGraphicalElement gElem = new JsonGraphicalEdge(this, diagramElement, gContext);
+            graphElements.add(gElem);
+            
+            JsonGraphicalElement parent = null;
+            JsonBindingConnector bindingConnector = (JsonBindingConnector) wrap(diagramElement);
+
+            List<JsonBaseElement> sourcePath = bindingConnector.getSourcePath();
+            parent = gContext;
+            for (int i = sourcePath.size()-1; i >= 0; i--)
+            {
+               JsonGraphicalElement gElemInPath = new JsonGraphicalNode(this, sourcePath.get(i).jsonObj , parent);
+               graphElements.add(gElemInPath);
+               parent = gElemInPath;
+            }
+            
+            List<JsonBaseElement> targetPath = bindingConnector.getTargetPath();
+            parent = gContext;
+            for (int i = targetPath.size()-1; i >= 0; i--)
+            {
+               JsonGraphicalElement gElemInPath = new JsonGraphicalNode(this, targetPath.get(i).jsonObj , parent);
+               graphElements.add(gElemInPath);
+               parent = gElemInPath;
+            }          
+         }
+         else
+         {
+            LOGGER.log(Level.WARNING, "Unrecognized element type for parametric diagram: {0}", diagramElement); 
          }
       }
       
@@ -1187,8 +1206,7 @@ public class JsonSystemModel
          return (String) prop;
       }
       return null;
-   }   
-   
+   }
    
    // override
    public JSONObject getSource(JSONObject relationship)
