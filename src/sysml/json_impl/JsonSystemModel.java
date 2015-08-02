@@ -777,9 +777,9 @@ public class JsonSystemModel
       return parametricDiagramViews;
    }
    
-   public Collection<JsonGraphicalElement> getDiagramGraphElements(JSONObject parametricDiagram)
+   public Collection<JsonGraphElement> getDiagramGraphElements(JSONObject parametricDiagram)
    {
-      LinkedHashSet<JsonGraphicalElement> graphElements = new LinkedHashSet<JsonGraphicalElement>();
+      LinkedHashSet<JsonGraphElement> graphElements = new LinkedHashSet<JsonGraphElement>();
       
       List<JSONObject> diagramElements = getParametricDiagramElements(parametricDiagram);
       
@@ -787,40 +787,46 @@ public class JsonSystemModel
       
       JSONObject jContext = diagram.getContextBlock();
       
-      JsonGraphicalNode gContext = new JsonGraphicalNode(this, jContext, null);
+      JsonGraphNode gContext = new JsonGraphNode(this, jContext, null);
       
       for (JSONObject diagramElement : diagramElements)
       {
          if (isConstraintProperty(diagramElement))
          {
-            JsonGraphicalElement gElem = new JsonGraphicalNode(this, diagramElement, gContext);
+            JsonGraphElement gElem = new JsonGraphNode(this, diagramElement, gContext);
             graphElements.add(gElem);
          }
          else if (isBindingConnector(diagramElement))
-         {
-            JsonGraphicalElement gElem = new JsonGraphicalEdge(this, diagramElement, gContext);
-            graphElements.add(gElem);
-            
-            JsonGraphicalElement parent = null;
+         {  
+            JsonGraphElement parent = null;
             JsonBindingConnector bindingConnector = (JsonBindingConnector) wrap(diagramElement);
 
             List<JsonBaseElement> sourcePath = bindingConnector.getSourcePath();
             parent = gContext;
-            for (int i = sourcePath.size()-1; i >= 0; i--)
+            List<JsonGraphNode> sourceNodes = new ArrayList<JsonGraphNode>(); 
+            List<JsonGraphNode> targetNodes = new ArrayList<JsonGraphNode>(); 
+            
+            for (JsonBaseElement elem: sourcePath)
             {
-               JsonGraphicalElement gElemInPath = new JsonGraphicalNode(this, sourcePath.get(i).jsonObj , parent);
+               JsonGraphNode gElemInPath = new JsonGraphNode(this, elem.jsonObj , parent);
+               sourceNodes.add(gElemInPath);
                graphElements.add(gElemInPath);
                parent = gElemInPath;
             }
             
             List<JsonBaseElement> targetPath = bindingConnector.getTargetPath();
             parent = gContext;
-            for (int i = targetPath.size()-1; i >= 0; i--)
+            for (JsonBaseElement elem: targetPath)
             {
-               JsonGraphicalElement gElemInPath = new JsonGraphicalNode(this, targetPath.get(i).jsonObj , parent);
+               JsonGraphNode gElemInPath = new JsonGraphNode(this, elem.jsonObj , parent);
+               targetNodes.add(gElemInPath);
                graphElements.add(gElemInPath);
                parent = gElemInPath;
-            }          
+            }
+            
+            JsonGraphElement gElem = new JsonGraphEdge(this, diagramElement, gContext, 
+                  sourceNodes.get(sourceNodes.size()-1), targetNodes.get(targetNodes.size()-1));
+            graphElements.add(gElem);            
          }
          else
          {
@@ -830,8 +836,46 @@ public class JsonSystemModel
       
       return graphElements;
    }
-   
 
+   public Collection<JsonBaseElement> getDiagramElements(JSONObject parametricDiagram)
+   {
+      LinkedHashSet<JsonBaseElement> elements = new LinkedHashSet<JsonBaseElement>();
+      
+      List<JSONObject> diagramElements = getParametricDiagramElements(parametricDiagram);
+      
+      JsonParametricDiagram diagram = (JsonParametricDiagram) wrap(parametricDiagram);
+      
+      for (JSONObject diagramElement : diagramElements)
+      {
+         if (isConstraintProperty(diagramElement))
+         {
+            elements.add(wrap(diagramElement));
+         }
+         else if (isBindingConnector(diagramElement))
+         {  
+            JsonBindingConnector bindingConnector = (JsonBindingConnector) wrap(diagramElement);
+            elements.add(bindingConnector);
+            List<JsonBaseElement> sourcePath = bindingConnector.getSourcePath();
+            
+            for (JsonBaseElement elem: sourcePath)
+            {
+               elements.add(elem);
+            }
+            
+            List<JsonBaseElement> targetPath = bindingConnector.getTargetPath();
+            for (JsonBaseElement elem: targetPath)
+            {
+               elements.add(elem);
+            } 
+         }
+         else
+         {
+            LOGGER.log(Level.WARNING, "Unrecognized element type for parametric diagram: {0}", diagramElement); 
+         }
+      }
+      
+      return elements;
+   }   
    
    public List<JSONObject> getParts(JSONObject element)
    {

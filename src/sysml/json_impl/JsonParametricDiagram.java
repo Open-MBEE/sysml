@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Collection;
 import java.util.ArrayList;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JsonParametricDiagram extends JsonBaseElement
@@ -62,8 +61,13 @@ public class JsonParametricDiagram extends JsonBaseElement
       
       return props;
    }   
+
+   public Collection<JsonBaseElement> getElementsInDiagram()
+   {
+      return systemModel.getDiagramElements(jsonObj);
+   }
    
-   public Collection<JsonGraphicalElement> getGraphicalElements()
+   public Collection<JsonGraphElement> getGraphicalElements()
    {
       return systemModel.getDiagramGraphElements(jsonObj);
    }

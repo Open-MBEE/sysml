@@ -45,7 +45,7 @@ import sysml.json_impl.JsonProperty;
 import sysml.json_impl.JsonPropertyValues;
 import sysml.json_impl.JsonValueProperty;
 import sysml.json_impl.JsonValueType;
-
+import sysml.json_impl.JsonGraphElement;
 
 import gov.nasa.jpl.mbee.util.FileUtils;
 
@@ -165,7 +165,30 @@ public class JsonSystemModelTest
             {
                System.out.println(String.format("               %s", elem));
             }
+         }  
+         
+         
+         Collection<JsonBaseElement> elems = parametricDiagram.getElementsInDiagram();
+         Iterator<JsonBaseElement> iterElems = elems.iterator();
+         System.out.println(String.format("      Num elements on diagram: %d", elems.size()));
+         while (iterElems.hasNext())
+         {
+            JsonBaseElement elem = iterElems.next();
+            System.out.println(String.format("         %s", elem));
+         }
+
+         Collection<JsonGraphElement> gElems = parametricDiagram.getGraphicalElements();
+         Iterator<JsonGraphElement> iterGElems = gElems.iterator();
+         System.out.println(String.format("      Num graph elements on diagram: %d", gElems.size()));
+         while (iterGElems.hasNext())
+         {
+            JsonGraphElement gElem = iterGElems.next();
+            System.out.println(String.format("         %s", gElem.toString()));
          }         
+         
+         JsonGraphElement[] gArray = new JsonGraphElement[0];
+         gArray = gElems.toArray(gArray);
+         System.out.println(String.format("equals=%s", gArray[2].equals(gArray[7])));
       }
       
       // Constraint block "SumTwo"
