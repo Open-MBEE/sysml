@@ -2,6 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>gov.nasa.jpl.mbee.sysml</groupId>
   <artifactId>sysml</artifactId>
+  <packaging>jar</packaging>
   <version>2.2.0</version>
   <name>sysml</name>
   <description>sysml utilities for mbee</description>
