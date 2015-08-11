@@ -96,8 +96,6 @@ public class JsonSystemModel
    public static final String TARGET_PATH = "targetPath";
    public static final String CLASSIFIER = "classifier";   
    
-   public static final String META_INSTANCE_SPECIFICATION = "_9_0_62a020a_1105704885251_933969_7897";
-   
    public static final String ST_BLOCK = "_11_5EAPbeta_be00301_1147424179914_458922_958"; 
    public static final String ST_PART = "_15_0_be00301_1199377756297_348405_2678";
    public static final String ST_VALUE_PROPERTY = "_12_0_be00301_1164123483951_695645_2041";
@@ -107,9 +105,12 @@ public class JsonSystemModel
    public static final String ST_CONSTRAINT_BLOCK = "_11_5EAPbeta_be00301_1147767804973_159489_404";
    public static final String ST_CONSTRAINT_PROPERTY = "_11_5EAPbeta_be00301_1147767840464_372327_467";   
    public static final String ST_CONSTRAINT_PARAMETER = "_17_0_1_42401aa_1327611824171_784118_12184"; 
-   public static final String ST_GENERALIZATION = "_9_0_62a020a_1105704885195_432731_7879";
    
-   public static final String ST_SLOT = "_9_0_62a020a_1105704885275_885607_7905";   
+   public static final String META_GENERALIZATION = "_9_0_62a020a_1105704885195_432731_7879";
+   public static final String META_INSTANCE_SPECIFICATION = "_9_0_62a020a_1105704885251_933969_7897";   
+   public static final String META_SLOT = "_9_0_62a020a_1105704885275_885607_7905";
+   public static final String META_STEREOTYPE = "_9_0_62a020a_1105704941426_574917_9666";   
+   public static final String META_DIAGRAM = "_9_0_62a020a_1106296071977_61607_0";      
    
    public static final String ST_BINDING_CONNECTOR = "_15_0_be00301_1204738115945_253883_5044";   
    public static final String ST_DEPENDENCY = "_16_5_4_409a058d_1259862803278_226185_1083";
@@ -118,8 +119,7 @@ public class JsonSystemModel
    public static final String ST_EXPOSE = "_16_5_4_409a058d_1259862803278_226185_1083";
    public static final String ST_CONFORMS = "_17_0_2_3_407019f_1389807639137_860750_29082";
    public static final String ST_DIAGRAM_INFO = "_9_0_be00301_1108044380615_150487_0";
-   public static final String ST_DIAGRAM = "_9_0_62a020a_1106296071977_61607_0";   
-   public static final String ST_STEREOTYPE = "_9_0_62a020a_1105704941426_574917_9666";
+
    
    public static final String TAG_GENERATED_FROM_VIEW = "_17_0_5_1_407019f_1430628276506_565_12080";
    public static final String TAG_UNIT = "_11_5EAPbeta_be00301_1147430364958_360156_1425";
@@ -630,19 +630,19 @@ public class JsonSystemModel
    public boolean isSlot(JSONObject element)
    {
       List<String> metaTypes = getAppliedMetaTypes(element);
-      return metaTypes.contains(ST_SLOT);
+      return metaTypes.contains(META_SLOT);
    }      
 
    public boolean isDiagram(JSONObject element)
    {
       List<String> metaTypes = getAppliedMetaTypes(element);
-      return metaTypes.contains(ST_DIAGRAM);
+      return metaTypes.contains(META_DIAGRAM);
    }
    
    public boolean isStereotype(JSONObject element)
    {
       List<String> metaTypes = getAppliedMetaTypes(element);
-      return metaTypes.contains(ST_STEREOTYPE);
+      return metaTypes.contains(META_STEREOTYPE);
    }   
    
    public boolean isProject(JSONObject element)
@@ -665,7 +665,7 @@ public class JsonSystemModel
    public boolean isGeneralization(JSONObject element)
    {
       List<String> metaTypes = getAppliedMetaTypes(element);
-      return metaTypes.contains(ST_GENERALIZATION);
+      return metaTypes.contains(META_GENERALIZATION);
    }
    
    public boolean isView(JSONObject element)
