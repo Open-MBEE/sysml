@@ -96,6 +96,8 @@ public class JsonSystemModel
    public static final String TARGET_PATH = "targetPath";
    public static final String CLASSIFIER = "classifier";   
    
+   public static final String META_INSTANCE_SPECIFICATION = "_9_0_62a020a_1105704885251_933969_7897";
+   
    public static final String ST_BLOCK = "_11_5EAPbeta_be00301_1147424179914_458922_958"; 
    public static final String ST_PART = "_15_0_be00301_1199377756297_348405_2678";
    public static final String ST_VALUE_PROPERTY = "_12_0_be00301_1164123483951_695645_2041";
@@ -412,6 +414,10 @@ public class JsonSystemModel
       {
          return new JsonConstraintProperty(this, jObj);
       }
+      else if (isInstanceSpecification(jObj))
+      {
+         return new JsonInstanceSpecification(this, jObj);
+      }      
       else if (isSlot(jObj))
       {
          return new JsonSlot(this, jObj);
@@ -566,6 +572,12 @@ public class JsonSystemModel
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_VALUE_PROPERTY);
    } 
+   
+   public boolean isInstanceSpecification(JSONObject element)
+   {
+      List<String> metaTypes = getAppliedMetaTypes(element);
+      return metaTypes.contains(META_INSTANCE_SPECIFICATION);
+   }    
    
    public boolean isValueType(JSONObject element)
    {
@@ -994,6 +1006,20 @@ public class JsonSystemModel
          return null;
       }
    }
+   
+   protected String getClassifierID(JSONObject element)
+   {
+      Object id = getSpecializationProperty(element, CLASSIFIER);
+      if (id instanceof String)
+      {
+         return (String)id;
+      }
+      else
+      {
+         LOGGER.log(Level.WARNING, "classifier is not a string of id: %s", element);
+         return null;
+      }
+   }   
 
    protected boolean hasJsonProperty(JSONObject element, String name)
    {
