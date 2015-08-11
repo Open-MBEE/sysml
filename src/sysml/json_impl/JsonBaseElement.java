@@ -47,7 +47,7 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
       this.systemModel = systemModel;
       this.id = id;
       this.jsonObj = systemModel.getElement(id);
-      this.name = systemModel.getElementName(this.jsonObj);
+      this.name = systemModel.getName(this.jsonObj);
    }
 
    public JsonBaseElement(JsonBaseElement elem)
@@ -60,7 +60,7 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
       this.systemModel = systemModel;
       this.jsonObj = jObj;
       this.id = systemModel.getIdentifier(jObj);
-      this.name = systemModel.getElementName(jObj);
+      this.name = systemModel.getName(jObj);
    }
 
    @Override
@@ -230,7 +230,7 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
                            else if (propValue instanceof JSONObject)
                            {
                               // TODO: for now return element name.
-                              return systemModel.getElementName((JSONObject)propValue);
+                              return systemModel.getName((JSONObject)propValue);
                            }                       
                         }
                      }

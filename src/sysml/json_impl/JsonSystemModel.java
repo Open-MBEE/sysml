@@ -448,7 +448,9 @@ public class JsonSystemModel
       return projectMap.get(name);   
    }
    
-   public String getElementName(JSONObject element)
+   
+   @Override
+   public String getName(JSONObject element)
    {
       Object name = getJsonProperty(element, NAME);
       if (name == null)
@@ -467,10 +469,12 @@ public class JsonSystemModel
 
    public JSONObject getElement(String id)
    {
-      if (elementMap.containsKey(id))
+      Collection<JSONObject> jColl = getElementWithIdentifier(null, id);
+      if (jColl.size() > 0)
       {
-         return elementMap.get(id);
+         return jColl.iterator().next();
       }
+      
       return null;
    }
 
@@ -509,16 +513,6 @@ public class JsonSystemModel
       
       return classes.values();
    }
-   
-   /*
-   public Collection<JSONObject> getSuperClassesRecursive(JSONObject element)
-   {
-      LinkedHashMap<String, JSONObject> classes = new LinkedHashMap<String, JSONObject>();
-      collectSuperClasses(element, classes, true);
-      
-      return classes.values();
-   } 
-   */  
    
    private void collectSuperClasses(JSONObject element, HashMap<String, JSONObject> classes, 
          boolean recursive)
@@ -1056,7 +1050,6 @@ public class JsonSystemModel
       return null;
    }   
 
-   // TODO: refactor to getParts and getValueProperties
    public Map<String, JSONObject> getElementProperties(JSONObject element)
          throws JSONException
    {      
@@ -1281,7 +1274,7 @@ public class JsonSystemModel
          return jObjs;
       }
       
-      // TODO: do we need this?
+      // if source is not defined, try to get it by parsing source path
       List<JSONObject> sourceSequence = getSourcePath(relationship);
       if (sourceSequence.size() > 0)
       {
@@ -1304,16 +1297,14 @@ public class JsonSystemModel
          return jObjs;         
       }
       
-      // TODO: do we need this?
-      List<JSONObject> targetSequence = getSourcePath(relationship);
+      // if target is not defined, try to get it from target path
+      List<JSONObject> targetSequence = getTargetPath(relationship);
       if (targetSequence.size() > 0)
       {
          targets.add(targetSequence.get(targetSequence.size()-1));
       }      
       return targets;    
    }
-   
-  
 
    @Override
    public Collection<JSONObject> getElementWithIdentifier(JSONObject context, String id)
@@ -1335,11 +1326,11 @@ public class JsonSystemModel
          }
       }
       
-      // TODO: do we need this?
+      // if context is not null, search under the context
       return searchForElementsByProperty(context, SYSMLID, id);
    }
 
-   // override   
+   @Override
    public Collection<JSONObject> getElementWithName(JSONObject context,
          String name)
    {
@@ -1358,7 +1349,6 @@ public class JsonSystemModel
     * @param context owner
     * @param specifier type of child elements to be searched
     */
-   // override
    public Collection<JSONObject> getElementWithType(JSONObject context,
          String specifier)
    {
@@ -1369,31 +1359,7 @@ public class JsonSystemModel
       return searchForElementsBySpecialization(context, TYPE, specifier);
    }
 
-   // override
-   public String getName(JSONObject context)
-   {
-      // Note: This returns the sysml:name not the cm:name, which is what we
-      // want
-      Object name = null;
-      try
-      {
-         name = getJsonProperty(context, NAME);
-      } 
-      catch (JSONException e)
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
-      
-      if (name instanceof String)
-      {
-         return (String) name;
-      }
-
-      return null;
-   }
-
-   // override   
+   @Override
    public String getIdentifier(JSONObject context)
    {
       Object id = null;
@@ -1405,12 +1371,15 @@ public class JsonSystemModel
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
-      if (id == null)
-         return null;
-      return id.toString();// Utils.asList(id, String.class);
+      if (id instanceof String)
+      {
+         return (String)id;
+      }
+      
+      return null;
    }
 
-   // override   
+   @Override  
    public Collection<JSONObject> getPropertyWithIdentifier(JSONObject context,
          String specifier)
    {
@@ -1446,9 +1415,9 @@ public class JsonSystemModel
       return null;
    }
 
-   // override, not used currently
+   // not used currently?
    public Collection<JSONObject> getPropertyWithType(JSONObject context,
-         String specifier)
+         String typeName)
    {
 
       Map<String, JSONObject> properties = null;
@@ -1471,7 +1440,7 @@ public class JsonSystemModel
          if (propertyType != null)
          {
             Object propertyTypeName = getJsonProperty(propertyType, NAME);
-            if (specifier.equals(propertyTypeName))
+            if (typeName.equals(propertyTypeName))
             {
                propertiesToReturn.add(property);
             }
@@ -1650,85 +1619,70 @@ public class JsonSystemModel
       return null;
    }
 
-
-
-
-
    @Override
    public Class<JSONObject> getElementClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return JSONObject.class;
    }
 
    @Override
    public Class<JSONObject> getContextClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return JSONObject.class;
    }
 
    @Override
    public Class<JSONObject> getTypeClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return JSONObject.class;
    }
 
    @Override
    public Class<JSONObject> getPropertyClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return JSONObject.class;
    }
 
    @Override
    public Class<String> getNameClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return String.class;
    }
 
    @Override
    public Class<String> getIdentifierClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return String.class;
    }
 
    @Override
    public Class<JSONObject> getValueClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return JSONObject.class;
    }
 
    @Override
    public Class<JSONObject> getRelationshipClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return JSONObject.class;
    }
 
    @Override
    public Class<Object> getVersionClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return Object.class;
    }
 
    @Override
    public Class<Object> getWorkspaceClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return Object.class;
    }
 
    @Override
    public Class<JSONObject> getConstraintClass()
    {
-      // TODO Auto-generated method stub
-      return null;
+      return JSONObject.class;
    }
 
    @Override
