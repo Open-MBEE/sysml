@@ -54,8 +54,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.apache.commons.collections4.map.MultiValueMap;
 
+import sysml.AbstractSystemModel;
+
 
 public class JsonSystemModel
+      extends AbstractSystemModel< JSONObject, JSONObject, JSONObject, JSONObject, String, String, JSONObject, JSONObject, Object, Object, JSONObject > 
 {
    public static final String MBSE_ANALYZER_JSON = "MBSE_Analyzer.json";
    public static final String SI_DEFINITIONS_JSON = "SI_Definitions.json";
@@ -766,11 +769,14 @@ public class JsonSystemModel
       {
          for (String viewID : views)
          {
-            JSONObject view = getElementWithIdentifier(null, viewID);
+            Collection<JSONObject> jViews = getElementWithIdentifier(null, viewID);
             
-            if (isCollectParamElementsView(view))
+            for (JSONObject jView : jViews)
             {
-               parametricDiagramViews.add(view);
+               if (isCollectParamElementsView(jView))
+               {
+                  parametricDiagramViews.add(jView);
+               }
             }
          }
       }
@@ -995,7 +1001,7 @@ public class JsonSystemModel
       }
    }
 
-   protected boolean hasElementProperty(JSONObject element, String name)
+   protected boolean hasJsonProperty(JSONObject element, String name)
    {
       if (element != null)
       {
@@ -1160,7 +1166,7 @@ public class JsonSystemModel
          // Search for element by going linearly through all the elements:
          for (JSONObject element : elementMap.values())
          {
-            if (hasElementProperty(element, propName))
+            if (hasJsonProperty(element, propName))
             {
                if (propValue == null
                      || getJsonProperty(element, propName).equals(propValue))
@@ -1237,7 +1243,16 @@ public class JsonSystemModel
       if (prop instanceof String)
       {
          String id = (String) prop;
-         return getElementWithIdentifier(null, id);
+         Collection<JSONObject> jObjs = getElementWithIdentifier(null, id);
+         if (jObjs.size() > 1)
+         {
+            LOGGER.log(Level.WARNING, "Element has more than one owner: {0}", element);
+         }
+         
+         if (jObjs.size() > 0)
+         {
+            return jObjs.iterator().next();
+         }
       }
       return null;
    }
@@ -1252,68 +1267,76 @@ public class JsonSystemModel
       return null;
    }
    
-   // override
-   public JSONObject getSource(JSONObject relationship)
+   @Override
+   public Collection<JSONObject> getSource(JSONObject relationship)
    {
+      ArrayList<JSONObject> sources = new ArrayList<JSONObject>();
+      
       Object prop = getSpecializationProperty(relationship, SOURCE);
       if (prop instanceof String)
       {
          String id = (String) prop;
-         return getElementWithIdentifier(null, id);
+         
+         Collection<JSONObject> jObjs = getElementWithIdentifier(null, id);
+         return jObjs;
       }
       
+      // TODO: do we need this?
       List<JSONObject> sourceSequence = getSourcePath(relationship);
       if (sourceSequence.size() > 0)
       {
-         return sourceSequence.get(sourceSequence.size()-1);
+         sources.add(sourceSequence.get(sourceSequence.size()-1));
       }
       
-      return null; 
+      return sources; 
    }
 
-   // override   
-   public JSONObject getTarget(JSONObject relationship)
+   @Override
+   public Collection<JSONObject> getTarget(JSONObject relationship)
    {
+      ArrayList<JSONObject> targets = new ArrayList<JSONObject>();
+      
       Object prop = getSpecializationProperty(relationship, TARGET);
       if (prop instanceof String)
       {
          String id = (String) prop;
-         return getElementWithIdentifier(null, id);
+         Collection<JSONObject> jObjs = getElementWithIdentifier(null, id);
+         return jObjs;         
       }
       
+      // TODO: do we need this?
       List<JSONObject> targetSequence = getSourcePath(relationship);
       if (targetSequence.size() > 0)
       {
-         return targetSequence.get(targetSequence.size()-1);
+         targets.add(targetSequence.get(targetSequence.size()-1));
       }      
-      return null;      
+      return targets;    
    }
+   
+  
 
-   // override   
-   public JSONObject getElementWithIdentifier(JSONObject context,
-         String id)
+   @Override
+   public Collection<JSONObject> getElementWithIdentifier(JSONObject context, String id)
    {
+      ArrayList<JSONObject> jArray = new ArrayList<JSONObject>();
+      
       if (id == null)
       {
-         return null;
+         return jArray;
       }
+      
       if (context == null)
       {
-         return elementMap.get(id);
+         JSONObject jObj = elementMap.get(id);
+         if (jObj != null)
+         {
+            jArray.add(jObj);
+            return jArray;
+         }
       }
       
-      List<JSONObject> elems = searchForElementsByProperty(context, SYSMLID, id);
-      
-      if (elems.size() == 0)
-      {
-         return null;
-      }
-      else if (elems.size() > 1)
-      {
-         throw new IllegalStateException(String.format("There are more than one element with the same id: %s", id));
-      }
-      
-      return elems.get(0);
+      // TODO: do we need this?
+      return searchForElementsByProperty(context, SYSMLID, id);
    }
 
    // override   
@@ -1456,23 +1479,6 @@ public class JsonSystemModel
       }
 
       return propertiesToReturn;
-   }
-
-   // override   
-   public Collection<String> getType(JSONObject context, Object specifier)
-   {
-      Object type = null;
-      try
-      {
-         type = hasElementProperty(context, TYPE);
-      } 
-      catch (JSONException e)
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
-
-      return Utils.asList(type, String.class);
    }
    
    protected List<JSONObject> getParametricDiagramElements(JSONObject parametricDiagram)
@@ -1621,6 +1627,978 @@ public class JsonSystemModel
          }
       }
       return elements;
-   }   
-         
+   }
+
+   @Override
+   public boolean isDirected(JSONObject relationship)
+   {
+      // TODO Auto-generated method stub
+      return false;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelatedElements(JSONObject relationship)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementForRole(JSONObject relationship, String role)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+
+
+
+
+   @Override
+   public Class<JSONObject> getElementClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<JSONObject> getContextClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<JSONObject> getTypeClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<JSONObject> getPropertyClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<String> getNameClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<String> getIdentifierClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<JSONObject> getValueClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<JSONObject> getRelationshipClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<Object> getVersionClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<Object> getWorkspaceClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<JSONObject> getConstraintClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<? extends JSONObject> getViewClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Class<? extends JSONObject> getViewpointClass()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public JSONObject createConstraint(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public JSONObject createElement(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public String createIdentifier(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public String createName(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public JSONObject createProperty(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public JSONObject createRelationship(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public JSONObject createType(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public JSONObject createValue(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Object createVersion(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public JSONObject createView(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public JSONObject createViewpoint(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Object createWorkspace(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Object delete(Object object)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraint(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithElement(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithIdentifier(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithName(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithProperty(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithRelationship(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithType(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithValue(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithVersion(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithView(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithViewpoint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintWithWorkspace(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithConstraint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithProperty(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithRelationship(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithType(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithValue(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithVersion(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithView(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithViewpoint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getElementWithWorkspace(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getProperty(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithConstraint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithElement(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithRelationship(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithType(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithValue(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithVersion(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithView(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithViewpoint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getPropertyWithWorkspace(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationship(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithConstraint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithElement(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithIdentifier(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithName(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithProperty(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithType(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithValue(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithVersion(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithView(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithViewpoint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getRelationshipWithWorkspace(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override  
+   public Collection<JSONObject> getType(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+   
+   @Override
+   public String getTypeString(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithConstraint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithElement(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithIdentifier(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithName(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithProperty(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithRelationship(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithValue(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithVersion(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithView(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithViewpoint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getTypeWithWorkspace(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValue(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithConstraint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithElement(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithIdentifier(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithName(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithProperty(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithRelationship(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithType(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithVersion(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithView(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithViewpoint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getValueWithWorkspace(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<Object> getVersion(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getView(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpoint(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithConstraint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithElement(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithIdentifier(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithName(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithProperty(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithRelationship(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithType(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithValue(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithVersion(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithView(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewpointWithWorkspace(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithConstraint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithElement(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithIdentifier(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithName(JSONObject context, String specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithProperty(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithRelationship(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithType(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithValue(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithVersion(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithViewpoint(JSONObject context, JSONObject specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViewWithWorkspace(JSONObject context, Object specifier)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<Object> getWorkspace(JSONObject context)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Object set(Object object, Object specifier, JSONObject value)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public boolean fixConstraintViolations(JSONObject element, Object version)
+   {
+      // TODO Auto-generated method stub
+      return false;
+   }
+
+   @Override
+   public boolean idsAreWritable()
+   {
+      // TODO Auto-generated method stub
+      return false;
+   }
+
+   @Override
+   public boolean namesAreWritable()
+   {
+      // TODO Auto-generated method stub
+      return false;
+   }
+
+   @Override
+   public boolean versionsAreWritable()
+   {
+      // TODO Auto-generated method stub
+      return false;
+   }
+
+   @Override
+   public JSONObject getDomainConstraint(JSONObject element, Object version, Object workspace)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public void addConstraint(JSONObject constraint, Object version, Object workspace)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void addDomainConstraint(JSONObject constraint, Object version, Set<JSONObject> valueDomainSet,
+         Object workspace)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void addDomainConstraint(JSONObject constraint, Object version,
+         Pair<JSONObject, JSONObject> valueDomainRange, Object workspace)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void relaxDomain(JSONObject constraint, Object version, Set<JSONObject> valueDomainSet, Object workspace)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void relaxDomain(JSONObject constraint, Object version, Pair<JSONObject, JSONObject> valueDomainRange,
+         Object workspace)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public Collection<JSONObject> getConstraintsOfElement(JSONObject element, Object version, Object workspace)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public Collection<JSONObject> getViolatedConstraintsOfElement(JSONObject element, Object version)
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }
+
+   @Override
+   public void setOptimizationFunction(Method method, Object... arguments)
+   {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public Number getScore()
+   {
+      // TODO Auto-generated method stub
+      return null;
+   }         
 }
