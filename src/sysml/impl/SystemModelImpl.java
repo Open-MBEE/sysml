@@ -16,7 +16,7 @@ import sysml.Element;
 import sysml.BaseElement;
 
 public class SystemModelImpl
-        extends AbstractSystemModel< ElementImpl, Object, ElementImpl, PropertyImpl, String, String, ElementImpl, ElementImpl, VersionImpl, WorkspaceImpl, ElementImpl > {
+        extends AbstractSystemModel< ElementImpl, BaseElementImpl, ElementImpl, PropertyImpl, String, String, ElementImpl, ElementImpl, VersionImpl, WorkspaceImpl, ElementImpl > {
 
     //protected static SystemModelImpl instance = new SystemModelImpl();
 
@@ -74,8 +74,8 @@ public class SystemModelImpl
     }
 
     @Override
-    public Class< Object > getContextClass() {
-        return Object.class;
+    public Class< BaseElementImpl > getContextClass() {
+        return BaseElementImpl.class;
     }
 
     @Override
@@ -134,73 +134,73 @@ public class SystemModelImpl
     }
 
     @Override
-    public ElementImpl createConstraint( Object context ) {
+    public ElementImpl createConstraint( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ElementImpl createElement( Object context ) {
+    public ElementImpl createElement( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String createIdentifier( Object context ) {
+    public String createIdentifier( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String createName( Object context ) {
+    public String createName( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public PropertyImpl createProperty( Object context ) {
+    public PropertyImpl createProperty( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ElementImpl createRelationship( Object context ) {
+    public ElementImpl createRelationship( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ElementImpl createType( Object context ) {
+    public ElementImpl createType( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ElementImpl createValue( Object context ) {
+    public ElementImpl createValue( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public VersionImpl createVersion( Object context ) {
+    public VersionImpl createVersion( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ElementImpl createView( Object context ) {
+    public ElementImpl createView( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ElementImpl createViewpoint( Object context ) {
+    public ElementImpl createViewpoint( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public WorkspaceImpl createWorkspace( Object context ) {
+    public WorkspaceImpl createWorkspace( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -212,7 +212,7 @@ public class SystemModelImpl
     }
 
     @Override
-    public Collection< ElementImpl > getConstraint( Object context,
+    public Collection< ElementImpl > getConstraint( BaseElementImpl context,
                                                     Object specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -220,20 +220,20 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getConstraintWithElement( Object context, ElementImpl specifier ) {
+            getConstraintWithElement( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getConstraintWithIdentifier( Object context, String specifier ) {
+            getConstraintWithIdentifier( BaseElementImpl context, String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getConstraintWithName( Object context,
+    public Collection< ElementImpl > getConstraintWithName( BaseElementImpl context,
                                                             String specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -241,7 +241,7 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getConstraintWithProperty( Object context, PropertyImpl specifier ) {
+            getConstraintWithProperty( BaseElementImpl context, PropertyImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -249,42 +249,42 @@ public class SystemModelImpl
     @Override
     public
             Collection< ElementImpl >
-            getConstraintWithRelationship( Object context, ElementImpl specifier ) {
+            getConstraintWithRelationship( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getConstraintWithType( Object context, ElementImpl specifier ) {
+            getConstraintWithType( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getConstraintWithValue( Object context, ElementImpl specifier ) {
+            getConstraintWithValue( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getConstraintWithVersion( Object context, VersionImpl specifier ) {
+            getConstraintWithVersion( BaseElementImpl context, VersionImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getConstraintWithView( Object context, ElementImpl specifier ) {
+            getConstraintWithView( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getConstraintWithViewpoint( Object context, ElementImpl specifier ) {
+            getConstraintWithViewpoint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -292,27 +292,27 @@ public class SystemModelImpl
     @Override
     public
             Collection< ElementImpl >
-            getConstraintWithWorkspace( Object context, WorkspaceImpl specifier ) {
+            getConstraintWithWorkspace( BaseElementImpl context, WorkspaceImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getElementWithConstraint( Object context, ElementImpl specifier ) {
+            getElementWithConstraint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getElementWithIdentifier( Object context, String specifier ) {
+            getElementWithIdentifier( BaseElementImpl context, String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getElementWithName( Object context,
+    public Collection< ElementImpl > getElementWithName( BaseElementImpl context,
                                                          String specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -320,20 +320,20 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getElementWithProperty( Object context, PropertyImpl specifier ) {
+            getElementWithProperty( BaseElementImpl context, PropertyImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getElementWithRelationship( Object context, ElementImpl specifier ) {
+            getElementWithRelationship( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getElementWithType( Object context,
+    public Collection< ElementImpl > getElementWithType( BaseElementImpl context,
                                                          ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -341,20 +341,20 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getElementWithValue( Object context, ElementImpl specifier ) {
+            getElementWithValue( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getElementWithVersion( Object context, VersionImpl version ) {
+            getElementWithVersion( BaseElementImpl context, VersionImpl version ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getElementWithView( Object context,
+    public Collection< ElementImpl > getElementWithView( BaseElementImpl context,
                                                          ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -362,26 +362,26 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getElementWithViewpoint( Object context, ElementImpl specifier ) {
+            getElementWithViewpoint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getElementWithWorkspace( Object context, WorkspaceImpl specifier ) {
+            getElementWithWorkspace( BaseElementImpl context, WorkspaceImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< String > getName( Object context ) {
+    public String getName( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String getIdentifier( Object context ) {
+    public String getIdentifier( BaseElementImpl context ) {
         if ( context instanceof HasId ) {
             Object id = ( (Element)context ).getId();
             if ( id == null )  return null;
@@ -391,7 +391,7 @@ public class SystemModelImpl
     }
 
     @Override
-    public Collection< PropertyImpl > getProperty( Object context,
+    public Collection< PropertyImpl > getProperty( BaseElementImpl context,
                                                    Object specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -399,76 +399,76 @@ public class SystemModelImpl
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithConstraint( Object context, ElementImpl specifier ) {
+            getPropertyWithConstraint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithElement( Object context, ElementImpl specifier ) {
+            getPropertyWithElement( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithIdentifier( Object context, String specifier ) {
+            getPropertyWithIdentifier( BaseElementImpl context, String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithRelationship( Object context, ElementImpl specifier ) {
+            getPropertyWithRelationship( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithType( Object context, ElementImpl specifier ) {
+            getPropertyWithType( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithValue( Object context, ElementImpl specifier ) {
+            getPropertyWithValue( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithVersion( Object context, VersionImpl specifier ) {
+            getPropertyWithVersion( BaseElementImpl context, VersionImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithView( Object context, ElementImpl specifier ) {
+            getPropertyWithView( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithViewpoint( Object context, ElementImpl specifier ) {
+            getPropertyWithViewpoint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< PropertyImpl >
-            getPropertyWithWorkspace( Object context, WorkspaceImpl specifier ) {
+            getPropertyWithWorkspace( BaseElementImpl context, WorkspaceImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getRelationship( Object context,
+    public Collection< ElementImpl > getRelationship( BaseElementImpl context,
                                                       Object specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -477,27 +477,27 @@ public class SystemModelImpl
     @Override
     public
             Collection< ElementImpl >
-            getRelationshipWithConstraint( Object context, ElementImpl specifier ) {
+            getRelationshipWithConstraint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getRelationshipWithElement( Object context, ElementImpl specifier ) {
+            getRelationshipWithElement( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getRelationshipWithIdentifier( Object context, String specifier ) {
+            getRelationshipWithIdentifier( BaseElementImpl context, String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getRelationshipWithName( Object context,
+    public Collection< ElementImpl > getRelationshipWithName( BaseElementImpl context,
                                                               String specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -506,35 +506,35 @@ public class SystemModelImpl
     @Override
     public
             Collection< ElementImpl >
-            getRelationshipWithProperty( Object context, PropertyImpl specifier ) {
+            getRelationshipWithProperty( BaseElementImpl context, PropertyImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getRelationshipWithType( Object context, ElementImpl specifier ) {
+            getRelationshipWithType( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getRelationshipWithValue( Object context, ElementImpl specifier ) {
+            getRelationshipWithValue( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getRelationshipWithVersion( Object context, VersionImpl specifier ) {
+            getRelationshipWithVersion( BaseElementImpl context, VersionImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getRelationshipWithView( Object context, ElementImpl specifier ) {
+            getRelationshipWithView( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -542,54 +542,54 @@ public class SystemModelImpl
     @Override
     public
             Collection< ElementImpl >
-            getRelationshipWithViewpoint( Object context, ElementImpl specifier ) {
+            getRelationshipWithViewpoint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getRelationshipWithWorkspace( Object context,
+            getRelationshipWithWorkspace( BaseElementImpl context,
                                           WorkspaceImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getType( Object context, Object specifier ) {
+    public Collection< ElementImpl > getType( BaseElementImpl context, Object specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String getTypeString( Object context, Object specifier ) {
+    public String getTypeString( BaseElementImpl context, Object specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getTypeWithConstraint( Object context, ElementImpl specifier ) {
+            getTypeWithConstraint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getTypeWithElement( Object context,
+    public Collection< ElementImpl > getTypeWithElement( BaseElementImpl context,
                                                          ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getTypeWithIdentifier( Object context,
+    public Collection< ElementImpl > getTypeWithIdentifier( BaseElementImpl context,
                                                             String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getTypeWithName( Object context,
+    public Collection< ElementImpl > getTypeWithName( BaseElementImpl context,
                                                       String specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -597,34 +597,34 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getTypeWithProperty( Object context, PropertyImpl specifier ) {
+            getTypeWithProperty( BaseElementImpl context, PropertyImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getTypeWithRelationship( Object context, ElementImpl specifier ) {
+            getTypeWithRelationship( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getTypeWithValue( Object context,
+    public Collection< ElementImpl > getTypeWithValue( BaseElementImpl context,
                                                        ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getTypeWithVersion( Object context,
+    public Collection< ElementImpl > getTypeWithVersion( BaseElementImpl context,
                                                          VersionImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getTypeWithView( Object context,
+    public Collection< ElementImpl > getTypeWithView( BaseElementImpl context,
                                                       ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -632,48 +632,48 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getTypeWithViewpoint( Object context, ElementImpl specifier ) {
+            getTypeWithViewpoint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getTypeWithWorkspace( Object context, WorkspaceImpl specifier ) {
+            getTypeWithWorkspace( BaseElementImpl context, WorkspaceImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getValue( Object context, Object specifier ) {
+            getValue( BaseElementImpl context, Object specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getValueWithConstraint( Object context, ElementImpl specifier ) {
+            getValueWithConstraint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getValueWithElement( Object context, ElementImpl specifier ) {
+            getValueWithElement( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getValueWithIdentifier( Object context,
+    public Collection< ElementImpl > getValueWithIdentifier( BaseElementImpl context,
                                                              String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getValueWithName( Object context,
+    public Collection< ElementImpl > getValueWithName( BaseElementImpl context,
                                                        String specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -681,20 +681,20 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getValueWithProperty( Object context, PropertyImpl specifier ) {
+            getValueWithProperty( BaseElementImpl context, PropertyImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getValueWithRelationship( Object context, ElementImpl specifier ) {
+            getValueWithRelationship( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getValueWithType( Object context,
+    public Collection< ElementImpl > getValueWithType( BaseElementImpl context,
                                                        ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -702,13 +702,13 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getValueWithVersion( Object context, VersionImpl specifier ) {
+            getValueWithVersion( BaseElementImpl context, VersionImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getValueWithView( Object context,
+    public Collection< ElementImpl > getValueWithView( BaseElementImpl context,
                                                        ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -716,32 +716,32 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getValueWithViewpoint( Object context, ElementImpl specifier ) {
+            getValueWithViewpoint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getValueWithWorkspace( Object context, WorkspaceImpl specifier ) {
+            getValueWithWorkspace( BaseElementImpl context, WorkspaceImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< VersionImpl > getVersion( Object context ) {
+    public Collection< VersionImpl > getVersion( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getView( Object context, Object specifier ) {
+    public Collection< ElementImpl > getView( BaseElementImpl context, Object specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getViewpoint( Object context,
+    public Collection< ElementImpl > getViewpoint( BaseElementImpl context,
                                                    Object specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -749,27 +749,27 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithConstraint( Object context, ElementImpl specifier ) {
+            getViewpointWithConstraint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithElement( Object context, ElementImpl specifier ) {
+            getViewpointWithElement( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithIdentifier( Object context, String specifier ) {
+            getViewpointWithIdentifier( BaseElementImpl context, String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getViewpointWithName( Object context,
+    public Collection< ElementImpl > getViewpointWithName( BaseElementImpl context,
                                                            String specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -777,7 +777,7 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithProperty( Object context, PropertyImpl specifier ) {
+            getViewpointWithProperty( BaseElementImpl context, PropertyImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -785,69 +785,69 @@ public class SystemModelImpl
     @Override
     public
             Collection< ElementImpl >
-            getViewpointWithRelationship( Object context, ElementImpl specifier ) {
+            getViewpointWithRelationship( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithType( Object context, ElementImpl specifier ) {
+            getViewpointWithType( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithValue( Object context, ElementImpl specifier ) {
+            getViewpointWithValue( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithVersion( Object context, VersionImpl specifier ) {
+            getViewpointWithVersion( BaseElementImpl context, VersionImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithView( Object context, ElementImpl specifier ) {
+            getViewpointWithView( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewpointWithWorkspace( Object context, WorkspaceImpl specifier ) {
+            getViewpointWithWorkspace( BaseElementImpl context, WorkspaceImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewWithConstraint( Object context, ElementImpl specifier ) {
+            getViewWithConstraint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getViewWithElement( Object context,
+    public Collection< ElementImpl > getViewWithElement( BaseElementImpl context,
                                                          ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getViewWithIdentifier( Object context,
+    public Collection< ElementImpl > getViewWithIdentifier( BaseElementImpl context,
                                                             String specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getViewWithName( Object context,
+    public Collection< ElementImpl > getViewWithName( BaseElementImpl context,
                                                       String specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -855,34 +855,34 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getViewWithProperty( Object context, PropertyImpl specifier ) {
+            getViewWithProperty( BaseElementImpl context, PropertyImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewWithRelationship( Object context, ElementImpl specifier ) {
+            getViewWithRelationship( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getViewWithType( Object context,
+    public Collection< ElementImpl > getViewWithType( BaseElementImpl context,
                                                       ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getViewWithValue( Object context,
+    public Collection< ElementImpl > getViewWithValue( BaseElementImpl context,
                                                        ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< ElementImpl > getViewWithVersion( Object context,
+    public Collection< ElementImpl > getViewWithVersion( BaseElementImpl context,
                                                          VersionImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
@@ -890,20 +890,20 @@ public class SystemModelImpl
 
     @Override
     public Collection< ElementImpl >
-            getViewWithViewpoint( Object context, ElementImpl specifier ) {
+            getViewWithViewpoint( BaseElementImpl context, ElementImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Collection< ElementImpl >
-            getViewWithWorkspace( Object context, WorkspaceImpl specifier ) {
+            getViewWithWorkspace( BaseElementImpl context, WorkspaceImpl specifier ) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Collection< WorkspaceImpl > getWorkspace( Object context ) {
+    public Collection< WorkspaceImpl > getWorkspace( BaseElementImpl context ) {
         // TODO Auto-generated method stub
         return null;
     }
