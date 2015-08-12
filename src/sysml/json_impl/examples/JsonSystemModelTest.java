@@ -47,21 +47,13 @@ import sysml.json_impl.JsonValueProperty;
 import sysml.json_impl.JsonValueType;
 import sysml.json_impl.JsonGraphElement;
 
-import gov.nasa.jpl.mbee.util.FileUtils;
-
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import sysml.AbstractSystemModel;
 
 public class JsonSystemModelTest
 {
@@ -72,14 +64,27 @@ public class JsonSystemModelTest
    {
       if (args.length < 1)
       {
-         System.err.println("Must provide JSON filename as argument!");
+         System.err.println("Usage: java JsonSystemModelTest pathToJsonFile");
          System.exit(1);
       }
 
       System.out.println(String.format("JSON file: %s", args[0]));
       
-      String jsonString = FileUtils.fileToString(args[0]);
-      JsonSystemModel systemModel = new JsonSystemModel(jsonString);
+      ArrayList<String> libraryFiles = new ArrayList<String>();
+      // the file path can be absolute or relative to CWD
+      libraryFiles.add("SysML.json");
+      libraryFiles.add("MD_Customization_for_SysML.json");
+      libraryFiles.add("SI_Definitions.json");
+      libraryFiles.add("SI_Specializations.json");
+      libraryFiles.add("SI_Valuetype_Library.json");
+      libraryFiles.add("QUDV.json");
+      libraryFiles.add("MD_Customization_for_View_Viewpoint.json");      
+      // libraryFiles.add("SysML_Extensions.json");
+      libraryFiles.add("MBSE_Analyzer.json");
+      
+      JsonSystemModel systemModel = new JsonSystemModel(libraryFiles);
+      
+      systemModel.readJson(args[0]);
       JsonSystemModel.setLogLevel(Level.FINE);
       Collection<JSONObject> elements;
 
@@ -255,42 +260,6 @@ public class JsonSystemModelTest
                   ton, ton.getUnit(), ton.getQuantityKind()));              
          }
       }
-      
-      // value type
-      // Search for all elements with name "BlockTon"
-      /*
-      elements = (List<JSONObject>) systemModel.getElementWithName(null, "BlockTon");
-      if (elements.size() == 0)
-      {
-         throw new Exception("No element was found");   
-      }
-      else if (elements.size() > 1)
-      {
-         throw new Exception("More than one element was found");   
-      }         
-     
-      JSONObject jBlockTon = iter.next();
-      
-      //
-      JsonBlock blockTon = (JsonBlock)systemModel.wrap(jBlockTon);
-
-      valueProps = blockTon.getValueProperties();
-      System.out.println(String.format("   value properties count: %d ", valueProps.size()));
-      for (JsonValueProperty valueProp : valueProps)
-      {
-         JsonPropertyValues values = valueProp.getValue();
-         String valuePropTypeId = valueProp.getTypeId();
-         JsonValueType valueType = valueProp.getType();
-         System.out.println(String.format("   %s value: %s value.class: %s typeId: %s type: %s", 
-               valueProp, values.getValueAsString(0), 
-               values.getClass().getName(), valuePropTypeId, valueType));
-         if (valueType != null)
-         {
-            System.out.println(String.format("      unit: %s quantityKind: %s", 
-                  valueType.getUnit(), valueType.getQuantityKind()));             
-         }
-      }
-      */            
       
       // generalization
       JsonBlock childBlock = null;

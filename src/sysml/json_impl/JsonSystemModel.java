@@ -29,16 +29,13 @@
 
 package sysml.json_impl;
 
-import gov.nasa.jpl.mbee.util.Debug;
 import gov.nasa.jpl.mbee.util.FileUtils;
 import gov.nasa.jpl.mbee.util.Pair;
-import gov.nasa.jpl.mbee.util.Utils;
-import gov.nasa.jpl.mbee.util.FileUtils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -47,7 +44,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import java.io.FileNotFoundException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,20 +52,9 @@ import org.apache.commons.collections4.map.MultiValueMap;
 
 import sysml.AbstractSystemModel;
 
-
 public class JsonSystemModel
       extends AbstractSystemModel< JSONObject, JSONObject, JSONObject, JSONObject, String, String, JSONObject, JSONObject, Object, Object, JSONObject > 
-{
-   public static final String MBSE_ANALYZER_JSON = "MBSE_Analyzer.json";
-   public static final String SI_DEFINITIONS_JSON = "SI_Definitions.json";
-   public static final String SI_VALUE_TYPE_LIBRARY_JSON = "SI_Valuetype_Library.json";
-   public static final String SI_SPECIALIZATIONS_JSON = "SI_Specializations.json";
-   public static final String QUDV_JSON = "QUDV.json";
-   public static final String SYSML_JSON = "SysML.json";
-   public static final String MD_CUSTOMIZATION_FOR_SYSML_JSON = "MD_Customization_for_SysML.json";
-   public static final String MD_CUSTOMIZATION_FOR_VIEW_VIEWPOINT_JSON = "MD_Customization_for_View_Viewpoint.json";
-   public static final String SYSML_EXTENSIONS_JSON = "SysML_Extensions.json";
-   
+{   
    public static final String NAME = "name";
    public static final String TYPE = "type";
    public static final String OWNER = "owner";
@@ -206,9 +191,7 @@ public class JsonSystemModel
       tagMap.put(LANGUAGE, TAG_LANGUAGE);
       tagMap.put(BODY, TAG_BODY);
    }
-   
-
-   
+      
    public static String getStereotypeID(String name)
    {
       return stereotypeMap.get(name);
@@ -219,26 +202,12 @@ public class JsonSystemModel
       return tagMap.get(name);
    }      
 
-   public JsonSystemModel(String jsonString) throws JsonSystemModelException
+   public JsonSystemModel(Collection<String> libraryFilePaths) throws JsonSystemModelException
    {
-      try
+      for (String libraryFilePath : libraryFilePaths)
       {
-         readJson(FileUtils.fileToString(MBSE_ANALYZER_JSON));
-         readJson(FileUtils.fileToString(SI_DEFINITIONS_JSON));
-         readJson(FileUtils.fileToString(SI_VALUE_TYPE_LIBRARY_JSON));
-         readJson(FileUtils.fileToString(SI_SPECIALIZATIONS_JSON));
-         readJson(FileUtils.fileToString(QUDV_JSON));
-         readJson(FileUtils.fileToString(SYSML_JSON));
-         readJson(FileUtils.fileToString(MD_CUSTOMIZATION_FOR_SYSML_JSON));
-         readJson(FileUtils.fileToString(MD_CUSTOMIZATION_FOR_VIEW_VIEWPOINT_JSON));         
-         // readJson(FileUtils.fileToString(SYSML_EXTENSIONS_JSON));
+         readJson(libraryFilePath);
       }
-      catch(FileNotFoundException ex)
-      {
-         throw new JsonSystemModelException("Failed to load profile.", ex);
-      }
-      
-      readJson(jsonString);
    }
 
    public static void setLogLevel(Level level)
@@ -246,11 +215,13 @@ public class JsonSystemModel
       LOGGER.setLevel(level);   
    }
    
-   public void readJson(String jsonString) throws JsonSystemModelException
+   public void readJson(String filePath) throws JsonSystemModelException
    {
       try
       {
          JSONObject project = null;
+         
+         String jsonString = FileUtils.fileToString(filePath);
          
          JSONObject json = new JSONObject(jsonString);
          // Make sure JSON format contains what we expect:
