@@ -60,6 +60,11 @@ public class ElementImpl extends BaseElementImpl implements Element< String, Str
         }
     }
 
+    public ElementImpl( String string ) {
+        this( null, null, string, null, null );
+        // TODO Auto-generated constructor stub
+    }
+
     @Override
     public ElementImpl clone() throws CloneNotSupportedException {
         return new ElementImpl( this );
@@ -156,5 +161,10 @@ public class ElementImpl extends BaseElementImpl implements Element< String, Str
             }
         }
         return list;
+    }
+
+    public PropertyImpl addProperty( String name, ElementImpl type, Object value ) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
