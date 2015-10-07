@@ -1418,7 +1418,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public abstract boolean versionsAreWritable();
 
     @Override
-    public Collection< E > getElement( Object context,
+    public Collection< E > getElement( C context,
                                        Object specifier ) {
         // REVIEW -- should check permissions before trying
         Collection< E > elements =
