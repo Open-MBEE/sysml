@@ -1252,6 +1252,9 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         return op( Operation.CREATE, itemTypes, context, identifier, name, version, newValue, false );
     }
 
+    public String getNameString( C context ) {
+        return "" + getName( context );
+    }
 
     @Override
     public Class<?> getClass(ModelItem item) {

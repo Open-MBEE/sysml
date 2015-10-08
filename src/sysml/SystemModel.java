@@ -420,6 +420,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     Collection< E > getElementWithViewpoint( C context, E specifier );
     Collection< E > getElementWithWorkspace( C context, W specifier );
     N getName( C context );
+    String getNameString( C context );
     I getIdentifier( C context );
     Collection< P > getProperty( C context, Object specifier );
     Collection< P > getPropertyWithConstraint( C context, CT specifier );
