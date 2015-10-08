@@ -277,7 +277,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
 //    public E getElement( C context, I identifier, V version );
 //    public Collection<E> getRootElements( V version );
 //    public I getElementId( E element, V version );
-//    public N getName( E element, V version );
+//    public N getName( E element, V version ); 
 //    public T getTypeOf( E element, V version );
 //    public T getType( C context, N name, V version );
 //    public Collection<P> getTypeProperties( T type, V version );
