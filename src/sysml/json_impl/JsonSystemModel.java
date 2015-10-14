@@ -768,6 +768,8 @@ public class JsonSystemModel
       
       JsonParametricDiagram diagram = (JsonParametricDiagram) wrap(parametricDiagram);
       
+      graphElements.add(new JsonGraphNode(this, parametricDiagram, null));
+      
       JSONObject jContext = diagram.getContextBlock();
       
       JsonGraphNode gContext = new JsonGraphNode(this, jContext, null);
