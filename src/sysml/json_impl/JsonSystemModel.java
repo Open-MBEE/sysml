@@ -774,6 +774,9 @@ public class JsonSystemModel
       
       JsonGraphNode gContext = new JsonGraphNode(this, jContext, null);
       
+      // see if this helps MBSE Pak parse parametric diagrams
+      graphElements.add(gContext);
+      
       for (JSONObject diagramElement : diagramElements)
       {
          if (isConstraintProperty(diagramElement))
