@@ -1252,6 +1252,9 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         return op( Operation.CREATE, itemTypes, context, identifier, name, version, newValue, false );
     }
 
+    public String getNameString( C context ) {
+        return "" + getName( context );
+    }
 
     @Override
     public Class<?> getClass(ModelItem item) {
@@ -1418,7 +1421,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public abstract boolean versionsAreWritable();
 
     @Override
-    public Collection< E > getElement( Object context,
+    public Collection< E > getElement( C context,
                                        Object specifier ) {
         // REVIEW -- should check permissions before trying
         Collection< E > elements =

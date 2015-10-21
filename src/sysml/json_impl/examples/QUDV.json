@@ -1,0 +1,2608 @@
+{
+  "elements": [
+    {
+      "name": "name",
+      "sysmlid": "_16_5_1_12c903cb_1245415215671_546126_4078",
+      "owner": "_16_5_1_12c903cb_1245415169125_739263_4059",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "name",
+      "sysmlid": "_16_5_1_12c903cb_1245417279062_267101_4967",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "referenceUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245418252656_741269_5421",
+      "owner": "_16_5_1_12c903cb_1245417567140_403198_5082",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_unitFactor_unit",
+      "sysmlid": "_16_5_1_12c903cb_1245417730328_892475_5242",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245417730328_393852_5244",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245417730328_757741_5243",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245417730328_393852_5244"
+        ]
+      }
+    },
+    {
+      "name": "description",
+      "sysmlid": "_16_5_1_12c903cb_1245416032625_479084_4464",
+      "owner": "_16_5_1_12c903cb_1245415169125_739263_4059",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "specific",
+      "sysmlid": "_16_5_1_12c903cb_1245416854421_699385_4839",
+      "owner": "_16_5_1_12c903cb_1245416854421_647823_4837",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416827843_444995_4811",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245416788828_709541_4779",
+      "owner": "_16_5_1_12c903cb_1245416771578_305376_4758",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245416771578_305376_4758",
+        "target": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "systemOfQuantities",
+      "sysmlid": "_16_5_1_ff3038a_1245557561546_857468_4230",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416264046_206488_4525",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "exponent",
+      "sysmlid": "_16_5_1_12c903cb_1245416924781_921932_4882",
+      "owner": "_16_5_1_12c903cb_1245416909968_787341_4863",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "Quantity",
+      "sysmlid": "_16_5_2_ff3038a_1245982019800_888621_5716",
+      "owner": "_17_0_2_17530432_1348065593788_732114_2363",
+      "documentation": "<p>\n      Quantity is an M1 class and it has the SysML 1.1 &lt;&lt;ValueType&gt;&gt; \n      stereotype applied to it because this facilitates using this QUDV with \n      SysML 1.1 tools such as MD 16.5.<br>This QUDV proposal would imply \n      deleting the &lt;&lt;ValueType&gt;&gt; stereotype.<br><br>In this QUDV \n      proposal, dimensions are derived according to an extensible dimensional \n      analysis algorithm based on the SystemOfQuantities::baseQuantityKind \n      subset of the SystemOfQuantities::quantityKind collection chosen as the \n      base dimensions for that SystemOfQuantities.<br><br>This means that \n      instead of applying the &lt;&lt;ValueType&gt;&gt; stereotype and specifying a Unit \n      and a Dimension for a given &lt;&lt;ValueType&gt;&gt;-stereotyped property type, an \n      end-user can instead specialize the QUDV concept of Quantity, e.g., by \n      redefining Quantity::quantityKind : QuantityKind with one that has a \n      default value for a particular instance specification of a QuantityKind. \n      The same specialization technique can be applied to Quantity::unit and \n      to Quantity::value as well.<br><br>The main benefit of this approach \n      compared to &lt;&lt;ValueType&gt;&gt; stereotype approach is that QUDV is an M1 \n      model library and as such is inherently extensible as an M1 model to \n      support rich taxonomies of M1 Quantity concepts organized according to \n      domain-specific criteria specializing and restricting allowed quantity \n      kinds, units and even values.<br>\n    </p>",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+        "_9_0_62a020a_1105704885376_903292_7939"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Untyped"
+      }
+    },
+    {
+      "name": "name",
+      "sysmlid": "_16_5_1_12c903cb_1245418337781_24984_5467",
+      "owner": "_16_5_1_12c903cb_1245418221375_326257_5383",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245418310156_446452_5449",
+      "owner": "_16_5_1_12c903cb_1245418039781_480272_5325",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245418039781_480272_5325",
+        "target": "_16_5_1_12c903cb_1245417567140_403198_5082",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "prefix",
+      "sysmlid": "_16_5_1_12c903cb_1245418321843_116715_5458",
+      "owner": "_16_5_1_12c903cb_1245418104296_286076_5360",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245418221375_326257_5383",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_ff3038a_1245636924610_918261_7352",
+      "owner": "_16_5_1_12c903cb_1245416418343_310_4595",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245416418343_310_4595",
+        "target": "_16_5_1_12c903cb_1245416318312_768233_4566",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "unitFactor",
+      "sysmlid": "_16_5_1_12c903cb_1245417730328_393852_5244",
+      "owner": "_16_5_1_12c903cb_1245417730328_892475_5242",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417668968_644189_5190",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_quantityKindFactor_quantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245417145828_822167_4920",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245417145828_973805_4922",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245417145828_511714_4921",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245417145828_973805_4922"
+        ]
+      }
+    },
+    {
+      "name": "scale",
+      "sysmlid": "_16_5_2_ff3038a_1247424548600_348640_5917",
+      "owner": "_16_5_2_ff3038a_1247424548600_590007_5915",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417628921_308934_5138",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "exponent",
+      "sysmlid": "_16_5_1_12c903cb_1245417690140_254303_5209",
+      "owner": "_16_5_1_12c903cb_1245417668968_644189_5190",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_systemOfUnits_systemOfQuantities",
+      "sysmlid": "_16_5_1_ff3038a_1245557561546_972036_4228",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_ff3038a_1245557561546_809681_4229",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_ff3038a_1245557561546_857468_4230",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_ff3038a_1245557561546_809681_4229"
+        ]
+      }
+    },
+    {
+      "name": "unit",
+      "sysmlid": "_16_5_2_ff3038a_1245982066856_971088_5733",
+      "owner": "_16_5_2_ff3038a_1245982019800_888621_5716",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "systemOfUnits",
+      "sysmlid": "_16_5_1_12c903cb_1245417440984_563182_5058",
+      "owner": "_16_5_1_12c903cb_1245417440984_322691_5056",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417249125_505204_4948",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "systemOfUnits",
+      "sysmlid": "_16_5_1_12c903cb_1245417360515_936981_5032",
+      "owner": "_16_5_1_12c903cb_1245417360515_307415_5030",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417249125_505204_4948",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "baseDimension",
+      "sysmlid": "_16_5_1_12c903cb_1245416584125_586889_4701",
+      "owner": "_16_5_1_12c903cb_1245416540015_236187_4672",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "unit",
+      "sysmlid": "_16_5_2_ff3038a_1247424548600_408474_5916",
+      "owner": "_16_5_1_12c903cb_1245417628921_308934_5138",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "scale",
+      "sysmlid": "_16_5_1_12c903cb_1245419168734_588502_5638",
+      "owner": "_16_5_1_12c903cb_1245419168734_459330_5636",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417628921_308934_5138",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "symbol",
+      "sysmlid": "_16_5_1_12c903cb_1245417279062_630924_4968",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "ScaleValueDefinition",
+      "sysmlid": "_16_5_1_12c903cb_1245419143265_313151_5613",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "A_primaryQuantityKind_adoptedMeasurementUnit",
+      "sysmlid": "_QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_QUDV_Unit_PackageableElement-primaryQuantityKind_Property",
+        "sourceAggregation": "NONE",
+        "target": "_QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement-adoptedMeasurementUnit_Property",
+        "type": "Association",
+        "ownedEnd": [
+          "_QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement-adoptedMeasurementUnit_Property"
+        ]
+      }
+    },
+    {
+      "name": "Prefix",
+      "sysmlid": "_16_5_1_12c903cb_1245418221375_326257_5383",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "AffineConversionUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245417956562_475104_5289",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "GeneralConversionUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245417943531_653067_5266",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "description",
+      "sysmlid": "_16_5_1_12c903cb_1245417279062_135672_4969",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "systemOfUnits",
+      "sysmlid": "_16_5_1_12c903cb_1245418469453_770334_5518",
+      "owner": "_16_5_1_12c903cb_1245418469453_669028_5516",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417249125_505204_4948",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "quantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245418559312_532344_5543",
+      "owner": "_16_5_1_12c903cb_1245417288453_874257_4989",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_systemOfUnits_baseUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245417440984_322691_5056",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245417440984_563182_5058",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245417440984_502494_5057",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245417440984_563182_5058"
+        ]
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245418304578_27322_5445",
+      "owner": "_16_5_1_12c903cb_1245417956562_475104_5289",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245417956562_475104_5289",
+        "target": "_16_5_1_12c903cb_1245417567140_403198_5082",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245418299953_524331_5442",
+      "owner": "_16_5_1_12c903cb_1245417943531_653067_5266",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245417943531_653067_5266",
+        "target": "_16_5_1_12c903cb_1245417567140_403198_5082",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "PrefixedUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245418104296_286076_5360",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "equivalent",
+      "sysmlid": "_16_5_2_ff3038a_1247485337094_245001_7304",
+      "owner": "_16_5_1_12c903cb_1245415335546_799389_4090",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884698_645168_7692"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "parameters": [
+          "_16_5_2_ff3038a_1247485337096_809425_7305",
+          "_16_5_2_ff3038a_1247485337096_683931_7306"
+        ],
+        "type": "Operation"
+      }
+    },
+    {
+      "name": "QuantityKindFactor",
+      "sysmlid": "_16_5_1_12c903cb_1245416909968_787341_4863",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "conversionBasedUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245418252656_389486_5422",
+      "owner": "_16_5_1_12c903cb_1245418252656_107571_5420",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417567140_403198_5082",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_quantityKind_scale",
+      "sysmlid": "_16_5_2_ff3038a_1247424623985_40967_5959",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_2_ff3038a_1247424623985_467519_5961",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_2_ff3038a_1247424623985_189995_5960",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_2_ff3038a_1247424623985_467519_5961"
+        ]
+      }
+    },
+    {
+      "name": "factor",
+      "sysmlid": "_16_5_1_12c903cb_1245418408250_643653_5483",
+      "owner": "_16_5_1_12c903cb_1245418221375_326257_5383",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_11_5EAPbeta_be00301_1147431819399_50461_1671",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245417615875_29919_5132",
+      "owner": "_16_5_1_12c903cb_1245417599296_513203_5108",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245417599296_513203_5108",
+        "target": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245416846343_154915_4832",
+      "owner": "_16_5_1_12c903cb_1245416827843_444995_4811",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245416827843_444995_4811",
+        "target": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "r",
+      "sysmlid": "_16_5_2_ff3038a_1247485337096_809425_7305",
+      "owner": "_16_5_2_ff3038a_1247485337094_245001_7304",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "in",
+        "parameterType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "expression",
+      "sysmlid": "_16_5_1_12c903cb_1245418067796_225401_5349",
+      "owner": "_16_5_1_12c903cb_1245417943531_653067_5266",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "name",
+      "sysmlid": "_16_5_1_12c903cb_1245416285046_984264_4544",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "Scale",
+      "sysmlid": "_16_5_1_12c903cb_1245417628921_308934_5138",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "du",
+      "sysmlid": "_16_5_2_ff3038a_1247466267881_644087_6483",
+      "owner": "_16_5_2_ff3038a_1247465259045_879790_6327",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "in",
+        "parameterType": "_16_5_1_12c903cb_1245417652468_149854_5164",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245418313859_166080_5452",
+      "owner": "_16_5_1_12c903cb_1245418104296_286076_5360",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245418104296_286076_5360",
+        "target": "_16_5_1_12c903cb_1245417567140_403198_5082",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "symbol",
+      "sysmlid": "_16_5_1_12c903cb_1245416285046_333528_4545",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "general",
+      "sysmlid": "_16_5_1_12c903cb_1245416854421_138749_4838",
+      "owner": "_16_5_1_12c903cb_1245416827843_444995_4811",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "SimpleUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245417599296_513203_5108",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "LinearConversionUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245418039781_480272_5325",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "expressionLanguageURI",
+      "sysmlid": "_QUDV_GeneralConversionUnit_PackageableElement-expressionLanguageURI_Property",
+      "owner": "_16_5_1_12c903cb_1245417943531_653067_5266",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "prefixedUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245418321843_378789_5459",
+      "owner": "_16_5_1_12c903cb_1245418321843_763840_5457",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245418104296_286076_5360",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "DerivedQuantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245416800625_456261_4784",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "A_conversionBasedUnit_referenceUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245418252656_107571_5420",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245418252656_389486_5422",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245418252656_741269_5421",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245418252656_389486_5422"
+        ]
+      }
+    },
+    {
+      "name": "baseQuantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245416418343_140025_4596",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_systemOfUnits_prefix",
+      "sysmlid": "_16_5_1_12c903cb_1245418469453_669028_5516",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245418469453_770334_5518",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245418469453_511194_5517",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245418469453_770334_5518"
+        ]
+      }
+    },
+    {
+      "name": "definitionURI",
+      "sysmlid": "_16_5_1_12c903cb_1245417296734_69841_5011",
+      "owner": "_16_5_1_12c903cb_1245417288453_874257_4989",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_systemOfQuantities_baseQuantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245416418343_310_4595",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245416418343_263937_4597",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245416418343_140025_4596",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245416418343_263937_4597"
+        ]
+      }
+    },
+    {
+      "name": "deriveQuantityKindDimensions",
+      "sysmlid": "_16_5_1_12c903cb_1245418741765_314196_5600",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884698_645168_7692"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Operation"
+      }
+    },
+    {
+      "name": "plus",
+      "sysmlid": "_16_5_2_ff3038a_1247481040511_363063_7239",
+      "owner": "_16_5_1_12c903cb_1245415335546_799389_4090",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884698_645168_7692"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "parameters": [
+          "_16_5_2_ff3038a_1247481056700_870206_7241",
+          "_16_5_2_ff3038a_1247481056714_963709_7244"
+        ],
+        "type": "Operation"
+      }
+    },
+    {
+      "name": "quantityKind",
+      "sysmlid": "_16_5_2_ff3038a_1247424623985_467519_5961",
+      "owner": "_16_5_2_ff3038a_1247424623985_40967_5959",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245417610859_981168_5129",
+      "owner": "_16_5_1_12c903cb_1245417567140_403198_5082",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245417567140_403198_5082",
+        "target": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "isCoherent",
+      "sysmlid": "_16_5_2_ff3038a_1247465523932_340772_6337",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884698_645168_7692"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "parameters": [
+          "_16_5_2_ff3038a_1247465544237_283683_6343"
+        ],
+        "type": "Operation"
+      }
+    },
+    {
+      "name": "definitionURI",
+      "sysmlid": "_16_5_1_12c903cb_1245417279062_212947_4970",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "factor",
+      "sysmlid": "_16_5_1_12c903cb_1245417043890_594566_4892",
+      "owner": "_16_5_1_12c903cb_1245416800625_456261_4784",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416909968_787341_4863",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_systemOfQuantities_quantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245416318312_768233_4566",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245416318312_391316_4568",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245416318312_515620_4567",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245416318312_391316_4568"
+        ]
+      }
+    },
+    {
+      "name": "times",
+      "sysmlid": "_QUDV_Rational_PackageableElement-times_Operation--in.r._QUDV_Rational_PackageableElement--return.result._QUDV_Rational_PackageableElement",
+      "owner": "_16_5_1_12c903cb_1245415335546_799389_4090",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884698_645168_7692"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "parameters": [
+          "_QUDV_Rational_PackageableElement-times_Operation--in.r._QUDV_Rational_PackageableElement--return.result._QUDV_Rational_PackageableElement-r_Parameter",
+          "_QUDV_Rational_PackageableElement-times_Operation--in.r._QUDV_Rational_PackageableElement--return.result._QUDV_Rational_PackageableElement-result_Parameter"
+        ],
+        "type": "Operation"
+      }
+    },
+    {
+      "name": "factor",
+      "sysmlid": "_16_5_1_12c903cb_1245417703671_904951_5219",
+      "owner": "_16_5_1_12c903cb_1245417652468_149854_5164",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417668968_644189_5190",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_prefixedUnit_prefix",
+      "sysmlid": "_16_5_1_12c903cb_1245418321843_763840_5457",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245418321843_378789_5459",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245418321843_116715_5458",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245418321843_378789_5459"
+        ]
+      }
+    },
+    {
+      "name": "A_scale_unit",
+      "sysmlid": "_16_5_2_ff3038a_1247424548600_590007_5915",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_2_ff3038a_1247424548600_348640_5917",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_2_ff3038a_1247424548600_408474_5916",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_2_ff3038a_1247424548600_348640_5917"
+        ]
+      }
+    },
+    {
+      "name": "isCoherent",
+      "sysmlid": "_16_5_2_ff3038a_1247465259045_879790_6327",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884698_645168_7692"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "parameters": [
+          "_16_5_2_ff3038a_1247466267881_644087_6483",
+          "_16_5_2_ff3038a_1247465324162_162244_6332"
+        ],
+        "type": "Operation"
+      }
+    },
+    {
+      "name": "UnitFactor",
+      "sysmlid": "_16_5_1_12c903cb_1245417668968_644189_5190",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "quantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245417145828_511714_4921",
+      "owner": "_16_5_1_12c903cb_1245416909968_787341_4863",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "baseUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245417440984_502494_5057",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "factor",
+      "sysmlid": "_16_5_1_12c903cb_1245416658015_408213_4739",
+      "owner": "_16_5_1_12c903cb_1245416489875_226821_4619",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416909968_787341_4863",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "value",
+      "sysmlid": "_16_5_1_ff3038a_1245557780489_501420_4269",
+      "owner": "_16_5_1_12c903cb_1245419143265_313151_5613",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_535327_4089",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "Rational",
+      "sysmlid": "_16_5_1_12c903cb_1245415335546_799389_4090",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147430239267_179145_1189",
+        "_9_0_62a020a_1105704885376_903292_7939"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Untyped"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245415335562_487804_4120",
+      "owner": "_16_5_1_12c903cb_1245415335546_799389_4090",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "target": "_16_5_1_12c903cb_1245415335546_535327_4089",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "symbol",
+      "sysmlid": "_16_5_1_12c903cb_1245418371796_607448_5478",
+      "owner": "_16_5_1_12c903cb_1245418221375_326257_5383",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "prefix",
+      "sysmlid": "_16_5_1_12c903cb_1245418469453_511194_5517",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245418221375_326257_5383",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "SystemOfUnits",
+      "sysmlid": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "symbol",
+      "sysmlid": "_16_5_1_12c903cb_1245415962031_639222_4454",
+      "owner": "_16_5_1_12c903cb_1245415169125_739263_4059",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "quantityKindFactor",
+      "sysmlid": "_16_5_1_12c903cb_1245417145828_973805_4922",
+      "owner": "_16_5_1_12c903cb_1245417145828_822167_4920",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416909968_787341_4863",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "scale",
+      "sysmlid": "_16_5_2_ff3038a_1247424623985_189995_5960",
+      "owner": "_16_5_1_12c903cb_1245415169125_739263_4059",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417628921_308934_5138",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "SimpleQuantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245416771578_305376_4758",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "QuantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245415169125_739263_4059",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "Unit",
+      "sysmlid": "_16_5_1_12c903cb_1245417288453_874257_4989",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "dimension",
+      "sysmlid": "_16_5_1_12c903cb_1245416658015_704036_4740",
+      "owner": "_16_5_1_12c903cb_1245416658015_753695_4738",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416489875_226821_4619",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "offset",
+      "sysmlid": "_16_5_1_12c903cb_1245418010062_864272_5316",
+      "owner": "_16_5_1_12c903cb_1245417956562_475104_5289",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "exponent",
+      "sysmlid": "_16_5_1_12c903cb_1245416553031_657779_4691",
+      "owner": "_16_5_1_12c903cb_1245416540015_236187_4672",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "systemOfQuantities",
+      "sysmlid": "_16_5_1_12c903cb_1245416318312_391316_4568",
+      "owner": "_16_5_1_12c903cb_1245416318312_768233_4566",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416264046_206488_4525",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "getDimension",
+      "sysmlid": "_16_5_1_12c903cb_1245418759578_72998_5603",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884698_645168_7692"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "parameters": [
+          "_16_5_1_12c903cb_1245418776687_437020_5605",
+          "_16_5_1_12c903cb_1245418776703_777695_5606"
+        ],
+        "type": "Operation"
+      }
+    },
+    {
+      "name": "A_specific_general",
+      "sysmlid": "_16_5_1_12c903cb_1245416854421_647823_4837",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245416854421_699385_4839",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245416854421_138749_4838",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245416854421_699385_4839"
+        ]
+      }
+    },
+    {
+      "name": "QUDV",
+      "sysmlid": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "owner": "PROJECT-47f86fd9-9667-471f-aa8a-9a2f22164944",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_1_8f90291_1173963323875_662612_98",
+        "magicdraw_1046861421236_39100_29",
+        "_9_0_62a020a_1105704885298_713292_7913"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Package",
+        "isSite": false
+      }
+    },
+    {
+      "name": "symbol",
+      "sysmlid": "_16_5_1_12c903cb_1245417296734_435636_5009",
+      "owner": "_16_5_1_12c903cb_1245417288453_874257_4989",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_systemOfQuantities_dimension",
+      "sysmlid": "_16_5_1_12c903cb_1245416502296_667116_4646",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245416502296_479618_4648",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245416502296_346244_4647",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245416502296_479618_4648"
+        ]
+      }
+    },
+    {
+      "name": "SystemOfQuantities",
+      "sysmlid": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "qk",
+      "sysmlid": "_16_5_1_12c903cb_1245418776687_437020_5605",
+      "owner": "_16_5_1_12c903cb_1245418759578_72998_5603",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "in",
+        "parameterType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "A_derivedUnit_factor",
+      "sysmlid": "_16_5_1_12c903cb_1245417703671_507625_5218",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245417703671_190797_5220",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245417703671_904951_5219",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245417703671_190797_5220"
+        ]
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245416821546_238419_4805",
+      "owner": "_16_5_1_12c903cb_1245416800625_456261_4784",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245416800625_456261_4784",
+        "target": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "A_quantityKind_measurementUnit",
+      "sysmlid": "_QUDV_A_quantityKind_measurementUnit_PackageableElement",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245418559312_532344_5543",
+        "sourceAggregation": "NONE",
+        "target": "_QUDV_A_quantityKind_measurementUnit_PackageableElement-measurementUnit_Property",
+        "type": "Association",
+        "ownedEnd": [
+          "_QUDV_A_quantityKind_measurementUnit_PackageableElement-measurementUnit_Property"
+        ]
+      }
+    },
+    {
+      "name": "ConversionBasedUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245417567140_403198_5082",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "derivedQuantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245417043890_593148_4893",
+      "owner": "_16_5_1_12c903cb_1245417043890_314312_4891",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416800625_456261_4784",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "quantityKind",
+      "sysmlid": "_16_5_2_ff3038a_1245982083615_560985_5737",
+      "owner": "_16_5_2_ff3038a_1245982019800_888621_5716",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "description",
+      "sysmlid": "_16_5_1_12c903cb_1245416285046_7970_4546",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "valueDefinition",
+      "sysmlid": "_16_5_1_12c903cb_1245419168734_279592_5637",
+      "owner": "_16_5_1_12c903cb_1245417628921_308934_5138",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245419143265_313151_5613",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "dimension",
+      "sysmlid": "_16_5_1_12c903cb_1245416502296_346244_4647",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416489875_226821_4619",
+        "isSlot": false,
+        "isDerived": true,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "result",
+      "sysmlid": "_16_5_2_ff3038a_1247481056714_963709_7244",
+      "owner": "_16_5_2_ff3038a_1247481040511_363063_7239",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "return",
+        "parameterType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "measurementUnit",
+      "sysmlid": "_QUDV_A_quantityKind_measurementUnit_PackageableElement-measurementUnit_Property",
+      "owner": "_QUDV_A_quantityKind_measurementUnit_PackageableElement",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "result",
+      "sysmlid": "_16_5_2_ff3038a_1247465544237_283683_6343",
+      "owner": "_16_5_2_ff3038a_1247465523932_340772_6337",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "return",
+        "parameterType": "_12_0EAPbeta_be00301_1157529792739_987548_11",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "result",
+      "sysmlid": "_QUDV_Rational_PackageableElement-times_Operation--in.r._QUDV_Rational_PackageableElement--return.result._QUDV_Rational_PackageableElement-result_Parameter",
+      "owner": "_QUDV_Rational_PackageableElement-times_Operation--in.r._QUDV_Rational_PackageableElement--return.result._QUDV_Rational_PackageableElement",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "return",
+        "parameterType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "description",
+      "sysmlid": "_16_5_1_12c903cb_1245419225484_965046_5658",
+      "owner": "_16_5_1_12c903cb_1245419143265_313151_5613",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "unit",
+      "sysmlid": "_16_5_1_12c903cb_1245417360515_717818_5031",
+      "owner": "_16_5_1_12c903cb_1245417249125_505204_4948",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "primaryQuantityKind",
+      "sysmlid": "_QUDV_Unit_PackageableElement-primaryQuantityKind_Property",
+      "owner": "_16_5_1_12c903cb_1245417288453_874257_4989",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "adoptedMeasurementUnit",
+      "sysmlid": "_QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement-adoptedMeasurementUnit_Property",
+      "owner": "_QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "factor",
+      "sysmlid": "_16_5_1_12c903cb_1245417969468_299264_5308",
+      "owner": "_16_5_1_12c903cb_1245417956562_475104_5289",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "definitionURI",
+      "sysmlid": "_16_5_1_12c903cb_1245416289406_487774_4557",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "unit",
+      "sysmlid": "_16_5_1_12c903cb_1245417730328_757741_5243",
+      "owner": "_16_5_1_12c903cb_1245417668968_644189_5190",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "description",
+      "sysmlid": "_16_5_1_12c903cb_1245417296734_47443_5010",
+      "owner": "_16_5_1_12c903cb_1245417288453_874257_4989",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "systemOfQuantities",
+      "sysmlid": "_16_5_1_12c903cb_1245416502296_479618_4648",
+      "owner": "_16_5_1_12c903cb_1245416502296_667116_4646",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416264046_206488_4525",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "Deprecated",
+      "sysmlid": "_17_0_2_17530432_1348065593788_732114_2363",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885298_713292_7913"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Package",
+        "isSite": false
+      }
+    },
+    {
+      "name": "systemOfUnits",
+      "sysmlid": "_16_5_1_ff3038a_1245557561546_809681_4229",
+      "owner": "_16_5_1_ff3038a_1245557561546_972036_4228",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417249125_505204_4948",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "result",
+      "sysmlid": "_16_5_1_12c903cb_1245418776703_777695_5606",
+      "owner": "_16_5_1_12c903cb_1245418759578_72998_5603",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "return",
+        "parameterType": "_16_5_1_12c903cb_1245416489875_226821_4619",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "denominator",
+      "sysmlid": "_16_5_1_12c903cb_1245415335562_822484_4125",
+      "owner": "_16_5_1_12c903cb_1245415335546_799389_4090",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_8641_4088",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "numerator",
+      "sysmlid": "_16_5_1_12c903cb_1245415335562_895034_4124",
+      "owner": "_16_5_1_12c903cb_1245415335546_799389_4090",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_8641_4088",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_derivedQuantityKind_factor",
+      "sysmlid": "_16_5_1_12c903cb_1245417043890_314312_4891",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245417043890_593148_4893",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245417043890_594566_4892",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245417043890_593148_4893"
+        ]
+      }
+    },
+    {
+      "name": "value",
+      "sysmlid": "_16_5_2_ff3038a_1245982102181_35738_5741",
+      "owner": "_16_5_2_ff3038a_1245982019800_888621_5716",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": null,
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "DimensionFactor",
+      "sysmlid": "_16_5_1_12c903cb_1245416540015_236187_4672",
+      "owner": "_17_0_2_17530432_1348065593788_732114_2363",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "A_scale_valueDefinition",
+      "sysmlid": "_16_5_1_12c903cb_1245419168734_459330_5636",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245419168734_588502_5638",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245419168734_279592_5637",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245419168734_588502_5638"
+        ]
+      }
+    },
+    {
+      "name": "A_dimension_factor",
+      "sysmlid": "_16_5_1_12c903cb_1245416658015_753695_4738",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245416658015_704036_4740",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245416658015_408213_4739",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245416658015_704036_4740"
+        ]
+      }
+    },
+    {
+      "name": "factor",
+      "sysmlid": "_16_5_1_12c903cb_1245418054250_63062_5344",
+      "owner": "_16_5_1_12c903cb_1245418039781_480272_5325",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "name",
+      "sysmlid": "_16_5_1_12c903cb_1245417296734_424943_5008",
+      "owner": "_16_5_1_12c903cb_1245417288453_874257_4989",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement-generalization__Generalization._QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement._QUDV_A_quantityKind_measurementUnit_PackageableElement",
+      "owner": "_QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_QUDV_A_primaryQuantityKind_adoptedMeasurementUnit_PackageableElement",
+        "target": "_QUDV_A_quantityKind_measurementUnit_PackageableElement",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_ff3038a_1245636824938_539060_7349",
+      "owner": "_16_5_1_12c903cb_1245417440984_322691_5056",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245417440984_322691_5056",
+        "target": "_16_5_1_12c903cb_1245417360515_307415_5030",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "derivedUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245417703671_190797_5220",
+      "owner": "_16_5_1_12c903cb_1245417703671_507625_5218",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245417652468_149854_5164",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "Dimension",
+      "sysmlid": "_16_5_1_12c903cb_1245416489875_226821_4619",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "quantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245416318312_515620_4567",
+      "owner": "_16_5_1_12c903cb_1245416264046_206488_4525",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_15_0_be00301_1199378032543_992832_3096",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415169125_739263_4059",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "A_systemOfUnits_unit",
+      "sysmlid": "_16_5_1_12c903cb_1245417360515_307415_5030",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885473_18793_7971"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "targetAggregation": "NONE",
+        "source": "_16_5_1_12c903cb_1245417360515_936981_5032",
+        "sourceAggregation": "NONE",
+        "target": "_16_5_1_12c903cb_1245417360515_717818_5031",
+        "type": "Association",
+        "ownedEnd": [
+          "_16_5_1_12c903cb_1245417360515_936981_5032"
+        ]
+      }
+    },
+    {
+      "name": "DerivedUnit",
+      "sysmlid": "_16_5_1_12c903cb_1245417652468_149854_5164",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "isInvertible",
+      "sysmlid": "_16_5_1_12c903cb_1245417580250_653597_5101",
+      "owner": "_16_5_1_12c903cb_1245417567140_403198_5082",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_39033_4086",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "",
+      "sysmlid": "_16_5_1_12c903cb_1245417660937_25993_5185",
+      "owner": "_16_5_1_12c903cb_1245417652468_149854_5164",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885195_432731_7879"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "source": "_16_5_1_12c903cb_1245417652468_149854_5164",
+        "target": "_16_5_1_12c903cb_1245417288453_874257_4989",
+        "type": "Generalization"
+      }
+    },
+    {
+      "name": "result",
+      "sysmlid": "_16_5_2_ff3038a_1247485337096_683931_7306",
+      "owner": "_16_5_2_ff3038a_1247485337094_245001_7304",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "return",
+        "parameterType": "_12_0EAPbeta_be00301_1157529792739_987548_11",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "systemOfQuantities",
+      "sysmlid": "_16_5_1_12c903cb_1245416418343_263937_4597",
+      "owner": "_16_5_1_12c903cb_1245416418343_310_4595",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245416264046_206488_4525",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "r",
+      "sysmlid": "_QUDV_Rational_PackageableElement-times_Operation--in.r._QUDV_Rational_PackageableElement--return.result._QUDV_Rational_PackageableElement-r_Parameter",
+      "owner": "_QUDV_Rational_PackageableElement-times_Operation--in.r._QUDV_Rational_PackageableElement--return.result._QUDV_Rational_PackageableElement",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "in",
+        "parameterType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "SpecializedQuantityKind",
+      "sysmlid": "_16_5_1_12c903cb_1245416827843_444995_4811",
+      "owner": "_16_5_2_ff3038a_1245861845474_133961_6126",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_11_5EAPbeta_be00301_1147424179914_458922_958",
+        "_9_0_62a020a_1105704885343_144138_7929"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "type": "Element"
+      }
+    },
+    {
+      "name": "r",
+      "sysmlid": "_16_5_2_ff3038a_1247481056700_870206_7241",
+      "owner": "_16_5_2_ff3038a_1247481040511_363063_7239",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "in",
+        "parameterType": "_16_5_1_12c903cb_1245415335546_799389_4090",
+        "type": "Parameter"
+      }
+    },
+    {
+      "name": "definitionURI",
+      "sysmlid": "_16_5_1_12c903cb_1245416000578_813755_4459",
+      "owner": "_16_5_1_12c903cb_1245415169125_739263_4059",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_12_0_be00301_1164123483951_695645_2041",
+        "_9_0_62a020a_1105704884574_96724_7644"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "propertyType": "_16_5_1_12c903cb_1245415335546_479030_4092",
+        "isSlot": false,
+        "isDerived": false,
+        "value": [],
+        "type": "Property"
+      }
+    },
+    {
+      "name": "mustHaveQuantityKind",
+      "sysmlid": "_16_5_2_ff3038a_1246039719509_529009_7832",
+      "owner": "_16_5_1_12c903cb_1245417628921_308934_5138",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704885023_176929_7830"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "specification": {
+          "valueExpression": null,
+          "expressionBody": [
+            "unit->isEmpty() or unit.quantityKind=self.quantityKind"
+          ],
+          "type": "OpaqueExpression"
+        },
+        "type": "Constraint"
+      }
+    },
+    {
+      "name": "result",
+      "sysmlid": "_16_5_2_ff3038a_1247465324162_162244_6332",
+      "owner": "_16_5_2_ff3038a_1247465259045_879790_6327",
+      "documentation": "",
+      "appliedMetatypes": [
+        "_9_0_62a020a_1105704884528_587873_7620"
+      ],
+      "isMetatype": false,
+      "specialization": {
+        "direction": "return",
+        "parameterType": "_12_0EAPbeta_be00301_1157529792739_987548_11",
+        "type": "Parameter"
+      }
+    }
+  ]
+}

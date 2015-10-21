@@ -246,13 +246,13 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
         Collection< RT > theItems = null;
         E scopeElement = getModel().asElement( getScope() );
         Collection< R > rels =
-                getModel().getRelationshipWithName( scopeElement,
+                getModel().getRelationshipWithName( (C)scopeElement,
                                                     getModel().asName( getSpecifier() ) );
         //theItems = Utils.asList( rels, getType() );
         if ( Utils.isNullOrEmpty( rels ) ) {
             String s = getSpecifier().toString().toLowerCase();
             if ( s.contains( "relation" ) || s.contains("source") ) {
-                rels = getModel().getRelationship( scopeElement, null );
+                rels = getModel().getRelationship( (C)scopeElement, null );
                 Method method;
                 try {
                     method = getModel().getClass().getMethod( "getSource()",
@@ -288,7 +288,7 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
 //                                          getModel().getElementClass(), true );
 //                scopeElement = resO.first ? resO.second : (E)getScope(); // REVIEW -- potential ClassCastException!
                 scopeElement = getModel().asElement( getScope() );
-                Collection< R > relationships = getModel().getRelationship( getScope(), getSpecifier() );
+                Collection< R > relationships = getModel().getRelationship( (C)scopeElement, getSpecifier() );
                 for ( R r : relationships ) {
                     Collection< E > result = getModel().getRelatedElements( r );
                     if ( related == null ) related = result;
@@ -319,13 +319,13 @@ public class AbstractReference< RT, SM extends SystemModel< E, C, T, P, N, I, U,
 //                scopeElement = resO.first ? resO.second : (E)getScope(); // REVIEW -- potential ClassCastException!
                 scopeElement = getModel().asElement( getScope() );
                 Collection< R > rels =
-                        getModel().getRelationshipWithName( scopeElement,
+                        getModel().getRelationshipWithName( (C)scopeElement,
                                                             getModel().asName( getSpecifier() ) );
                 //theItems = Utils.asList( rels, getType() );
                 if ( Utils.isNullOrEmpty( rels ) ) {
                     String s = getSpecifier().toString().toLowerCase();
                     if ( s.contains( "relation" ) || s.contains("source") ) {
-                        rels = getModel().getRelationship( scopeElement, null );
+                        rels = getModel().getRelationship( (C)scopeElement, null );
                         Method method;
                         try {
                             method = getModel().getClass().getMethod( "getSource()",
