@@ -32,11 +32,8 @@ public class JsonBlock extends JsonElement
       List<JSONObject> jList = systemModel.getParts(jsonObj);
       for (JSONObject jObj : jList)
       {
-         if (systemModel.isPart(jObj))
-         {
-            JsonPart part = (JsonPart)systemModel.wrap(jObj);
-            parts.add(part);
-         }
+         JsonPart part = (JsonPart)systemModel.wrap(jObj);
+         parts.add(part);
       }
       return parts;
    }
@@ -46,12 +43,9 @@ public class JsonBlock extends JsonElement
       List<JSONObject> jList = systemModel.getParts(jsonObj);
       for (JSONObject jObj : jList)
       {
-         if (systemModel.isPart(jObj))
+         if (name.equals(systemModel.getName(jObj)))
          {
-            if (name.equals(systemModel.getName(jObj)))
-            {
-               return (JsonPart)systemModel.wrap(jObj);
-            }
+            return (JsonPart)systemModel.wrap(jObj);
          }
       }
       return null;

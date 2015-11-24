@@ -177,6 +177,8 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
    @Override
    public String getTagValue(String name)
    {
+      // TODO: this is a shortcut approach with hardcoded tag names
+      // Need to construct tag list programmatically.
       String tagId = JsonSystemModel.getTagID(name);
       if (tagId != null)
       {

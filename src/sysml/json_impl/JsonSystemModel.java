@@ -35,7 +35,6 @@ import gov.nasa.jpl.mbee.util.Pair;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -80,6 +79,9 @@ public class JsonSystemModel
    public static final String SOURCE_PATH = "sourcePath";
    public static final String TARGET_PATH = "targetPath";
    public static final String CLASSIFIER = "classifier";   
+   public static final String MULTIPLICITY_MAX = "multiplicityMax";
+   public static final String MULTIPLICITY_MIN = "multiplicityMin";
+   public static final String REDEFINES = "redefines";   
    
    public static final String ST_BLOCK = "_11_5EAPbeta_be00301_1147424179914_458922_958"; 
    public static final String ST_PART = "_15_0_be00301_1199377756297_348405_2678";
@@ -164,11 +166,19 @@ public class JsonSystemModel
    // Map of element sysmlid to List of sysmlids that that element owns
    protected Map<String, List<String>> ownershipMap = new LinkedHashMap<String, List<String>>(); 
    
+   // Map of instance specification sysmlid to slot sysml id
+   protected Map<String, String> slotMap = new LinkedHashMap<String, String>(); 
+   
+   // property redefinition maps
+   protected MultiValueMap<String, String> toRedefinedMap = new MultiValueMap<String, String>();     
+   protected MultiValueMap<String, String> fromRedefinedMap = new MultiValueMap<String, String>();      
+   
    // Map of element sysmlid to List of views of the element
    protected MultiValueMap<String, String> viewMap = new MultiValueMap<String, String>();   
    
    // Map of view to viewpoint
-   protected Map<String, String> viewpointMap = new LinkedHashMap<String, String>();     
+   protected Map<String, String> viewpointMap = new LinkedHashMap<String, String>();    
+   
    
    private final static Logger LOGGER = Logger.getLogger(JsonSystemModel.class.getName());
    
@@ -260,7 +270,8 @@ public class JsonSystemModel
                   }
                   
                   // Update element map
-                  elementMap.put(jsonObj.getString(SYSMLID), jsonObj);
+                  String id = jsonObj.getString(SYSMLID);
+                  elementMap.put(id, jsonObj);
 
                   // Update ownership map
                   if (jsonObj.has(OWNER) && !jsonObj.isNull(OWNER))
@@ -273,8 +284,51 @@ public class JsonSystemModel
                         ownershipMap.put(owner, owned);
                      }
                      owned.add(jsonObj.getString(SYSMLID));
+                     
+                     // update slot map
+                     if (isSlot(jsonObj))
+                     { 
+                        JSONObject jOwner = getElement(owner);
+                        if(isInstanceSpecification(jOwner))
+                        {
+                           JsonSlot slot = (JsonSlot)wrap(jsonObj);
+                           JsonPropertyValues values = slot.getValue();
+                           if (values.getValueType() == JsonPropertyValues.INSTANCE_VALUE)
+                           {
+                              for (int idxv=0; idxv < values.getLength(); idxv++)
+                              {
+                                 String idInstanceSpecification = values.getValueAsString(idxv);
+                                 slotMap.put(idInstanceSpecification, id);
+                              }
+                           }
+                        }
+                     }
                   }
                   
+                  // construct property redefinition maps
+                  if (isProperty(jsonObj))
+                  {                     
+                     Object redefinedList = getSpecializationProperty(jsonObj, JsonSystemModel.REDEFINES);
+                     if (redefinedList == null)
+                     {
+                        // ignore
+                     }
+                     else if (redefinedList instanceof JSONArray)
+                     {
+                        JSONArray jArray = (JSONArray)redefinedList;
+                        for (int idx=0; idx < jArray.length(); idx++)
+                        {
+                           String propId = jArray.getString(idx);
+                           toRedefinedMap.put(id, propId);
+                           fromRedefinedMap.put(propId, id);
+                        }
+                     }
+                     else
+                     {
+                        LOGGER.log(Level.WARNING, "redefines list is not in array form: {0}", id);
+                     }                     
+                  }
+
                   if (isGeneralization(jsonObj))
                   {
                      Object source = getSpecializationProperty(jsonObj, SOURCE);
@@ -526,103 +580,194 @@ public class JsonSystemModel
       return false;
    }
    
+   public List<JSONObject> getRedefinedByThis(JSONObject element)
+   {
+      ArrayList<JSONObject> props = new ArrayList<JSONObject>();
+      String id = getIdentifier(element);
+      Collection<String> redefinedIds = toRedefinedMap.getCollection(id);
+      
+      for (String redefinedId : redefinedIds)
+      {
+         JSONObject elem = getElement(redefinedId);
+         if (elem != null)
+         {
+            props.add(elem);
+         }
+         else
+         {
+            LOGGER.log(Level.WARNING, "Redefined element not found: {0}", redefinedId);
+         }
+      }
+      return props;
+   }
+   
+   public List<JSONObject> getRedefiningThis(JSONObject element)
+   {
+      ArrayList<JSONObject> props = new ArrayList<JSONObject>();
+      String id = getIdentifier(element);
+      Collection<String> redefiningIds = fromRedefinedMap.getCollection(id);
+      
+      for (String redefiningId : redefiningIds)
+      {
+         JSONObject elem = getElement(redefiningId);
+         if (elem != null)
+         {
+            props.add(elem);
+         }
+         else
+         {
+            LOGGER.log(Level.WARNING, "Redefining element not found: {0}", redefiningId);
+         }
+      }
+      return props;
+   }   
+   
    public boolean isBlock(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_BLOCK);
    }
    
    public boolean isPart(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_PART);
    }   
 
    public boolean isValueProperty(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_VALUE_PROPERTY);
    } 
    
+   /**
+    * Return true if the element is an instance specification for a block or a part.
+    * Will return false for Instance specifications that used to associate tag values.
+    * 
+    * @param element
+    * @return
+    */
    public boolean isInstanceSpecification(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
-      return metaTypes.contains(META_INSTANCE_SPECIFICATION);
+      if(metaTypes.contains(META_INSTANCE_SPECIFICATION))
+      {
+         if (getClassifierIds(element).size() > 0)
+         {
+            return true;
+         }
+      }
+      
+      return false;
    }    
    
    public boolean isValueType(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_VALUE_TYPE);
    } 
    
    public boolean isUnit(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_UNIT);
    }    
 
    public boolean isQuantityKind(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_QUANTITY_KIND);
    } 
    
    public boolean isConstraintBlock(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_CONSTRAINT_BLOCK);
    }
    
    public boolean isProperty(JSONObject element)
    {
+      if (element == null) return false;
+      
       String type = getType(element);
       return PROPERTY.equals(type);
    } 
    
    public boolean isConstraintProperty(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_CONSTRAINT_PROPERTY);
    }   
 
    public boolean isConstraintParameter(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_CONSTRAINT_PARAMETER);
    }
    
    public boolean isBindingConnector(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_BINDING_CONNECTOR);
    }   
    
    public boolean isSlot(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(META_SLOT);
    }      
 
    public boolean isDiagram(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(META_DIAGRAM);
    }
    
    public boolean isStereotype(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(META_STEREOTYPE);
    }   
    
    public boolean isProject(JSONObject element)
    {
+      if (element == null) return false;
+      
       return getOwnerId(element) == null;
    }    
    
    public boolean isParametricDiagram(JSONObject element)
    {
+      if (element == null) return false;
+      
       if (!isDiagram(element))
       {
          return false;
@@ -635,30 +780,40 @@ public class JsonSystemModel
    
    public boolean isGeneralization(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(META_GENERALIZATION);
    }
    
    public boolean isView(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_VIEW);
    }
    
    public boolean isViewpoint(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_VIEWPOINT);
    }   
 
    public boolean isExpose(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_EXPOSE);
    }   
 
    public boolean isConforms(JSONObject element)
    {
+      if (element == null) return false;
+      
       List<String> metaTypes = getAppliedMetaTypes(element);
       return metaTypes.contains(ST_CONFORMS);
    }   
@@ -928,6 +1083,43 @@ public class JsonSystemModel
       
       return parameters;      
    }
+   
+   public List<JSONObject> getSlots(JSONObject element)
+   {
+      Map<String, JSONObject> props = getElementProperties(element);
+      List<JSONObject> slots = new ArrayList<JSONObject>();
+      
+      for (JSONObject prop : props.values())
+      {
+         if (isSlot(prop))
+         {
+            slots.add(prop);
+         }
+      }
+      
+      return slots;
+   }      
+   
+   public JSONObject getContainingSlot(JSONObject instanceSpecification)
+   {
+      String id = getIdentifier(instanceSpecification);
+      String slotId = slotMap.get(id);
+      if (slotId != null)
+      {
+         JSONObject jSlot = getElement(slotId);
+         
+         if(isSlot(jSlot))
+         {
+            return jSlot;
+         }
+         else
+         {
+            LOGGER.log(Level.WARNING, "Instance specification ({0}) is mapped from something other than a slot: {1}", 
+                  new Object[] {id, slotId});
+         }
+      }
+      return null;
+   }  
 
    protected String getType(JSONObject element)
    {
@@ -964,11 +1156,6 @@ public class JsonSystemModel
       return metaTypes; 
    }
 
-   protected Object getElementValue(JSONObject element)
-   {
-      return getSpecializationProperty(element, VALUE);
-   }
-
    protected String getPropertyTypeID(JSONObject element)
    {
       Object id = getSpecializationProperty(element, PROPERTY_TYPE);
@@ -983,20 +1170,84 @@ public class JsonSystemModel
       }
    }
    
-   protected String getClassifierID(JSONObject element)
+   protected List<String> getClassifierIds(JSONObject element)
    {
-      Object id = getSpecializationProperty(element, CLASSIFIER);
-      if (id instanceof String)
+      ArrayList<String> classifierIds = new ArrayList<String>();
+      
+      Object classifiers = getSpecializationProperty(element, CLASSIFIER);
+      if (classifiers == null)
       {
-         return (String)id;
+         return classifierIds;
+      }
+      else if (classifiers instanceof JSONArray)
+      {
+         JSONArray jClassifiers = (JSONArray)classifiers; 
+         for (int i=0; i < jClassifiers.length(); i++)
+         {
+            classifierIds.add(jClassifiers.getString(i));
+         }
       }
       else
       {
-         LOGGER.log(Level.WARNING, "classifier is not a string of id: %s", element);
-         return null;
+         LOGGER.log(Level.WARNING, "classifier is not an array of id: {0}", getIdentifier(element));
       }
+      return classifierIds;
    }   
 
+   public long getMultiplicityMin(JSONObject element)
+   {
+      if (hasSpecializationProperty(element, MULTIPLICITY_MIN))
+      {
+         Object multiplicityMin = getSpecializationProperty(element, MULTIPLICITY_MIN);
+         
+         if (multiplicityMin == null)
+         {
+            return 1L;
+         }
+         else if (multiplicityMin instanceof Long)
+         {
+            return ((Long)multiplicityMin).longValue();
+         }
+         else if (multiplicityMin instanceof Integer)
+         {
+            return ((Integer)multiplicityMin).longValue();
+         }
+         else
+         {
+            LOGGER.log(Level.WARNING, "Multiplicity min ({0}) was not parsed correctly for {1}", 
+                  new Object[] {multiplicityMin.toString(), getIdentifier(element)});            
+         }
+      }
+      return 1L;
+   }
+   
+   public long getMultiplicityMax(JSONObject element)
+   {
+      if (hasSpecializationProperty(element, MULTIPLICITY_MAX))
+      {
+         Object multiplicityMax = getSpecializationProperty(element, MULTIPLICITY_MAX);
+         
+         if (multiplicityMax == null)
+         {
+            return 1L;
+         }
+         else if (multiplicityMax instanceof Long)
+         {
+            return ((Long)multiplicityMax).longValue();
+         }
+         else if (multiplicityMax instanceof Integer)
+         {
+            return ((Integer)multiplicityMax).longValue();
+         }
+         else
+         {
+            LOGGER.log(Level.WARNING, "Multiplicity max ({0}) was not parsed correctly for {1}", 
+                  new Object[] {multiplicityMax.toString(), getIdentifier(element)});            
+         }
+      }
+      return 1L;
+   }   
+   
    protected boolean hasJsonProperty(JSONObject element, String name)
    {
       if (element != null)
@@ -1035,7 +1286,7 @@ public class JsonSystemModel
       return null;
    }
    
-   protected Object getSpecializationProperty(JSONObject element, String name)
+   protected Object getSpecializationProperty(JSONObject element, String propName)
    {
       if (element.has(SPECIALIZATION))
       {
@@ -1043,9 +1294,9 @@ public class JsonSystemModel
          if (specialization instanceof JSONObject)
          {
             JSONObject specializationJson = (JSONObject) specialization;
-            if (specializationJson.has(name))
+            if (specializationJson.has(propName))
             {
-               return specializationJson.get(name);
+               return specializationJson.get(propName);
             }
          }
       }
@@ -1095,6 +1346,26 @@ public class JsonSystemModel
       return null;
    }   
 
+   public List<JSONObject> getOwnedSlots(JSONObject element)
+         throws JSONException
+   {      
+      ArrayList<JSONObject> slots = new ArrayList<JSONObject>();
+
+      if (element != null)
+      {
+         List<JSONObject> children = getOwnedElements(element);
+
+         for (JSONObject child : children)
+         {
+            if (isSlot(child))
+            {
+               slots.add(child);
+            }
+         }
+      }
+      return slots;
+   }
+   
    protected List<JSONObject> searchWithinContextByProperty(JSONObject owner,
          String propName, Object propValue)
    {
@@ -1508,7 +1779,7 @@ public class JsonSystemModel
                                           }
                                           else
                                           {
-                                             LOGGER.log(Level.WARNING, "View instance is not found: %s", instanceID);
+                                             LOGGER.log(Level.WARNING, "View instance is not found: {0}", instanceID);
                                           }
                                        }
                                     }                                    
