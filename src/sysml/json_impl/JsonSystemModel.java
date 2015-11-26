@@ -143,7 +143,7 @@ public class JsonSystemModel
    public static final String BODY = "body";     
    
    // Special view and viewpoint to collect elements on parametric diagrams
-   public static final String ID_COLLECT_PARAM_DIAGRAM_ELEMENTS_VIEWPOINT = "_18_0_2_f060354_1436758053298_656033_17322";   
+   public static final String ID_COLLECT_PARAM_DIAGRAM_ELEMENTS_VIEWPOINT = "_18_0_2_f060354_1448523624628_704247_15032";   
    
    // Map of stereotypes
    static protected Map<String, String> stereotypeMap = new HashMap<String, String>();

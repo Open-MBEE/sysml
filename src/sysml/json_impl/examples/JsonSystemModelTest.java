@@ -78,7 +78,8 @@ public class JsonSystemModelTest
       libraryFiles.add("SI_Specializations.json");
       libraryFiles.add("SI_Valuetype_Library.json");
       libraryFiles.add("QUDV.json");
-      libraryFiles.add("MD_Customization_for_View_Viewpoint.json");      
+      libraryFiles.add("MD_Customization_for_View_Viewpoint.json");   
+      libraryFiles.add("AnalysisViews.json");
       // libraryFiles.add("SysML_Extensions.json");
       libraryFiles.add("MBSE_Analyzer.json");
       
@@ -284,7 +285,7 @@ public class JsonSystemModelTest
          }
       } 
       
-      elements = (List<JSONObject>) systemModel.getElementWithName(null, "GrantParentBlock");
+      elements = (List<JSONObject>) systemModel.getElementWithName(null, "GrandParentBlock");
       for (JSONObject jObj : elements)
       {
          if(systemModel.isBlock(jObj))

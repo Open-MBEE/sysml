@@ -48,6 +48,7 @@ public class JsonSystemModelUnitTest
       libraryFiles.add("SI_Valuetype_Library.json");
       libraryFiles.add("QUDV.json");
       libraryFiles.add("MD_Customization_for_View_Viewpoint.json");      
+      libraryFiles.add("AnalysisViews.json");  
       // libraryFiles.add("SysML_Extensions.json");
       libraryFiles.add("MBSE_Analyzer.json");
       
