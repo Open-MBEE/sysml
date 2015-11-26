@@ -190,7 +190,7 @@ public class JsonSystemModelTest
             JsonGraphElement gElem = iterGElems.next();
             System.out.println(String.format("         %s", gElem.toString()));
          }         
-         
+         // Check if rearWheel and frontWheel graphical elements are different. Must be false?
          JsonGraphElement[] gArray = new JsonGraphElement[0];
          gArray = gElems.toArray(gArray);
          System.out.println(String.format("equals=%s", gArray[2].equals(gArray[7])));
@@ -331,6 +331,8 @@ public class JsonSystemModelTest
       System.out.println(String.format("%s is a super class of %s: %s", 
             bike.getName(), parentBlock.getName(), bike.isSuperClassOf(parentBlock)));  
       System.out.println(String.format("%s is a sub class of %s: %s", 
-            bike.getName(), parentBlock.getName(), bike.isSubClassOf(parentBlock)));       
+            bike.getName(), parentBlock.getName(), bike.isSubClassOf(parentBlock)));   
+      
+      System.out.println("done!");
    }
 }

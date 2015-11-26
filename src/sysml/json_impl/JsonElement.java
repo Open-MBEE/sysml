@@ -78,8 +78,8 @@ public class JsonElement extends JsonBaseElement implements
    {
       List<JsonProperty> props = new ArrayList<JsonProperty>();
       
-      Map<String, JSONObject> jProps = systemModel.getElementProperties(jsonObj);
-      for (JSONObject jProp : jProps.values())
+      List<JSONObject> jProps = systemModel.getElementProperties(jsonObj);
+      for (JSONObject jProp : jProps)
       {
          JsonBaseElement elem = systemModel.wrap(jProp);
          if (elem instanceof JsonProperty)

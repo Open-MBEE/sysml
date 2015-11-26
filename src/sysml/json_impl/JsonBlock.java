@@ -40,13 +40,10 @@ public class JsonBlock extends JsonElement
    
    public JsonPart getPart(String name)
    {
-      List<JSONObject> jList = systemModel.getParts(jsonObj);
-      for (JSONObject jObj : jList)
+      JSONObject jObj = systemModel.getPart(jsonObj, name);
+      if (jObj != null)
       {
-         if (name.equals(systemModel.getName(jObj)))
-         {
-            return (JsonPart)systemModel.wrap(jObj);
-         }
+         return (JsonPart)systemModel.wrap(jObj);
       }
       return null;
    }   

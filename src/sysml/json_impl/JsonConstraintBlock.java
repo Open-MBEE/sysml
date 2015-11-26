@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.json.JSONObject;
 
 /**
@@ -25,6 +26,16 @@ public class JsonConstraintBlock extends JsonElement
    {
       LOGGER.setLevel(level);   
    }    
+   
+   public JsonConstraintParameter getConstraintParameter(String name)
+   {
+      JSONObject jObj = systemModel.getConstraintParameter(jsonObj, name);
+      if (jObj != null)
+      {
+         return (JsonConstraintParameter) systemModel.wrap(jObj);
+      }
+      return null;
+   }
    
    public List<JsonConstraintParameter> getConstraintParameters()
    {

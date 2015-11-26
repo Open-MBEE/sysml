@@ -289,11 +289,14 @@ public class JsonSystemModel
                      if (isSlot(jsonObj))
                      { 
                         JSONObject jOwner = getElement(owner);
-                        if(isInstanceSpecification(jOwner))
-                        {
+                        // NOTE: isInstanceSpecification cannot be used until all elements are loaded.
+                        // Simply create map of all instance specification including the ones used for tags.
+                        // It does not hurt when we need to search relationships of actual instance specifications.
+                        // if(isInstanceSpecification(jOwner))
+                        // {
                            JsonSlot slot = (JsonSlot)wrap(jsonObj);
                            JsonPropertyValues values = slot.getValue();
-                           if (values.getValueType() == JsonPropertyValues.INSTANCE_VALUE)
+                           if (JsonPropertyValues.INSTANCE_VALUE.equals(values.getValueType()))
                            {
                               for (int idxv=0; idxv < values.getLength(); idxv++)
                               {
@@ -301,7 +304,7 @@ public class JsonSystemModel
                                  slotMap.put(idInstanceSpecification, id);
                               }
                            }
-                        }
+                        // }
                      }
                   }
                   
@@ -586,18 +589,22 @@ public class JsonSystemModel
       String id = getIdentifier(element);
       Collection<String> redefinedIds = toRedefinedMap.getCollection(id);
       
-      for (String redefinedId : redefinedIds)
+      if (redefinedIds != null)
       {
-         JSONObject elem = getElement(redefinedId);
-         if (elem != null)
+         for (String redefinedId : redefinedIds)
          {
-            props.add(elem);
-         }
-         else
-         {
-            LOGGER.log(Level.WARNING, "Redefined element not found: {0}", redefinedId);
-         }
+            JSONObject elem = getElement(redefinedId);
+            if (elem != null)
+            {
+               props.add(elem);
+            }
+            else
+            {
+               LOGGER.log(Level.WARNING, "Redefined element not found: {0}", redefinedId);
+            }
+         }         
       }
+
       return props;
    }
    
@@ -607,18 +614,22 @@ public class JsonSystemModel
       String id = getIdentifier(element);
       Collection<String> redefiningIds = fromRedefinedMap.getCollection(id);
       
-      for (String redefiningId : redefiningIds)
+      if (redefiningIds != null)
       {
-         JSONObject elem = getElement(redefiningId);
-         if (elem != null)
+         for (String redefiningId : redefiningIds)
          {
-            props.add(elem);
-         }
-         else
-         {
-            LOGGER.log(Level.WARNING, "Redefining element not found: {0}", redefiningId);
-         }
+            JSONObject elem = getElement(redefiningId);
+            if (elem != null)
+            {
+               props.add(elem);
+            }
+            else
+            {
+               LOGGER.log(Level.WARNING, "Redefining element not found: {0}", redefiningId);
+            }
+         }         
       }
+
       return props;
    }   
    
@@ -1022,46 +1033,45 @@ public class JsonSystemModel
    
    public List<JSONObject> getParts(JSONObject element)
    {
-      Map<String, JSONObject> props = getElementProperties(element);
+      List<JSONObject> jProps = getElementProperties(element);
       List<JSONObject> parts = new ArrayList<JSONObject>();
       
-      for (JSONObject prop : props.values())
+      for (JSONObject jProp : jProps)
       {
-         if (isPart(prop))
+         if (isPart(jProp))
          {
-            parts.add(prop);
+            parts.add(jProp);
          }
       }
       
       return parts;
    }   
    
-   public List<JSONObject> getPart(JSONObject element, String name)
+   public JSONObject getPart(JSONObject element, String name)
    {
-      Map<String, JSONObject> props = getElementProperties(element);
-      List<JSONObject> parts = new ArrayList<JSONObject>();
+      List<JSONObject> jProps = getElementProperties(element);
       
-      for (JSONObject prop : props.values())
+      for (JSONObject jProp : jProps)
       {
-         if (isPart(prop))
+         if (isPart(jProp) && name.equals(getName(jProp)))
          {
-            parts.add(prop);
+            return jProp;
          }
       }
       
-      return parts;
+      return null;
    }    
    
    public List<JSONObject> getValueProperties(JSONObject element)
    {
-      Map<String, JSONObject> props = getElementProperties(element);
+      List<JSONObject> jProps = getElementProperties(element);
       List<JSONObject> valueProperties = new ArrayList<JSONObject>();
       
-      for (JSONObject prop : props.values())
+      for (JSONObject jProp : jProps)
       {
-         if (isValueProperty(prop))
+         if (isValueProperty(jProp))
          {
-            valueProperties.add(prop);
+            valueProperties.add(jProp);
          }
       }
       
@@ -1070,30 +1080,45 @@ public class JsonSystemModel
    
    public List<JSONObject> getConstraintParameters(JSONObject element)
    {
-      Map<String, JSONObject> props = getElementProperties(element);
+      List<JSONObject> jProps = getElementProperties(element);
       List<JSONObject> parameters = new ArrayList<JSONObject>();
       
-      for (JSONObject prop : props.values())
+      for (JSONObject jProp : jProps)
       {
-         if (isConstraintParameter(prop))
+         if (isConstraintParameter(jProp))
          {
-            parameters.add(prop);
+            parameters.add(jProp);
          }
       }
       
       return parameters;      
    }
    
+   public JSONObject getConstraintParameter(JSONObject element, String name)
+   {
+      List<JSONObject> jProps = getElementProperties(element);
+      
+      for (JSONObject jProp : jProps)
+      {
+         if (isConstraintParameter(jProp) && name.equals(getName(jProp)))
+         {
+            return jProp;
+         }
+      }
+      
+      return null;
+   }  
+   
    public List<JSONObject> getSlots(JSONObject element)
    {
-      Map<String, JSONObject> props = getElementProperties(element);
+      List<JSONObject> jProps = getElementProperties(element);
       List<JSONObject> slots = new ArrayList<JSONObject>();
       
-      for (JSONObject prop : props.values())
+      for (JSONObject jProp : jProps)
       {
-         if (isSlot(prop))
+         if (isSlot(jProp))
          {
-            slots.add(prop);
+            slots.add(jProp);
          }
       }
       
@@ -1158,14 +1183,14 @@ public class JsonSystemModel
 
    protected String getPropertyTypeID(JSONObject element)
    {
-      Object id = getSpecializationProperty(element, PROPERTY_TYPE);
-      if (id instanceof String)
+      Object typeId = getSpecializationProperty(element, PROPERTY_TYPE);
+      if (typeId instanceof String)
       {
-         return (String)id;
+         return (String)typeId;
       }
       else
       {
-         LOGGER.log(Level.WARNING, "propertyType is not a string of id: %s", element);
+         LOGGER.log(Level.WARNING, "propertyType is not in an understandable format: {0}", getIdentifier(element));
          return null;
       }
    }
@@ -1303,10 +1328,10 @@ public class JsonSystemModel
       return null;
    }   
 
-   public Map<String, JSONObject> getElementProperties(JSONObject element)
+   public List<JSONObject> getElementProperties(JSONObject element)
          throws JSONException
    {      
-      Map<String, JSONObject> propertyMap = new LinkedHashMap<String, JSONObject>();
+      ArrayList<JSONObject> jProps = new ArrayList<JSONObject>();
 
       if (element != null)
       {
@@ -1317,11 +1342,11 @@ public class JsonSystemModel
             // Make sure the children are of type "Property":
             if (PROPERTY.equals(getType(child)))
             {
-               propertyMap.put(getName(child), child);
+               jProps.add(child);
             }
          }
       }
-      return propertyMap;
+      return jProps;
    }
    
    public JSONObject getElementProperty(JSONObject element, String name)
@@ -1656,28 +1681,26 @@ public class JsonSystemModel
    public Collection<JSONObject> getPropertyWithIdentifier(JSONObject context,
          String specifier)
    {
-
-      Map<String, JSONObject> properties = null;
+      List<JSONObject> jProps = null;
       try
       {
-         properties = getElementProperties(context);
+         jProps = getElementProperties(context);
       } 
       catch (JSONException e)
       {
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
-      if (properties != null)
+      if (jProps != null)
       {
          Collection<JSONObject> propertiesToReturn = new ArrayList<JSONObject>();
-         for (JSONObject property : properties.values())
+         for (JSONObject jProp : jProps)
          {
             // Make sure property type matches the specifier:
-            JSONObject jsonProperty = (JSONObject) property;
-            String id = getIdentifier(jsonProperty);
+            String id = getIdentifier(jProp);
             if (id != null && id.equals(specifier))
             {
-               propertiesToReturn.add(jsonProperty);
+               propertiesToReturn.add(jProp);
             }
          }
 
@@ -1693,10 +1716,10 @@ public class JsonSystemModel
          String typeName)
    {
 
-      Map<String, JSONObject> properties = null;
+      List<JSONObject> jProps = null;
       try
       {
-         properties = getElementProperties(context);
+         jProps = getElementProperties(context);
       } 
       catch (JSONException e)
       {
@@ -1705,17 +1728,17 @@ public class JsonSystemModel
       }
 
       Collection<JSONObject> propertiesToReturn = new ArrayList<JSONObject>();
-      for (JSONObject property : properties.values())
+      for (JSONObject jProp : jProps)
       {
          // Make sure property type matches the specifier:
-         String propertyTypeID = getPropertyTypeID(property);
+         String propertyTypeID = getPropertyTypeID(jProp);
          JSONObject propertyType = getElement(propertyTypeID);
          if (propertyType != null)
          {
             Object propertyTypeName = getJsonProperty(propertyType, NAME);
             if (typeName.equals(propertyTypeName))
             {
-               propertiesToReturn.add(property);
+               propertiesToReturn.add(jProp);
             }
          }
       }
