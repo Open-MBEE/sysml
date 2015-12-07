@@ -110,7 +110,7 @@ public class JsonSystemModelUnitTest
       JsonValueProperty bikeWeight = bike.getValueProperty("weight");
       JsonPropertyValues propertyValues = bikeWeight.getValue();
       assertEquals(1, propertyValues.getLength());
-      assertEquals("5.5", propertyValues.getValueAsString(0));
+      assertEquals("7.5", propertyValues.getValueAsString(0));
       assertEquals("_16_6_2104050f_1253865957968_136935_6575", bikeWeight.getTypeId());
       assertEquals("kilogram", bikeWeight.getType().getUnit());
       assertEquals("mass", bikeWeight.getType().getQuantityKind());
