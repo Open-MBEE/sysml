@@ -55,10 +55,12 @@ public class JsonSystemModel
       extends AbstractSystemModel< JSONObject, JSONObject, JSONObject, JSONObject, String, String, JSONObject, JSONObject, Object, Object, JSONObject > 
 {   
    public static final String NAME = "name";
+   public static final String QUALIFIED_NAME = "qualifiedName";
    public static final String TYPE = "type";
    public static final String OWNER = "owner";
    public static final String SOURCE = "source";
    public static final String TARGET = "target";
+   public static final String SITE_CHARACTERIZATION_ID = "siteCharacterizationId";
    public static final String SYSMLID = "sysmlid";
    public static final String QUALIFIED_ID = "qualifiedId";
    public static final String ELEMENTS = "elements";
@@ -1639,7 +1641,17 @@ public class JsonSystemModel
       return searchForElementsByProperty(context, NAME, name);
    }
 
-
+   @Override
+   public Collection<JSONObject> getElementWithQualifiedName(JSONObject context,
+         String qualifiedName)
+   {
+      if (qualifiedName == null)
+      {
+         return null;
+      }
+      return searchForElementsByProperty(context, QUALIFIED_NAME, qualifiedName);
+   }
+   
    /**
     * Get child elements of the given type. The search is recursive following containment
     * relationships.

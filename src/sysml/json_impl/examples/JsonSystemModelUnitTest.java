@@ -77,14 +77,20 @@ public class JsonSystemModelUnitTest
       // Search for all elements with name "Bike"
       elements = (List<JSONObject>) systemModel.getElementWithName(null, "Bike");
       assertTrue(elements.size() == 1);
-
       Iterator<JSONObject> iter = elements.iterator();       
-      JSONObject jBike = iter.next();
+      JSONObject jBike0 = iter.next();      
+
+      elements = (List<JSONObject>) systemModel.getElementWithQualifiedName(null, "/my-new-bike/MyBike/Structure/Bike");
+      assertTrue(elements.size() == 1);
+      iter = elements.iterator();       
+      JSONObject jBike = iter.next();  
+      
+      assertTrue(jBike0 == jBike);
       
       //
       JsonBlock bike = (JsonBlock)systemModel.wrap(jBike);
       assertEquals("Bike", bike.getName());
-      assertEquals("/MyBike/Structure/Bike", bike.getQualifiedName());
+      assertEquals("/my-new-bike/MyBike/Structure/Bike", bike.getQualifiedName());
       
       List<JsonPart> parts = bike.getParts();
       assertEquals(3, parts.size());
@@ -349,12 +355,12 @@ public class JsonSystemModelUnitTest
       assertEquals(0, redefinedByThis.size());
       redefiningThis = part1.getRedefiningThis();
       assertEquals(1, redefiningThis.size());
-      assertEquals("/MyBike/Modeling/Inheritance/ChildBlock/part2", redefiningThis.iterator().next().getQualifiedName());
+      assertEquals("/my-new-bike/MyBike/Modeling/Inheritance/ChildBlock/part2", redefiningThis.iterator().next().getQualifiedName());
       
       JsonPart part2 = childBlock.getPart("part2");
       redefinedByThis = part2.getRedefinedByThis();
       assertEquals(1, redefinedByThis.size());     
-      assertEquals("/MyBike/Modeling/Inheritance/ParentBlock/part1", redefinedByThis.iterator().next().getQualifiedName());
+      assertEquals("/my-new-bike/MyBike/Modeling/Inheritance/ParentBlock/part1", redefinedByThis.iterator().next().getQualifiedName());
       redefiningThis = part2.getRedefiningThis();
       assertEquals(0, redefiningThis.size());      
       
@@ -364,12 +370,12 @@ public class JsonSystemModelUnitTest
       assertEquals(0, redefinedByThis.size());
       redefiningThis = p2.getRedefiningThis();
       assertEquals(1, redefiningThis.size());
-      assertEquals("/MyBike/Modeling/Inheritance/ChildBlock/p2redef", redefiningThis.iterator().next().getQualifiedName());    
+      assertEquals("/my-new-bike/MyBike/Modeling/Inheritance/ChildBlock/p2redef", redefiningThis.iterator().next().getQualifiedName());    
       
       JsonValueProperty p2redef = childBlock.getValueProperty("p2redef");
       redefinedByThis = p2redef.getRedefinedByThis();
       assertEquals(1, redefinedByThis.size());     
-      assertEquals("/MyBike/Modeling/Inheritance/ParentBlock/p2", redefinedByThis.iterator().next().getQualifiedName());
+      assertEquals("/my-new-bike/MyBike/Modeling/Inheritance/ParentBlock/p2", redefinedByThis.iterator().next().getQualifiedName());
       redefiningThis = p2redef.getRedefiningThis();
       assertEquals(0, redefiningThis.size());       
       
@@ -477,7 +483,7 @@ public class JsonSystemModelUnitTest
       List<JsonParametricDiagram> parametricDiagrams = bike.getParametricDiagrams();
       assertEquals(1, parametricDiagrams.size());
       JsonParametricDiagram parametricDiagram = parametricDiagrams.iterator().next();
-      assertEquals("/MyBike/Structure/Bike/par_bikeWeight", parametricDiagram.getQualifiedName());
+      assertEquals("/my-new-bike/MyBike/Structure/Bike/par_bikeWeight", parametricDiagram.getQualifiedName());
       
       List<JsonConstraintProperty> constraintProperties = parametricDiagram.getConstraintProperties();
       assertEquals(1, constraintProperties.size());
