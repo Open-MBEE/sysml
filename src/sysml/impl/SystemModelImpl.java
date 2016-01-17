@@ -14,6 +14,8 @@ import java.util.Set;
 import sysml.AbstractSystemModel;
 import sysml.Element;
 import sysml.BaseElement;
+import sysml.Version;
+import sysml.Workspace;
 
 public class SystemModelImpl
         extends AbstractSystemModel< ElementImpl, BaseElementImpl, ElementImpl, PropertyImpl, String, String, ElementImpl, ElementImpl, VersionImpl, WorkspaceImpl, ElementImpl > {
@@ -1030,8 +1032,46 @@ public class SystemModelImpl
         return null;
     }
 
+    public static LiteralString STRING = new LiteralString();
+    public static class LiteralString extends ElementImpl {
+        public LiteralString() {
+            super((String)null);
+        }
+    }
+    public static class Block extends ElementImpl {
+
+        public Block( String id ) {
+            super( id );
+        }
+        public Block( Workspace< String, String, Date > workspace,
+                      String id,
+                      String name,
+                      Version< String, Date, BaseElement< String, String, Date >> version,
+                      Map< String, PropertyImpl > properties ) {
+            super( workspace, id, name, version, properties );
+            // TODO Auto-generated constructor stub
+        }
+        
+    }
+    
     public static void main( String[] args ) {
         System.out.println("Hello, world.");
-    }
+        WorkspaceImpl workspace = new WorkspaceImpl( "ws1" );
+        VersionImpl version = new VersionImpl( "1.0", new Date(), null );
+        Map< String, PropertyImpl > props = new LinkedHashMap< String, PropertyImpl >();
+        ElementImpl literalString = new ElementImpl( workspace, "LiteralString", "LiteralString", null, null );
+        props.put( "foo", new PropertyImpl( workspace, "foo", "foo", null, literalString , "bar" ) );
+        ElementImpl e = new ElementImpl( workspace , "e_001", "e1", version , props  );
+        
+      
+        Block cls1 = new Block("myClass");
+        cls1.addProperty("foo", STRING, "bar");
 
+        Block cls2 = 
+          new Block("myClass");
+          cls2.addProperty("foo", STRING, "bar");
+
+        
+    }
+    
 }
