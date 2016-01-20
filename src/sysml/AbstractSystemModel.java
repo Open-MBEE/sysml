@@ -1299,7 +1299,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     protected static <T> T as( Object o, Class<T> cls ) {
         T t = null;
         Pair< Boolean, T > res = ClassUtils.coerce( o, cls, true );
-        if ( res.first ) t = res.second;
+        if ( res != null && res.first != null && res.first == true ) t = res.second;
         return t;
     }
 
