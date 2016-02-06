@@ -76,7 +76,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         if ( !isAllowed( operation, itemTypes, contexts, specifiers, newValueItem, failForMultipleItemMatches ) ) {
             return Collections.emptyList();
         }
-        Collection< Object > results = Utils.newList();
+        Collection< Object > results = Utils.newEmptyList();
         Collection< Object > res = null;
         if ( Utils.isNullOrEmpty( contexts ) ) {
 //            SystemModel.Item[] oneNullArg = new SystemModel.Item[1];
