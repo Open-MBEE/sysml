@@ -145,11 +145,11 @@ public interface Translator< F extends SystemModel< FO, FC, FT, FP, FN, FI, FU, 
     public TN translateName( FN fName );
 
     /**
-     * Translate the from-model interface to a to-model interface. 
+     * Translate the from-model identifier to a to-model identifier. 
      * @param fInterface
      * @return the corresponding to-model interface or a new to-model interface (TODO -- is it added to the model?)
      */
-    public TI translateInterface( FI fInterface );
+    public TI translateIdentifier( FI fIdentifier );
 
     /**
      * Translate the from-model value to a to-model value. 

@@ -10,7 +10,7 @@ import java.util.Map;
 
 import sysml.AccessPrivileges;
 import sysml.ChangeSet;
-import sysml.Element;
+import sysml.BaseElement;
 import sysml.Version;
 import sysml.Workspace;
 
@@ -19,16 +19,16 @@ public class WorkspaceImpl implements Workspace<String, String, Date> {
     protected static WorkspaceImpl master = new WorkspaceImpl( "master" );
 
     // fields
-    protected LinkedHashMap< String, Element< String, String, Date > >
-        elements = new LinkedHashMap< String, Element<String, String, Date > >();
+    protected LinkedHashMap< String, BaseElement< String, String, Date > >
+        elements = new LinkedHashMap< String, BaseElement<String, String, Date > >();
 
-    protected LinkedHashMap< String, Map< Date, Version< String, Date, Element<String, String, Date > > > >
-        versions = new LinkedHashMap< String, Map< Date, Version< String, Date, Element<String, String, Date > > > >();
+    protected LinkedHashMap< String, Map< Date, Version< String, Date, BaseElement<String, String, Date > > > >
+        versions = new LinkedHashMap< String, Map< Date, Version< String, Date, BaseElement<String, String, Date > > > >();
 
     protected LinkedHashMap< Date, ChangeSet > changeHistory = new LinkedHashMap<Date, ChangeSet>();
 
-    protected LinkedHashMap< Element<String, String, Date >, Map< String, AccessPrivileges > >
-        accesPrivilegeMap = new LinkedHashMap< Element<String, String, Date >, Map< String, AccessPrivileges > >();
+    protected LinkedHashMap< BaseElement<String, String, Date >, Map< String, AccessPrivileges > >
+        accesPrivilegeMap = new LinkedHashMap< BaseElement<String, String, Date >, Map< String, AccessPrivileges > >();
 
     protected String id;
     protected String name;
@@ -45,13 +45,13 @@ public class WorkspaceImpl implements Workspace<String, String, Date> {
     }
 
     @Override
-    public Map< Date, Version< String, Date, Element< String, String, Date > > > getVersionMap( String id ) {
+    public Map< Date, Version< String, Date, BaseElement< String, String, Date > > > getVersionMap( String id ) {
         return versions.get( id );
     }
 
     @Override
-    public List< Version< String, Date, Element<String, String, Date > > > getVersions( String id ) {
-        return new ArrayList< Version< String, Date, Element<String, String, Date > > >( versions.get( id ).values() );
+    public List< Version< String, Date, BaseElement<String, String, Date > > > getVersions( String id ) {
+        return new ArrayList< Version< String, Date, BaseElement<String, String, Date> > >( versions.get( id ).values() );
     }
 
     @Override
@@ -60,19 +60,19 @@ public class WorkspaceImpl implements Workspace<String, String, Date> {
     }
 
     @Override
-    public Map< String, Element< String, String, Date > > getElements() {
+    public Map< String, BaseElement< String, String, Date > > getElements() {
         return elements;
     }
 
     @Override
-    public Element< String, String, Date > getElement( String id ) {
+    public BaseElement< String, String, Date > getElement( String id ) {
         return elements.get( id );
     }
 
     @Override
-    public Element< String, String, Date > getElement( String id, Date dateTime ) {
-        Element< String, String, Date > element = getElement( id );
-        Version< String, Date, Element< String, String, Date >> version =
+    public BaseElement< String, String, Date > getElement( String id, Date dateTime ) {
+        BaseElement< String, String, Date > element = getElement( id );
+        Version< String, Date, BaseElement< String, String, Date >> version =
                 element.getVersion( dateTime );
         if ( version == null ) return null;
         return version.getData();
@@ -96,7 +96,7 @@ public class WorkspaceImpl implements Workspace<String, String, Date> {
     @Override
     public AccessPrivileges
             getAccessPrivileges( String username,
-                                 Element< String, String, Date > element ) {
+                                 BaseElement< String, String, Date > element ) {
         return Utils.get( accesPrivilegeMap, element, username );
     }
 

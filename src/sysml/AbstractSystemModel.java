@@ -76,7 +76,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         if ( !isAllowed( operation, itemTypes, contexts, specifiers, newValueItem, failForMultipleItemMatches ) ) {
             return Collections.emptyList();
         }
-        Collection< Object > results = Utils.newList();
+        Collection< Object > results = Utils.newEmptyList();
         Collection< Object > res = null;
         if ( Utils.isNullOrEmpty( contexts ) ) {
 //            SystemModel.Item[] oneNullArg = new SystemModel.Item[1];
@@ -383,7 +383,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         Collection< ModelItem > isItemSet =
                 MethodCall.filter( Arrays.asList( ModelItem.values() ),
                                    methodCall, 1 );
-        Debug.outln( "whatIsA(" + item + ") = " + isItemSet );
+        if ( Debug.isOn() ) Debug.outln( "whatIsA(" + item + ") = " + isItemSet );
         return isItemSet;
     }
 
@@ -400,7 +400,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                                 new MethodCall( null, method,
                                                 new Object[] { null } );
                         methodCall.mapClosure(this, 1, ModelItem.values().length+1);
-                        Debug.out( "canHaveClosure = " + this );
+                        if ( Debug.isOn() ) Debug.out( "canHaveClosure = " + this );
                     }
                 }
             };
@@ -418,7 +418,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                                 new MethodCall( null, method,
                                                 new Object[] { null } );
                         methodCall.mapClosure(this, 1, ModelItem.values().length+1);
-                        Debug.outln( "canContainClosure = " + this );
+                        if ( Debug.isOn() ) Debug.outln( "canContainClosure = " + this );
                     }
                 }
             };
@@ -1252,6 +1252,9 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
         return op( Operation.CREATE, itemTypes, context, identifier, name, version, newValue, false );
     }
 
+    public String getNameString( C context ) {
+        return "" + getName( context );
+    }
 
     @Override
     public Class<?> getClass(ModelItem item) {
@@ -1296,7 +1299,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     protected static <T> T as( Object o, Class<T> cls ) {
         T t = null;
         Pair< Boolean, T > res = ClassUtils.coerce( o, cls, true );
-        if ( res.first ) t = res.second;
+        if ( res != null && res.first != null && res.first == true ) t = res.second;
         return t;
     }
 
@@ -1418,22 +1421,62 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public abstract boolean versionsAreWritable();
 
     @Override
-    public Collection< E > getElement( Object context,
+    public Collection< E > getElement( C context,
                                        Object specifier ) {
         // REVIEW -- should check permissions before trying
         Collection< E > elements =
                 new TreeSet< E >( CompareUtils.GenericComparator.instance() );
-        I id = asIdentifier( specifier );
-        if ( id != null ) {
-            elements.addAll( getElementWithIdentifier( context, id ) );
+
+        // If there's no specifier, then this implementation won't work.
+        if ( specifier == null ) {
+            return elements;
         }
+
+        I id = asIdentifier( specifier );
+        if ( id != null || specifier == null ) {
+            elements.addAll( getElementWithIdentifier( context, id ) );
+            if ( !elements.isEmpty() ) return elements;
+        }
+        // 
         N name = asName( specifier );
         if ( name != null ) {
             elements.addAll( getElementWithName( context, name ) );
+            if ( !elements.isEmpty() ) return elements;
         }
         V version = asVersion( specifier );
-        if ( name != null ) {
+        if ( version != null ) {
             elements.addAll( getElementWithVersion( context, version ) );
+            if ( !elements.isEmpty() ) return elements;
+        }
+        W ws = asWorkspace( specifier );
+        if ( ws != null ) {
+            elements.addAll( getElementWithWorkspace( context, ws ) );
+            if ( !elements.isEmpty() ) return elements;
+        }
+        T type = asType( specifier );
+        if ( type != null ) {
+            elements.addAll( getElementWithType( context, type ) );
+            if ( !elements.isEmpty() ) return elements;
+        }
+        R rel = asRelationship( specifier );
+        if ( rel != null ) {
+            elements.addAll( getElementWithRelationship( context, rel ) );
+            if ( !elements.isEmpty() ) return elements;
+        }
+        P property = asProperty( specifier );
+        if ( property != null ) {
+            elements.addAll( getElementWithProperty( context, property ) );
+            if ( !elements.isEmpty() ) return elements;
+        }
+        U val = asValue( specifier );
+        if ( val != null ) {
+            elements.addAll( getElementWithValue( context, val ) );
+            if ( !elements.isEmpty() ) return elements;
+        }
+        CT constraint = asConstraint( specifier );
+        if ( constraint != null ) {
+            elements.addAll( getElementWithConstraint( context, constraint ) );
+            if ( !elements.isEmpty() ) return elements;
         }
         // TODO -- repeat for the remaining item types!
         return elements;

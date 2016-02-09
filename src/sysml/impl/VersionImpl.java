@@ -2,17 +2,17 @@ package sysml.impl;
 
 import java.util.Date;
 
-import sysml.Element;
+import sysml.BaseElement;
 import sysml.Version;
 
-public class VersionImpl implements Version< String, Date, Element< String, String, Date > > {
+public class VersionImpl implements Version< String, Date, BaseElement< String, String, Date > > {
 
     protected String label;
     protected Date timestamp;
-    protected Element< String, String, Date > element;
+    protected BaseElement< String, String, Date > element;
 
     public VersionImpl( String label, Date timestamp,
-                        Element< String, String, Date > element ) {
+                        BaseElement< String, String, Date > element ) {
         super();
         this.label = label;
         this.timestamp = timestamp;
@@ -30,7 +30,7 @@ public class VersionImpl implements Version< String, Date, Element< String, Stri
     }
 
     @Override
-    public Element< String, String, Date > getData() {
+    public BaseElement< String, String, Date > getData() {
         return element;
     }
 
