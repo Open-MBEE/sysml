@@ -78,32 +78,12 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
    @Override
    public String getQualifiedName()
    {
-      StringBuilder sb = new StringBuilder();
-      
-      List<JSONObject> jList = new ArrayList<JSONObject>();
-      
-      JSONObject current = jsonObj;
-      
-      while (current != null)
+      Object qualifiedNameObj = systemModel.getJsonProperty(jsonObj, JsonSystemModel.QUALIFIED_NAME);
+      if (qualifiedNameObj != null)
       {
-         jList.add(current);
-         current = systemModel.getOwner(current);
+         return qualifiedNameObj.toString();
       }
-      
-      if (!systemModel.isProject(jList.get(jList.size()-1)))
-      {
-         LOGGER.log(Level.WARNING, "Project could not be determined for: %s. Return short name instead.", jsonObj);
-         return getName();
-      }      
-      
-      for (int i=jList.size()-1; i >= 0; i--)
-      {
-         JSONObject jObj = jList.get(i);
-         String n = systemModel.getName(jObj);
-         sb.append("/");
-         sb.append(n);
-      }
-      return sb.toString();
+      return "";
    }
 
    @Override
@@ -177,6 +157,8 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
    @Override
    public String getTagValue(String name)
    {
+      // TODO: this is a shortcut approach with hardcoded tag names
+      // Need to construct tag list programmatically.
       String tagId = JsonSystemModel.getTagID(name);
       if (tagId != null)
       {
@@ -339,5 +321,15 @@ public class JsonBaseElement implements BaseElement<String, String, Date>, Compa
    public String toString()
    {
       return String.format("%s (%s)", getName(), getId());
+   }
+   
+   public String getSite()
+   {
+      Object siteObj = systemModel.getJsonProperty(jsonObj, JsonSystemModel.SITE_CHARACTERIZATION_ID);
+      if (siteObj != null)
+      {
+         return siteObj.toString();
+      }
+      return "";
    }
 }

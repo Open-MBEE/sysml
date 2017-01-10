@@ -321,6 +321,13 @@ public class SystemModelImpl
     }
 
     @Override
+    public Collection< ElementImpl > getElementWithQualifiedName( BaseElementImpl context,
+                                                         String specifier ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    @Override
     public Collection< ElementImpl >
             getElementWithProperty( BaseElementImpl context, PropertyImpl specifier ) {
         // TODO Auto-generated method stub

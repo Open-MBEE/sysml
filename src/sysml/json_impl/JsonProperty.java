@@ -1,6 +1,8 @@
 package sysml.json_impl;
 
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,6 +53,52 @@ public class JsonProperty extends JsonBaseElement implements
    {
       return systemModel.getPropertyTypeID(jsonObj);
    }   
+   
+   public long getMultiplicityMin()
+   {
+      return systemModel.getMultiplicityMin(jsonObj);
+   }
+   
+   /**
+    * 
+    * @return max multiplicity value. -1 for any.
+    */
+   public long getMultiplicityMax()
+   {
+      return systemModel.getMultiplicityMax(jsonObj);
+   }
+   
+   public List<JsonProperty> getRedefinedByThis()
+   {
+      ArrayList<JsonProperty> props = new ArrayList<JsonProperty>();
+      
+      List<JSONObject> jProps = systemModel.getRedefinedByThis(jsonObj);
+      
+      for (JSONObject jProp : jProps)
+      {
+         if (jProp != null && systemModel.isProperty(jProp))
+         {
+            props.add((JsonProperty)systemModel.wrap(jProp));
+         }
+      }
+      return props;      
+   }
+   
+   public List<JsonProperty> getRedefiningThis()
+   {
+      ArrayList<JsonProperty> props = new ArrayList<JsonProperty>();
+      
+      List<JSONObject> jProps = systemModel.getRedefiningThis(jsonObj);
+      
+      for (JSONObject jProp : jProps)
+      {
+         if (jProp != null && systemModel.isProperty(jProp))
+         {
+            props.add((JsonProperty)systemModel.wrap(jProp));
+         }
+      }
+      return props;          
+   }
 
    @Override
    public JsonPropertyValues getValue()
@@ -63,7 +111,7 @@ public class JsonProperty extends JsonBaseElement implements
       }
       else
       {
-         LOGGER.log(Level.WARNING, "Property value is not in array form: %s", value);
+         LOGGER.log(Level.WARNING, "Property value is not in array form: {0}", id);
          return null;
       }
    }

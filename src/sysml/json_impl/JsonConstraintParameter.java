@@ -10,7 +10,7 @@ import org.json.JSONObject;
 /**
  *
  */
-public class JsonConstraintParameter extends JsonBaseElement
+public class JsonConstraintParameter extends JsonProperty
 {
    private final static Logger LOGGER = Logger.getLogger(JsonConstraintParameter.class.getName());   
    

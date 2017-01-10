@@ -78,7 +78,8 @@ public class JsonSystemModelTest
       libraryFiles.add("SI_Specializations.json");
       libraryFiles.add("SI_Valuetype_Library.json");
       libraryFiles.add("QUDV.json");
-      libraryFiles.add("MD_Customization_for_View_Viewpoint.json");      
+      libraryFiles.add("MD_Customization_for_View_Viewpoint.json");   
+      libraryFiles.add("AnalysisViews.json");
       // libraryFiles.add("SysML_Extensions.json");
       libraryFiles.add("MBSE_Analyzer.json");
       
@@ -190,7 +191,7 @@ public class JsonSystemModelTest
             JsonGraphElement gElem = iterGElems.next();
             System.out.println(String.format("         %s", gElem.toString()));
          }         
-         
+         // Check if rearWheel and frontWheel graphical elements are different. Must be false?
          JsonGraphElement[] gArray = new JsonGraphElement[0];
          gArray = gElems.toArray(gArray);
          System.out.println(String.format("equals=%s", gArray[2].equals(gArray[7])));
@@ -284,7 +285,7 @@ public class JsonSystemModelTest
          }
       } 
       
-      elements = (List<JSONObject>) systemModel.getElementWithName(null, "GrantParentBlock");
+      elements = (List<JSONObject>) systemModel.getElementWithName(null, "GrandParentBlock");
       for (JSONObject jObj : elements)
       {
          if(systemModel.isBlock(jObj))
@@ -331,6 +332,8 @@ public class JsonSystemModelTest
       System.out.println(String.format("%s is a super class of %s: %s", 
             bike.getName(), parentBlock.getName(), bike.isSuperClassOf(parentBlock)));  
       System.out.println(String.format("%s is a sub class of %s: %s", 
-            bike.getName(), parentBlock.getName(), bike.isSubClassOf(parentBlock)));       
+            bike.getName(), parentBlock.getName(), bike.isSubClassOf(parentBlock)));   
+      
+      System.out.println("done!");
    }
 }

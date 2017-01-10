@@ -411,6 +411,7 @@ public interface SystemModel<E, C, T, P, N, I, U, R, V, W, CT> {
     Collection< E > getElementWithConstraint( C context, CT specifier );
     Collection< E > getElementWithIdentifier( C context, I specifier );
     Collection< E > getElementWithName( C context, N specifier );
+    Collection< E > getElementWithQualifiedName( C context, N specifier );    
     Collection< E > getElementWithProperty( C context, P specifier );
     Collection< E > getElementWithRelationship( C context, R specifier );
     Collection< E > getElementWithType( C context, T specifier );

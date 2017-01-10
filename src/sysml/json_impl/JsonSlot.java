@@ -35,7 +35,7 @@ public class JsonSlot extends JsonBaseElement
       }
       else
       {
-         LOGGER.log(Level.WARNING, "Property value is not in array form: %s", value);
+         LOGGER.log(Level.WARNING, "Property value is not in array form: {0}", id);
          return null;
       }
    }
