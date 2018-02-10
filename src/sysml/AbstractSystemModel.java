@@ -376,7 +376,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
     public static Collection< ModelItem > whatIsA( ModelItem item ) {
         Method method =
                 ClassUtils.getMethodForArgs( AbstractSystemModel.class, "isA",
-                                             item, item );
+                                             true, item, item );
         MethodCall methodCall =
                 new MethodCall( null, method,
                                 new Object[] { null, item } );
@@ -395,7 +395,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                         ModelItem item = keySet().iterator().next();
                         Method method =
                                 ClassUtils.getMethodForArgs( AbstractSystemModel.class, "whatIsA",
-                                                             item );
+                                                             true, item );
                         MethodCall methodCall =
                                 new MethodCall( null, method,
                                                 new Object[] { null } );
@@ -413,7 +413,7 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
                         ModelItem item = keySet().iterator().next();
                         Method method =
                                 ClassUtils.getMethodForArgs( AbstractSystemModel.class, "whatIsA",
-                                                             item );
+                                                             true, item );
                         MethodCall methodCall =
                                 new MethodCall( null, method,
                                                 new Object[] { null } );
@@ -892,15 +892,15 @@ public abstract class AbstractSystemModel< E, C, T, P, N, I, U, R, V, W, CT >
 
         // try to lookup the Method from the callName and argTypes using reflection
         Class<?> sysClass = systemModel == null ? AbstractSystemModel.class : systemModel.getClass();
-        method = ClassUtils.getMethodForArgTypes( sysClass, callName , argTypes , complain );
+        method = ClassUtils.getMethodForArgTypes( sysClass, callName , argTypes , false );
         if ( method == null ) {
-            method = ClassUtils.getMethodForArgs( sysClass, callName, argList );
+            method = ClassUtils.getMethodForArgs( sysClass, callName, complain && by.length() <= 0, argList );
         }
         if ( method == null && by.length() > 0 ) {
             //callName = opName + itemTypeName + of;
-            method = ClassUtils.getMethodForArgTypes( sysClass, callName, argTypes , complain );
+            method = ClassUtils.getMethodForArgTypes( sysClass, callName, argTypes , false );
             if ( method == null ) {
-                method = ClassUtils.getMethodForArgs( sysClass, callName, argList );
+                method = ClassUtils.getMethodForArgs( sysClass, callName, complain, argList );
             }
         }
         // fail and return null if the Method could not be found

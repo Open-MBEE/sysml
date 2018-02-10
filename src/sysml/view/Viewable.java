@@ -18,4 +18,6 @@ public interface Viewable< E > {
      * @return the elements whose information is accessible in a view
      */
     public Collection<E> getDisplayedElements();
+    
+//    public String toHtml(Date dateTime);
 }
