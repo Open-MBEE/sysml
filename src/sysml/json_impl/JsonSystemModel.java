@@ -148,10 +148,10 @@ public class JsonSystemModel
    public static final String ID_COLLECT_PARAM_DIAGRAM_ELEMENTS_VIEWPOINT = "_18_0_2_f060354_1448523624628_704247_15032";   
    
    // Map of stereotypes
-   static protected Map<String, String> stereotypeMap = new HashMap<String, String>();
+   static protected Map<String, String> stereotypeMap = new LinkedHashMap<String, String>();
    
    // Map of tags
-   static protected Map<String, String> tagMap = new HashMap<String, String>();      
+   static protected Map<String, String> tagMap = new LinkedHashMap<String, String>();
    
    // Map of Generalization relationships (from child to parent)
    protected MultiValueMap<String, String> generalizationMap = new MultiValueMap<String, String>();

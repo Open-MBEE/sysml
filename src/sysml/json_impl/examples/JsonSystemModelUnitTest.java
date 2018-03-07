@@ -27,11 +27,7 @@ import sysml.json_impl.JsonValueType;
 import sysml.json_impl.JsonInstanceSpecification;
 import sysml.json_impl.JsonSlot;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.HashMap;
+import java.util.*;
 import java.util.logging.Level;
 
 public class JsonSystemModelUnitTest
@@ -95,7 +91,7 @@ public class JsonSystemModelUnitTest
       List<JsonPart> parts = bike.getParts();
       assertEquals(3, parts.size());
       
-      HashMap<String, JsonPart> partsMap = new HashMap<String, JsonPart>();
+      HashMap<String, JsonPart> partsMap = new LinkedHashMap<String, JsonPart>();
       for (JsonPart part : parts)
       {
          partsMap.put(part.getName(), part);
@@ -107,7 +103,7 @@ public class JsonSystemModelUnitTest
       List<JsonValueProperty> valueProps = bike.getValueProperties();
       assertEquals(1, valueProps.size());
       
-      HashMap<String, JsonValueProperty> valuePropsMap = new HashMap<String, JsonValueProperty>();
+      HashMap<String, JsonValueProperty> valuePropsMap = new LinkedHashMap<String, JsonValueProperty>();
       for (JsonValueProperty valueProp : valueProps)
       {
          valuePropsMap.put(valueProp.getName(), valueProp);
@@ -248,7 +244,7 @@ public class JsonSystemModelUnitTest
       System.out.println(String.format("Super classes of : ", grandParentBlock));
       Collection<JsonElement> superClasses = childBlock.getSuperClasses();
       assertEquals(2, superClasses.size());
-      HashMap<String, JsonElement> superClassMap = new HashMap<String, JsonElement>();
+      HashMap<String, JsonElement> superClassMap = new LinkedHashMap<String, JsonElement>();
        
       for (JsonElement superClass : superClasses)
       {
@@ -413,7 +409,7 @@ public class JsonSystemModelUnitTest
       // JsonPart rearWheel = bike.getPart("rearWheel");
       // JsonValueProperty weight = bike.getValueProperty("weight");
       
-      HashMap<String, JsonProperty> propsMap = new HashMap<String, JsonProperty>();
+      HashMap<String, JsonProperty> propsMap = new LinkedHashMap<String, JsonProperty>();
       for (JsonProperty prop : bike.getProperties())
       {
          propsMap.put(prop.getId(), prop);
@@ -422,7 +418,7 @@ public class JsonSystemModelUnitTest
       List<JsonSlot> slots = null;
       slots = bikeInstance.getSlots();
       assertEquals(4, slots.size());
-      HashMap<String, JsonSlot> slotsMap = new HashMap<String, JsonSlot>();
+      HashMap<String, JsonSlot> slotsMap = new LinkedHashMap<String, JsonSlot>();
       
       for (JsonSlot slot : slots)
       {
@@ -494,7 +490,7 @@ public class JsonSystemModelUnitTest
       
       List<JsonBindingConnector> bindingConnectors = parametricDiagram.getBindingConnectors();
       assertEquals(4, bindingConnectors.size());
-      HashMap<String, JsonBindingConnector> bindingConnectorsMap = new HashMap<String, JsonBindingConnector>();
+      HashMap<String, JsonBindingConnector> bindingConnectorsMap = new LinkedHashMap<String, JsonBindingConnector>();
       for (JsonBindingConnector bindingConnector : bindingConnectors)
       {
          bindingConnectorsMap.put(bindingConnector.getName(), bindingConnector);
@@ -596,7 +592,7 @@ public class JsonSystemModelUnitTest
       // elements in diagram
       Collection<JsonBaseElement> elems = parametricDiagram.getElementsInDiagram();
       assertEquals(15, elems.size());
-      HashMap<String, JsonBaseElement> elemsMap = new HashMap<String, JsonBaseElement>();
+      HashMap<String, JsonBaseElement> elemsMap = new LinkedHashMap<String, JsonBaseElement>();
       for (JsonBaseElement elem : elems)
       {
          elemsMap.put(elem.getId(), elem);
@@ -620,7 +616,7 @@ public class JsonSystemModelUnitTest
       Collection<JsonGraphElement> gElems = parametricDiagram.getGraphicalElements();
       assertEquals(18, gElems.size());
       
-      HashMap<String, JsonGraphElement> gElemsMap = new HashMap<String, JsonGraphElement>();
+      HashMap<String, JsonGraphElement> gElemsMap = new LinkedHashMap<String, JsonGraphElement>();
       for (JsonGraphElement gElem : gElems)
       {
          gElemsMap.put(gElem.toString(), gElem);
